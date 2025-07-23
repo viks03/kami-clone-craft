@@ -18,6 +18,10 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'karla': ['Karla', 'sans-serif'],
+				'inter': ['Inter', 'sans-serif'],
+			},
 			colors: {
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
@@ -61,7 +65,28 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// Anime-specific color tokens
+				anime: {
+					primary: 'hsl(var(--anime-primary))',
+					secondary: 'hsl(var(--anime-secondary))',
+					'dark-bg': 'hsl(var(--anime-dark-bg))',
+					'card-bg': 'hsl(var(--anime-card-bg))',
+					border: 'hsl(var(--anime-border))',
+					'text-muted': 'hsl(var(--anime-text-muted))',
 				}
+			},
+			backgroundImage: {
+				'gradient-primary': 'var(--gradient-primary)',
+				'gradient-overlay': 'var(--gradient-overlay)',
+			},
+			boxShadow: {
+				'glow': 'var(--shadow-glow)',
+				'card': 'var(--shadow-card)',
+			},
+			transitionProperty: {
+				'smooth': 'var(--transition-smooth)',
+				'carousel': 'var(--transition-carousel)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
