@@ -71,6 +71,41 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
       message: "Episode 1126 has been added",
       image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/bcd84731a3eda4f4a306250769675065.jpg",
       time: "1 day ago"
+    },
+    {
+      id: 8,
+      title: "Attack on Titan Final Season",
+      message: "Episode 15 has been added",
+      image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a2c0e5f2b7c3d4e5f6a7b8c9d0e1f2a3.jpg",
+      time: "1 day ago"
+    },
+    {
+      id: 9,
+      title: "Demon Slayer: Hashira Training",
+      message: "Episode 6 has been added",
+      image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b3d1f6g9h2i5j8k1l4m7n0o3p6q9r2s5.jpg",
+      time: "2 days ago"
+    },
+    {
+      id: 10,
+      title: "Jujutsu Kaisen Season 3",
+      message: "Episode 12 has been added",
+      image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c4e2g7i0k3l6n9p2r5t8v1x4z7a0c3e6.jpg",
+      time: "2 days ago"
+    },
+    {
+      id: 11,
+      title: "Tokyo Ghoul: Re",
+      message: "Episode 8 has been added",
+      image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d5f3h8j1l4m7o0q3s6u9w2y5a8c1e4g7.jpg",
+      time: "3 days ago"
+    },
+    {
+      id: 12,
+      title: "Naruto: Next Generations",
+      message: "Episode 45 has been added",
+      image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e6g4i9k2m5o8q1s4u7w0y3a6c9e2g5i8.jpg",
+      time: "3 days ago"
     }
   ];
 
