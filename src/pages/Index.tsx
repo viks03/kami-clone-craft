@@ -4,10 +4,12 @@ import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
+import { NotificationDrawer } from '../components/NotificationDrawer';
 import { animeData } from '../data/animeData';
 
 const Index = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('newest');
 
   const handleSearch = (query: string) => {
     console.log(`Searching for: ${query}`);
@@ -43,7 +45,9 @@ const Index = () => {
               AnimeFlow
             </div>
             <div className="flex items-center gap-3">
-              <i className="fas fa-bell text-lg cursor-pointer hover:text-anime-primary transition-colors" />
+              <NotificationDrawer>
+                <i className="fas fa-bell text-lg cursor-pointer hover:text-anime-primary transition-colors" />
+              </NotificationDrawer>
               <i className="fas fa-user-circle text-lg cursor-pointer hover:text-anime-primary transition-colors" />
             </div>
           </div>
@@ -62,7 +66,40 @@ const Index = () => {
             <Carousel animes={animeData.spotlightAnimes} />
             
             <section className="recently-updated mb-8">
-              <h2 className="text-xl lg:text-2xl mb-4">Recently Updated</h2>
+              <div className="flex items-center mb-4">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                  <button
+                    onClick={() => setActiveSection('newest')}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                      activeSection === 'newest'
+                        ? 'bg-anime-primary text-white'
+                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                    }`}
+                  >
+                    NEWEST
+                  </button>
+                  <button
+                    onClick={() => setActiveSection('popular')}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                      activeSection === 'popular'
+                        ? 'bg-anime-primary text-white'
+                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                    }`}
+                  >
+                    POPULAR
+                  </button>
+                  <button
+                    onClick={() => setActiveSection('top-rated')}
+                    className={`px-4 py-2 text-sm font-medium rounded-md transition-all ${
+                      activeSection === 'top-rated'
+                        ? 'bg-anime-primary text-white'
+                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                    }`}
+                  >
+                    TOP RATED
+                  </button>
+                </div>
+              </div>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:flex lg:flex-wrap gap-3 lg:gap-4">
                 {animeData.latestEpisodeAnimes.slice(0, 8).map((anime) => (
                   <AnimeCard

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NotificationDrawer } from './NotificationDrawer';
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
@@ -39,7 +40,9 @@ export const Header = ({ onSearch }: HeaderProps) => {
       </div>
       
       <div className="hidden lg:flex items-center gap-4">
-        <i className="fas fa-bell text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
+        <NotificationDrawer>
+          <i className="fas fa-bell text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
+        </NotificationDrawer>
         <i className="fas fa-user-circle text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
       </div>
     </header>
