@@ -79,7 +79,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
   return (
     <section 
-      className="relative h-[450px] mb-4 rounded-[10px] overflow-hidden"
+      className="relative h-[250px] sm:h-[350px] lg:h-[450px] mb-4 lg:mb-6 rounded-[10px] overflow-hidden"
       onMouseEnter={() => setProgressVisible(true)}
       onMouseLeave={() => setProgressVisible(false)}
     >
@@ -94,41 +94,44 @@ export const Carousel = ({ animes }: CarouselProps) => {
           >
             <div className="absolute inset-0 bg-black bg-opacity-50" />
             
-            <div className={`relative p-8 max-w-[600px] h-full flex flex-col justify-start transition-all duration-500 ease-in-out ${
+            <div className={`relative p-4 sm:p-6 lg:p-8 max-w-[600px] h-full flex flex-col justify-start transition-all duration-500 ease-in-out ${
               index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
               {/* Banner Info */}
-              <div className="inline-flex items-center gap-2 mb-4 bg-black bg-opacity-70 px-4 py-2 rounded-[30px] border border-anime-secondary text-base w-fit">
-                {anime.otherInfo.map((info, infoIndex) => (
-                  <span key={infoIndex} className="flex items-center gap-1 text-white">
-                    <i className={`${getIconClass(infoIndex)} text-anime-secondary text-sm`} />
-                    {info}
-                    {infoIndex < anime.otherInfo.length - 1 && (
-                      <span className="text-anime-secondary ml-2 text-sm font-bold">•</span>
+              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black bg-opacity-70 px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit overflow-hidden">
+                {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
+                  <span key={infoIndex} className="flex items-center gap-1 text-white whitespace-nowrap">
+                    <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm`} />
+                    <span className="hidden sm:inline">{info}</span>
+                    <span className="sm:hidden">{info.split(' ')[0]}</span>
+                    {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
+                      <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold">•</span>
                     )}
                   </span>
                 ))}
               </div>
 
               {/* Title */}
-              <h1 className="text-4xl font-bold mb-2 cursor-default">
+              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default line-clamp-2">
                 {anime.name}
               </h1>
 
               {/* Description */}
-              <p className="text-sm mb-4 leading-6 line-clamp-3 cursor-text">
+              <p className="text-xs sm:text-sm mb-4 leading-5 sm:leading-6 line-clamp-2 lg:line-clamp-3 cursor-text">
                 {anime.description}
               </p>
 
               {/* Buttons */}
-              <div className="flex gap-2 mt-auto absolute bottom-8 left-8">
-                <button className="flex items-center gap-2 px-4 py-3 text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
-                  <i className="fas fa-play text-sm" />
-                  Watch Now
+              <div className="flex gap-2 mt-auto absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8">
+                <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
+                  <i className="fas fa-play text-xs sm:text-sm" />
+                  <span className="hidden sm:inline">Watch Now</span>
+                  <span className="sm:hidden">Watch</span>
                 </button>
-                <button className="flex items-center gap-2 px-4 py-3 text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
-                  <i className="fas fa-info-circle text-sm" />
-                  Detail
+                <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
+                  <i className="fas fa-info-circle text-xs sm:text-sm" />
+                  <span className="hidden sm:inline">Detail</span>
+                  <span className="sm:hidden">Info</span>
                 </button>
               </div>
             </div>
@@ -138,17 +141,17 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
       {/* Navigation Controls */}
       <button
-        className="absolute top-[10px] right-[60px] w-10 h-10 bg-black bg-opacity-50 text-white text-sm leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
+        className="absolute top-2 sm:top-[10px] right-12 sm:right-[60px] w-8 h-8 sm:w-10 sm:h-10 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
         onClick={() => navigateToSlide(currentIndex - 1)}
       >
-        <i className="fas fa-chevron-left" />
+        <i className="fas fa-chevron-left text-xs sm:text-sm" />
       </button>
       
       <button
-        className="absolute top-[10px] right-[10px] w-10 h-10 bg-black bg-opacity-50 text-white text-sm leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
+        className="absolute top-2 sm:top-[10px] right-2 sm:right-[10px] w-8 h-8 sm:w-10 sm:h-10 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
         onClick={() => navigateToSlide(currentIndex + 1)}
       >
-        <i className="fas fa-chevron-right" />
+        <i className="fas fa-chevron-right text-xs sm:text-sm" />
       </button>
 
       {/* Progress Bar */}

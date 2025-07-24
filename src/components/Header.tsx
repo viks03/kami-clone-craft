@@ -21,7 +21,7 @@ export const Header = ({ onSearch }: HeaderProps) => {
 
   return (
     <header className="flex justify-between items-center my-4">
-      <div className="flex items-center w-full max-w-[350px] h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px]">
+      <div className="flex items-center w-full max-w-none lg:max-w-[350px] h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mr-4 lg:mr-0">
         <input
           type="text"
           placeholder="Search Anime"
@@ -38,7 +38,7 @@ export const Header = ({ onSearch }: HeaderProps) => {
         </button>
       </div>
       
-      <div className="flex items-center gap-4">
+      <div className="hidden lg:flex items-center gap-4">
         <i className="fas fa-bell text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
         <i className="fas fa-user-circle text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
       </div>
