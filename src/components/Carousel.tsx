@@ -98,17 +98,18 @@ export const Carousel = ({ animes }: CarouselProps) => {
               index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
               {/* Banner Info */}
-              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black bg-opacity-70 px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit overflow-hidden">
-                {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
-                  <span key={infoIndex} className="flex items-center gap-1 text-white whitespace-nowrap">
-                    <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm`} />
-                    <span className="hidden sm:inline">{info}</span>
-                    <span className="sm:hidden">{info.split(' ')[0]}</span>
-                    {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
-                      <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold">•</span>
-                    )}
-                  </span>
-                ))}
+              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black bg-opacity-70 px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base max-w-full">
+                <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
+                  {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
+                    <span key={infoIndex} className="flex items-center gap-1 text-white">
+                      <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm flex-shrink-0`} />
+                      <span className="text-xs sm:text-base truncate">{info}</span>
+                      {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
+                        <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold flex-shrink-0">•</span>
+                      )}
+                    </span>
+                  ))}
+                </div>
               </div>
 
               {/* Title */}
@@ -123,15 +124,15 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
               {/* Buttons */}
               <div className="flex gap-2 mt-auto absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8">
-                <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
-                  <i className="fas fa-play text-xs sm:text-sm" />
-                  <span className="hidden sm:inline">Watch Now</span>
-                  <span className="sm:hidden">Watch</span>
-                </button>
-                <button className="flex items-center gap-1 sm:gap-2 px-2 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
+                <button className="flex items-center gap-1 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3.5 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
                   <i className="fas fa-info-circle text-xs sm:text-sm" />
                   <span className="hidden sm:inline">Detail</span>
                   <span className="sm:hidden">Info</span>
+                </button>
+                <button className="flex items-center gap-1 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3.5 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
+                  <i className="fas fa-play text-xs sm:text-sm" />
+                  <span className="hidden sm:inline">Watch Now</span>
+                  <span className="sm:hidden">Watch</span>
                 </button>
               </div>
             </div>
@@ -141,17 +142,17 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
       {/* Navigation Controls */}
       <button
-        className="absolute top-2 sm:top-[10px] right-12 sm:right-[60px] w-8 h-8 sm:w-10 sm:h-10 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
+        className="absolute top-2 sm:top-[10px] right-14 sm:right-[70px] w-9 h-9 sm:w-11 sm:h-11 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
         onClick={() => navigateToSlide(currentIndex - 1)}
       >
-        <i className="fas fa-chevron-left text-xs sm:text-sm" />
+        <i className="fas fa-chevron-left text-sm sm:text-base" />
       </button>
       
       <button
-        className="absolute top-2 sm:top-[10px] right-2 sm:right-[10px] w-8 h-8 sm:w-10 sm:h-10 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
+        className="absolute top-2 sm:top-[10px] right-2 sm:right-[10px] w-9 h-9 sm:w-11 sm:h-11 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
         onClick={() => navigateToSlide(currentIndex + 1)}
       >
-        <i className="fas fa-chevron-right text-xs sm:text-sm" />
+        <i className="fas fa-chevron-right text-sm sm:text-base" />
       </button>
 
       {/* Progress Bar */}

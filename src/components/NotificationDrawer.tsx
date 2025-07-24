@@ -136,14 +136,8 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
             side="right"
             className="w-96 bg-anime-dark-bg border-anime-border p-0 shadow-xl"
           >
-            <SheetHeader className="p-4 border-b border-anime-border flex flex-row items-center justify-between">
+            <SheetHeader className="p-4 border-b border-anime-border">
               <SheetTitle className="text-anime-text text-lg font-medium">Notifications</SheetTitle>
-              <button 
-                onClick={() => setIsOpen(false)}
-                className="text-anime-text-muted hover:text-anime-text transition-colors p-1"
-              >
-                <i className="fas fa-times text-lg" />
-              </button>
             </SheetHeader>
             <ScrollArea className="flex-1 h-[calc(100vh-120px)]">
               <div className="p-3">
