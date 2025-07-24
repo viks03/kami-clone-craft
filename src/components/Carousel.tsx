@@ -98,18 +98,16 @@ export const Carousel = ({ animes }: CarouselProps) => {
               index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
             }`}>
               {/* Banner Info */}
-              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black bg-opacity-70 px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base max-w-full">
-                <div className="flex items-center gap-1 sm:gap-2 flex-wrap">
-                  {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
-                    <span key={infoIndex} className="flex items-center gap-1 text-white">
-                      <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm flex-shrink-0`} />
-                      <span className="text-xs sm:text-base truncate">{info}</span>
-                      {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
-                        <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold flex-shrink-0">•</span>
-                      )}
-                    </span>
-                  ))}
-                </div>
+              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black bg-opacity-70 px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit">
+                {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
+                  <span key={infoIndex} className="flex items-center gap-1 text-white">
+                    <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm flex-shrink-0`} />
+                    <span className="text-xs sm:text-base whitespace-nowrap">{info}</span>
+                    {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
+                      <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold">•</span>
+                    )}
+                  </span>
+                ))}
               </div>
 
               {/* Title */}
