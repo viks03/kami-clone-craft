@@ -41,7 +41,10 @@ export const Carousel = ({ animes }: CarouselProps) => {
     
     autoSlideRef.current = setInterval(() => {
       if (!isTransitioning) {
-        showSlide(currentIndex + 1);
+        setCurrentIndex(prevIndex => {
+          const newIndex = (prevIndex + 1) % animes.length;
+          return newIndex;
+        });
       }
     }, intervalTime);
   };
@@ -55,7 +58,11 @@ export const Carousel = ({ animes }: CarouselProps) => {
   };
 
   useEffect(() => {
-    showSlide(0);
+    setCurrentIndex(0);
+    setProgressWidth(0);
+    setTimeout(() => {
+      setProgressWidth(100);
+    }, 50);
     startCarousel();
     
     return () => {
@@ -67,6 +74,18 @@ export const Carousel = ({ animes }: CarouselProps) => {
       }
     };
   }, []);
+
+  // Handle progress bar and transitions when currentIndex changes
+  useEffect(() => {
+    setProgressWidth(0);
+    setTimeout(() => {
+      setProgressWidth(100);
+    }, 50);
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setIsTransitioning(false);
+    }, 500);
+  }, [currentIndex]);
 
   const getIconClass = (index: number) => {
     const icons = ['fas fa-play', 'fas fa-clock', 'fas fa-calendar', 'fas fa-star'];
