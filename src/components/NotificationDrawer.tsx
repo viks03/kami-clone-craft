@@ -6,10 +6,12 @@ import {
   DrawerTrigger,
 } from "@/components/ui/drawer";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 
@@ -89,20 +91,19 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
 
   return (
     <>
-      {/* Desktop Version - Popover */}
+      {/* Desktop Version - Sheet */}
       <div className="hidden lg:block">
-        <Popover open={isOpen} onOpenChange={setIsOpen}>
-          <PopoverTrigger asChild>
+        <Sheet>
+          <SheetTrigger asChild>
             {children}
-          </PopoverTrigger>
-          <PopoverContent 
-            className="w-96 bg-anime-dark-bg border-anime-border p-0 shadow-xl" 
-            align="end"
-            sideOffset={8}
+          </SheetTrigger>
+          <SheetContent 
+            side="right"
+            className="w-96 bg-anime-dark-bg border-anime-border p-0 shadow-xl"
           >
-            <div className="p-4 border-b border-anime-border">
-              <h3 className="text-anime-text text-lg font-medium">Notifications</h3>
-            </div>
+            <SheetHeader className="p-4 border-b border-anime-border">
+              <SheetTitle className="text-anime-text text-lg font-medium">Notifications</SheetTitle>
+            </SheetHeader>
             <ScrollArea className="h-[400px]">
               <div className="p-3">
                 {notifications.map((notification) => (
@@ -110,8 +111,8 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
                 ))}
               </div>
             </ScrollArea>
-          </PopoverContent>
-        </Popover>
+          </SheetContent>
+        </Sheet>
       </div>
 
       {/* Mobile Version - Drawer */}
