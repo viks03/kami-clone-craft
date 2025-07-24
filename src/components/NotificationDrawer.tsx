@@ -104,7 +104,7 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
             <SheetHeader className="p-4 border-b border-anime-border">
               <SheetTitle className="text-anime-text text-lg font-medium">Notifications</SheetTitle>
             </SheetHeader>
-            <ScrollArea className="h-[400px]">
+            <ScrollArea className="flex-1 h-[calc(100vh-120px)]">
               <div className="p-3">
                 {notifications.map((notification) => (
                   <NotificationItem key={notification.id} notification={notification} />
