@@ -10,6 +10,7 @@ import { animeData } from '../data/animeData';
 const Index = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('newest');
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleSearch = (query: string) => {
     console.log(`Searching for: ${query}`);
@@ -60,19 +61,7 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-3">
               <button 
-                onClick={() => {
-                  const searchComponent = document.querySelector('[data-mobile-search]');
-                  if (searchComponent) {
-                    const isOpen = searchComponent.classList.contains('max-h-[60px]');
-                    if (isOpen) {
-                      searchComponent.classList.remove('max-h-[60px]', 'opacity-100');
-                      searchComponent.classList.add('max-h-0', 'opacity-0');
-                    } else {
-                      searchComponent.classList.remove('max-h-0', 'opacity-0');
-                      searchComponent.classList.add('max-h-[60px]', 'opacity-100');
-                    }
-                  }
-                }}
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
                 className="text-lg cursor-pointer hover:text-anime-primary transition-colors"
               >
                 <i className="fas fa-search" />
@@ -92,7 +81,7 @@ const Index = () => {
             
             {/* Mobile Search */}
             <div className="lg:hidden mb-4">
-              <Header onSearch={handleSearch} />
+              <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
             <Carousel animes={animeData.spotlightAnimes} />

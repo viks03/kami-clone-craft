@@ -3,11 +3,11 @@ import { NotificationDrawer } from './NotificationDrawer';
 
 interface HeaderProps {
   onSearch?: (query: string) => void;
+  isSearchOpen?: boolean;
 }
 
-export const Header = ({ onSearch }: HeaderProps) => {
+export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const handleSearch = () => {
     if (searchQuery && onSearch) {
@@ -51,10 +51,9 @@ export const Header = ({ onSearch }: HeaderProps) => {
       </div>
 
       {/* Mobile Search Dropdown */}
-      <div 
-        data-mobile-search
-        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0`}
-      >
+      <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+        isSearchOpen ? 'max-h-[60px] opacity-100 mb-4' : 'max-h-0 opacity-0'
+      }`}>
         <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mx-4 mb-4">
           <input
             type="text"
