@@ -59,6 +59,24 @@ const Index = () => {
               AnimeFlow
             </div>
             <div className="flex items-center gap-3">
+              <button 
+                onClick={() => {
+                  const searchComponent = document.querySelector('[data-mobile-search]');
+                  if (searchComponent) {
+                    const isOpen = searchComponent.classList.contains('max-h-[60px]');
+                    if (isOpen) {
+                      searchComponent.classList.remove('max-h-[60px]', 'opacity-100');
+                      searchComponent.classList.add('max-h-0', 'opacity-0');
+                    } else {
+                      searchComponent.classList.remove('max-h-0', 'opacity-0');
+                      searchComponent.classList.add('max-h-[60px]', 'opacity-100');
+                    }
+                  }
+                }}
+                className="text-lg cursor-pointer hover:text-anime-primary transition-colors"
+              >
+                <i className="fas fa-search" />
+              </button>
               <NotificationDrawer>
                 <i className="fas fa-bell text-lg cursor-pointer hover:text-anime-primary transition-colors" />
               </NotificationDrawer>

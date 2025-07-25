@@ -50,25 +50,12 @@ export const Header = ({ onSearch }: HeaderProps) => {
         </div>
       </div>
 
-      {/* Mobile Header */}
-      <div className="lg:hidden flex justify-end items-center gap-4 my-4">
-        <button 
-          onClick={() => setIsSearchOpen(!isSearchOpen)}
-          className="text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors"
-        >
-          <i className="fas fa-search" />
-        </button>
-        <NotificationDrawer>
-          <i className="fas fa-bell text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
-        </NotificationDrawer>
-        <i className="fas fa-user-circle text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
-      </div>
-
       {/* Mobile Search Dropdown */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-        isSearchOpen ? 'max-h-[60px] opacity-100 mb-4' : 'max-h-0 opacity-0'
-      }`}>
-        <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px]">
+      <div 
+        data-mobile-search
+        className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0`}
+      >
+        <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mx-4 mb-4">
           <input
             type="text"
             placeholder="Search Anime"
