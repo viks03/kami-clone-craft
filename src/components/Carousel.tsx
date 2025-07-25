@@ -173,9 +173,10 @@ export const Carousel = ({ animes }: CarouselProps) => {
       </button>
 
       {/* Progress Bar */}
-      <div className={`absolute bottom-0 left-0 w-full h-[1px] bg-white bg-opacity-50 transition-opacity duration-700 ease-in-out z-[3] ${
-        progressVisible ? 'opacity-100' : 'opacity-0'
-      }`}>
+      <div className={`absolute left-0 w-full h-[1px] bg-white bg-opacity-50 transition-opacity duration-700 ease-in-out z-[3] 
+        lg:bottom-0 top-0 lg:top-auto
+        opacity-100 lg:opacity-0 lg:${progressVisible ? 'lg:opacity-100' : 'lg:opacity-0'}
+      `}>
         <div 
           className="h-full bg-anime-primary transition-all duration-linear"
           style={{ 
