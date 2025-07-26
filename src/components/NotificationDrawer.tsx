@@ -139,13 +139,20 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
             <SheetHeader className="p-4 border-b border-anime-border">
               <SheetTitle className="text-anime-text text-lg font-medium">Notifications</SheetTitle>
             </SheetHeader>
-            <ScrollArea className="flex-1 h-[calc(100vh-120px)]">
-              <div className="p-3">
-                {notifications.map((notification) => (
-                  <NotificationItem key={notification.id} notification={notification} />
-                ))}
-              </div>
-            </ScrollArea>
+            <div className="relative flex-1 h-[calc(100vh-120px)]">
+              {/* Top fade overlay */}
+              <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-anime-dark-bg to-transparent z-10 pointer-events-none" />
+              {/* Bottom fade overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-anime-dark-bg to-transparent z-10 pointer-events-none" />
+              
+              <ScrollArea className="h-full">
+                <div className="p-3">
+                  {notifications.map((notification) => (
+                    <NotificationItem key={notification.id} notification={notification} />
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
           </SheetContent>
         </Sheet>
       </div>
@@ -160,13 +167,20 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
             <DrawerHeader>
               <DrawerTitle className="text-anime-text text-lg">Notifications</DrawerTitle>
             </DrawerHeader>
-            <ScrollArea className="h-[320px]">
-              <div className="px-4 pb-4">
-                {notifications.map((notification) => (
-                  <NotificationItem key={notification.id} notification={notification} />
-                ))}
-              </div>
-            </ScrollArea>
+            <div className="relative h-[320px]">
+              {/* Top fade overlay */}
+              <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-anime-dark-bg to-transparent z-10 pointer-events-none" />
+              {/* Bottom fade overlay */}
+              <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-anime-dark-bg to-transparent z-10 pointer-events-none" />
+              
+              <ScrollArea className="h-full">
+                <div className="px-4 pb-4">
+                  {notifications.map((notification) => (
+                    <NotificationItem key={notification.id} notification={notification} />
+                  ))}
+                </div>
+              </ScrollArea>
+            </div>
           </DrawerContent>
         </Drawer>
       </div>
