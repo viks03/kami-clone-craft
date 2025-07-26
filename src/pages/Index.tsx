@@ -128,19 +128,25 @@ const Index = () => {
                 
                 {/* Pagination Controls */}
                 <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
-                  <button className="px-4 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md">
+                  <button 
+                    onClick={() => console.log('Previous page')}
+                    className="px-4 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                  >
                     <i className="fas fa-chevron-left text-xs" />
                   </button>
                   <div className="px-4 py-2 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
                     1
                   </div>
-                  <button className="px-4 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md">
+                  <button 
+                    onClick={() => console.log('Next page')}
+                    className="px-4 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                  >
                     <i className="fas fa-chevron-right text-xs" />
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:flex lg:flex-wrap gap-3 lg:gap-4">
-                {animeData.latestEpisodeAnimes.slice(0, 8).map((anime) => (
+              <div className="grid grid-cols-3 gap-4">
+                {animeData.latestEpisodeAnimes.slice(0, 9).map((anime) => (
                   <AnimeCard
                     key={anime.id}
                     name={anime.name}
