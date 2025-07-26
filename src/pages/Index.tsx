@@ -91,7 +91,7 @@ const Index = () => {
             <Carousel animes={animeData.spotlightAnimes} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center mb-4">
+              <div className="flex items-center justify-between mb-4">
                 <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button
                     onClick={() => setActiveSection('newest')}
@@ -122,6 +122,19 @@ const Index = () => {
                     }`}
                   >
                     TOP RATED
+                  </button>
+                </div>
+                
+                {/* Pagination Controls */}
+                <div className="flex items-center gap-2">
+                  <button className="w-8 h-8 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-colors">
+                    <i className="fas fa-chevron-left text-xs" />
+                  </button>
+                  <div className="w-8 h-8 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-anime-text text-sm font-medium">
+                    1
+                  </div>
+                  <button className="w-8 h-8 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-colors">
+                    <i className="fas fa-chevron-right text-xs" />
                   </button>
                 </div>
               </div>

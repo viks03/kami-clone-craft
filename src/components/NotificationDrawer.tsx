@@ -140,9 +140,7 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
               <SheetTitle className="text-anime-text text-lg font-medium">Notifications</SheetTitle>
             </SheetHeader>
             <div className="relative flex-1 h-[calc(100vh-120px)]">
-              {/* Top fade overlay */}
-              <div className="absolute top-0 left-0 right-0 h-8 bg-gradient-to-b from-anime-dark-bg to-transparent z-10 pointer-events-none" />
-              {/* Bottom fade overlay */}
+              {/* Bottom fade overlay only */}
               <div className="absolute bottom-0 left-0 right-0 h-8 bg-gradient-to-t from-anime-dark-bg to-transparent z-10 pointer-events-none" />
               
               <ScrollArea className="h-full">
@@ -168,9 +166,7 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
               <DrawerTitle className="text-anime-text text-lg">Notifications</DrawerTitle>
             </DrawerHeader>
             <div className="relative h-[320px]">
-              {/* Top fade overlay */}
-              <div className="absolute top-0 left-0 right-0 h-6 bg-gradient-to-b from-anime-dark-bg to-transparent z-10 pointer-events-none" />
-              {/* Bottom fade overlay */}
+              {/* Bottom fade overlay only */}
               <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t from-anime-dark-bg to-transparent z-10 pointer-events-none" />
               
               <ScrollArea className="h-full">
