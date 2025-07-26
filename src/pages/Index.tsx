@@ -95,7 +95,7 @@ const Index = () => {
                 <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button
                     onClick={() => setActiveSection('newest')}
-                    className={`px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-all ${
+                    className={`px-3 sm:px-4 py-2 text-sm font-medium rounded-md transition-all ${
                       activeSection === 'newest'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -105,7 +105,7 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('popular')}
-                    className={`px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-all ${
+                    className={`px-3 sm:px-4 py-2 text-sm font-medium rounded-md transition-all ${
                       activeSection === 'popular'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -115,26 +115,25 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('top-rated')}
-                    className={`px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-md transition-all ${
+                    className={`px-3 sm:px-4 py-2 text-sm font-medium rounded-md transition-all ${
                       activeSection === 'top-rated'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
                   >
-                    <span className="hidden sm:inline">TOP RATED</span>
-                    <span className="sm:hidden">TOP</span>
+                    TOP RATED
                   </button>
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg">
-                  <button className="h-[42px] px-3 flex items-center justify-center text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-colors rounded-l-lg border-r border-anime-border">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                  <button className="px-3 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md">
                     <i className="fas fa-chevron-left text-xs" />
                   </button>
-                  <div className="h-[42px] px-3 flex items-center justify-center text-anime-text text-sm font-medium border-r border-anime-border min-w-[40px]">
+                  <div className="px-3 py-2 text-sm font-medium text-anime-text bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
                     1
                   </div>
-                  <button className="h-[42px] px-3 flex items-center justify-center text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-colors rounded-r-lg">
+                  <button className="px-3 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md">
                     <i className="fas fa-chevron-right text-xs" />
                   </button>
                 </div>
