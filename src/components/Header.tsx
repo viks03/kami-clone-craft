@@ -32,7 +32,8 @@ export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="flex-1 bg-transparent text-anime-text-muted text-sm outline-none placeholder:text-anime-text-muted"
+            className="flex-1 bg-transparent text-anime-text-muted text-base outline-none placeholder:text-anime-text-muted"
+            style={{ fontSize: '16px' }}
           />
           <button 
             onClick={handleSearch}
@@ -54,14 +55,15 @@ export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
       <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
         isSearchOpen ? 'max-h-[60px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
-        <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mt-4 mb-4">
+        <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mt-4 mb-4 mx-4">
           <input
             type="text"
             placeholder="Search Anime"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="flex-1 bg-transparent text-anime-text-muted text-sm outline-none placeholder:text-anime-text-muted"
+            className="flex-1 bg-transparent text-anime-text-muted text-base outline-none placeholder:text-anime-text-muted"
+            style={{ fontSize: '16px' }}
           />
           <button 
             onClick={handleSearch}
