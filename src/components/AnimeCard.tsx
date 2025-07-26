@@ -13,14 +13,14 @@ export const AnimeCard = ({ name, poster, episodes, className }: AnimeCardProps)
       <img 
         src={poster} 
         alt={name}
-        className="w-full aspect-[3/4] object-cover rounded-md"
+        className="w-full aspect-[3/4] object-cover rounded"
       />
       <div className="mt-2">
         <div className="flex items-center gap-2 mb-1">
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p className="text-xs text-white truncate flex-1">{name}</p>
         </div>
-        <div className="flex items-center gap-1 text-[10px] text-anime-text-muted">
+        <div className="flex items-center justify-between text-[10px] text-anime-text-muted">
           <span className="bg-anime-card-bg border border-anime-border px-1.5 py-0.5 rounded">TV</span>
           <span className="bg-anime-card-bg border border-anime-border px-1.5 py-0.5 rounded">2025</span>
           {episodes && (
