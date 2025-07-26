@@ -59,19 +59,19 @@ const Index = () => {
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5">
               <button 
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center text-white hover:text-anime-primary transition-colors"
+                className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors"
               >
                 <i className="fas fa-search text-sm" />
               </button>
-              <div className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center">
                 <NotificationDrawer>
                   <i className="fas fa-bell text-sm cursor-pointer hover:text-anime-primary transition-colors text-white" />
                 </NotificationDrawer>
               </div>
-              <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center text-white hover:text-anime-primary transition-colors">
+              <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors">
                 <i className="fas fa-user-circle text-sm" />
               </button>
             </div>
