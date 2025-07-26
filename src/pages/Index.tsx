@@ -95,7 +95,7 @@ const Index = () => {
                 <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button
                     onClick={() => setActiveSection('newest')}
-                    className={`px-4 lg:px-6 py-2 text-sm font-medium rounded-md transition-all ${
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
                       activeSection === 'newest'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -105,7 +105,7 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('popular')}
-                    className={`px-4 lg:px-6 py-2 text-sm font-medium rounded-md transition-all ${
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
                       activeSection === 'popular'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -115,14 +115,13 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('top-rated')}
-                    className={`px-4 lg:px-6 py-2 text-sm font-medium rounded-md transition-all ${
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
                       activeSection === 'top-rated'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
                   >
-                    <span className="hidden sm:inline">TOP RATED</span>
-                    <span className="sm:hidden">TOP RATED</span>
+                    TOP RATED
                   </button>
                 </div>
                 
@@ -130,16 +129,16 @@ const Index = () => {
                 <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button 
                     onClick={() => console.log('Previous page')}
-                    className="px-4 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
                   >
                     <i className="fas fa-chevron-left text-xs" />
                   </button>
-                  <div className="px-4 py-2 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
+                  <div className="px-3 py-1.5 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
                     1
                   </div>
                   <button 
                     onClick={() => console.log('Next page')}
-                    className="px-4 py-2 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
                   >
                     <i className="fas fa-chevron-right text-xs" />
                   </button>
