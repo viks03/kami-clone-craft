@@ -16,7 +16,7 @@ const navItems = [
   { icon: 'fas fa-random', label: 'Random Anime' },
 ];
 
-export const Sidebar = ({ className, isOpen = false, onToggle }: SidebarProps) => {
+export const Sidebar = ({ className }: SidebarProps) => {
   const [activeItem, setActiveItem] = useState('Home');
 
   return (
@@ -40,45 +40,6 @@ export const Sidebar = ({ className, isOpen = false, onToggle }: SidebarProps) =
                 onClick={() => setActiveItem(item.label)}
               >
                 <i className={`${item.icon} text-lg`} />
-                <span>{item.label}</span>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      </aside>
-
-      {/* Mobile Sidebar */}
-      <aside className={`lg:hidden fixed top-0 left-0 w-[280px] h-full bg-anime-dark-bg border-r border-anime-border z-50 transform transition-transform duration-300 ease-in-out ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
-      }`}>
-        <div className="flex items-center justify-between p-5 border-b border-anime-border">
-          <div className="text-2xl font-bold text-anime-primary">
-            AnimeFlow
-          </div>
-          <button 
-            onClick={onToggle}
-            className="text-anime-primary text-xl"
-          >
-            <i className="fas fa-times" />
-          </button>
-        </div>
-        
-        <nav className="p-5">
-          <ul className="space-y-2">
-            {navItems.map((item) => (
-              <li 
-                key={item.label}
-                className={`flex items-center gap-3 px-4 py-4 rounded-[10px] text-base cursor-pointer transition-colors duration-300 ${
-                  activeItem === item.label 
-                    ? 'bg-anime-secondary' 
-                    : 'hover:bg-anime-secondary'
-                }`}
-                onClick={() => {
-                  setActiveItem(item.label);
-                  onToggle?.();
-                }}
-              >
-                <i className={`${item.icon} text-lg w-5`} />
                 <span>{item.label}</span>
               </li>
             ))}
