@@ -49,36 +49,36 @@ const Index = () => {
       <main className="flex-1 lg:ml-0">
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header with Hamburger */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-3 sm:p-4 bg-anime-dark-bg border-b border-anime-border">
             <button 
               onClick={toggleSidebar}
-              className="text-anime-primary text-lg"
+              className="text-anime-primary text-base sm:text-lg"
             >
               <i className="fas fa-bars" />
             </button>
-            <div className="text-xl font-bold text-anime-primary">
+            <div className="text-lg sm:text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
-            <div className="flex items-center gap-1.5">
+            <div className="flex items-center gap-1 sm:gap-1.5">
               <button 
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors"
+                className="w-8 h-8 sm:w-10 sm:h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors"
               >
-                <i className="fas fa-search text-sm" />
+                <i className="fas fa-search text-xs sm:text-sm" />
               </button>
-              <div className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center">
                 <NotificationDrawer>
-                  <i className="fas fa-bell text-sm cursor-pointer hover:text-anime-primary transition-colors text-white" />
+                  <i className="fas fa-bell text-xs sm:text-sm cursor-pointer hover:text-anime-primary transition-colors text-white" />
                 </NotificationDrawer>
               </div>
-              <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors">
-                <i className="fas fa-user-circle text-sm" />
+              <button className="w-8 h-8 sm:w-10 sm:h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors">
+                <i className="fas fa-user-circle text-xs sm:text-sm" />
               </button>
             </div>
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-3 sm:px-4 lg:px-0 lg:pt-0 pt-16 sm:pt-20">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -91,11 +91,11 @@ const Index = () => {
             <Carousel animes={animeData.spotlightAnimes} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-3 sm:gap-0">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 w-full sm:w-auto">
                   <button
                     onClick={() => setActiveSection('newest')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all flex-1 sm:flex-none ${
                       activeSection === 'newest'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -105,7 +105,7 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('popular')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all flex-1 sm:flex-none ${
                       activeSection === 'popular'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -115,36 +115,37 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('top-rated')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium rounded-md transition-all flex-1 sm:flex-none ${
                       activeSection === 'top-rated'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
                   >
-                    TOP RATED
+                    <span className="hidden xs:inline">TOP RATED</span>
+                    <span className="xs:hidden">TOP</span>
                   </button>
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 self-end sm:self-auto">
                   <button 
                     onClick={() => console.log('Previous page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
                   >
                     <i className="fas fa-chevron-left text-xs" />
                   </button>
-                  <div className="px-3 py-1.5 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
+                  <div className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-white bg-anime-primary rounded-md min-w-[28px] sm:min-w-[32px] flex items-center justify-center">
                     1
                   </div>
                   <button 
                     onClick={() => console.log('Next page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="px-2 sm:px-3 py-1.5 text-xs sm:text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
                   >
                     <i className="fas fa-chevron-right text-xs" />
                   </button>
                 </div>
               </div>
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-4">
                 {animeData.latestEpisodeAnimes.slice(0, 9).map((anime) => (
                   <AnimeCard
                     key={anime.id}
@@ -158,7 +159,7 @@ const Index = () => {
           </div>
 
           {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
+          <div className="w-full lg:w-1/4 px-3 sm:px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
             <section className="latest-completed mb-8">
               <h2 className="text-lg mb-4">Latest Completed</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-0">

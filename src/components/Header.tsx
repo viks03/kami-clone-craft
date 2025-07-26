@@ -52,22 +52,22 @@ export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
       </div>
 
       {/* Mobile Search Dropdown */}
-      <div className={`lg:hidden fixed top-[73px] left-0 right-0 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
+      <div className={`lg:hidden fixed top-[61px] sm:top-[73px] left-0 right-0 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
         isSearchOpen ? 'max-h-[80px] opacity-100 bg-anime-dark-bg' : 'max-h-0 opacity-0'
       }`}>
-        <div className="flex items-center h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mx-4 mt-4 mb-4">
+        <div className="flex items-center h-[40px] sm:h-[45px] px-3 sm:px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mx-3 sm:mx-4 mt-3 sm:mt-4 mb-3 sm:mb-4">
           <input
             type="text"
             placeholder="Search Anime"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="flex-1 bg-transparent text-anime-text-muted text-base outline-none placeholder:text-anime-text-muted"
-            style={{ fontSize: '16px' }}
+            className="flex-1 bg-transparent text-anime-text-muted text-sm sm:text-base outline-none placeholder:text-anime-text-muted"
+            style={{ fontSize: '14px' }}
           />
           <button 
             onClick={handleSearch}
-            className="text-anime-primary text-base hover:text-purple-400 transition-colors"
+            className="text-anime-primary text-sm sm:text-base hover:text-purple-400 transition-colors"
           >
             <i className="fas fa-search" />
           </button>
