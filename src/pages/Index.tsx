@@ -49,7 +49,7 @@ const Index = () => {
       <main className="flex-1 lg:ml-0">
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header with Hamburger */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-bg/60 backdrop-blur-sm border-b border-anime-border">
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-bg border-b border-anime-border">
             <button 
               onClick={toggleSidebar}
               className="text-anime-primary text-lg"
@@ -62,14 +62,18 @@ const Index = () => {
             <div className="flex items-center gap-2">
               <button 
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="text-white text-lg cursor-pointer hover:text-anime-primary transition-colors p-2"
+                className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center text-white hover:text-anime-primary transition-colors"
               >
-                <i className="fas fa-search" />
+                <i className="fas fa-search text-sm" />
               </button>
-              <NotificationDrawer>
-                <i className="fas fa-bell text-lg cursor-pointer hover:text-anime-primary transition-colors text-white p-2" />
-              </NotificationDrawer>
-              <i className="fas fa-user-circle text-lg cursor-pointer hover:text-anime-primary transition-colors text-white p-2" />
+              <div className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center">
+                <NotificationDrawer>
+                  <i className="fas fa-bell text-sm cursor-pointer hover:text-anime-primary transition-colors text-white" />
+                </NotificationDrawer>
+              </div>
+              <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center text-white hover:text-anime-primary transition-colors">
+                <i className="fas fa-user-circle text-sm" />
+              </button>
             </div>
           </div>
 
