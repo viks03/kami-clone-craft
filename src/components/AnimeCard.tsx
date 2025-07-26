@@ -13,7 +13,7 @@ export const AnimeCard = ({ name, poster, episodes, className }: AnimeCardProps)
       <img 
         src={poster} 
         alt={name}
-        className="w-full aspect-[3/4] object-cover rounded-lg"
+        className="w-full aspect-[3/4] object-cover rounded-md"
       />
       <div className="mt-2">
         <div className="flex items-center gap-2 mb-1">
