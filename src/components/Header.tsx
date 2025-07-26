@@ -52,10 +52,10 @@ export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
       </div>
 
       {/* Mobile Search Dropdown */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-        isSearchOpen ? 'max-h-[60px] opacity-100' : 'max-h-0 opacity-0'
+      <div className={`lg:hidden fixed top-[73px] left-0 right-0 z-40 overflow-hidden transition-all duration-300 ease-in-out bg-anime-bg/60 backdrop-blur-sm ${
+        isSearchOpen ? 'max-h-[80px] opacity-100' : 'max-h-0 opacity-0'
       }`}>
-        <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mt-4 mb-4 mx-4">
+        <div className="flex items-center w-full h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] m-4">
           <input
             type="text"
             placeholder="Search Anime"

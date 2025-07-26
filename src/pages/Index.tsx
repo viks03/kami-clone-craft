@@ -49,35 +49,27 @@ const Index = () => {
       <main className="flex-1 lg:ml-0">
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header with Hamburger */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-bg/95 backdrop-blur-sm border-b border-anime-border">
-            <div className="w-12 h-12 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center">
-              <button 
-                onClick={toggleSidebar}
-                className="text-white text-lg"
-              >
-                <i className="fas fa-bars" />
-              </button>
-            </div>
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-bg/60 backdrop-blur-sm border-b border-anime-border">
+            <button 
+              onClick={toggleSidebar}
+              className="text-anime-primary text-lg"
+            >
+              <i className="fas fa-bars" />
+            </button>
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center">
-                <button 
-                  onClick={() => setIsSearchOpen(!isSearchOpen)}
-                  className="text-white text-lg cursor-pointer hover:text-anime-primary transition-colors"
-                >
-                  <i className="fas fa-search" />
-                </button>
-              </div>
-              <div className="w-12 h-12 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center">
-                <NotificationDrawer>
-                  <i className="fas fa-bell text-lg cursor-pointer hover:text-anime-primary transition-colors text-white" />
-                </NotificationDrawer>
-              </div>
-              <div className="w-12 h-12 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center">
-                <i className="fas fa-user-circle text-lg cursor-pointer hover:text-anime-primary transition-colors text-white" />
-              </div>
+            <div className="flex items-center gap-2">
+              <button 
+                onClick={() => setIsSearchOpen(!isSearchOpen)}
+                className="text-white text-lg cursor-pointer hover:text-anime-primary transition-colors p-2"
+              >
+                <i className="fas fa-search" />
+              </button>
+              <NotificationDrawer>
+                <i className="fas fa-bell text-lg cursor-pointer hover:text-anime-primary transition-colors text-white p-2" />
+              </NotificationDrawer>
+              <i className="fas fa-user-circle text-lg cursor-pointer hover:text-anime-primary transition-colors text-white p-2" />
             </div>
           </div>
 
