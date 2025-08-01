@@ -14,21 +14,26 @@ const navItems = [
   { icon: 'fas fa-random', label: 'Random' },
 ];
 
-// Resolution detection hook
+// Enhanced resolution detection hook
 const useDeviceResolution = () => {
   const [resolution, setResolution] = useState({ width: 0, height: 0 });
   
   useEffect(() => {
     const updateResolution = () => {
-      setResolution({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      
+      setResolution({ width, height });
     };
     
     updateResolution();
     window.addEventListener('resize', updateResolution);
-    return () => window.removeEventListener('resize', updateResolution);
+    window.addEventListener('orientationchange', updateResolution);
+    
+    return () => {
+      window.removeEventListener('resize', updateResolution);
+      window.removeEventListener('orientationchange', updateResolution);
+    };
   }, []);
   
   return resolution;
@@ -59,24 +64,35 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
     }
   }, []);
 
-  // Force exactly 5 visible items with equal width
-  const containerWidth = resolution.width || 375;
-  const buttonWidth = Math.floor((containerWidth - 32) / 5); // 32px for padding (16px each side)
-  const maxVisibleItems = 5;
+  // Dynamic spacing calculation based on resolution
+  const getOptimalSpacing = () => {
+    const width = resolution.width || 375;
+    const availableWidth = width - 24; // Account for container padding
+    const itemWidth = Math.floor(availableWidth / 5);
+    const gap = Math.max(2, Math.floor(itemWidth * 0.05)); // Dynamic gap based on item width
+    
+    return {
+      itemWidth: itemWidth - gap,
+      gap: gap,
+      containerPadding: 12
+    };
+  };
+
+  const spacing = getOptimalSpacing();
 
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
       <div className="relative">
-        {/* Scroll indicators */}
+        {/* Scroll indicators - smooth horizontal lines */}
         {canScrollLeft && (
-          <div className="absolute left-0 top-0 bottom-0 w-6 bg-gradient-to-r from-anime-dark-bg to-transparent z-10 flex items-center justify-start pl-1">
-            <div className="w-1 h-1 bg-anime-primary rounded-full animate-pulse"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-anime-dark-bg via-anime-dark-bg/80 to-transparent z-10 flex items-center justify-center">
+            <div className="w-4 h-0.5 bg-anime-primary/40 rounded-full animate-pulse"></div>
           </div>
         )}
         
         {canScrollRight && (
-          <div className="absolute right-0 top-0 bottom-0 w-6 bg-gradient-to-l from-anime-dark-bg to-transparent z-10 flex items-center justify-end pr-1">
-            <div className="w-1 h-1 bg-anime-primary rounded-full animate-pulse"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-anime-dark-bg via-anime-dark-bg/80 to-transparent z-10 flex items-center justify-center">
+            <div className="w-4 h-0.5 bg-anime-primary/40 rounded-full animate-pulse"></div>
           </div>
         )}
 
@@ -86,8 +102,9 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none',
-            paddingLeft: '16px',
-            paddingRight: '16px'
+            paddingLeft: `${spacing.containerPadding}px`,
+            paddingRight: `${spacing.containerPadding}px`,
+            gap: `${spacing.gap}px`
           }}
         >
           <style dangerouslySetInnerHTML={{
@@ -107,9 +124,9 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
                   : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
               }`}
               style={{ 
-                width: `${buttonWidth}px`,
-                minWidth: `${buttonWidth}px`,
-                maxWidth: `${buttonWidth}px`
+                width: `${spacing.itemWidth}px`,
+                minWidth: `${spacing.itemWidth}px`,
+                maxWidth: `${spacing.itemWidth}px`
               }}
               onClick={() => setActiveItem(item.label)}
             >
