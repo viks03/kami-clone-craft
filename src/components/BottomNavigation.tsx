@@ -45,7 +45,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   const checkScrollState = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollLeft(scrollLeft > 1);
       setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
     }
   };
@@ -59,15 +59,9 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
     }
   }, []);
 
-  // Calculate button width based on resolution
-  const getButtonWidth = () => {
-    if (resolution.width <= 320) return 'min-w-[56px]'; // Very small devices
-    if (resolution.width <= 375) return 'min-w-[64px]'; // iPhone SE, smaller phones
-    if (resolution.width <= 414) return 'min-w-[70px]'; // Standard phones
-    return 'min-w-[75px]'; // Larger phones
-  };
-
-  const buttonWidth = getButtonWidth();
+  // Force exactly 5 visible items with equal width
+  const containerWidth = resolution.width || 375;
+  const buttonWidth = Math.floor((containerWidth - 32) / 5); // 32px for padding (16px each side)
   const maxVisibleItems = 5;
 
   return (
@@ -88,10 +82,12 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto px-2 py-3 scroll-smooth"
+          className="flex overflow-x-auto py-3 scroll-smooth"
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none',
+            paddingLeft: '16px',
+            paddingRight: '16px'
           }}
         >
           <style dangerouslySetInnerHTML={{
@@ -105,20 +101,25 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
           {navItems.map((item) => (
             <button
               key={item.label}
-              className={`flex flex-col items-center justify-center ${buttonWidth} px-1 py-2 mx-0.5 rounded-lg transition-all duration-300 relative ${
+              className={`flex flex-col items-center justify-center flex-shrink-0 py-2 rounded-lg transition-all duration-300 relative ${
                 activeItem === item.label 
-                  ? 'text-anime-primary bg-anime-primary/10 shadow-md scale-105' 
+                  ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
                   : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
               }`}
+              style={{ 
+                width: `${buttonWidth}px`,
+                minWidth: `${buttonWidth}px`,
+                maxWidth: `${buttonWidth}px`
+              }}
               onClick={() => setActiveItem(item.label)}
             >
-              {/* Active indicator square */}
+              {/* Active indicator - rounded square */}
               {activeItem === item.label && (
-                <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-anime-primary rounded-full"></div>
+                <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
               )}
               
-              <i className={`${item.icon} text-base mb-1`} />
-              <span className="text-[10px] font-medium leading-tight text-center">
+              <i className={`${item.icon} text-sm mb-1`} />
+              <span className="text-[9px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.label}
               </span>
             </button>
