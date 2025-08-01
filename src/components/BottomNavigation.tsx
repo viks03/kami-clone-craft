@@ -41,28 +41,37 @@ const useDeviceResolution = () => {
 
 export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   const [activeItem, setActiveItem] = useState('Home');
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [hasScroll, setHasScroll] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const resolution = useDeviceResolution();
 
-  // Check scroll state
-  const checkScrollState = () => {
+  // Calculate scroll progress and scrollability
+  const updateScrollState = () => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      setCanScrollLeft(scrollLeft > 1);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+      const maxScroll = scrollWidth - clientWidth;
+      const hasScrollableContent = maxScroll > 0;
+      
+      setHasScroll(hasScrollableContent);
+      
+      if (hasScrollableContent) {
+        const progress = (scrollLeft / maxScroll) * 100;
+        setScrollProgress(Math.min(100, Math.max(0, progress)));
+      } else {
+        setScrollProgress(0);
+      }
     }
   };
 
   useEffect(() => {
-    checkScrollState();
+    updateScrollState();
     const scrollElement = scrollRef.current;
     if (scrollElement) {
-      scrollElement.addEventListener('scroll', checkScrollState);
-      return () => scrollElement.removeEventListener('scroll', checkScrollState);
+      scrollElement.addEventListener('scroll', updateScrollState);
+      return () => scrollElement.removeEventListener('scroll', updateScrollState);
     }
-  }, []);
+  }, [resolution.width]);
 
   // Dynamic spacing calculation based on resolution
   const getOptimalSpacing = () => {
@@ -83,16 +92,13 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
       <div className="relative">
-        {/* Scroll indicators - smooth horizontal lines */}
-        {canScrollLeft && (
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-anime-dark-bg via-anime-dark-bg/80 to-transparent z-10 flex items-center justify-center">
-            <div className="w-4 h-0.5 bg-anime-primary/40 rounded-full animate-pulse"></div>
-          </div>
-        )}
-        
-        {canScrollRight && (
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-anime-dark-bg via-anime-dark-bg/80 to-transparent z-10 flex items-center justify-center">
-            <div className="w-4 h-0.5 bg-anime-primary/40 rounded-full animate-pulse"></div>
+        {/* Smooth horizontal scroll progress indicator at top */}
+        {hasScroll && (
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-anime-primary/20 z-10">
+            <div 
+              className="h-full bg-gradient-to-r from-anime-primary to-anime-primary/60 transition-all duration-300 ease-out rounded-full"
+              style={{ width: `${scrollProgress}%` }}
+            />
           </div>
         )}
 
