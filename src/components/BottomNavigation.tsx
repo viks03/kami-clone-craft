@@ -16,17 +16,16 @@ const navItems = [
 
 // Enhanced resolution detection hook
 const useDeviceResolution = () => {
-  const [resolution, setResolution] = useState({ width: 0, height: 0 });
+  const [resolution, setResolution] = useState(() => ({ 
+    width: typeof window !== 'undefined' ? window.innerWidth : 375, 
+    height: typeof window !== 'undefined' ? window.innerHeight : 667 
+  }));
   
   useEffect(() => {
     const updateResolution = () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      
-      setResolution({ width, height });
+      setResolution({ width: window.innerWidth, height: window.innerHeight });
     };
     
-    updateResolution();
     window.addEventListener('resize', updateResolution);
     window.addEventListener('orientationchange', updateResolution);
     
@@ -73,17 +72,26 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
     }
   }, [resolution.width]);
 
-  // Dynamic spacing calculation based on resolution
+  // Perfect symmetric spacing calculation
   const getOptimalSpacing = () => {
-    const width = resolution.width || 375;
-    const availableWidth = width - 24; // Account for container padding
-    const itemWidth = Math.floor(availableWidth / 5);
-    const gap = Math.max(2, Math.floor(itemWidth * 0.05)); // Dynamic gap based on item width
+    const width = resolution.width;
+    const totalItems = navItems.length;
+    const minItemWidth = 60;
+    const maxItemWidth = 80;
+    
+    // Calculate if items can fit without scrolling
+    const idealItemWidth = Math.min(maxItemWidth, Math.max(minItemWidth, Math.floor(width / totalItems) - 8));
+    const totalItemsWidth = idealItemWidth * totalItems;
+    const totalGapWidth = (totalItems - 1) * 4; // 4px gap between items
+    const contentWidth = totalItemsWidth + totalGapWidth;
+    
+    // Calculate symmetric padding
+    const padding = Math.max(12, Math.floor((width - contentWidth) / 2));
     
     return {
-      itemWidth: itemWidth - gap,
-      gap: gap,
-      containerPadding: 12
+      itemWidth: idealItemWidth,
+      gap: 4,
+      containerPadding: padding
     };
   };
 
@@ -92,11 +100,11 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
       <div className="relative">
-        {/* Smooth horizontal scroll progress indicator at top */}
+        {/* Subtle horizontal scroll progress indicator */}
         {hasScroll && (
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-anime-primary/20 z-10">
+          <div className="absolute top-0 left-0 right-0 h-[1px] bg-anime-primary/5 z-10">
             <div 
-              className="h-full bg-gradient-to-r from-anime-primary to-anime-primary/60 transition-all duration-300 ease-out rounded-full"
+              className="h-full bg-anime-primary/15 transition-all duration-500 ease-out"
               style={{ width: `${scrollProgress}%` }}
             />
           </div>
