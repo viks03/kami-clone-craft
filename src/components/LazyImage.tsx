@@ -20,7 +20,7 @@ export const LazyImage = ({ src, alt, className = '', placeholder }: LazyImagePr
           observer.disconnect();
         }
       },
-      { threshold: 0.1 }
+      { threshold: 0.05, rootMargin: '50px' }
     );
 
     if (imgRef.current) {
@@ -34,7 +34,7 @@ export const LazyImage = ({ src, alt, className = '', placeholder }: LazyImagePr
     <div className={`relative overflow-hidden ${className}`} ref={imgRef}>
       {/* Placeholder */}
       <div
-        className={`absolute inset-0 bg-anime-card-bg border border-anime-border transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-anime-card-bg border border-anime-border transition-opacity duration-500 ${
           isLoaded ? 'opacity-0' : 'opacity-100'
         }`}
       >
@@ -50,8 +50,8 @@ export const LazyImage = ({ src, alt, className = '', placeholder }: LazyImagePr
         <img
           src={src}
           alt={alt}
-          className={`w-full h-full object-cover transition-opacity duration-500 ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
+          className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+            isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}
           onLoad={() => setIsLoaded(true)}
           loading="lazy"
