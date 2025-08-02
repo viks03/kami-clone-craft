@@ -5,7 +5,7 @@ import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
-import { LeftNavigation } from '../components/LeftNavigation';
+import { BottomNavigation } from '../components/BottomNavigation';
 import { animeData } from '../data/animeData';
 
 const Index = () => {
@@ -19,9 +19,8 @@ const Index = () => {
   return (
     <div className="flex min-h-screen font-karla">
       <Sidebar />
-      <LeftNavigation />
       
-      <main className="flex-1 lg:ml-0 lg:pl-0 pl-16">
+      <main className="flex-1 lg:ml-0">
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
@@ -47,7 +46,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-4 lg:pb-0">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-20 lg:pb-0">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -162,6 +161,8 @@ const Index = () => {
         </div>
       </main>
       
+      {/* Bottom Navigation for Mobile */}
+      <BottomNavigation />
     </div>
   );
 };
