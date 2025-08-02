@@ -1,3 +1,5 @@
+import { LazyImage } from './LazyImage';
+
 interface AnimeListItemProps {
   name: string;
   poster: string;

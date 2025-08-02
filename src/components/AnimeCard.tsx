@@ -1,3 +1,5 @@
+import { LazyImage } from './LazyImage';
+
 interface AnimeCardProps {
   name: string;
   poster: string;
@@ -9,11 +11,12 @@ export const AnimeCard = ({ name, poster, episodes, className }: AnimeCardProps)
   const episodeCount = episodes?.sub || episodes?.dub || 'N/A';
   
   return (
-    <div className={`w-full ${className || ''}`}>
-      <img 
-        src={poster} 
+    <div className={`w-full transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg ${className || ''}`}>
+      <LazyImage
+        src={poster}
         alt={name}
-        className="w-full aspect-[3/4] object-cover rounded"
+        className="w-full aspect-[3/4] rounded"
+        placeholder="Loading..."
       />
       <div className="mt-2">
         <div className="flex items-center gap-2 mb-1">

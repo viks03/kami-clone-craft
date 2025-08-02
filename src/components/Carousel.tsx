@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { SpotlightAnime } from '../data/animeData';
+import { LazyImage } from './LazyImage';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -106,11 +107,16 @@ export const Carousel = ({ animes }: CarouselProps) => {
         {animes.map((anime, index) => (
           <div
             key={anime.id}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in-out cursor-grab active:cursor-grabbing ${
+            className={`absolute inset-0 transition-opacity duration-500 ease-in-out cursor-grab active:cursor-grabbing ${
               index === currentIndex ? 'opacity-100 z-[2]' : 'opacity-0 z-[1]'
             }`}
-            style={{ backgroundImage: `url('${anime.poster}')` }}
           >
+            <LazyImage
+              src={anime.poster}
+              alt={anime.name}
+              className="w-full h-full"
+              placeholder="Loading carousel..."
+            />
             <div className="absolute inset-0 bg-black bg-opacity-50" />
             
             <div className={`relative p-4 sm:p-6 lg:p-8 max-w-[600px] h-full flex flex-col justify-start transition-all duration-500 ease-in-out ${

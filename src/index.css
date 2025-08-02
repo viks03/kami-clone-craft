@@ -126,4 +126,12 @@ All colors MUST be HSL.
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  * {
+    scroll-behavior: smooth;
+  }
 }
