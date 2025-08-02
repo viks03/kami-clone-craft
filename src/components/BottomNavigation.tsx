@@ -72,26 +72,19 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
     }
   }, [resolution.width]);
 
-  // Perfect symmetric spacing calculation
+  // Perfect spacing for exactly 5 visible buttons
   const getOptimalSpacing = () => {
     const width = resolution.width;
-    const totalItems = navItems.length;
-    const minItemWidth = 60;
-    const maxItemWidth = 80;
-    
-    // Calculate if items can fit without scrolling
-    const idealItemWidth = Math.min(maxItemWidth, Math.max(minItemWidth, Math.floor(width / totalItems) - 8));
-    const totalItemsWidth = idealItemWidth * totalItems;
-    const totalGapWidth = (totalItems - 1) * 4; // 4px gap between items
-    const contentWidth = totalItemsWidth + totalGapWidth;
-    
-    // Calculate symmetric padding
-    const padding = Math.max(12, Math.floor((width - contentWidth) / 2));
+    const visibleItems = 5; // Always show exactly 5 items
+    const containerPadding = 12;
+    const availableWidth = width - (containerPadding * 2);
+    const itemWidth = Math.floor(availableWidth / visibleItems);
+    const gap = Math.max(2, Math.floor(itemWidth * 0.05));
     
     return {
-      itemWidth: idealItemWidth,
-      gap: 4,
-      containerPadding: padding
+      itemWidth: itemWidth - gap,
+      gap: gap,
+      containerPadding: containerPadding
     };
   };
 
@@ -100,11 +93,11 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
       <div className="relative">
-        {/* Subtle horizontal scroll progress indicator */}
+        {/* More visible scroll progress indicator */}
         {hasScroll && (
-          <div className="absolute top-0 left-0 right-0 h-[1px] bg-anime-primary/5 z-10">
+          <div className="absolute top-0 left-0 right-0 h-0.5 bg-anime-primary/15 z-10">
             <div 
-              className="h-full bg-anime-primary/15 transition-all duration-500 ease-out"
+              className="h-full bg-anime-primary/40 transition-all duration-300 ease-out"
               style={{ width: `${scrollProgress}%` }}
             />
           </div>
