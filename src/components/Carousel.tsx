@@ -140,7 +140,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </h1>
 
               {/* Description */}
-              <div className="mb-4 sm:mb-4 max-w-sm sm:max-w-md lg:max-w-lg">
+              <div className="mb-4 sm:mb-4">
                 <p className="text-xs sm:text-sm leading-5 sm:leading-6 line-clamp-2 lg:line-clamp-3 cursor-text bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0">
                   {anime.description}
                 </p>
