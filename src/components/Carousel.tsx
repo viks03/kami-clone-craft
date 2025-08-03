@@ -140,9 +140,11 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </h1>
 
               {/* Description */}
-              <p className="text-xs sm:text-sm mb-4 leading-5 sm:leading-6 line-clamp-2 lg:line-clamp-3 cursor-text">
-                {anime.description}
-              </p>
+              <div className="mb-4 sm:mb-4">
+                <p className="text-xs sm:text-sm leading-5 sm:leading-6 line-clamp-2 lg:line-clamp-3 cursor-text bg-black/30 backdrop-blur-sm rounded-lg px-3 py-2 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0">
+                  {anime.description}
+                </p>
+              </div>
 
               {/* Buttons */}
               <div className="flex gap-2 mt-auto absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8">
@@ -164,14 +166,14 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
       {/* Navigation Controls */}
       <button
-        className="absolute top-2 sm:top-[10px] right-14 sm:right-[70px] w-9 h-9 sm:w-11 sm:h-11 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
+        className="absolute top-2 sm:top-[10px] right-14 sm:right-[70px] w-9 h-9 sm:w-11 sm:h-11 bg-black/60 backdrop-blur-sm border border-white/20 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-all duration-300 hover:bg-black/80 hover:border-white/40 hover:shadow-lg cursor-pointer z-[3]"
         onClick={() => navigateToSlide(currentIndex - 1)}
       >
         <i className="fas fa-chevron-left text-sm sm:text-base" />
       </button>
       
       <button
-        className="absolute top-2 sm:top-[10px] right-2 sm:right-[10px] w-9 h-9 sm:w-11 sm:h-11 bg-black bg-opacity-50 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-colors duration-300 hover:bg-black hover:bg-opacity-80 cursor-pointer z-[3]"
+        className="absolute top-2 sm:top-[10px] right-2 sm:right-[10px] w-9 h-9 sm:w-11 sm:h-11 bg-black/60 backdrop-blur-sm border border-white/20 text-white text-sm leading-6 sm:leading-[30px] text-center rounded-md transition-all duration-300 hover:bg-black/80 hover:border-white/40 hover:shadow-lg cursor-pointer z-[3]"
         onClick={() => navigateToSlide(currentIndex + 1)}
       >
         <i className="fas fa-chevron-right text-sm sm:text-base" />
