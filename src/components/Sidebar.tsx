@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 
 interface SidebarProps {
   className?: string;
@@ -14,7 +14,7 @@ const navItems = [
   { icon: 'fas fa-user', label: 'Profile' },
   { icon: 'fas fa-cog', label: 'Settings' },
   { icon: 'fas fa-random', label: 'Random Anime' },
-];
+] as const;
 
 export const Sidebar = ({ className }: SidebarProps) => {
   const [activeItem, setActiveItem] = useState('Home');

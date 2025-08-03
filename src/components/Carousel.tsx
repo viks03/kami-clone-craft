@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
 
 interface CarouselProps {
@@ -13,9 +13,9 @@ export const Carousel = ({ animes }: CarouselProps) => {
   const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
 
-  const intervalTime = 6000;
+  const intervalTime = useMemo(() => 6000, []);
 
-  const showSlide = (index: number) => {
+  const showSlide = useCallback((index: number) => {
     if (isTransitioning) return;
     setIsTransitioning(true);
     
@@ -25,37 +25,37 @@ export const Carousel = ({ animes }: CarouselProps) => {
     
     // Reset and start progress bar
     setProgressWidth(0);
-    setTimeout(() => {
+    const progressTimeout = setTimeout(() => {
       setProgressWidth(100);
     }, 50);
 
-    setTimeout(() => {
+    const transitionTimeout = setTimeout(() => {
       setIsTransitioning(false);
     }, 500);
-  };
 
-  const startCarousel = () => {
+    return () => {
+      clearTimeout(progressTimeout);
+      clearTimeout(transitionTimeout);
+    };
+  }, [isTransitioning, animes.length]);
+
+  const startCarousel = useCallback(() => {
     if (autoSlideRef.current) {
       clearInterval(autoSlideRef.current);
     }
     
     autoSlideRef.current = setInterval(() => {
-      if (!isTransitioning) {
-        setCurrentIndex(prevIndex => {
-          const newIndex = (prevIndex + 1) % animes.length;
-          return newIndex;
-        });
-      }
+      setCurrentIndex(prevIndex => (prevIndex + 1) % animes.length);
     }, intervalTime);
-  };
+  }, [animes.length, intervalTime]);
 
-  const navigateToSlide = (index: number) => {
+  const navigateToSlide = useCallback((index: number) => {
     if (autoSlideRef.current) {
       clearInterval(autoSlideRef.current);
     }
     showSlide(index);
     startCarousel();
-  };
+  }, [showSlide, startCarousel]);
 
   useEffect(() => {
     setCurrentIndex(0);
@@ -87,14 +87,19 @@ export const Carousel = ({ animes }: CarouselProps) => {
     }, 500);
   }, [currentIndex]);
 
-  const getIconClass = (index: number) => {
-    const icons = ['fas fa-play', 'fas fa-clock', 'fas fa-calendar', 'fas fa-star'];
-    return icons[index] || 'fas fa-info';
-  };
+  const iconClasses = useMemo(() => 
+    ['fas fa-play', 'fas fa-clock', 'fas fa-calendar', 'fas fa-star'], 
+  []);
+  
+  const getIconClass = useCallback((index: number) => 
+    iconClasses[index] || 'fas fa-info',
+  [iconClasses]);
+
+  const currentAnime = useMemo(() => 
+    animes?.[currentIndex], 
+  [animes, currentIndex]);
 
   if (!animes || animes.length === 0) return null;
-
-  const currentAnime = animes[currentIndex];
 
   return (
     <section 

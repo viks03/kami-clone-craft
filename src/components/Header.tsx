@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useCallback, memo } from 'react';
 import { NotificationDrawer } from './NotificationDrawer';
 
 interface HeaderProps {
@@ -6,20 +6,20 @@ interface HeaderProps {
   isSearchOpen?: boolean;
 }
 
-export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
+export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => {
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
     if (searchQuery && onSearch) {
       onSearch(searchQuery);
     }
-  };
+  }, [searchQuery, onSearch]);
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       handleSearch();
     }
-  };
+  }, [handleSearch]);
 
   return (
     <header className="relative">
@@ -75,4 +75,4 @@ export const Header = ({ onSearch, isSearchOpen = false }: HeaderProps) => {
       </div>
     </header>
   );
-};
+});

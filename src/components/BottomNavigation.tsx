@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 
 interface BottomNavigationProps {
   className?: string;
@@ -12,7 +12,7 @@ const navItems = [
   { icon: 'fas fa-user', label: 'Profile' },
   { icon: 'fas fa-cog', label: 'Settings' },
   { icon: 'fas fa-random', label: 'Random' },
-];
+] as const;
 
 // Enhanced resolution detection hook
 const useDeviceResolution = () => {
@@ -46,7 +46,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   const resolution = useDeviceResolution();
 
   // Calculate scroll progress and scrollability
-  const updateScrollState = () => {
+  const updateScrollState = useCallback(() => {
     if (scrollRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
       const maxScroll = scrollWidth - clientWidth;
@@ -61,7 +61,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
         setScrollProgress(0);
       }
     }
-  };
+  }, []);
 
   useEffect(() => {
     updateScrollState();
@@ -73,7 +73,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   }, [resolution.width]);
 
   // Perfect spacing for exactly 5 visible buttons
-  const getOptimalSpacing = () => {
+  const spacing = useMemo(() => {
     const width = resolution.width;
     const visibleItems = 5; // Always show exactly 5 items
     const containerPadding = 12;
@@ -86,9 +86,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
       gap: gap,
       containerPadding: containerPadding
     };
-  };
-
-  const spacing = getOptimalSpacing();
+  }, [resolution.width]);
 
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>

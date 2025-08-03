@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, memo } from 'react';
 
 interface LazyImageProps {
   src: string;
@@ -7,7 +7,7 @@ interface LazyImageProps {
   placeholder?: string;
 }
 
-export const LazyImage = ({ src, alt, className = '', placeholder }: LazyImageProps) => {
+export const LazyImage = memo(({ src, alt, className = '', placeholder }: LazyImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -59,4 +59,4 @@ export const LazyImage = ({ src, alt, className = '', placeholder }: LazyImagePr
       )}
     </div>
   );
-};
+});

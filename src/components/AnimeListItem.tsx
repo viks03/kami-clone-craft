@@ -1,4 +1,5 @@
 import { LazyImage } from './LazyImage';
+import { memo } from 'react';
 
 interface AnimeListItemProps {
   name: string;
@@ -7,7 +8,7 @@ interface AnimeListItemProps {
   rating?: number;
 }
 
-export const AnimeListItem = ({ name, poster, status, rating }: AnimeListItemProps) => {
+export const AnimeListItem = memo(({ name, poster, status, rating }: AnimeListItemProps) => {
   return (
     <div className="flex items-center gap-3 mb-3 lg:mb-4">
       <img 
@@ -30,4 +31,4 @@ export const AnimeListItem = ({ name, poster, status, rating }: AnimeListItemPro
       </div>
     </div>
   );
-};
+});

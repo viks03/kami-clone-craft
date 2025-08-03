@@ -13,7 +13,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { useState } from "react";
+import { useState, useMemo, memo } from "react";
 
 interface NotificationDrawerProps {
   children: React.ReactNode;
@@ -22,7 +22,7 @@ interface NotificationDrawerProps {
 export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
   const [isOpen, setIsOpen] = useState(false);
   
-  const notifications = [
+  const notifications = useMemo(() => [
     {
       id: 1,
       title: "Solo Leveling Season 2",
@@ -107,9 +107,9 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
       image: "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e6g4i9k2m5o8q1s4u7w0y3a6c9e2g5i8.jpg",
       time: "3 days ago"
     }
-  ];
+  ], []);
 
-  const NotificationItem = ({ notification }: { notification: typeof notifications[0] }) => (
+  const NotificationItem = memo(({ notification }: { notification: typeof notifications[0] }) => (
     <div className="flex items-center gap-3 p-3 mb-3 bg-anime-card-bg border border-anime-border rounded-lg hover:bg-anime-card-bg/80 transition-colors cursor-pointer">
       <img 
         src={notification.image} 
@@ -122,7 +122,7 @@ export const NotificationDrawer = ({ children }: NotificationDrawerProps) => {
         <span className="text-anime-text-muted text-xs">{notification.time}</span>
       </div>
     </div>
-  );
+  ));
 
   return (
     <>

@@ -122,16 +122,32 @@ All colors MUST be HSL.
     font-size: 100%;
     line-height: 1.5;
     scroll-behavior: smooth;
-    text-rendering: optimizeSpeed;
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    font-display: swap;
   }
 
   html {
     scroll-behavior: smooth;
   }
 
+  /* Additional optimizations */
   * {
     scroll-behavior: smooth;
+  }
+  
+  img {
+    content-visibility: auto;
+  }
+  
+  /* Optimize animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }

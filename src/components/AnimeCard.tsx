@@ -1,4 +1,5 @@
 import { LazyImage } from './LazyImage';
+import { memo, useMemo } from 'react';
 
 interface AnimeCardProps {
   name: string;
@@ -7,8 +8,10 @@ interface AnimeCardProps {
   className?: string;
 }
 
-export const AnimeCard = ({ name, poster, episodes, className }: AnimeCardProps) => {
-  const episodeCount = episodes?.sub || episodes?.dub || 'N/A';
+export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardProps) => {
+  const episodeCount = useMemo(() => 
+    episodes?.sub || episodes?.dub || 'N/A', 
+  [episodes]);
   
   return (
     <div className={`w-full transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg ${className || ''}`}>
@@ -36,4 +39,4 @@ export const AnimeCard = ({ name, poster, episodes, className }: AnimeCardProps)
       </div>
     </div>
   );
-};
+});

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
@@ -12,9 +12,15 @@ const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const handleSearch = (query: string) => {
+  const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
-  };
+  }, []);
+
+  // Memoize static data slices to prevent unnecessary recalculations
+  const carouselData = useMemo(() => animeData.spotlightAnimes, []);
+  const latestAnimes = useMemo(() => animeData.latestEpisodeAnimes.slice(0, 9), []);
+  const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
+  const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
   return (
     <div className="flex min-h-screen font-karla">
@@ -56,7 +62,7 @@ const Index = () => {
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <Carousel animes={animeData.spotlightAnimes} />
+            <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
               <div className="flex items-center justify-between mb-4">
@@ -113,7 +119,7 @@ const Index = () => {
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-4">
-                {animeData.latestEpisodeAnimes.slice(0, 9).map((anime) => (
+                {latestAnimes.map((anime) => (
                   <AnimeCard
                     key={anime.id}
                     name={anime.name}
@@ -130,7 +136,7 @@ const Index = () => {
             <section className="latest-completed mb-8">
               <h2 className="text-lg mb-4">Latest Completed</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-0">
-                {animeData.latestCompletedAnimes.map((anime) => (
+                {completedAnimes.map((anime) => (
                   <AnimeListItem
                     key={anime.id}
                     name={anime.name}
@@ -147,7 +153,7 @@ const Index = () => {
             <section className="trending-now mb-8 lg:mb-0">
               <h2 className="text-lg mb-4">Trending Now</h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-0">
-                {animeData.mostPopularAnimes.slice(0, 2).map((anime) => (
+                {popularAnimes.map((anime) => (
                   <AnimeListItem
                     key={anime.id}
                     name={anime.name}
