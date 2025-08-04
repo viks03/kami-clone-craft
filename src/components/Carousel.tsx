@@ -140,16 +140,10 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </h1>
 
               {/* Description */}
-              <div className={`mb-4 sm:mb-4 ${anime.description?.length > 100 ? 'max-w-[200px] sm:max-w-none' : 'max-w-fit sm:max-w-none'}`}>
-                <div className="relative">
-                  <p className={`text-xs sm:text-sm leading-4 sm:leading-6 cursor-text transition-all duration-200 ${
-                    anime.description?.length > 150 
-                      ? 'line-clamp-4 sm:line-clamp-3 bg-black/30 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0 sm:border-none' 
-                      : 'sm:line-clamp-3'
-                  }`}>
-                    {anime.description}
-                  </p>
-                </div>
+              <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
+                <p className="text-xs sm:text-sm leading-4 sm:leading-6 line-clamp-4 sm:line-clamp-3 text-white">
+                  {anime.description}
+                </p>
               </div>
 
               {/* Buttons */}
