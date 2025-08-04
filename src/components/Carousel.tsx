@@ -135,15 +135,19 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </div>
 
               {/* Title */}
-              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default line-clamp-2">
+              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2">
                 {anime.name}
               </h1>
 
               {/* Description */}
               <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
-                <p className="text-xs sm:text-sm leading-4 sm:leading-6 line-clamp-4 lg:line-clamp-3 cursor-text bg-black/10 backdrop-blur-md rounded-md px-2 py-1.5 border border-white/10 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0 sm:border-none">
-                  {anime.description}
-                </p>
+                <div className="relative max-h-16 sm:max-h-none overflow-hidden sm:overflow-visible">
+                  <p className="text-xs sm:text-sm leading-4 sm:leading-6 overflow-y-auto max-h-16 sm:max-h-none sm:line-clamp-3 cursor-text bg-black/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/5 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0 sm:border-none scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20">
+                    {anime.description}
+                  </p>
+                  {/* Scroll indicator for mobile */}
+                  <div className="absolute bottom-0 left-0 right-0 h-3 bg-gradient-to-t from-black/30 to-transparent pointer-events-none sm:hidden" />
+                </div>
               </div>
 
               {/* Buttons */}
