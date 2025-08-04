@@ -141,18 +141,29 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
               {/* Description */}
               <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
-                <div className="relative bg-black/40 rounded-lg px-3 py-2 border border-purple-500/30">
+                <div className="relative bg-black/40 rounded-lg px-3 py-2 border border-anime-secondary/30">
                   <div 
-                    className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto scrollbar-none"
+                    className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto"
                     style={{
-                      maxHeight: '6.25rem', // 5 lines * 1.25rem line-height
-                      height: anime.description && anime.description.split(' ').length > 35 ? '6.25rem' : 'auto'
+                      maxHeight: '5rem', // 4 lines * 1.25rem line-height
+                      height: anime.description && anime.description.split(' ').length > 30 ? '5rem' : 'auto',
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none'
+                    }}
+                    onScroll={(e) => {
+                      const element = e.target as HTMLElement;
+                      const scrollIndicator = element.nextElementSibling as HTMLElement;
+                      if (scrollIndicator && element.scrollHeight > element.clientHeight) {
+                        const scrollPercentage = element.scrollTop / (element.scrollHeight - element.clientHeight);
+                        const maxIndicatorTop = element.clientHeight - scrollIndicator.offsetHeight - 8;
+                        scrollIndicator.style.top = `${8 + (scrollPercentage * maxIndicatorTop)}px`;
+                      }
                     }}
                   >
                     {anime.description}
                   </div>
-                  {anime.description && anime.description.split(' ').length > 35 && (
-                    <div className="absolute top-2 right-2 w-1 h-5 bg-purple-400/50 rounded-full"></div>
+                  {anime.description && anime.description.split(' ').length > 30 && (
+                    <div className="absolute top-2 right-2 w-1 h-4 bg-anime-secondary/60 rounded-full transition-all duration-200"></div>
                   )}
                 </div>
               </div>
