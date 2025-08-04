@@ -118,11 +118,11 @@ export const Carousel = ({ animes }: CarouselProps) => {
           >
             <div className="absolute inset-0 bg-black bg-opacity-50" />
             
-            <div className={`relative p-4 sm:p-6 lg:p-8 max-w-[600px] h-full flex flex-col justify-start transition-all duration-300 ease-in-out ${
-              index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            <div className={`relative p-4 sm:p-6 lg:p-8 max-w-[600px] h-full flex flex-col justify-start transition-all duration-200 ease-out ${
+              index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}>
               {/* Banner Info */}
-              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black bg-opacity-70 px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit">
+              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/60 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit">
                 {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
                   <span key={infoIndex} className="flex items-center gap-1 text-white">
                     <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm flex-shrink-0`} />
@@ -140,13 +140,15 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </h1>
 
               {/* Description */}
-              <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
-                <div className="relative h-16 sm:h-auto overflow-hidden sm:overflow-visible">
-                  <p className="text-xs sm:text-sm leading-4 sm:leading-6 h-full overflow-y-auto sm:overflow-visible sm:line-clamp-3 cursor-text bg-black/5 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/5 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0 sm:border-none scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20">
+              <div className={`mb-4 sm:mb-4 ${anime.description?.length > 100 ? 'max-w-[200px] sm:max-w-none' : 'max-w-fit sm:max-w-none'}`}>
+                <div className="relative">
+                  <p className={`text-xs sm:text-sm leading-4 sm:leading-6 cursor-text transition-all duration-200 ${
+                    anime.description?.length > 150 
+                      ? 'line-clamp-4 sm:line-clamp-3 bg-black/30 backdrop-blur-sm rounded-md px-2 py-1.5 border border-white/10 sm:bg-transparent sm:backdrop-blur-none sm:rounded-none sm:px-0 sm:py-0 sm:border-none' 
+                      : 'sm:line-clamp-3'
+                  }`}>
                     {anime.description}
                   </p>
-                  {/* Scroll indicator for mobile */}
-                  <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-t from-black/40 to-transparent pointer-events-none sm:hidden rounded-b-md" />
                 </div>
               </div>
 
