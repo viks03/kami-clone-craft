@@ -141,18 +141,18 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
               {/* Description */}
               <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
-                <div className="relative bg-black/40 rounded-md px-3 py-2 border border-white/10">
+                <div className="relative bg-black/40 rounded-lg px-3 py-2 border border-purple-500/30">
                   <div 
-                    className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/30 hover:scrollbar-thumb-white/50"
+                    className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto scrollbar-none"
                     style={{
-                      maxHeight: '5rem', // 5 lines * 1rem line-height
-                      height: anime.description && anime.description.split(' ').length > 30 ? '5rem' : 'auto'
+                      maxHeight: '6.25rem', // 5 lines * 1.25rem line-height
+                      height: anime.description && anime.description.split(' ').length > 35 ? '6.25rem' : 'auto'
                     }}
                   >
                     {anime.description}
                   </div>
-                  {anime.description && anime.description.split(' ').length > 30 && (
-                    <div className="absolute top-2 right-2 w-1 h-4 bg-white/30 rounded-full"></div>
+                  {anime.description && anime.description.split(' ').length > 35 && (
+                    <div className="absolute top-2 right-2 w-1 h-5 bg-purple-400/50 rounded-full"></div>
                   )}
                 </div>
               </div>
