@@ -143,40 +143,36 @@ export const Carousel = ({ animes }: CarouselProps) => {
               <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
                 <div className="relative bg-black/40 rounded-lg px-3 py-2 border border-anime-secondary/30">
                   <div 
+                    ref={(el) => {
+                      if (el) {
+                        const indicator = el.parentElement?.querySelector('.scroll-indicator') as HTMLElement;
+                        const hasScroll = el.scrollHeight > el.clientHeight;
+                        if (indicator) {
+                          indicator.style.display = hasScroll ? 'block' : 'none';
+                        }
+                        
+                        const handleScroll = () => {
+                          if (indicator && hasScroll) {
+                            const scrollPercent = el.scrollTop / (el.scrollHeight - el.clientHeight);
+                            const maxTop = el.clientHeight - 16 - 8; // indicator height + padding
+                            indicator.style.top = `${8 + (scrollPercent * maxTop)}px`;
+                          }
+                        };
+                        
+                        el.addEventListener('scroll', handleScroll);
+                        return () => el.removeEventListener('scroll', handleScroll);
+                      }
+                    }}
                     className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto"
                     style={{
-                      maxHeight: '5rem', // 4 lines * 1.25rem line-height
+                      maxHeight: '5rem',
                       scrollbarWidth: 'none',
                       msOverflowStyle: 'none'
-                    }}
-                    onScroll={(e) => {
-                      const element = e.target as HTMLElement;
-                      const scrollIndicator = element.parentElement?.querySelector('.scroll-indicator') as HTMLElement;
-                      if (scrollIndicator && element.scrollHeight > element.clientHeight) {
-                        const scrollPercentage = element.scrollTop / (element.scrollHeight - element.clientHeight);
-                        const containerHeight = element.clientHeight;
-                        const indicatorHeight = scrollIndicator.offsetHeight;
-                        const maxTop = containerHeight - indicatorHeight - 16; // 8px top + 8px bottom padding
-                        scrollIndicator.style.top = `${8 + (scrollPercentage * maxTop)}px`;
-                        scrollIndicator.style.opacity = '1';
-                      }
                     }}
                   >
                     {anime.description}
                   </div>
-                  {(() => {
-                    const tempDiv = document.createElement('div');
-                    tempDiv.style.cssText = 'position: absolute; visibility: hidden; width: 100%; font-size: 0.75rem; line-height: 1.25rem; padding: 0.75rem;';
-                    tempDiv.textContent = anime.description || '';
-                    document.body.appendChild(tempDiv);
-                    const textHeight = tempDiv.offsetHeight;
-                    document.body.removeChild(tempDiv);
-                    return textHeight > 80; // 5rem = 80px
-                  })() && (
-                    <div 
-                      className="scroll-indicator absolute top-2 right-2 w-1 h-4 bg-anime-secondary/60 rounded-full transition-all duration-200 opacity-60"
-                    ></div>
-                  )}
+                  <div className="scroll-indicator absolute top-2 right-2 w-1 h-4 bg-anime-secondary/60 rounded-full transition-all duration-200 hidden"></div>
                 </div>
               </div>
 
