@@ -141,7 +141,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
               {/* Description */}
               <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
-                <div className="relative bg-anime-secondary/10 backdrop-blur-sm rounded-xl px-3 py-2 border border-anime-secondary/20">
+                <div className="relative bg-anime-secondary/15 rounded-xl px-3 py-2 border border-anime-secondary/25">
                   <div 
                     className="text-xs sm:text-sm leading-5 sm:leading-6 text-white"
                     style={{
