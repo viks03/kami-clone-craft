@@ -141,38 +141,19 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
               {/* Description */}
               <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
-                <div className="relative bg-black/40 rounded-lg px-3 py-2 border border-anime-secondary/30">
+                <div className="relative bg-anime-secondary/10 backdrop-blur-sm rounded-xl px-3 py-2 border border-anime-secondary/20">
                   <div 
-                    ref={(el) => {
-                      if (el) {
-                        const indicator = el.parentElement?.querySelector('.scroll-indicator') as HTMLElement;
-                        const hasScroll = el.scrollHeight > el.clientHeight;
-                        if (indicator) {
-                          indicator.style.display = hasScroll ? 'block' : 'none';
-                        }
-                        
-                        const handleScroll = () => {
-                          if (indicator && hasScroll) {
-                            const scrollPercent = el.scrollTop / (el.scrollHeight - el.clientHeight);
-                            const maxTop = el.clientHeight - 16 - 8; // indicator height + padding
-                            indicator.style.top = `${8 + (scrollPercent * maxTop)}px`;
-                          }
-                        };
-                        
-                        el.addEventListener('scroll', handleScroll);
-                        return () => el.removeEventListener('scroll', handleScroll);
-                      }
-                    }}
-                    className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto"
+                    className="text-xs sm:text-sm leading-5 sm:leading-6 text-white"
                     style={{
-                      maxHeight: '5rem',
-                      scrollbarWidth: 'none',
-                      msOverflowStyle: 'none'
+                      display: '-webkit-box',
+                      WebkitLineClamp: 4,
+                      WebkitBoxOrient: 'vertical',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
                     }}
                   >
                     {anime.description}
                   </div>
-                  <div className="scroll-indicator absolute top-2 right-2 w-1 h-4 bg-anime-secondary/60 rounded-full transition-all duration-200 hidden"></div>
                 </div>
               </div>
 
