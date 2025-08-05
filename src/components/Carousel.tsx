@@ -140,13 +140,12 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </h1>
 
               {/* Description */}
-              <div className="mb-4 sm:mb-4 max-w-[200px] sm:max-w-none">
+              <div className="mb-4 sm:mb-4">
                 <div className="relative bg-black/40 rounded-lg px-3 py-2 border border-anime-secondary/30">
                   <div 
                     className="text-xs sm:text-sm leading-5 sm:leading-6 text-white overflow-y-auto"
                     style={{
                       maxHeight: '5rem', // 4 lines * 1.25rem line-height
-                      height: anime.description && anime.description.split(' ').length > 30 ? '5rem' : 'auto',
                       scrollbarWidth: 'none',
                       msOverflowStyle: 'none'
                     }}
@@ -154,7 +153,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
                       const element = e.target as HTMLElement;
                       const scrollIndicator = element.nextElementSibling as HTMLElement;
                       if (scrollIndicator && element.scrollHeight > element.clientHeight) {
-                        const scrollPercentage = element.scrollTop / (element.scrollHeight - element.clientHeight);
+                        const scrollPercentage = Math.min(1, element.scrollTop / (element.scrollHeight - element.clientHeight));
                         const maxIndicatorTop = element.clientHeight - scrollIndicator.offsetHeight - 8;
                         scrollIndicator.style.top = `${8 + (scrollPercentage * maxIndicatorTop)}px`;
                       }
@@ -162,9 +161,12 @@ export const Carousel = ({ animes }: CarouselProps) => {
                   >
                     {anime.description}
                   </div>
-                  {anime.description && anime.description.split(' ').length > 30 && (
-                    <div className="absolute top-2 right-2 w-1 h-4 bg-anime-secondary/60 rounded-full transition-all duration-200"></div>
-                  )}
+                  <div 
+                    className="absolute top-2 right-2 w-1 h-4 bg-anime-secondary/60 rounded-full transition-all duration-200"
+                    style={{ 
+                      display: anime.description && anime.description.length > 120 ? 'block' : 'none' 
+                    }}
+                  ></div>
                 </div>
               </div>
 
