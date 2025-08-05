@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useResponsiveLayout } from '../hooks/useResponsiveLayout';
 
 interface BottomNavigationProps {
   className?: string;
@@ -14,139 +15,106 @@ const navItems = [
   { icon: 'fas fa-random', label: 'Random' },
 ] as const;
 
-// Enhanced resolution detection hook
-const useDeviceResolution = () => {
-  const [resolution, setResolution] = useState(() => ({ 
-    width: typeof window !== 'undefined' ? window.innerWidth : 375, 
-    height: typeof window !== 'undefined' ? window.innerHeight : 667 
-  }));
-  
-  useEffect(() => {
-    const updateResolution = () => {
-      setResolution({ width: window.innerWidth, height: window.innerHeight });
-    };
-    
-    window.addEventListener('resize', updateResolution);
-    window.addEventListener('orientationchange', updateResolution);
-    
-    return () => {
-      window.removeEventListener('resize', updateResolution);
-      window.removeEventListener('orientationchange', updateResolution);
-    };
-  }, []);
-  
-  return resolution;
-};
 
 export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   const [activeItem, setActiveItem] = useState('Home');
-  const [scrollProgress, setScrollProgress] = useState(0);
-  const [hasScroll, setHasScroll] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const resolution = useDeviceResolution();
+  const device = useResponsiveLayout();
 
-  // Calculate scroll progress and scrollability
-  const updateScrollState = useCallback(() => {
-    if (scrollRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-      const maxScroll = scrollWidth - clientWidth;
-      const hasScrollableContent = maxScroll > 0;
-      
-      setHasScroll(hasScrollableContent);
-      
-      if (hasScrollableContent) {
-        const progress = (scrollLeft / maxScroll) * 100;
-        setScrollProgress(Math.min(100, Math.max(0, progress)));
-      } else {
-        setScrollProgress(0);
-      }
-    }
-  }, []);
-
-  useEffect(() => {
-    updateScrollState();
-    const scrollElement = scrollRef.current;
-    if (scrollElement) {
-      scrollElement.addEventListener('scroll', updateScrollState);
-      return () => scrollElement.removeEventListener('scroll', updateScrollState);
-    }
-  }, [resolution.width]);
-
-  // Perfect spacing for exactly 5 visible buttons
+  // Optimized spacing calculation with better responsive logic
   const spacing = useMemo(() => {
-    const width = resolution.width;
-    const visibleItems = 5; // Always show exactly 5 items
-    const containerPadding = 12;
-    const availableWidth = width - (containerPadding * 2);
+    const width = device.width;
+    const baseContainerPadding = 12 * device.spacingScale;
+    const visibleItems = navItems.length;
+    const availableWidth = width - (baseContainerPadding * 2);
     const itemWidth = Math.floor(availableWidth / visibleItems);
-    const gap = Math.max(2, Math.floor(itemWidth * 0.05));
+    const gap = Math.max(1, Math.floor(itemWidth * 0.02)); // Reduced gap
     
     return {
-      itemWidth: itemWidth - gap,
+      itemWidth: Math.max(50, itemWidth - gap), // Minimum width
       gap: gap,
-      containerPadding: containerPadding
+      containerPadding: baseContainerPadding,
+      fontSize: device.width <= 375 ? '8px' : '9px',
+      iconSize: device.width <= 375 ? '12px' : '14px',
+      padding: device.width <= 375 ? '8px 6px' : '10px 8px'
     };
-  }, [resolution.width]);
+  }, [device.width, device.spacingScale]);
 
   return (
-    <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
-      <div className="relative">
-        {/* More visible scroll progress indicator */}
-        {hasScroll && (
-          <div className="absolute top-0 left-0 right-0 h-0.5 bg-anime-primary/15 z-10">
-            <div 
-              className="h-full bg-anime-primary/40 transition-all duration-300 ease-out"
-              style={{ width: `${scrollProgress}%` }}
+    <div 
+      className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}
+      style={{ 
+        height: `${64 * device.scaleFactor}px`,
+        minHeight: '56px',
+        maxHeight: '80px'
+      }}
+    >
+      <div 
+        className="flex justify-center items-center h-full overflow-x-auto"
+        style={{ 
+          paddingLeft: `${spacing.containerPadding}px`,
+          paddingRight: `${spacing.containerPadding}px`,
+          gap: `${spacing.gap}px`,
+          scrollbarWidth: 'none',
+          msOverflowStyle: 'none'
+        }}
+      >
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            .overflow-x-auto::-webkit-scrollbar {
+              display: none;
+            }
+          `
+        }} />
+        
+        {navItems.map((item) => (
+          <button
+            key={item.label}
+            className={`flex flex-col items-center justify-center flex-shrink-0 rounded-lg transition-all duration-300 relative ${
+              activeItem === item.label 
+                ? 'text-anime-primary bg-anime-primary/10' 
+                : 'text-anime-text-muted hover:text-white hover:bg-anime-card-bg/50'
+            }`}
+            style={{ 
+              width: `${spacing.itemWidth}px`,
+              minWidth: `${Math.max(48, spacing.itemWidth)}px`,
+              maxWidth: `${spacing.itemWidth}px`,
+              padding: spacing.padding,
+              fontSize: spacing.fontSize
+            }}
+            onClick={() => setActiveItem(item.label)}
+          >
+            {/* Active indicator */}
+            {activeItem === item.label && (
+              <div 
+                className="absolute top-0 left-1/2 transform -translate-x-1/2 bg-anime-primary rounded-full"
+                style={{ 
+                  width: `${24 * device.scaleFactor}px`,
+                  height: `${3 * device.scaleFactor}px`,
+                  minWidth: '20px',
+                  minHeight: '2px'
+                }}
+              />
+            )}
+            
+            <i 
+              className={`${item.icon} mb-1`}
+              style={{ fontSize: spacing.iconSize }}
             />
-          </div>
-        )}
-
-        <div
-          ref={scrollRef}
-          className="flex overflow-x-auto py-3 scroll-smooth"
-          style={{ 
-            scrollbarWidth: 'none', 
-            msOverflowStyle: 'none',
-            paddingLeft: `${spacing.containerPadding}px`,
-            paddingRight: `${spacing.containerPadding}px`,
-            gap: `${spacing.gap}px`
-          }}
-        >
-          <style dangerouslySetInnerHTML={{
-            __html: `
-              .overflow-x-auto::-webkit-scrollbar {
-                display: none;
-              }
-            `
-          }} />
-          
-          {navItems.map((item) => (
-            <button
-              key={item.label}
-              className={`flex flex-col items-center justify-center flex-shrink-0 py-2 rounded-lg transition-all duration-300 relative ${
-                activeItem === item.label 
-                  ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
-                  : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
-              }`}
+            <span 
+              className="font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis"
               style={{ 
-                width: `${spacing.itemWidth}px`,
-                minWidth: `${spacing.itemWidth}px`,
-                maxWidth: `${spacing.itemWidth}px`
+                fontSize: spacing.fontSize,
+                lineHeight: '1.2',
+                maxWidth: '100%'
               }}
-              onClick={() => setActiveItem(item.label)}
             >
-              {/* Active indicator - rounded square */}
-              {activeItem === item.label && (
-                <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
-              )}
-              
-              <i className={`${item.icon} text-sm mb-1`} />
-              <span className="text-[9px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
-                {item.label}
-              </span>
-            </button>
-          ))}
-        </div>
+              {device.width <= 360 && item.label.length > 6 
+                ? item.label.substring(0, 5) + '...' 
+                : item.label
+              }
+            </span>
+          </button>
+        ))}
       </div>
     </div>
   );
