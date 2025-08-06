@@ -7,10 +7,14 @@ import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { animeData } from '../data/animeData';
+import { useResponsiveLayout } from '../hooks/useResponsiveLayout';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  
+  // Responsive layout hook for device-specific optimizations
+  const { responsiveConfig, getControlsSpacing, getButtonScale, getTextSize, getButtonPadding } = useResponsiveLayout();
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -21,6 +25,10 @@ const Index = () => {
   const latestAnimes = useMemo(() => animeData.latestEpisodeAnimes.slice(0, 9), []);
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
+
+  // Responsive styling
+  const buttonPadding = getButtonPadding();
+  const buttonScale = getButtonScale;
 
   return (
     <div className="flex min-h-screen font-karla">
@@ -65,56 +73,106 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+              <div className={`flex items-center justify-between mb-4 ${getControlsSpacing}`}>
+                <div 
+                  className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1"
+                  style={{ transform: `scale(${buttonScale})`, transformOrigin: 'left center' }}
+                >
                   <button
                     onClick={() => setActiveSection('newest')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`font-medium rounded-md transition-all ${
                       activeSection === 'newest'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
+                    style={{ 
+                      paddingLeft: `${buttonPadding.x}px`,
+                      paddingRight: `${buttonPadding.x}px`,
+                      paddingTop: `${buttonPadding.y}px`,
+                      paddingBottom: `${buttonPadding.y}px`,
+                      fontSize: getTextSize('sm')
+                    }}
                   >
                     NEWEST
                   </button>
                   <button
                     onClick={() => setActiveSection('popular')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`font-medium rounded-md transition-all ${
                       activeSection === 'popular'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
+                    style={{ 
+                      paddingLeft: `${buttonPadding.x}px`,
+                      paddingRight: `${buttonPadding.x}px`,
+                      paddingTop: `${buttonPadding.y}px`,
+                      paddingBottom: `${buttonPadding.y}px`,
+                      fontSize: getTextSize('sm')
+                    }}
                   >
                     POPULAR
                   </button>
                   <button
                     onClick={() => setActiveSection('top-rated')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`font-medium rounded-md transition-all ${
                       activeSection === 'top-rated'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
+                    style={{ 
+                      paddingLeft: `${buttonPadding.x}px`,
+                      paddingRight: `${buttonPadding.x}px`,
+                      paddingTop: `${buttonPadding.y}px`,
+                      paddingBottom: `${buttonPadding.y}px`,
+                      fontSize: getTextSize('sm')
+                    }}
                   >
                     TOP RATED
                   </button>
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                <div 
+                  className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1"
+                  style={{ transform: `scale(${buttonScale})`, transformOrigin: 'right center' }}
+                >
                   <button 
                     onClick={() => console.log('Previous page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    style={{ 
+                      paddingLeft: `${buttonPadding.x}px`,
+                      paddingRight: `${buttonPadding.x}px`,
+                      paddingTop: `${buttonPadding.y}px`,
+                      paddingBottom: `${buttonPadding.y}px`,
+                      fontSize: getTextSize('xs')
+                    }}
                   >
-                    <i className="fas fa-chevron-left text-xs" />
+                    <i className="fas fa-chevron-left" />
                   </button>
-                  <div className="px-3 py-1.5 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
+                  <div 
+                    className="font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center"
+                    style={{ 
+                      paddingLeft: `${buttonPadding.x}px`,
+                      paddingRight: `${buttonPadding.x}px`,
+                      paddingTop: `${buttonPadding.y}px`,
+                      paddingBottom: `${buttonPadding.y}px`,
+                      fontSize: getTextSize('sm')
+                    }}
+                  >
                     1
                   </div>
                   <button 
                     onClick={() => console.log('Next page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    style={{ 
+                      paddingLeft: `${buttonPadding.x}px`,
+                      paddingRight: `${buttonPadding.x}px`,
+                      paddingTop: `${buttonPadding.y}px`,
+                      paddingBottom: `${buttonPadding.y}px`,
+                      fontSize: getTextSize('xs')
+                    }}
                   >
-                    <i className="fas fa-chevron-right text-xs" />
+                    <i className="fas fa-chevron-right" />
                   </button>
                 </div>
               </div>

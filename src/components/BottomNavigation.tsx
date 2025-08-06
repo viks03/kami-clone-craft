@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { useResponsiveLayout } from '../hooks/useResponsiveLayout';
 
 interface BottomNavigationProps {
   className?: string;
@@ -44,6 +45,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   const [hasScroll, setHasScroll] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const resolution = useDeviceResolution();
+  const { responsiveConfig, deviceInfo } = useResponsiveLayout();
 
   // Calculate scroll progress and scrollability
   const updateScrollState = useCallback(() => {
@@ -72,21 +74,30 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
     }
   }, [resolution.width]);
 
-  // Perfect spacing for exactly 5 visible buttons
+  // Enhanced spacing calculation with responsive design
   const spacing = useMemo(() => {
     const width = resolution.width;
+    const { scaleFactor, isHighDensity } = deviceInfo;
     const visibleItems = 5; // Always show exactly 5 items
-    const containerPadding = 12;
+    
+    // Responsive container padding based on device characteristics
+    let containerPadding = 12;
+    if (isHighDensity && width < 380) containerPadding = 8;
+    else if (width < 360) containerPadding = 6;
+    
     const availableWidth = width - (containerPadding * 2);
-    const itemWidth = Math.floor(availableWidth / visibleItems);
-    const gap = Math.max(2, Math.floor(itemWidth * 0.05));
+    const baseItemWidth = Math.floor(availableWidth / visibleItems);
+    
+    // Apply responsive scaling
+    const itemWidth = Math.floor(baseItemWidth * scaleFactor);
+    const gap = Math.max(1, Math.floor(itemWidth * 0.03));
     
     return {
       itemWidth: itemWidth - gap,
       gap: gap,
       containerPadding: containerPadding
     };
-  }, [resolution.width]);
+  }, [resolution.width, deviceInfo]);
 
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
@@ -140,8 +151,14 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
                 <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
               )}
               
-              <i className={`${item.icon} text-sm mb-1`} />
-              <span className="text-[9px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
+              <i 
+                className={`${item.icon} mb-1`} 
+                style={{ fontSize: responsiveConfig.fontSize.sm }}
+              />
+              <span 
+                className="font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis"
+                style={{ fontSize: responsiveConfig.fontSize.xs }}
+              >
                 {item.label}
               </span>
             </button>
