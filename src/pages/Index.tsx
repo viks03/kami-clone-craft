@@ -7,10 +7,12 @@ import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { animeData } from '../data/animeData';
+import useDeviceScale from '../hooks/useDeviceScale';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { scaleSpacing, scaleFontSize, isMobile, scale } = useDeviceScale();
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -65,56 +67,98 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+              <div 
+                className="flex items-center justify-between mb-4"
+                style={{ 
+                  gap: isMobile ? `${scaleSpacing(8)}px` : '16px'
+                }}
+              >
+                <div 
+                  className="flex bg-anime-card-bg border border-anime-border rounded-lg"
+                  style={{ 
+                    padding: isMobile ? `${scaleSpacing(4)}px` : '4px'
+                  }}
+                >
                   <button
                     onClick={() => setActiveSection('newest')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`font-medium rounded-md transition-all ${
                       activeSection === 'newest'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
+                    style={{
+                      padding: isMobile ? `${scaleSpacing(6)}px ${scaleSpacing(12)}px` : '6px 12px',
+                      fontSize: isMobile ? `${scaleFontSize(14)}px` : '14px'
+                    }}
                   >
                     NEWEST
                   </button>
                   <button
                     onClick={() => setActiveSection('popular')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`font-medium rounded-md transition-all ${
                       activeSection === 'popular'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
+                    style={{
+                      padding: isMobile ? `${scaleSpacing(6)}px ${scaleSpacing(12)}px` : '6px 12px',
+                      fontSize: isMobile ? `${scaleFontSize(14)}px` : '14px'
+                    }}
                   >
                     POPULAR
                   </button>
                   <button
                     onClick={() => setActiveSection('top-rated')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`font-medium rounded-md transition-all ${
                       activeSection === 'top-rated'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                     }`}
+                    style={{
+                      padding: isMobile ? `${scaleSpacing(6)}px ${scaleSpacing(12)}px` : '6px 12px',
+                      fontSize: isMobile ? `${scaleFontSize(14)}px` : '14px'
+                    }}
                   >
                     TOP RATED
                   </button>
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                <div 
+                  className="flex bg-anime-card-bg border border-anime-border rounded-lg"
+                  style={{ 
+                    padding: isMobile ? `${scaleSpacing(4)}px` : '4px'
+                  }}
+                >
                   <button 
                     onClick={() => console.log('Previous page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    style={{
+                      padding: isMobile ? `${scaleSpacing(6)}px ${scaleSpacing(12)}px` : '6px 12px',
+                      fontSize: isMobile ? `${scaleFontSize(14)}px` : '14px'
+                    }}
                   >
-                    <i className="fas fa-chevron-left text-xs" />
+                    <i className="fas fa-chevron-left" style={{ fontSize: isMobile ? `${scaleFontSize(12)}px` : '12px' }} />
                   </button>
-                  <div className="px-3 py-1.5 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
+                  <div 
+                    className="font-medium text-white bg-anime-primary rounded-md flex items-center justify-center"
+                    style={{
+                      padding: isMobile ? `${scaleSpacing(6)}px ${scaleSpacing(12)}px` : '6px 12px',
+                      fontSize: isMobile ? `${scaleFontSize(14)}px` : '14px',
+                      minWidth: isMobile ? `${scaleSpacing(32)}px` : '32px'
+                    }}
+                  >
                     1
                   </div>
                   <button 
                     onClick={() => console.log('Next page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    style={{
+                      padding: isMobile ? `${scaleSpacing(6)}px ${scaleSpacing(12)}px` : '6px 12px',
+                      fontSize: isMobile ? `${scaleFontSize(14)}px` : '14px'
+                    }}
                   >
-                    <i className="fas fa-chevron-right text-xs" />
+                    <i className="fas fa-chevron-right" style={{ fontSize: isMobile ? `${scaleFontSize(12)}px` : '12px' }} />
                   </button>
                 </div>
               </div>
