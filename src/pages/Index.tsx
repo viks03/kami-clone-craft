@@ -14,7 +14,7 @@ const Index = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   
   // Responsive layout hook for device-specific optimizations
-  const { responsiveConfig, getControlsSpacing, getButtonScale, getTextSize, getButtonPadding } = useResponsiveLayout();
+  const { responsiveConfig, controlsSpacing, buttonScale, getTextSize, getButtonPadding } = useResponsiveLayout();
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -28,7 +28,6 @@ const Index = () => {
 
   // Responsive styling
   const buttonPadding = getButtonPadding();
-  const buttonScale = getButtonScale;
 
   return (
     <div className="flex min-h-screen font-karla">
@@ -73,8 +72,8 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className={`flex items-center justify-between mb-4 ${getControlsSpacing}`}>
-                <div 
+              <div className={`flex items-center justify-between mb-4 ${controlsSpacing}`}>
+                <div
                   className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1"
                   style={{ transform: `scale(${buttonScale})`, transformOrigin: 'left center' }}
                 >

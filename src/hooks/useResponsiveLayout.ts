@@ -185,8 +185,8 @@ export const useResponsiveLayout = () => {
     };
   }, [deviceInfo]);
 
-  // Helper functions for specific responsive behaviors
-  const getControlsSpacing = useMemo(() => {
+  // Helper values for specific responsive behaviors
+  const controlsSpacing = useMemo(() => {
     const { width, isHighDensity } = deviceInfo;
     
     // For the controls row (newest/popular/top-rated vs pagination)
@@ -195,7 +195,7 @@ export const useResponsiveLayout = () => {
     return 'gap-4';
   }, [deviceInfo]);
 
-  const getButtonScale = useMemo(() => {
+  const buttonScale = useMemo(() => {
     const { scaleFactor, isHighDensity, width } = deviceInfo;
     
     // More aggressive scaling for very small or high-density screens
@@ -207,10 +207,10 @@ export const useResponsiveLayout = () => {
   return {
     deviceInfo,
     responsiveConfig,
-    getControlsSpacing,
-    getButtonScale,
+    controlsSpacing,
+    buttonScale,
     
-    // Utility classes
+    // Utility functions
     getTextSize: (size: keyof ResponsiveConfig['fontSize']) => responsiveConfig.fontSize[size],
     getSpacing: (size: keyof ResponsiveConfig['spacing']) => responsiveConfig.spacing[size],
     getButtonPadding: () => responsiveConfig.buttonPadding,
