@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
-import useDeviceScale from '../hooks/useDeviceScale';
 
 interface BottomNavigationProps {
   className?: string;
@@ -45,7 +44,6 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   const [hasScroll, setHasScroll] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const resolution = useDeviceResolution();
-  const { scaleSpacing, scaleFontSize, width } = useDeviceScale();
 
   // Calculate scroll progress and scrollability
   const updateScrollState = useCallback(() => {
@@ -74,21 +72,21 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
     }
   }, [resolution.width]);
 
-  // Perfect spacing for exactly 5 visible buttons with device scaling
+  // Perfect spacing for exactly 5 visible buttons
   const spacing = useMemo(() => {
-    const deviceWidth = width;
+    const width = resolution.width;
     const visibleItems = 5; // Always show exactly 5 items
-    const containerPadding = scaleSpacing(12);
-    const availableWidth = deviceWidth - (containerPadding * 2);
+    const containerPadding = 12;
+    const availableWidth = width - (containerPadding * 2);
     const itemWidth = Math.floor(availableWidth / visibleItems);
-    const gap = Math.max(scaleSpacing(2), Math.floor(itemWidth * 0.05));
+    const gap = Math.max(2, Math.floor(itemWidth * 0.05));
     
     return {
       itemWidth: itemWidth - gap,
       gap: gap,
       containerPadding: containerPadding
     };
-  }, [width, scaleSpacing]);
+  }, [resolution.width]);
 
   return (
     <div className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 ${className || ''}`}>
@@ -105,12 +103,10 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
 
         <div
           ref={scrollRef}
-          className="flex overflow-x-auto scroll-smooth"
+          className="flex overflow-x-auto py-3 scroll-smooth"
           style={{ 
             scrollbarWidth: 'none', 
             msOverflowStyle: 'none',
-            paddingTop: `${scaleSpacing(12)}px`,
-            paddingBottom: `${scaleSpacing(12)}px`,
             paddingLeft: `${spacing.containerPadding}px`,
             paddingRight: `${spacing.containerPadding}px`,
             gap: `${spacing.gap}px`
@@ -127,7 +123,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
           {navItems.map((item) => (
             <button
               key={item.label}
-              className={`flex flex-col items-center justify-center flex-shrink-0 rounded-lg transition-all duration-300 relative ${
+              className={`flex flex-col items-center justify-center flex-shrink-0 py-2 rounded-lg transition-all duration-300 relative ${
                 activeItem === item.label 
                   ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
                   : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
@@ -135,31 +131,17 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
               style={{ 
                 width: `${spacing.itemWidth}px`,
                 minWidth: `${spacing.itemWidth}px`,
-                maxWidth: `${spacing.itemWidth}px`,
-                padding: `${scaleSpacing(8)}px ${scaleSpacing(4)}px`
+                maxWidth: `${spacing.itemWidth}px`
               }}
               onClick={() => setActiveItem(item.label)}
             >
               {/* Active indicator - rounded square */}
               {activeItem === item.label && (
-                <div 
-                  className="absolute left-1/2 transform -translate-x-1/2 bg-anime-primary rounded-full"
-                  style={{
-                    top: `-${scaleSpacing(2)}px`,
-                    width: `${scaleSpacing(32)}px`,
-                    height: `${scaleSpacing(4)}px`
-                  }}
-                ></div>
+                <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
               )}
               
-              <i 
-                className={`${item.icon} mb-1`} 
-                style={{ fontSize: `${scaleFontSize(14)}px` }}
-              />
-              <span 
-                className="font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis"
-                style={{ fontSize: `${scaleFontSize(9)}px` }}
-              >
+              <i className={`${item.icon} text-sm mb-1`} />
+              <span className="text-[9px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.label}
               </span>
             </button>
