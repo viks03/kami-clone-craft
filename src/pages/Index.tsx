@@ -27,7 +27,7 @@ const Index = () => {
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main className="flex-1 lg:ml-0">
+      <main className="flex-1 lg:ml-0 pb-24 lg:pb-0">
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
