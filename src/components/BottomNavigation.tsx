@@ -79,41 +79,43 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
 
         {/* More Menu */}
         <div 
-          className={`absolute top-0 left-0 w-full h-full flex transition-transform duration-300 ease-in-out ${
+          className={`absolute top-0 left-0 w-full h-full transition-transform duration-300 ease-in-out ${
             isMoreMenuOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
-          {/* Back Button */}
-          <button
-            className="flex flex-col items-center justify-center flex-1 py-2.5 px-1 text-anime-text-muted hover:text-foreground hover:bg-muted/50 transition-all duration-300 rounded-lg"
-            onClick={() => handleMoreMenuItemClick('Back')}
-          >
-            <i className="fas fa-chevron-left text-[15px] mb-1" />
-            <span className="text-[10px] font-medium leading-tight">Back</span>
-          </button>
-
-          {/* More Menu Items */}
-          {moreMenuItems.map((item) => (
+          <div className="flex justify-between items-center px-3 py-3">
+            {/* Back Button */}
             <button
-              key={item.label}
-              className={`flex flex-col items-center justify-center flex-1 py-2.5 px-1 rounded-lg transition-all duration-300 relative ${
-                activeItem === item.label 
-                  ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
-                  : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
-              }`}
-              onClick={() => handleMoreMenuItemClick(item.label)}
+              className="flex flex-col items-center justify-center flex-1 py-2.5 px-1 text-anime-text-muted hover:text-foreground hover:bg-muted/50 transition-all duration-300 rounded-lg"
+              onClick={() => handleMoreMenuItemClick('Back')}
             >
-              {/* Active indicator */}
-              {activeItem === item.label && (
-                <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
-              )}
-              
-              <i className={`${item.icon} text-[15px] mb-1`} />
-              <span className="text-[10px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
-                {item.label}
-              </span>
+              <i className="fas fa-chevron-left text-[15px] mb-1" />
+              <span className="text-[10px] font-medium leading-tight">Back</span>
             </button>
-          ))}
+
+            {/* More Menu Items */}
+            {moreMenuItems.map((item) => (
+              <button
+                key={item.label}
+                className={`flex flex-col items-center justify-center flex-1 py-2.5 px-1 rounded-lg transition-all duration-300 relative ${
+                  activeItem === item.label 
+                    ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
+                    : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
+                }`}
+                onClick={() => handleMoreMenuItemClick(item.label)}
+              >
+                {/* Active indicator */}
+                {activeItem === item.label && (
+                  <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
+                )}
+                
+                <i className={`${item.icon} text-[15px] mb-1`} />
+                <span className="text-[10px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
+                  {item.label}
+                </span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
