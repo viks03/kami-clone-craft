@@ -6,18 +6,17 @@ interface BottomNavigationProps {
 
 const mainNavItems = [
   { icon: 'fas fa-home', label: 'Home' },
-  { icon: 'fas fa-clock', label: 'Latest' },
+  { icon: 'fas fa-plus', label: 'Newest' },
   { icon: 'fas fa-fire', label: 'Trending' },
-  { icon: 'fas fa-history', label: 'History' },
-  { icon: 'fas fa-ellipsis-h', label: 'More' },
+  { icon: 'fas fa-cog', label: 'Settings' },
+  { icon: 'fas fa-chevron-right', label: 'More' },
 ] as const;
 
 const moreMenuItems = [
-  { icon: 'fas fa-cog', label: 'Settings' },
+  { icon: 'fas fa-history', label: 'History' },
   { icon: 'fas fa-user', label: 'Profile' },
   { icon: 'fas fa-random', label: 'Random' },
   { icon: 'fas fa-star', label: 'Favorites' },
-  { icon: 'fas fa-download', label: 'Downloads' },
 ] as const;
 
 export const BottomNavigation = ({ className }: BottomNavigationProps) => {
@@ -34,8 +33,12 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
   };
 
   const handleMoreMenuItemClick = (label: string) => {
-    setActiveItem(label);
-    setIsMoreMenuOpen(false);
+    if (label === 'Back') {
+      setIsMoreMenuOpen(false);
+    } else {
+      setActiveItem(label);
+      setIsMoreMenuOpen(false);
+    }
   };
 
   const handleBackClick = () => {
@@ -54,7 +57,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
           {mainNavItems.map((item) => (
             <button
               key={item.label}
-              className={`flex flex-col items-center justify-center flex-1 py-2 rounded-lg transition-all duration-300 relative ${
+              className={`flex flex-col items-center justify-center flex-1 py-2.5 px-1 rounded-lg transition-all duration-300 relative ${
                 activeItem === item.label 
                   ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
                   : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
@@ -66,8 +69,8 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
                 <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
               )}
               
-              <i className={`${item.icon} text-sm mb-1`} />
-              <span className="text-[9px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
+              <i className={`${item.icon} text-[15px] mb-1`} />
+              <span className="text-[10px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.label}
               </span>
             </button>
@@ -82,18 +85,18 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
         >
           {/* Back Button */}
           <button
-            className="flex flex-col items-center justify-center flex-1 py-3 text-anime-text-muted hover:text-foreground hover:bg-muted/50 transition-all duration-300"
-            onClick={handleBackClick}
+            className="flex flex-col items-center justify-center flex-1 py-2.5 px-1 text-anime-text-muted hover:text-foreground hover:bg-muted/50 transition-all duration-300 rounded-lg"
+            onClick={() => handleMoreMenuItemClick('Back')}
           >
-            <i className="fas fa-arrow-left text-sm mb-1" />
-            <span className="text-[9px] font-medium leading-tight">Back</span>
+            <i className="fas fa-arrow-left text-[15px] mb-1" />
+            <span className="text-[10px] font-medium leading-tight">Back</span>
           </button>
 
           {/* More Menu Items */}
           {moreMenuItems.map((item) => (
             <button
               key={item.label}
-              className={`flex flex-col items-center justify-center flex-1 py-3 rounded-lg transition-all duration-300 relative ${
+              className={`flex flex-col items-center justify-center flex-1 py-2.5 px-1 rounded-lg transition-all duration-300 relative ${
                 activeItem === item.label 
                   ? 'text-anime-primary bg-anime-primary/10 shadow-md' 
                   : 'text-anime-text-muted hover:text-foreground hover:bg-muted/50'
@@ -105,8 +108,8 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
                 <div className="absolute -top-0.5 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-anime-primary rounded-full"></div>
               )}
               
-              <i className={`${item.icon} text-sm mb-1`} />
-              <span className="text-[9px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
+              <i className={`${item.icon} text-[15px] mb-1`} />
+              <span className="text-[10px] font-medium leading-tight text-center whitespace-nowrap overflow-hidden text-ellipsis">
                 {item.label}
               </span>
             </button>
