@@ -129,26 +129,57 @@ const Index = () => {
                 ))}
               </div>
             </section>
+
+            {/* Top Airing Section */}
+            <section className="top-airing mb-8">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-bold text-white flex items-center gap-2">
+                  <div className="w-1 h-6 bg-gradient-to-b from-anime-primary to-purple-500 rounded-full"></div>
+                  Top Airing
+                </h2>
+                <button className="text-anime-primary hover:text-purple-400 transition-colors text-sm font-medium">
+                  View All
+                </button>
+              </div>
+              
+              <div className="bg-gradient-to-br from-anime-card-bg to-anime-card-bg/50 border border-anime-border/50 rounded-xl p-4 backdrop-blur-sm">
+                <div className="grid grid-cols-1 gap-4">
+                  {completedAnimes.slice(0, 4).map((anime, index) => (
+                    <div key={anime.id} className="group">
+                      <div className="flex items-center gap-3 p-3 rounded-lg bg-anime-dark-bg/30 border border-anime-border/30 hover:border-anime-primary/30 transition-all duration-300 hover:bg-anime-primary/5">
+                        <div className="relative">
+                          <img 
+                            src={anime.poster} 
+                            alt={anime.name}
+                            className="w-12 h-16 rounded-md object-cover flex-shrink-0"
+                          />
+                          <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
+                            {index + 1}
+                          </div>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-anime-primary transition-colors">{anime.name}</p>
+                          <div className="flex items-center gap-2 mt-1">
+                            <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">
+                              <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                              Airing
+                            </span>
+                            <span className="text-xs text-anime-text-muted">EP {anime.episodes?.sub || 12}</span>
+                          </div>
+                        </div>
+                        <button className="opacity-0 group-hover:opacity-100 transition-opacity text-anime-primary hover:text-purple-400">
+                          <i className="fas fa-play text-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
           </div>
 
           {/* Right Section */}
           <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
-            <section className="latest-completed mb-8">
-              <h2 className="text-lg mb-4">Latest Completed</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 lg:gap-0">
-                {completedAnimes.map((anime) => (
-                  <AnimeListItem
-                    key={anime.id}
-                    name={anime.name}
-                    poster={anime.poster}
-                    status="Completed"
-                  />
-                ))}
-              </div>
-              <a href="#" className="block text-right text-anime-primary text-sm mt-2">
-                View All
-              </a>
-            </section>
 
             <section className="trending-now mb-8 lg:mb-0">
               <h2 className="text-lg mb-4">Trending Now</h2>
