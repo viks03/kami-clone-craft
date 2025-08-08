@@ -5,7 +5,6 @@ import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
-import { Footer } from '../components/Footer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { animeData } from '../data/animeData';
 
@@ -237,7 +236,7 @@ const Index = () => {
           {/* Right Section */}
           <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
 
-            <section className="upcoming mb-2 lg:mb-0">
+            <section className="upcoming mb-6 lg:mb-0">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white flex items-center gap-2">
                   <div className="w-1 h-6 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full"></div>
@@ -300,9 +299,6 @@ const Index = () => {
           </div>
         </div>
       </main>
-      
-      {/* Footer - positioned outside main to avoid padding issues */}
-      <Footer />
       
       {/* Bottom Navigation for Mobile */}
       <BottomNavigation id="bottom-navigation" />
