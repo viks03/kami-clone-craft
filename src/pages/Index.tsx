@@ -5,6 +5,7 @@ import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
+import { Footer } from '../components/Footer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { animeData } from '../data/animeData';
 
@@ -298,6 +299,9 @@ const Index = () => {
             </section>
           </div>
         </div>
+        
+        {/* Optimized Footer */}
+        <Footer />
       </main>
       
       {/* Bottom Navigation for Mobile */}
