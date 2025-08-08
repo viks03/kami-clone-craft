@@ -164,9 +164,13 @@ const Index = () => {
                             <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
                               {index + 1}
                             </div>
+                            {/* Play Icon Overlay */}
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <i className="fas fa-play text-white text-lg"></i>
+                            </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-anime-primary transition-colors">{anime.name}</p>
+                            <p className="text-sm font-medium text-white truncate group-hover:text-anime-primary transition-colors">{anime.name}</p>
                             <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
                               <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
@@ -186,9 +190,6 @@ const Index = () => {
                               </span>
                             </div>
                           </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-anime-primary hover:text-purple-400">
-                            <i className="fas fa-play text-sm"></i>
-                          </button>
                         </div>
                       </div>
                     );
@@ -233,9 +234,13 @@ const Index = () => {
                             <div className="absolute -top-1 -left-1 w-5 h-5 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
                               {index + 1}
                             </div>
+                            {/* Play Icon Overlay */}
+                            <div className="absolute inset-0 flex items-center justify-center bg-black/60 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <i className="fas fa-play text-white text-lg"></i>
+                            </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-orange-500 transition-colors">{anime.name}</p>
+                            <p className="text-sm font-medium text-white truncate group-hover:text-orange-500 transition-colors">{anime.name}</p>
                             <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
                               <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse"></div>
@@ -251,9 +256,6 @@ const Index = () => {
                               </span>
                             </div>
                           </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-orange-500 hover:text-amber-400">
-                            <i className="fas fa-play text-sm"></i>
-                          </button>
                         </div>
                       </div>
                     );
