@@ -12,7 +12,7 @@ import { animeData } from '../data/animeData';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [bottomNavHeight, setBottomNavHeight] = useState(0);
+  // bottom nav height handled via CSS var --bottom-nav-h
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -26,35 +26,35 @@ const Index = () => {
 
   // Dynamically calculate bottom navigation height and update content padding
   useEffect(() => {
-    const updateBottomPadding = () => {
-      const bottomNav = document.querySelector('#bottom-navigation');
-      if (bottomNav && window.innerWidth < 1024) { // Only on mobile
-        const height = bottomNav.getBoundingClientRect().height;
-        setBottomNavHeight(height + 16); // Add 16px buffer
+    const root = document.documentElement;
+    const setVar = (px: number) => {
+      root.style.setProperty('--bottom-nav-h', `${px}px`);
+    };
+
+    const update = () => {
+      const bottomNav = document.querySelector('#bottom-navigation') as HTMLElement | null;
+      if (bottomNav && window.innerWidth < 1024) {
+        const height = bottomNav.getBoundingClientRect().height || 0;
+        setVar(height + 16); // buffer for visual spacing
       } else {
-        setBottomNavHeight(0); // No padding on desktop
+        setVar(0);
       }
     };
 
     // Initial measurement
-    updateBottomPadding();
+    update();
 
-    // Update on resize
-    window.addEventListener('resize', updateBottomPadding);
+    // Observe nav size only (more performant than body-wide MutationObserver)
+    const bottomNavEl = document.querySelector('#bottom-navigation') as HTMLElement | null;
+    const ro = bottomNavEl ? new ResizeObserver(() => update()) : null;
+    if (bottomNavEl && ro) ro.observe(bottomNavEl);
 
-    // Observer to detect when bottom nav is loaded
-    const observer = new MutationObserver(() => {
-      setTimeout(updateBottomPadding, 100); // Small delay to ensure DOM is updated
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+    // Update on viewport resize
+    window.addEventListener('resize', update);
 
     return () => {
-      window.removeEventListener('resize', updateBottomPadding);
-      observer.disconnect();
+      window.removeEventListener('resize', update);
+      if (bottomNavEl && ro) ro.disconnect();
     };
   }, []);
 
@@ -62,8 +62,8 @@ const Index = () => {
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main className="flex-1 lg:ml-0" style={{ paddingBottom: `${bottomNavHeight}px` }}>
-        <div className="flex flex-col lg:flex-row h-full lg:pl-4">
+      <main className="flex-1 lg:ml-0 flex flex-col" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
+        <div className="flex flex-col lg:flex-row lg:pl-4 flex-1">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
             <div className="text-xl font-bold text-anime-primary">
