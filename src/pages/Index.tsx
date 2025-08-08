@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
+import { ClickableAnimeListItem } from '../components/ClickableAnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { animeData } from '../data/animeData';
@@ -15,6 +16,11 @@ const Index = () => {
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
+  }, []);
+
+  const handleAnimeClick = useCallback((animeId: string) => {
+    console.log(`Opening anime: ${animeId}`);
+    // Here you would navigate to the anime detail page
   }, []);
 
   // Memoize static data slices to prevent unnecessary recalculations
@@ -160,12 +166,18 @@ const Index = () => {
                     name={anime.name}
                     poster={anime.poster}
                     episodes={anime.episodes}
+                    onAnimeClick={handleAnimeClick}
                   />
                 ))}
               </div>
             </section>
 
-            {/* Top Airing Section */}
+          </div>
+
+          {/* Right Section */}
+          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
+            
+            {/* Top Airing Section - Desktop in right column, Mobile below main content */}
             <section className="top-airing mb-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white flex items-center gap-2">
@@ -188,53 +200,22 @@ const Index = () => {
                     const totalEp = Math.floor(Math.random() * 12) + 12;
                     
                     return (
-                      <div key={anime.id} className="group">
-                        <div className="flex items-center gap-3 p-3 rounded-lg bg-anime-dark-bg/30 border border-anime-border/30 hover:border-anime-primary/30 transition-all duration-300 hover:bg-anime-primary/5">
-                          <div className="relative">
-                            <img 
-                              src={anime.poster} 
-                              alt={anime.name}
-                              className="w-12 h-16 rounded-md object-cover flex-shrink-0"
-                            />
-                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
-                              {index + 1}
-                            </div>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white truncate group-hover:text-anime-primary transition-colors">{anime.name}</p>
-                            <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
-                              <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
-                                Airing
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <i className="fas fa-tv text-[8px]"></i>
-                                {randomType}
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <i className="fas fa-calendar text-[8px]"></i>
-                                {randomYear}
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <i className="fas fa-closed-captioning text-[8px]"></i>
-                                {currentEp}/{totalEp}
-                              </span>
-                            </div>
-                          </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-anime-primary hover:text-purple-400">
-                            <i className="fas fa-play text-sm"></i>
-                          </button>
-                        </div>
-                      </div>
+                      <ClickableAnimeListItem
+                        key={anime.id}
+                        anime={anime}
+                        index={index}
+                        type="airing"
+                        randomType={randomType}
+                        randomYear={randomYear}
+                        currentEp={currentEp}
+                        totalEp={totalEp}
+                        onAnimeClick={handleAnimeClick}
+                      />
                     );
                   })}
                 </div>
               </div>
             </section>
-          </div>
-
-          {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
 
             <section className="upcoming mb-6 lg:mb-0">
               <div className="flex items-center justify-between mb-6">
@@ -257,40 +238,16 @@ const Index = () => {
                     const totalEp = Math.floor(Math.random() * 12) + 12;
                     
                     return (
-                      <div key={anime.id} className="group">
-                        <div className="flex items-center gap-3 p-3 rounded-lg bg-anime-dark-bg/30 border border-anime-border/30 hover:border-orange-500/30 transition-all duration-300 hover:bg-orange-500/5">
-                          <div className="relative">
-                            <img 
-                              src={anime.poster} 
-                              alt={anime.name}
-                              className="w-12 h-16 rounded-md object-cover flex-shrink-0"
-                            />
-                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
-                              {index + 1}
-                            </div>
-                          </div>
-                          <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white truncate group-hover:text-orange-500 transition-colors">{anime.name}</p>
-                            <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
-                              <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse"></div>
-                                Upcoming
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <i className="fas fa-tv text-[8px]"></i>
-                                {randomType}
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <i className="fas fa-calendar text-[8px]"></i>
-                                {randomYear}
-                              </span>
-                            </div>
-                          </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-orange-500 hover:text-amber-400">
-                            <i className="fas fa-play text-sm"></i>
-                          </button>
-                        </div>
-                      </div>
+                      <ClickableAnimeListItem
+                        key={anime.id}
+                        anime={anime}
+                        index={index}
+                        type="upcoming"
+                        randomType={randomType}
+                        randomYear={randomYear}
+                        totalEp={totalEp}
+                        onAnimeClick={handleAnimeClick}
+                      />
                     );
                   })}
                 </div>
