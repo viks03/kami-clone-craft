@@ -37,7 +37,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
       setIsMoreMenuOpen(false);
     } else {
       setActiveItem(label);
-      setIsMoreMenuOpen(false);
+      // Don't close the more menu when selecting items
     }
   };
 
@@ -88,7 +88,7 @@ export const BottomNavigation = ({ className }: BottomNavigationProps) => {
             className="flex flex-col items-center justify-center flex-1 py-2.5 px-1 text-anime-text-muted hover:text-foreground hover:bg-muted/50 transition-all duration-300 rounded-lg"
             onClick={() => handleMoreMenuItemClick('Back')}
           >
-            <i className="fas fa-arrow-left text-[15px] mb-1" />
+            <i className="fas fa-chevron-left text-[15px] mb-1" />
             <span className="text-[10px] font-medium leading-tight">Back</span>
           </button>
 
