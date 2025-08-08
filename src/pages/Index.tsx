@@ -6,6 +6,7 @@ import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
+import MobileFooter from '../components/MobileFooter';
 import { animeData } from '../data/animeData';
 
 const Index = () => {
@@ -300,8 +301,12 @@ const Index = () => {
         </div>
       </main>
       
+      {/* Mobile Footer */}
+      <MobileFooter bottomOffset={bottomNavHeight} />
+      
       {/* Bottom Navigation for Mobile */}
       <BottomNavigation id="bottom-navigation" />
+
     </div>
   );
 };
