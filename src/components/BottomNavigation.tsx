@@ -19,7 +19,7 @@ const moreMenuItems = [
   { icon: 'fas fa-star', label: 'Favorites' },
 ] as const;
 
-export const BottomNavigation = ({ className, ...props }: BottomNavigationProps & React.HTMLAttributes<HTMLDivElement>) => {
+export const BottomNavigation = ({ className, id, ...props }: BottomNavigationProps & React.HTMLAttributes<HTMLDivElement>) => {
   const [activeItem, setActiveItem] = useState('Home');
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
@@ -46,7 +46,7 @@ export const BottomNavigation = ({ className, ...props }: BottomNavigationProps 
   };
 
   return (
-    <div {...props} className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 overflow-hidden ${className || ''}`}>
+    <div {...props} id={id} className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 overflow-hidden ${className || ''}`}>
       <div className="relative w-full h-full">
         {/* Main Navigation */}
         <div 

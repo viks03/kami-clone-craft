@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
@@ -11,6 +11,7 @@ import { animeData } from '../data/animeData';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [bottomNavHeight, setBottomNavHeight] = useState(0);
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -22,11 +23,45 @@ const Index = () => {
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
+  // Dynamically calculate bottom navigation height and update content padding
+  useEffect(() => {
+    const updateBottomPadding = () => {
+      const bottomNav = document.querySelector('#bottom-navigation');
+      if (bottomNav && window.innerWidth < 1024) { // Only on mobile
+        const height = bottomNav.getBoundingClientRect().height;
+        setBottomNavHeight(height + 16); // Add 16px buffer
+      } else {
+        setBottomNavHeight(0); // No padding on desktop
+      }
+    };
+
+    // Initial measurement
+    updateBottomPadding();
+
+    // Update on resize
+    window.addEventListener('resize', updateBottomPadding);
+
+    // Observer to detect when bottom nav is loaded
+    const observer = new MutationObserver(() => {
+      setTimeout(updateBottomPadding, 100); // Small delay to ensure DOM is updated
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => {
+      window.removeEventListener('resize', updateBottomPadding);
+      observer.disconnect();
+    };
+  }, []);
+
   return (
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main className="flex-1 lg:ml-0">
+      <main className="flex-1 lg:ml-0" style={{ paddingBottom: `${bottomNavHeight}px` }}>
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
@@ -52,7 +87,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-20 lg:pb-0">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 lg:pb-0">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -266,7 +301,7 @@ const Index = () => {
       </main>
       
       {/* Bottom Navigation for Mobile */}
-      <BottomNavigation />
+      <BottomNavigation id="bottom-navigation" />
     </div>
   );
 };
