@@ -3,7 +3,7 @@ import { Sun, Moon, Cat, Smile, User } from "lucide-react";
 
 export const Footer = () => {
   return (
-    <footer className="mt-6 mb-4 px-4 lg:px-4">
+    <footer className="mt-2 mb-0 px-4 lg:px-4 lg:mb-4">
       <div className="bg-anime-card-bg/60 border border-anime-border rounded-xl p-5 lg:p-6 shadow-card backdrop-blur-sm">
         <div className="grid gap-6 lg:grid-cols-3 items-start">
           {/* Left: Logo & Disclaimer */}
