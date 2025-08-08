@@ -167,21 +167,21 @@ const Index = () => {
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-anime-primary transition-colors">{anime.name}</p>
-                            <div className="flex flex-wrap items-center gap-1.5 mt-1">
-                              <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full">
+                            <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
+                              <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
                                 Airing
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full">
+                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <i className="fas fa-tv text-[8px]"></i>
                                 {randomType}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full">
+                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <i className="fas fa-calendar text-[8px]"></i>
                                 {randomYear}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">
-                                <i className="fas fa-film text-[8px]"></i>
+                              <span className="inline-flex items-center gap-1 text-xs text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
+                                <i className="fas fa-closed-captioning text-[8px]"></i>
                                 {currentEp}/{totalEp}
                               </span>
                             </div>
@@ -236,22 +236,18 @@ const Index = () => {
                           </div>
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-orange-500 transition-colors">{anime.name}</p>
-                            <div className="flex flex-wrap items-center gap-1.5 mt-1">
-                              <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full">
+                            <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
+                              <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse"></div>
                                 Upcoming
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full">
+                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <i className="fas fa-tv text-[8px]"></i>
                                 {randomType}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full">
+                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <i className="fas fa-calendar text-[8px]"></i>
                                 {randomYear}
-                              </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded-full">
-                                <i className="fas fa-film text-[8px]"></i>
-                                0/{totalEp}
                               </span>
                             </div>
                           </div>
