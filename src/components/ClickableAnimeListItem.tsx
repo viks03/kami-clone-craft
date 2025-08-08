@@ -1,5 +1,3 @@
-import { useState } from 'react';
-
 interface ClickableAnimeListItemProps {
   anime: {
     id: string;
@@ -25,8 +23,6 @@ export const ClickableAnimeListItem = ({
   totalEp,
   onAnimeClick
 }: ClickableAnimeListItemProps) => {
-  const [showMobilePlayOverlay, setShowMobilePlayOverlay] = useState(false);
-
   const isAiring = type === 'airing';
   const primaryColor = isAiring ? 'anime-primary' : 'orange-500';
   const hoverColor = isAiring ? 'purple-400' : 'amber-400';
@@ -34,20 +30,6 @@ export const ClickableAnimeListItem = ({
   const statusText = isAiring ? 'Airing' : 'Upcoming';
 
   const handleCardClick = () => {
-    // On mobile, show overlay first
-    if (window.innerWidth < 1024) {
-      setShowMobilePlayOverlay(true);
-      setTimeout(() => {
-        setShowMobilePlayOverlay(false);
-        onAnimeClick(anime.id);
-      }, 300);
-    } else {
-      onAnimeClick(anime.id);
-    }
-  };
-
-  const handlePlayClick = (e: React.MouseEvent) => {
-    e.stopPropagation();
     onAnimeClick(anime.id);
   };
 
@@ -63,15 +45,6 @@ export const ClickableAnimeListItem = ({
           <div className={`absolute -top-1 -left-1 w-5 h-5 bg-${primaryColor} text-white text-xs font-bold rounded-full flex items-center justify-center`}>
             {index + 1}
           </div>
-          
-          {/* Mobile Play Overlay */}
-          {showMobilePlayOverlay && (
-            <div className="absolute inset-0 bg-black/60 rounded-md flex items-center justify-center lg:hidden animate-fade-in">
-              <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-                <i className="fas fa-play text-white text-sm"></i>
-              </div>
-            </div>
-          )}
         </div>
         
         <div className="flex-1 min-w-0">
@@ -101,8 +74,7 @@ export const ClickableAnimeListItem = ({
         </div>
         
         <button 
-          onClick={handlePlayClick}
-          className={`opacity-0 group-hover:opacity-100 transition-opacity text-${primaryColor} hover:text-${hoverColor}`}
+          className={`opacity-0 group-hover:opacity-100 transition-opacity text-${primaryColor} hover:text-${hoverColor} pointer-events-none`}
         >
           <i className="fas fa-play text-sm"></i>
         </button>
