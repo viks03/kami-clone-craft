@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
@@ -12,6 +12,7 @@ import { animeData } from '../data/animeData';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [bottomNavHeight, setBottomNavHeight] = useState(0);
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -23,11 +24,29 @@ const Index = () => {
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
+  // Dynamically detect bottom navigation height
+  useEffect(() => {
+    const updateBottomNavHeight = () => {
+      const bottomNav = document.querySelector('[data-bottom-nav]');
+      if (bottomNav) {
+        const height = bottomNav.getBoundingClientRect().height;
+        setBottomNavHeight(height);
+      }
+    };
+
+    updateBottomNavHeight();
+    window.addEventListener('resize', updateBottomNavHeight);
+    return () => window.removeEventListener('resize', updateBottomNavHeight);
+  }, []);
+
   return (
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main className="flex-1 lg:ml-0 pb-24 lg:pb-0">
+      <main 
+        className="flex-1 lg:ml-0" 
+        style={{ paddingBottom: `${bottomNavHeight + 16}px` }}
+      >
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
@@ -268,7 +287,7 @@ const Index = () => {
       </main>
       
       {/* Bottom Navigation for Mobile */}
-      <BottomNavigation />
+      <BottomNavigation data-bottom-nav />
     </div>
   );
 };
