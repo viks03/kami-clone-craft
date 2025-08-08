@@ -166,6 +166,11 @@ const Index = () => {
               </div>
             </section>
 
+          </div>
+
+          {/* Right Section */}
+          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:pr-4 lg:border-l border-anime-border">
+
             {/* Top Airing Section */}
             <section className="top-airing mb-8">
               <div className="flex items-center justify-between mb-6">
@@ -232,10 +237,6 @@ const Index = () => {
                 </div>
               </div>
             </section>
-          </div>
-
-          {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
 
             <section className="upcoming mb-6 lg:mb-0">
               <div className="flex items-center justify-between mb-6">
