@@ -6,6 +6,7 @@ import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
+import { GenreSlider } from '../components/GenreSlider';
 import { animeData } from '../data/animeData';
 
 const Index = () => {
@@ -98,6 +99,9 @@ const Index = () => {
             </div>
             
             <Carousel animes={carouselData} />
+            
+            {/* Genre Slider - Mobile Only */}
+            <GenreSlider />
             
             <section className="recently-updated mb-8">
               <div className="flex items-center justify-between mb-4">
