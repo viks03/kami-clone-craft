@@ -166,7 +166,7 @@ const Index = () => {
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-anime-primary transition-colors">{anime.name}</p>
+                            <p className="text-sm font-medium text-white truncate group-hover:text-anime-primary transition-colors">{anime.name}</p>
                             <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
                               <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
@@ -235,7 +235,7 @@ const Index = () => {
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-white line-clamp-2 group-hover:text-orange-500 transition-colors">{anime.name}</p>
+                            <p className="text-sm font-medium text-white truncate group-hover:text-orange-500 transition-colors">{anime.name}</p>
                             <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
                               <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
                                 <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse"></div>
