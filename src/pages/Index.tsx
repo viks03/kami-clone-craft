@@ -6,14 +6,11 @@ import { AnimeCard } from '../components/AnimeCard';
 import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
-import { Footer } from '../components/Footer';
-import { useMobileLayout } from '../hooks/useMobileLayout';
 import { animeData } from '../data/animeData';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const { contentPadding, isMobile } = useMobileLayout();
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -29,7 +26,7 @@ const Index = () => {
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main className="flex-1 lg:ml-0" style={{ paddingBottom: isMobile ? `${contentPadding}px` : '0' }}>
+      <main className="flex-1 lg:ml-0">
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
@@ -55,7 +52,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-4 lg:pb-0">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-20 lg:pb-0">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -202,9 +199,9 @@ const Index = () => {
           </div>
 
           {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border mb-4 lg:mb-0">
+          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
 
-            <section className="upcoming mb-8 lg:mb-0">
+            <section className="upcoming mb-6 lg:mb-0">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-white flex items-center gap-2">
                   <div className="w-1 h-6 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full"></div>
@@ -266,11 +263,66 @@ const Index = () => {
             </section>
           </div>
         </div>
-        <Footer isMobile={isMobile} />
+        
+        {/* New Footer */}
+        <footer className="px-4 lg:px-4 mt-6 mb-20 lg:mb-4">
+          <div className="bg-anime-card-bg/60 border border-anime-border rounded-xl p-5 lg:p-6 shadow-card">
+            <div className="grid gap-6 md:grid-cols-3 items-start">
+              {/* Left: Logo / Site name */}
+              <div className="flex flex-col gap-3">
+                <a href="/" className="inline-flex items-center gap-2 text-foreground hover:text-anime-primary transition-colors">
+                  <span className="text-lg font-bold leading-none">AnimeFlow</span>
+                </a>
+
+                <p className="text-sm text-anime-text-muted">
+                  This website does not retain any files on its server. Rather, it solely provides links to media content hosted by third-party services.
+                </p>
+              </div>
+
+              {/* Center: Links + copyright */}
+              <div className="flex flex-col items-start md:items-center gap-3">
+                <nav aria-label="Footer links" className="w-full">
+                  <ul className="flex flex-col md:flex-row md:flex-wrap gap-2 md:gap-4 justify-center text-sm">
+                    <li><a href="#" className="text-foreground/90 hover:text-anime-primary transition-colors">About</a></li>
+                    <li><a href="#" className="text-foreground/90 hover:text-anime-primary transition-colors">Domains</a></li>
+                    <li><a href="#" className="text-foreground/90 hover:text-anime-primary transition-colors">Donate &lt;3</a></li>
+                    <li><a href="#" className="text-foreground/90 hover:text-anime-primary transition-colors">Privacy Policy</a></li>
+                    <li><a href="#" className="text-foreground/90 hover:text-anime-primary transition-colors">Terms of Service</a></li>
+                  </ul>
+                </nav>
+
+                <div className="w-full h-px bg-anime-border/60 my-1" aria-hidden="true" />
+
+                <p className="text-xs text-anime-text-muted text-left md:text-center">
+                  © 2025 <a href="/" className="hover:text-anime-primary underline-offset-4 hover:underline">AnimeFlow</a> | Website Made by <strong className="font-semibold text-foreground">Miruro no Kuon</strong> v0.9.9.3
+                </p>
+              </div>
+
+              {/* Right: Theme icons (visual only) */}
+              <div className="flex md:justify-end justify-start items-center gap-2">
+                <button aria-label="Light theme" className="w-10 h-10 rounded-md bg-anime-dark-bg/30 border border-anime-border text-anime-text-muted hover:text-foreground hover:bg-anime-card-bg/70 transition-colors flex items-center justify-center">
+                  <i className="fas fa-sun text-sm"></i>
+                </button>
+                <button aria-label="Dark theme" className="w-10 h-10 rounded-md bg-anime-dark-bg/30 border border-anime-border text-anime-text-muted hover:text-foreground hover:bg-anime-card-bg/70 transition-colors flex items-center justify-center">
+                  <i className="fas fa-moon text-sm"></i>
+                </button>
+                <button aria-label="Anime icon 1" className="w-10 h-10 rounded-md bg-anime-dark-bg/30 border border-anime-border text-anime-text-muted hover:text-foreground hover:bg-anime-card-bg/70 transition-colors flex items-center justify-center">
+                  <i className="fas fa-cat text-sm"></i>
+                </button>
+                <button aria-label="Anime icon 2" className="w-10 h-10 rounded-md bg-anime-dark-bg/30 border border-anime-border text-anime-text-muted hover:text-foreground hover:bg-anime-card-bg/70 transition-colors flex items-center justify-center">
+                  <i className="fas fa-smile text-sm"></i>
+                </button>
+                <button aria-label="Anime icon 3" className="w-10 h-10 rounded-md bg-anime-dark-bg/30 border border-anime-border text-anime-text-muted hover:text-foreground hover:bg-anime-card-bg/70 transition-colors flex items-center justify-center">
+                  <i className="fas fa-user text-sm"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </footer>
       </main>
       
       {/* Bottom Navigation for Mobile */}
-      <BottomNavigation data-bottom-nav />
+      <BottomNavigation />
     </div>
   );
 };
