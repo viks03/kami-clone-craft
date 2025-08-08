@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
@@ -7,12 +7,13 @@ import { AnimeListItem } from '../components/AnimeListItem';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
+import { useMobileLayout } from '../hooks/useMobileLayout';
 import { animeData } from '../data/animeData';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [bottomNavHeight, setBottomNavHeight] = useState(0);
+  const { contentPadding, isMobile } = useMobileLayout();
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -24,29 +25,11 @@ const Index = () => {
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
-  // Dynamically detect bottom navigation height
-  useEffect(() => {
-    const updateBottomNavHeight = () => {
-      const bottomNav = document.querySelector('[data-bottom-nav]');
-      if (bottomNav) {
-        const height = bottomNav.getBoundingClientRect().height;
-        setBottomNavHeight(height);
-      }
-    };
-
-    updateBottomNavHeight();
-    window.addEventListener('resize', updateBottomNavHeight);
-    return () => window.removeEventListener('resize', updateBottomNavHeight);
-  }, []);
-
   return (
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main 
-        className="flex-1 lg:ml-0" 
-        style={{ paddingBottom: `${bottomNavHeight + 16}px` }}
-      >
+      <main className="flex-1 lg:ml-0" style={{ paddingBottom: isMobile ? `${contentPadding}px` : '0' }}>
         <div className="flex flex-col lg:flex-row h-full lg:pl-4">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
@@ -72,7 +55,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-20 lg:pb-0">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 pb-4 lg:pb-0">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -219,7 +202,7 @@ const Index = () => {
           </div>
 
           {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border">
+          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border mb-4 lg:mb-0">
 
             <section className="upcoming mb-8 lg:mb-0">
               <div className="flex items-center justify-between mb-6">
@@ -283,7 +266,7 @@ const Index = () => {
             </section>
           </div>
         </div>
-        <Footer />
+        <Footer isMobile={isMobile} />
       </main>
       
       {/* Bottom Navigation for Mobile */}

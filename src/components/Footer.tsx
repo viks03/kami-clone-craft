@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
 import { Sun, Moon, Cat, Smile, User } from "lucide-react";
 
-export const Footer = () => {
+interface FooterProps {
+  isMobile?: boolean;
+}
+
+export const Footer = ({ isMobile = false }: FooterProps) => {
   return (
-    <footer className="mt-2 mb-4 px-4 lg:px-4">
+    <footer className={`px-4 lg:px-4 ${isMobile ? 'mt-4 mb-4' : 'mt-8 mb-4'}`}>
       <div className="bg-anime-card-bg/60 border border-anime-border rounded-xl p-5 lg:p-6 shadow-card">
         <div className="grid gap-6 md:grid-cols-3 items-start">
           {/* Left: Logo / Site name */}
