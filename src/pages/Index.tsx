@@ -24,37 +24,50 @@ const Index = () => {
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
-  // Dynamically calculate bottom navigation height and update content padding
+  // Dynamically calculate mobile top header and bottom nav heights
   useEffect(() => {
     const root = document.documentElement;
-    const setVar = (px: number) => {
-      root.style.setProperty('--bottom-nav-h', `${px}px`);
+    const setVar = (name: string, px: number) => {
+      root.style.setProperty(name, `${px}px`);
     };
 
     const update = () => {
+      const topNav = document.querySelector('#top-navigation') as HTMLElement | null;
       const bottomNav = document.querySelector('#bottom-navigation') as HTMLElement | null;
-      if (bottomNav && window.innerWidth < 1024) {
-        const height = bottomNav.getBoundingClientRect().height || 0;
-        setVar(height + 16); // buffer for visual spacing
+
+      if (topNav) {
+        const h = Math.round(topNav.getBoundingClientRect().height || 72);
+        setVar('--top-nav-h', h);
       } else {
-        setVar(0);
+        setVar('--top-nav-h', 72);
+      }
+
+      if (bottomNav && window.innerWidth < 1024) {
+        const height = Math.round(bottomNav.getBoundingClientRect().height || 0);
+        setVar('--bottom-nav-h', height + 16); // buffer for visual spacing
+      } else {
+        setVar('--bottom-nav-h', 0);
       }
     };
 
     // Initial measurement
     update();
 
-    // Observe nav size only (more performant than body-wide MutationObserver)
+    // Observe nav size changes
+    const topNavEl = document.querySelector('#top-navigation') as HTMLElement | null;
     const bottomNavEl = document.querySelector('#bottom-navigation') as HTMLElement | null;
-    const ro = bottomNavEl ? new ResizeObserver(() => update()) : null;
-    if (bottomNavEl && ro) ro.observe(bottomNavEl);
+    const roTop = topNavEl ? new ResizeObserver(() => update()) : null;
+    const roBottom = bottomNavEl ? new ResizeObserver(() => update()) : null;
+    if (topNavEl && roTop) roTop.observe(topNavEl);
+    if (bottomNavEl && roBottom) roBottom.observe(bottomNavEl);
 
     // Update on viewport resize
     window.addEventListener('resize', update);
 
     return () => {
       window.removeEventListener('resize', update);
-      if (bottomNavEl && ro) ro.disconnect();
+      if (topNavEl && roTop) roTop.disconnect();
+      if (bottomNavEl && roBottom) roBottom.disconnect();
     };
   }, []);
 
@@ -65,7 +78,7 @@ const Index = () => {
       <main className="flex-1 lg:ml-0 flex flex-col" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex flex-col lg:flex-row lg:pl-4 flex-1">
           {/* Mobile Header */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
+          <div id="top-navigation" className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
@@ -101,8 +114,8 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+              <div className="flex items-center mb-4 gap-2 sm:justify-between flex-nowrap overflow-x-auto scrollbar-hide">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 shrink-0">
                   <button
                     onClick={() => setActiveSection('newest')}
                     className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
@@ -136,7 +149,7 @@ const Index = () => {
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 shrink-0">
                   <button 
                     onClick={() => console.log('Previous page')}
                     className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
