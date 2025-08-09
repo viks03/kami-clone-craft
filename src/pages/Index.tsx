@@ -114,38 +114,44 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center mb-4 gap-2 sm:justify-between flex-nowrap overflow-x-auto scrollbar-hide">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 shrink-0">
-                  <button
-                    onClick={() => setActiveSection('newest')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      activeSection === 'newest'
-                        ? 'bg-anime-primary text-white'
-                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                    }`}
-                  >
-                    NEWEST
-                  </button>
-                  <button
-                    onClick={() => setActiveSection('popular')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      activeSection === 'popular'
-                        ? 'bg-anime-primary text-white'
-                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                    }`}
-                  >
-                    POPULAR
-                  </button>
-                  <button
-                    onClick={() => setActiveSection('top-rated')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      activeSection === 'top-rated'
-                        ? 'bg-anime-primary text-white'
-                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                    }`}
-                  >
-                    TOP RATED
-                  </button>
+              <div className="flex items-center mb-4 gap-2 justify-between">
+                {/* Filter buttons: scrollable only on small screens */}
+                <div className="relative flex-1 min-w-0">
+                  <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 flex-nowrap overflow-x-auto md:overflow-visible scrollbar-hide">
+                    <button
+                      onClick={() => setActiveSection('newest')}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                        activeSection === 'newest'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                      }`}
+                    >
+                      NEWEST
+                    </button>
+                    <button
+                      onClick={() => setActiveSection('popular')}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                        activeSection === 'popular'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                      }`}
+                    >
+                      POPULAR
+                    </button>
+                    <button
+                      onClick={() => setActiveSection('top-rated')}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                        activeSection === 'top-rated'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                      }`}
+                    >
+                      TOP RATED
+                    </button>
+                  </div>
+                  {/* Side fade for small screens only */}
+                  <div className="pointer-events-none absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-background to-transparent md:hidden" />
+                  <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-background to-transparent md:hidden" />
                 </div>
                 
                 {/* Pagination Controls */}
