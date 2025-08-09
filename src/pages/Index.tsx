@@ -101,11 +101,11 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+              <div className="flex items-center mb-4 gap-2 overflow-x-auto whitespace-nowrap scrollbar-hide sm:justify-between sm:overflow-visible">
+                <div className="flex shrink-0 bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button
                     onClick={() => setActiveSection('newest')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm font-medium rounded-md transition-all ${
                       activeSection === 'newest'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -115,7 +115,7 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('popular')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm font-medium rounded-md transition-all ${
                       activeSection === 'popular'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -125,7 +125,7 @@ const Index = () => {
                   </button>
                   <button
                     onClick={() => setActiveSection('top-rated')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                    className={`px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm font-medium rounded-md transition-all ${
                       activeSection === 'top-rated'
                         ? 'bg-anime-primary text-white'
                         : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
@@ -136,19 +136,19 @@ const Index = () => {
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                <div className="flex shrink-0 bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button 
                     onClick={() => console.log('Previous page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
                   >
                     <i className="fas fa-chevron-left text-xs" />
                   </button>
-                  <div className="px-3 py-1.5 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
+                  <div className="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm font-medium text-white bg-anime-primary rounded-md min-w-[28px] sm:min-w-[32px] flex items-center justify-center shrink-0">
                     1
                   </div>
                   <button 
                     onClick={() => console.log('Next page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
+                    className="px-2.5 py-1 text-xs sm:px-3 sm:py-1.5 sm:text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
                   >
                     <i className="fas fa-chevron-right text-xs" />
                   </button>
