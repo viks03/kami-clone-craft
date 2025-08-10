@@ -38,26 +38,32 @@ function rgbToOptimalHsl(r: number, g: number, b: number): string {
 }
 
 /**
- * Extract dominant color using the library
+ * Extract dominant color using the library with correct configuration
  */
 export async function extractDominantColor(imageUrl: string): Promise<string> {
   try {
+    console.log('Extracting color from:', imageUrl);
     const result = await colorDetection(imageUrl);
+    console.log('Color detection result:', result);
     
     if (result && result.length > 0) {
       const dominantColor = result[0];
-      // The library returns an array [r, g, b, a]
+      console.log('Dominant color:', dominantColor);
+      
+      // The library returns RGBA values in array format [r, g, b, a]
       const r = dominantColor[0] || 0;
       const g = dominantColor[1] || 0;
       const b = dominantColor[2] || 0;
       
       const hslColor = rgbToOptimalHsl(r, g, b);
+      console.log('Converted to HSL:', hslColor);
       return `hsl(${hslColor})`;
     }
     
+    console.log('No colors found, using fallback');
     return 'hsl(var(--anime-primary))';
   } catch (error) {
-    console.warn('Color extraction failed:', error);
+    console.error('Color extraction failed:', error);
     return 'hsl(var(--anime-primary))';
   }
 }
