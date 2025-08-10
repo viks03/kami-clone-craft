@@ -199,7 +199,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         {/* Badges with consistent spacing and scrolling */}
         <div className="flex items-center gap-1 text-[10px] text-anime-text-muted overflow-x-auto scrollbar-hide">
           <span 
-            className={`bg-anime-card-bg px-2 py-1 rounded-lg flex-shrink-0 inline-flex items-center font-bold cursor-pointer transition-colors ${
+            className={`bg-anime-card-bg px-1.5 py-0.5 rounded text-[11px] flex-shrink-0 inline-flex items-center font-extrabold cursor-pointer transition-colors ${
               hoverState.badges['tv'] ? 'text-anime-primary' : 'hover:text-anime-primary'
             }`}
             onMouseEnter={() => handleMouseEnter('tv')}
@@ -209,7 +209,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
             TV
           </span>
           <span 
-            className={`bg-anime-card-bg px-2 py-1 rounded-lg flex-shrink-0 inline-flex items-center font-bold cursor-pointer transition-colors ${
+            className={`bg-anime-card-bg px-1.5 py-0.5 rounded text-[11px] flex-shrink-0 inline-flex items-center font-extrabold cursor-pointer transition-colors ${
               hoverState.badges['year'] ? 'text-anime-primary' : 'hover:text-anime-primary'
             }`}
             onMouseEnter={() => handleMouseEnter('year')}
@@ -220,15 +220,15 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
           </span>
           {episodes && (
             <span 
-              className={`bg-anime-card-bg px-2 py-1 rounded-lg text-anime-text-muted inline-flex items-center gap-1 font-bold flex-shrink-0 cursor-pointer transition-colors ${
+              className={`bg-anime-card-bg px-1.5 py-0.5 rounded text-anime-text-muted inline-flex items-center gap-1 font-extrabold flex-shrink-0 cursor-pointer transition-colors ${
                 hoverState.badges['episodes'] ? 'text-anime-primary' : 'hover:text-anime-primary'
               }`}
               onMouseEnter={() => handleMouseEnter('episodes')}
               onMouseLeave={() => handleMouseLeave('episodes')}
               onTouchStart={(e) => handleBadgeTouch(e, 'episodes')}
             >
-              <i className="fas fa-closed-captioning text-[8px]"></i>
-              <span className="text-[10px]">{episodeCount}/12</span>
+              <i className="fas fa-closed-captioning text-[9px]"></i>
+              <span className="text-[11px]">{episodeCount}/12</span>
             </span>
           )}
         </div>
