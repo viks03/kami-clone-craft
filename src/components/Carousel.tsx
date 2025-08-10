@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { useImageColor } from '../hooks/useImageColor';
+import { extractCarouselColors, getCarouselColor } from '../utils/fastColorExtractor';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -11,6 +11,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [progressVisible, setProgressVisible] = useState(false);
   const [progressWidth, setProgressWidth] = useState(0);
+  const [colorMap, setColorMap] = useState<Map<string, string>>(new Map());
   const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -58,13 +59,26 @@ export const Carousel = ({ animes }: CarouselProps) => {
     startCarousel();
   }, [showSlide, startCarousel]);
 
+  // Pre-extract colors for all carousel images on mount
   useEffect(() => {
-    setCurrentIndex(0);
-    setProgressWidth(0);
-    setTimeout(() => {
-      setProgressWidth(100);
-    }, 50);
-    startCarousel();
+    const initializeCarousel = async () => {
+      setCurrentIndex(0);
+      setProgressWidth(0);
+      
+      // Extract colors for all images in background
+      if (animes.length > 0) {
+        const imageUrls = animes.map(anime => anime.poster);
+        const colors = await extractCarouselColors(imageUrls);
+        setColorMap(colors);
+      }
+      
+      setTimeout(() => {
+        setProgressWidth(100);
+      }, 50);
+      startCarousel();
+    };
+
+    initializeCarousel();
     
     return () => {
       if (autoSlideRef.current) {
@@ -74,7 +88,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
         clearTimeout(progressRef.current);
       }
     };
-  }, []);
+  }, [animes, startCarousel]);
 
   // Handle progress bar and transitions when currentIndex changes
   useEffect(() => {
@@ -100,11 +114,10 @@ export const Carousel = ({ animes }: CarouselProps) => {
     animes?.[currentIndex], 
   [animes, currentIndex]);
 
-  // Extract color from current anime poster
-  const { color: dynamicColor } = useImageColor(
-    currentAnime?.poster || null,
-    { debounceMs: 50 } // Faster response for carousel
-  );
+  // Get pre-extracted color instantly
+  const dynamicColor = useMemo(() => 
+    currentAnime ? getCarouselColor(colorMap, currentAnime.poster) : 'hsl(var(--anime-primary))',
+  [currentAnime, colorMap]);
 
   if (!animes || animes.length === 0) return null;
 
