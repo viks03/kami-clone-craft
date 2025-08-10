@@ -1,4 +1,4 @@
-import { FastAverageColor } from 'fast-average-color';
+import ColorThief from 'colorthief';
 
 /**
  * Convert RGB to HSL for better color harmony
@@ -116,19 +116,27 @@ async function loadImageWithFallback(imageUrl: string): Promise<HTMLImageElement
 }
 
 /**
- * Extract dominant color using fast-average-color with robust error handling
+ * Extract dominant color using ColorThief with robust error handling
  */
 export async function extractDominantColor(imageUrl: string): Promise<string> {
   console.log('🎨 Extracting color from:', imageUrl);
   
-  const fac = new FastAverageColor();
+  const colorThief = new ColorThief();
   
   try {
     const img = await loadImageWithFallback(imageUrl);
-    const result = fac.getColor(img);
+    
+    // Wait for image to be fully loaded
+    if (!img.complete) {
+      await new Promise<void>((resolve) => {
+        img.onload = () => resolve();
+      });
+    }
+    
+    const result = colorThief.getColor(img);
     
     // Convert to HSL for better theming
-    const hslColor = rgbToHsl(result.value[0], result.value[1], result.value[2]);
+    const hslColor = rgbToHsl(result[0], result[1], result[2]);
     const finalColor = `hsl(${hslColor})`;
     
     console.log('✅ Color extracted successfully:', finalColor);
