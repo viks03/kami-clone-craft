@@ -33,117 +33,90 @@ function rgbToHsl(r: number, g: number, b: number): string {
 }
 
 /**
- * Create a proxy image URL to bypass CORS
+ * Simple and direct image loading with CORS support
  */
-function createProxyUrl(imageUrl: string): string {
-  // Try multiple proxy services
-  const proxies = [
-    `https://api.allorigins.win/raw?url=${encodeURIComponent(imageUrl)}`,
-    `https://cors-proxy.htmldriven.com/?url=${encodeURIComponent(imageUrl)}`,
-    `https://corsproxy.io/?${encodeURIComponent(imageUrl)}`
-  ];
-  
-  // Return the first proxy (we'll try others if this fails)
-  return proxies[0];
+async function loadImageWithCORS(imageUrl: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous'; // Key for CORS images
+    
+    const timeout = setTimeout(() => {
+      reject(new Error('Image load timeout'));
+    }, 10000);
+    
+    img.onload = () => {
+      clearTimeout(timeout);
+      console.log('✅ Image loaded successfully:', imageUrl);
+      resolve(img);
+    };
+    
+    img.onerror = () => {
+      clearTimeout(timeout);
+      reject(new Error('Failed to load image'));
+    };
+    
+    img.src = imageUrl;
+  });
 }
 
 /**
- * Load image with multiple fallback strategies
+ * Fallback with proxy if direct loading fails
  */
-async function loadImageWithFallback(imageUrl: string): Promise<HTMLImageElement> {
-  const strategies = [
-    // Strategy 1: Direct load (might work for some images)
-    () => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      return { img, src: imageUrl };
-    },
-    
-    // Strategy 2: Proxy with crossOrigin
-    () => {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      return { img, src: createProxyUrl(imageUrl) };
-    },
-    
-    // Strategy 3: Proxy without crossOrigin
-    () => {
-      const img = new Image();
-      return { img, src: createProxyUrl(imageUrl) };
-    },
-    
-    // Strategy 4: Different proxy
-    () => {
-      const img = new Image();
-      const proxyUrl = `https://cors-proxy.htmldriven.com/?url=${encodeURIComponent(imageUrl)}`;
-      return { img, src: proxyUrl };
-    }
-  ];
+async function loadImageWithProxy(imageUrl: string): Promise<HTMLImageElement> {
+  const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(imageUrl)}`;
   
-  for (let i = 0; i < strategies.length; i++) {
-    try {
-      const { img, src } = strategies[i]();
-      
-      await new Promise<void>((resolve, reject) => {
-        const timeout = setTimeout(() => {
-          reject(new Error(`Strategy ${i + 1} timeout`));
-        }, 5000);
-        
-        img.onload = () => {
-          clearTimeout(timeout);
-          console.log(`✅ Strategy ${i + 1} worked for:`, imageUrl);
-          resolve();
-        };
-        
-        img.onerror = () => {
-          clearTimeout(timeout);
-          reject(new Error(`Strategy ${i + 1} failed`));
-        };
-        
-        img.src = src;
-      });
-      
-      return img;
-    } catch (error) {
-      console.warn(`❌ Strategy ${i + 1} failed:`, error);
-      if (i === strategies.length - 1) {
-        throw new Error('All loading strategies failed');
-      }
-    }
-  }
-  
-  throw new Error('All loading strategies exhausted');
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    // Don't set crossOrigin for proxy URLs
+    
+    const timeout = setTimeout(() => {
+      reject(new Error('Proxy image load timeout'));
+    }, 10000);
+    
+    img.onload = () => {
+      clearTimeout(timeout);
+      console.log('✅ Proxy image loaded successfully');
+      resolve(img);
+    };
+    
+    img.onerror = () => {
+      clearTimeout(timeout);
+      reject(new Error('Failed to load proxy image'));
+    };
+    
+    img.src = proxyUrl;
+  });
 }
 
 /**
- * Extract dominant color using ColorThief with robust error handling
+ * Extract dominant color using ColorThief following ChatGPT's approach
  */
 export async function extractDominantColor(imageUrl: string): Promise<string> {
   console.log('🎨 Extracting color from:', imageUrl);
   
-  const colorThief = new ColorThief();
-  
   try {
-    const img = await loadImageWithFallback(imageUrl);
-    
-    // Wait for image to be fully loaded
-    if (!img.complete) {
-      await new Promise<void>((resolve) => {
-        img.onload = () => resolve();
-      });
+    // First try direct loading with CORS
+    let img: HTMLImageElement;
+    try {
+      img = await loadImageWithCORS(imageUrl);
+    } catch (directError) {
+      console.warn('❌ Direct loading failed, trying proxy...', directError);
+      img = await loadImageWithProxy(imageUrl);
     }
     
-    const result = colorThief.getColor(img);
+    // Extract color using ColorThief
+    const colorThief = new ColorThief();
+    const dominantColor = colorThief.getColor(img);
     
-    // Convert to HSL for better theming
-    const hslColor = rgbToHsl(result[0], result[1], result[2]);
+    // Convert RGB to HSL for better theming
+    const hslColor = rgbToHsl(dominantColor[0], dominantColor[1], dominantColor[2]);
     const finalColor = `hsl(${hslColor})`;
     
     console.log('✅ Color extracted successfully:', finalColor);
     return finalColor;
     
   } catch (error) {
-    console.warn('❌ Color extraction failed:', error);
+    console.warn('❌ All color extraction methods failed:', error);
     return 'hsl(var(--anime-primary))';
   }
 }
