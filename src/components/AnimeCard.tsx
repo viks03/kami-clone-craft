@@ -1,5 +1,6 @@
 import { LazyImage } from './LazyImage';
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
+import { extractImageColorCached } from '../utils/colorExtractor';
 
 interface AnimeCardProps {
   name: string;
@@ -25,12 +26,28 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
     badges: {}
   });
   const [isScrolling, setIsScrolling] = useState(false);
+  const [dynamicColor, setDynamicColor] = useState<string>('hsl(210 100% 60%)');
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
   
   const episodeCount = useMemo(() => 
     episodes?.sub || episodes?.dub || 'N/A', 
   [episodes]);
+
+  // Extract dominant color from the poster image
+  useEffect(() => {
+    const extractColor = async () => {
+      try {
+        const color = await extractImageColorCached(poster);
+        setDynamicColor(color);
+      } catch (error) {
+        console.warn('Failed to extract color from poster:', error);
+        // Keep default color
+      }
+    };
+
+    extractColor();
+  }, [poster]);
 
   // Clear all other cards when this card gets a hover state
   const clearOtherCards = (currentElement: string) => {
@@ -184,13 +201,22 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         <div className="flex items-center gap-1.5 mb-1">
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p 
-            className={`text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200 ${
-              hoverState.title ? 'text-anime-primary' : 'text-white hover:text-anime-primary'
-            }`}
+            className="text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200"
+            style={{
+              color: hoverState.title ? dynamicColor : 'white',
+            }}
             title={name}
             onMouseEnter={() => handleMouseEnter('title')}
             onMouseLeave={() => handleMouseLeave('title')}
             onTouchStart={handleTitleTouch}
+            onMouseOver={(e) => {
+              e.currentTarget.style.color = dynamicColor;
+            }}
+            onMouseOut={(e) => {
+              if (!hoverState.title) {
+                e.currentTarget.style.color = 'white';
+              }
+            }}
           >
             {name}
           </p>
