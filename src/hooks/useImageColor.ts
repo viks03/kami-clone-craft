@@ -21,7 +21,7 @@ export function useImageColor(
 ): UseImageColorResult {
   const {
     fallbackColor = 'hsl(var(--anime-primary))',
-    debounceMs = 300
+    debounceMs = 100 // Reduced from 300 for faster response
   } = options;
 
   const [color, setColor] = useState<string>(fallbackColor);

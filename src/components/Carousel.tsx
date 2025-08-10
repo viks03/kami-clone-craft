@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
+import { useImageColor } from '../hooks/useImageColor';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -99,6 +100,12 @@ export const Carousel = ({ animes }: CarouselProps) => {
     animes?.[currentIndex], 
   [animes, currentIndex]);
 
+  // Extract color from current anime poster
+  const { color: dynamicColor } = useImageColor(
+    currentAnime?.poster || null,
+    { debounceMs: 50 } // Faster response for carousel
+  );
+
   if (!animes || animes.length === 0) return null;
 
   return (
@@ -134,8 +141,11 @@ export const Carousel = ({ animes }: CarouselProps) => {
                 ))}
               </div>
 
-              {/* Title */}
-              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2">
+              {/* Title with dynamic color */}
+              <h1 
+                className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2 transition-colors duration-300"
+                style={{ color: dynamicColor }}
+              >
                 {anime.name}
               </h1>
 

@@ -87,7 +87,7 @@ function createProxyImageUrl(originalUrl: string): string {
 }
 
 /**
- * Extract colors using canvas with proxy fallbacks
+ * Extract colors using canvas with improved sampling
  */
 async function extractColorsWithCanvas(imageUrl: string): Promise<RGB[]> {
   return new Promise((resolve, reject) => {
@@ -105,8 +105,8 @@ async function extractColorsWithCanvas(imageUrl: string): Promise<RGB[]> {
             return;
           }
 
-          // Optimize canvas size for performance
-          const maxSize = 100;
+          // Optimize canvas size - smaller for better performance
+          const maxSize = 64; // Reduced from 100 for faster processing
           const aspectRatio = img.naturalWidth / img.naturalHeight;
           
           if (aspectRatio > 1) {
@@ -121,31 +121,54 @@ async function extractColorsWithCanvas(imageUrl: string): Promise<RGB[]> {
           const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
           const data = imageData.data;
 
-          const colorMap = new Map<string, number>();
+          const colorFrequency = new Map<string, { rgb: RGB; count: number; positions: number[] }>();
           
-          // Sample every 8th pixel for performance
-          for (let i = 0; i < data.length; i += 32) {
-            const r = data[i];
-            const g = data[i + 1];
-            const b = data[i + 2];
-            const alpha = data[i + 3];
+          // Smart sampling - focus on center and avoid edges
+          const centerX = canvas.width / 2;
+          const centerY = canvas.height / 2;
+          const maxDistance = Math.min(canvas.width, canvas.height) / 2;
+          
+          for (let y = 0; y < canvas.height; y += 2) { // Every 2nd pixel for performance
+            for (let x = 0; x < canvas.width; x += 2) {
+              const i = (y * canvas.width + x) * 4;
+              const r = data[i];
+              const g = data[i + 1];
+              const b = data[i + 2];
+              const alpha = data[i + 3];
 
-            // Skip transparent and extreme colors
-            if (alpha < 100 || (r < 20 && g < 20 && b < 20) || (r > 235 && g > 235 && b > 235)) {
-              continue;
+              // Skip transparent and extreme colors
+              if (alpha < 120) continue;
+              
+              // Calculate distance from center for weighting
+              const distance = Math.sqrt((x - centerX) ** 2 + (y - centerY) ** 2);
+              const weight = Math.max(0.3, 1 - (distance / maxDistance)); // Center gets more weight
+              
+              // Skip very dark or very light colors (likely backgrounds)
+              const brightness = (r + g + b) / 3;
+              if (brightness < 25 || brightness > 230) continue;
+              
+              // Group similar colors more intelligently
+              const colorKey = `${Math.floor(r / 12) * 12}-${Math.floor(g / 12) * 12}-${Math.floor(b / 12) * 12}`;
+              
+              if (!colorFrequency.has(colorKey)) {
+                colorFrequency.set(colorKey, {
+                  rgb: { r: Math.floor(r / 12) * 12, g: Math.floor(g / 12) * 12, b: Math.floor(b / 12) * 12 },
+                  count: 0,
+                  positions: []
+                });
+              }
+              
+              const entry = colorFrequency.get(colorKey)!;
+              entry.count += weight; // Apply distance weighting
+              entry.positions.push(distance);
             }
-
-            // Group similar colors
-            const colorKey = `${Math.floor(r / 15) * 15}-${Math.floor(g / 15) * 15}-${Math.floor(b / 15) * 15}`;
-            colorMap.set(colorKey, (colorMap.get(colorKey) || 0) + 1);
           }
 
-          // Convert to RGB array
-          const colors: RGB[] = [];
-          colorMap.forEach((count, colorKey) => {
-            const [r, g, b] = colorKey.split('-').map(Number);
-            colors.push({ r, g, b });
-          });
+          // Convert to RGB array, sorted by weighted frequency
+          const colors: RGB[] = Array.from(colorFrequency.values())
+            .sort((a, b) => b.count - a.count)
+            .slice(0, 10) // Take top 10 colors only
+            .map(entry => entry.rgb);
 
           resolve(colors);
         } catch (error) {
@@ -169,10 +192,10 @@ async function extractColorsWithCanvas(imageUrl: string): Promise<RGB[]> {
     // Start with original URL
     tryExtraction(imageUrl);
     
-    // Timeout after 5 seconds
+    // Reduced timeout for better performance
     setTimeout(() => {
       reject(new Error('Image loading timeout'));
-    }, 5000);
+    }, 2000);
   });
 }
 
@@ -202,21 +225,35 @@ function predictColorFromUrl(imageUrl: string): string {
 }
 
 /**
- * Find the best color for text display
+ * Enhanced color selection with better image representation
  */
 function findBestTextColor(colors: RGB[]): RGB | null {
   if (colors.length === 0) return null;
 
-  // Score colors based on vibrancy and text suitability
+  // Enhanced scoring system that considers multiple factors
   const scoredColors = colors
     .filter(isSuitableForText)
-    .map(color => ({
-      ...color,
-      score: getVibrancy(color)
-    }))
+    .map(color => {
+      const hsl = rgbToHsl(color.r, color.g, color.b);
+      const vibrancy = getVibrancy(color);
+      
+      // Prefer colors that are:
+      // 1. Vibrant (high saturation)
+      // 2. Not too dark or light
+      // 3. Distinct from common background colors
+      const lightnessScore = 1 - Math.abs(hsl.l - 60) / 60; // Prefer ~60% lightness
+      const saturationScore = hsl.s / 100; // Higher saturation preferred
+      const uniquenessScore = Math.min(hsl.s / 100, 1); // Avoid grayscale
+      
+      return {
+        ...color,
+        score: (vibrancy * 0.4) + (lightnessScore * 0.3) + (saturationScore * 0.2) + (uniquenessScore * 0.1)
+      };
+    })
     .sort((a, b) => b.score - a.score);
 
-  return scoredColors.length > 0 ? scoredColors[0] : colors[0];
+  return scoredColors.length > 0 ? scoredColors[0] : 
+         colors.length > 0 ? colors[0] : null;
 }
 
 /**
