@@ -181,10 +181,10 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
       </div>
 
       <div className="mt-2">
-        <div className="flex items-center gap-2 mb-1">
+        <div className="flex items-center gap-1.5 mb-1">
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p 
-            className={`text-xs font-bold truncate flex-1 cursor-pointer transition-colors duration-200 ${
+            className={`text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200 ${
               hoverState.title ? 'text-anime-primary' : 'text-white hover:text-anime-primary'
             }`}
             title={name}
