@@ -14,6 +14,10 @@ type HoverState = {
   badges: { [key: string]: boolean };
 };
 
+// Global state to track which card element is currently active
+let globalActiveCard: { cardId: string; element: string } | null = null;
+const cardHoverCallbacks = new Map<string, (shouldClear: boolean) => void>();
+
 export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardProps) => {
   const [hoverState, setHoverState] = useState<HoverState>({
     thumbnail: false,
@@ -22,10 +26,46 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
   });
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
+  const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
   
   const episodeCount = useMemo(() => 
     episodes?.sub || episodes?.dub || 'N/A', 
   [episodes]);
+
+  // Clear all other cards when this card gets a hover state
+  const clearOtherCards = (currentElement: string) => {
+    // Clear global active card if it's different
+    if (globalActiveCard && (globalActiveCard.cardId !== cardId || globalActiveCard.element !== currentElement)) {
+      cardHoverCallbacks.forEach((callback, id) => {
+        if (id !== cardId) {
+          callback(true);
+        }
+      });
+    }
+    globalActiveCard = { cardId, element: currentElement };
+  };
+
+  // Register this card's clear callback
+  useEffect(() => {
+    const clearCallback = (shouldClear: boolean) => {
+      if (shouldClear) {
+        setHoverState({
+          thumbnail: false,
+          title: false,
+          badges: {}
+        });
+      }
+    };
+    
+    cardHoverCallbacks.set(cardId, clearCallback);
+    
+    return () => {
+      cardHoverCallbacks.delete(cardId);
+      if (globalActiveCard?.cardId === cardId) {
+        globalActiveCard = null;
+      }
+    };
+  }, [cardId]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,23 +82,20 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
       }, 150);
     };
 
-    const handleTouchStart = () => {
-      // Clear hover states when touching somewhere else (not on this card)
+    const handleGlobalTouchStart = () => {
+      // Clear all hover states when touching somewhere else
       if (!isScrolling) {
-        setHoverState({
-          thumbnail: false,
-          title: false,
-          badges: {}
-        });
+        cardHoverCallbacks.forEach((callback) => callback(true));
+        globalActiveCard = null;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchstart', handleGlobalTouchStart, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchstart', handleGlobalTouchStart);
       if (scrollTimeoutRef.current) {
         clearTimeout(scrollTimeoutRef.current);
       }
@@ -67,6 +104,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
 
   const handleThumbnailTouch = (e: React.TouchEvent) => {
     e.stopPropagation();
+    clearOtherCards('thumbnail');
     setHoverState({
       thumbnail: true,
       title: true, // Title also gets hover when thumbnail is touched
@@ -76,6 +114,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
 
   const handleTitleTouch = (e: React.TouchEvent) => {
     e.stopPropagation();
+    clearOtherCards('title');
     setHoverState({
       thumbnail: false,
       title: true,
@@ -85,6 +124,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
 
   const handleBadgeTouch = (e: React.TouchEvent, badgeKey: string) => {
     e.stopPropagation();
+    clearOtherCards(badgeKey);
     setHoverState({
       thumbnail: false,
       title: false,
@@ -132,9 +172,11 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         <div className={`absolute inset-0 bg-black/50 flex items-center justify-center transition-opacity duration-300 ${
           hoverState.thumbnail ? 'opacity-100' : 'opacity-0'
         }`}>
-          <svg viewBox="0 0 24 24" className="w-20 h-20 text-white rounded-full" aria-hidden="true" focusable="false">
-            <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
-          </svg>
+          <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
+            <svg viewBox="0 0 24 24" className="w-8 h-8 text-white ml-1" aria-hidden="true" focusable="false">
+              <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
+            </svg>
+          </div>
         </div>
       </div>
 
