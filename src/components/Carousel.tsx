@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { extractCarouselColors, getCarouselColor } from '../utils/fastColorExtractor';
+import { extractMultipleColors } from '../utils/dominantColorExtractor';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -65,10 +65,10 @@ export const Carousel = ({ animes }: CarouselProps) => {
       setCurrentIndex(0);
       setProgressWidth(0);
       
-      // Extract colors for all images in background
+      // Extract colors for all images using the library
       if (animes.length > 0) {
         const imageUrls = animes.map(anime => anime.poster);
-        const colors = await extractCarouselColors(imageUrls);
+        const colors = await extractMultipleColors(imageUrls);
         setColorMap(colors);
       }
       
@@ -116,7 +116,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
   // Get pre-extracted color instantly
   const dynamicColor = useMemo(() => 
-    currentAnime ? getCarouselColor(colorMap, currentAnime.poster) : 'hsl(var(--anime-primary))',
+    currentAnime ? (colorMap.get(currentAnime.poster) || 'hsl(var(--anime-primary))') : 'hsl(var(--anime-primary))',
   [currentAnime, colorMap]);
 
   if (!animes || animes.length === 0) return null;
