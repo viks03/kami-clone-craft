@@ -97,37 +97,54 @@ async function extractColorFromCanvas(imageUrl: string): Promise<string> {
       resolve('hsl(var(--anime-primary))');
     };
 
-    // Try different CORS approaches
+    // Set crossOrigin before setting src
     img.crossOrigin = 'anonymous';
+    
+    // Add additional headers for better CORS support
+    if (imageUrl.includes('cors') || imageUrl.includes('proxy')) {
+      // For proxy URLs, don't set crossOrigin
+      img.removeAttribute('crossOrigin');
+    }
+    
     img.src = imageUrl;
   });
 }
 
 /**
- * Extract color with proxy fallback for CORS issues
+ * Extract color using a more reliable CORS proxy
  */
 export async function extractDominantColor(imageUrl: string): Promise<string> {
   console.log('Extracting color from:', imageUrl);
   
+  // Try multiple proxy services for better reliability
+  const proxyServices = [
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(imageUrl)}`,
+    `https://cors-proxy.htmldriven.com/?url=${encodeURIComponent(imageUrl)}`,
+    `https://corsproxy.io/?${encodeURIComponent(imageUrl)}`
+  ];
+  
+  // First try direct approach (might work for some images)
   try {
-    // First try direct approach
     const color = await extractColorFromCanvas(imageUrl);
-    console.log('Extracted color:', color);
+    console.log('Direct extraction successful:', color);
     return color;
-  } catch (error) {
-    console.warn('Direct extraction failed, trying proxy approach...', error);
-    
+  } catch (directError) {
+    console.warn('Direct extraction failed, trying proxy services...', directError);
+  }
+  
+  // Try each proxy service
+  for (const proxyUrl of proxyServices) {
     try {
-      // Try with a CORS proxy for external images
-      const proxyUrl = `https://cors-anywhere.herokuapp.com/${imageUrl}`;
       const color = await extractColorFromCanvas(proxyUrl);
-      console.log('Proxy extraction successful:', color);
+      console.log('Proxy extraction successful with:', proxyUrl);
       return color;
     } catch (proxyError) {
-      console.warn('Proxy extraction also failed:', proxyError);
-      return 'hsl(var(--anime-primary))';
+      console.warn('Proxy failed:', proxyUrl, proxyError);
     }
   }
+  
+  console.warn('All extraction methods failed, using fallback color');
+  return 'hsl(var(--anime-primary))';
 }
 
 /**
