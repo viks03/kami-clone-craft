@@ -1,6 +1,6 @@
 import { LazyImage } from './LazyImage';
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
-import { extractImageColorCached } from '../utils/colorExtractor';
+import { useImageColor } from '../hooks/useImageColor';
 
 interface AnimeCardProps {
   name: string;
@@ -26,28 +26,13 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
     badges: {}
   });
   const [isScrolling, setIsScrolling] = useState(false);
-  const [dynamicColor, setDynamicColor] = useState<string>('hsl(var(--anime-primary))');
+  const { color: dynamicColor, isLoading: colorLoading } = useImageColor(poster);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
   
   const episodeCount = useMemo(() => 
     episodes?.sub || episodes?.dub || 'N/A', 
   [episodes]);
-
-  // Extract dominant color from the poster image
-  useEffect(() => {
-    const extractColor = async () => {
-      try {
-        const color = await extractImageColorCached(poster);
-        setDynamicColor(color);
-      } catch (error) {
-        console.warn('Failed to extract color from poster:', error);
-        // Keep default color
-      }
-    };
-
-    extractColor();
-  }, [poster]);
 
   // Clear all other cards when this card gets a hover state
   const clearOtherCards = (currentElement: string) => {
