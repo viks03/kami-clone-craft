@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { extractDominantColorCached } from '../utils/fastColorExtractor';
+import { extractDominantColor } from '../utils/colorExtractor';
 
 interface UseImageColorOptions {
   fallbackColor?: string;
@@ -42,7 +42,7 @@ export function useImageColor(
     // Debounce color analysis to avoid too many simultaneous requests
     const timeoutId = setTimeout(async () => {
       try {
-        const extractedColor = await extractDominantColorCached(imageUrl);
+        const extractedColor = await extractDominantColor(imageUrl);
         setColor(extractedColor);
         setError(null);
       } catch (err) {

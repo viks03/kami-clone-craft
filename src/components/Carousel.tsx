@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { extractMultipleColors } from '../utils/fastColorExtractor';
+import { extractMultipleColors } from '../utils/colorExtractor';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -154,11 +154,13 @@ export const Carousel = ({ animes }: CarouselProps) => {
                 ))}
               </div>
 
-              {/* Title with white color and black border */}
+              {/* Title with dynamic color and black border */}
               <h1 
-                className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2 text-white"
+                className="text-xl sm:text-2xl lg:text-4xl font-extrabold mb-2 cursor-default truncate sm:line-clamp-2 transition-colors duration-300"
                 style={{ 
-                  textShadow: '2px 2px 4px rgba(0, 0, 0, 0.8), -1px -1px 2px rgba(0, 0, 0, 0.6)' 
+                  color: index === currentIndex ? dynamicColor : 'white',
+                  textShadow: '2px 2px 6px rgba(0, 0, 0, 0.9), -1px -1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.7)',
+                  filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8))'
                 }}
               >
                 {anime.name}
