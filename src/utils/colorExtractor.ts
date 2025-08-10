@@ -169,8 +169,10 @@ function rgbToHslString(rgb: RGB): string {
  * Main function to analyze image and extract the best color for text
  */
 export async function extractImageColor(imageUrl: string): Promise<string> {
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     const img = new Image();
+    
+    // Try to enable CORS for external images
     img.crossOrigin = 'anonymous';
     
     img.onload = async () => {
@@ -182,21 +184,29 @@ export async function extractImageColor(imageUrl: string): Promise<string> {
           const hslColor = rgbToHslString(dominantColor);
           resolve(`hsl(${hslColor})`);
         } else {
-          // Fallback to a nice blue if no suitable color found
-          resolve('hsl(210 100% 60%)');
+          // Fallback to anime-primary color from design system
+          resolve('hsl(var(--anime-primary))');
         }
       } catch (error) {
-        console.warn('Color extraction failed:', error);
-        resolve('hsl(210 100% 60%)'); // Fallback color
+        console.warn('Color extraction failed (likely CORS issue):', error);
+        // Fallback to anime-primary color from design system
+        resolve('hsl(var(--anime-primary))');
       }
     };
     
     img.onerror = () => {
       console.warn('Failed to load image for color extraction');
-      resolve('hsl(210 100% 60%)'); // Fallback color
+      // Fallback to anime-primary color from design system
+      resolve('hsl(var(--anime-primary))');
     };
     
+    // Load the image
     img.src = imageUrl;
+    
+    // Timeout fallback for slow loading images
+    setTimeout(() => {
+      resolve('hsl(var(--anime-primary))');
+    }, 3000);
   });
 }
 
@@ -206,14 +216,21 @@ export async function extractImageColor(imageUrl: string): Promise<string> {
 const colorCache = new Map<string, string>();
 
 /**
- * Cached version of color extraction
+ * Cached version of color extraction with proper fallback handling
  */
 export async function extractImageColorCached(imageUrl: string): Promise<string> {
   if (colorCache.has(imageUrl)) {
     return colorCache.get(imageUrl)!;
   }
   
-  const color = await extractImageColor(imageUrl);
-  colorCache.set(imageUrl, color);
-  return color;
+  try {
+    const color = await extractImageColor(imageUrl);
+    colorCache.set(imageUrl, color);
+    return color;
+  } catch (error) {
+    console.warn('Color extraction completely failed, using design system fallback');
+    const fallbackColor = 'hsl(var(--anime-primary))';
+    colorCache.set(imageUrl, fallbackColor);
+    return fallbackColor;
+  }
 }

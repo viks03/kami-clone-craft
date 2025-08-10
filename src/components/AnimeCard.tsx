@@ -26,7 +26,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
     badges: {}
   });
   const [isScrolling, setIsScrolling] = useState(false);
-  const [dynamicColor, setDynamicColor] = useState<string>('hsl(210 100% 60%)');
+  const [dynamicColor, setDynamicColor] = useState<string>('hsl(var(--anime-primary))');
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
   
