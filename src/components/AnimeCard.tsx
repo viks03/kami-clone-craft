@@ -16,7 +16,10 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
   [episodes]);
 
   useEffect(() => {
-    const handleScroll = () => setThumbnailHovered(false);
+    const handleScroll = () => {
+      // Small delay to allow touch events to register first
+      setTimeout(() => setThumbnailHovered(false), 50);
+    };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -42,11 +45,9 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         <div className={`absolute inset-0 bg-black/35 flex items-center justify-center transition-opacity duration-300 ${
           thumbnailHovered ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="bg-white/25 backdrop-blur-sm rounded-xl p-3">
-            <svg viewBox="0 0 24 24" className="w-16 h-16 text-white" aria-hidden="true" focusable="false">
-              <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
-            </svg>
-          </div>
+          <svg viewBox="0 0 24 24" className="w-20 h-20 text-white rounded-xl" aria-hidden="true" focusable="false">
+            <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
+          </svg>
         </div>
       </div>
 
