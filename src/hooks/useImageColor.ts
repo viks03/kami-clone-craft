@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { extractDominantColorCached } from '../utils/colorExtractor';
+import { extractDominantColorCached } from '../utils/fastColorExtractor';
 
 interface UseImageColorOptions {
   fallbackColor?: string;
