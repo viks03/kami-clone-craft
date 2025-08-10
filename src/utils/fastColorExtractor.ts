@@ -148,36 +148,26 @@ export async function extractDominantColorCached(imageUrl: string): Promise<stri
 }
 
 /**
- * Batch extract colors for multiple images
+ * Batch extract colors for multiple images using the same reliable method
  */
 export async function extractMultipleColors(imageUrls: string[]): Promise<Map<string, string>> {
   console.log('🚀 Batch extracting colors for', imageUrls.length, 'images');
   
   const colorMap = new Map<string, string>();
   
-  // Process in smaller batches to avoid overwhelming the browser
-  const batchSize = 2;
-  for (let i = 0; i < imageUrls.length; i += batchSize) {
-    const batch = imageUrls.slice(i, i + batchSize);
-    const promises = batch.map(async (url) => {
+  // Process sequentially to avoid overwhelming CORS proxies
+  for (const url of imageUrls) {
+    try {
+      console.log('🎨 Processing:', url);
       const color = await extractDominantColorCached(url);
-      return [url, color] as const;
-    });
-    
-    const results = await Promise.allSettled(promises);
-    results.forEach((result, index) => {
-      if (result.status === 'fulfilled') {
-        const [url, color] = result.value;
-        colorMap.set(url, color);
-      } else {
-        console.warn(`❌ Failed to extract color for ${batch[index]}:`, result.reason);
-        colorMap.set(batch[index], 'hsl(var(--anime-primary))');
-      }
-    });
-    
-    // Small delay between batches
-    if (i + batchSize < imageUrls.length) {
-      await new Promise(resolve => setTimeout(resolve, 200));
+      colorMap.set(url, color);
+      console.log('✅ Color extracted for:', url, '→', color);
+      
+      // Small delay to be gentle with proxy services
+      await new Promise(resolve => setTimeout(resolve, 300));
+    } catch (error) {
+      console.warn(`❌ Failed to extract color for ${url}:`, error);
+      colorMap.set(url, 'hsl(var(--anime-primary))');
     }
   }
   
