@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { extractMultipleColors } from '../utils/dominantColorExtractor';
+import { extractMultipleColors } from '../utils/fastColorExtractor';
 
 interface CarouselProps {
   animes: SpotlightAnime[];

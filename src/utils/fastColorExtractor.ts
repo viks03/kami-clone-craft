@@ -1,14 +1,22 @@
 /**
- * Clean color extraction using @dominate-color.js/core library
+ * Color extraction using fast-average-color library - much simpler and more reliable
  */
 
-import { colorDetection } from '@dominate-color.js/core';
+import { FastAverageColor } from 'fast-average-color';
+
+const fac = new FastAverageColor();
 
 /**
- * Convert RGB to HSL for better text readability
+ * Convert RGB string to optimal HSL for text readability
  */
-function rgbToOptimalHsl(r: number, g: number, b: number): string {
-  r /= 255; g /= 255; b /= 255;
+function optimizeColorForText(rgbString: string): string {
+  // Extract RGB values from string like "rgb(255, 0, 0)"
+  const match = rgbString.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
+  if (!match) return 'hsl(var(--anime-primary))';
+  
+  const r = parseInt(match[1]) / 255;
+  const g = parseInt(match[2]) / 255;
+  const b = parseInt(match[3]) / 255;
   
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
@@ -31,37 +39,47 @@ function rgbToOptimalHsl(r: number, g: number, b: number): string {
 
   // Optimize for text readability on dark backgrounds
   const hue = Math.round(h * 360);
-  const saturation = Math.max(60, Math.min(90, s * 100)); // Ensure vibrant
+  const saturation = Math.max(65, Math.min(90, s * 100)); // Ensure vibrant
   const lightness = Math.max(55, Math.min(75, l * 100)); // Ensure readable
   
   return `${hue} ${Math.round(saturation)}% ${Math.round(lightness)}%`;
 }
 
 /**
- * Extract dominant color using the library with correct configuration
+ * Extract dominant color from image URL
  */
 export async function extractDominantColor(imageUrl: string): Promise<string> {
   try {
     console.log('Extracting color from:', imageUrl);
-    const result = await colorDetection(imageUrl);
-    console.log('Color detection result:', result);
     
-    if (result && result.length > 0) {
-      const dominantColor = result[0];
-      console.log('Dominant color:', dominantColor);
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    
+    // Create a promise to handle image loading
+    const imageLoaded = new Promise<void>((resolve, reject) => {
+      img.onload = () => resolve();
+      img.onerror = () => reject(new Error('Failed to load image'));
       
-      // The library returns RGBA values in array format [r, g, b, a]
-      const r = dominantColor[0] || 0;
-      const g = dominantColor[1] || 0;
-      const b = dominantColor[2] || 0;
-      
-      const hslColor = rgbToOptimalHsl(r, g, b);
-      console.log('Converted to HSL:', hslColor);
+      // Timeout after 3 seconds
+      setTimeout(() => reject(new Error('Image load timeout')), 3000);
+    });
+    
+    img.src = imageUrl;
+    await imageLoaded;
+    
+    // Get the dominant color
+    const color = fac.getColor(img);
+    console.log('Fast-average-color result:', color);
+    
+    if (color && color.rgb) {
+      const hslColor = optimizeColorForText(color.rgb);
+      console.log('Optimized HSL color:', hslColor);
       return `hsl(${hslColor})`;
     }
     
-    console.log('No colors found, using fallback');
+    console.log('No color found, using fallback');
     return 'hsl(var(--anime-primary))';
+    
   } catch (error) {
     console.error('Color extraction failed:', error);
     return 'hsl(var(--anime-primary))';
@@ -115,6 +133,7 @@ export async function extractMultipleColors(imageUrls: string[]): Promise<Map<st
         colorMap.set(url, color);
       } else {
         // Fallback for failed extractions
+        console.warn(`Failed to extract color for ${batch[index]}:`, result.reason);
         colorMap.set(batch[index], 'hsl(var(--anime-primary))');
       }
     });
