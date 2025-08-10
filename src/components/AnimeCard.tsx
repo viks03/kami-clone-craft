@@ -29,6 +29,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         onMouseEnter={() => setThumbnailHovered(true)}
         onMouseLeave={() => setThumbnailHovered(false)}
         onTouchStart={() => setThumbnailHovered(true)}
+        onTouchMove={() => setThumbnailHovered(true)}
       >
         <LazyImage
           src={poster}
@@ -38,12 +39,14 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         />
         
         {/* Play button overlay - shows on hover */}
-        <div className={`absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-300 ${
+        <div className={`absolute inset-0 bg-black/35 flex items-center justify-center transition-opacity duration-300 ${
           thumbnailHovered ? 'opacity-100' : 'opacity-0'
         }`}>
-          <svg viewBox="0 0 24 24" className="w-10 h-10 text-white" aria-hidden="true" focusable="false">
-            <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
-          </svg>
+          <div className="bg-white/25 backdrop-blur-sm rounded-xl p-3">
+            <svg viewBox="0 0 24 24" className="w-16 h-16 text-white" aria-hidden="true" focusable="false">
+              <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
+            </svg>
+          </div>
         </div>
       </div>
 
