@@ -24,50 +24,37 @@ const Index = () => {
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
-  // Dynamically calculate mobile top header and bottom nav heights
+  // Dynamically calculate bottom navigation height and update content padding
   useEffect(() => {
     const root = document.documentElement;
-    const setVar = (name: string, px: number) => {
-      root.style.setProperty(name, `${px}px`);
+    const setVar = (px: number) => {
+      root.style.setProperty('--bottom-nav-h', `${px}px`);
     };
 
     const update = () => {
-      const topNav = document.querySelector('#top-navigation') as HTMLElement | null;
       const bottomNav = document.querySelector('#bottom-navigation') as HTMLElement | null;
-
-      if (topNav) {
-        const h = Math.round(topNav.getBoundingClientRect().height || 72);
-        setVar('--top-nav-h', h);
-      } else {
-        setVar('--top-nav-h', 72);
-      }
-
       if (bottomNav && window.innerWidth < 1024) {
-        const height = Math.round(bottomNav.getBoundingClientRect().height || 0);
-        setVar('--bottom-nav-h', height + 16); // buffer for visual spacing
+        const height = bottomNav.getBoundingClientRect().height || 0;
+        setVar(height + 16); // buffer for visual spacing
       } else {
-        setVar('--bottom-nav-h', 0);
+        setVar(0);
       }
     };
 
     // Initial measurement
     update();
 
-    // Observe nav size changes
-    const topNavEl = document.querySelector('#top-navigation') as HTMLElement | null;
+    // Observe nav size only (more performant than body-wide MutationObserver)
     const bottomNavEl = document.querySelector('#bottom-navigation') as HTMLElement | null;
-    const roTop = topNavEl ? new ResizeObserver(() => update()) : null;
-    const roBottom = bottomNavEl ? new ResizeObserver(() => update()) : null;
-    if (topNavEl && roTop) roTop.observe(topNavEl);
-    if (bottomNavEl && roBottom) roBottom.observe(bottomNavEl);
+    const ro = bottomNavEl ? new ResizeObserver(() => update()) : null;
+    if (bottomNavEl && ro) ro.observe(bottomNavEl);
 
     // Update on viewport resize
     window.addEventListener('resize', update);
 
     return () => {
       window.removeEventListener('resize', update);
-      if (topNavEl && roTop) roTop.disconnect();
-      if (bottomNavEl && roBottom) roBottom.disconnect();
+      if (bottomNavEl && ro) ro.disconnect();
     };
   }, []);
 
@@ -78,7 +65,7 @@ const Index = () => {
       <main className="flex-1 lg:ml-0 flex flex-col" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex flex-col lg:flex-row lg:pl-4 flex-1">
           {/* Mobile Header */}
-          <div id="top-navigation" className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
@@ -114,48 +101,42 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center mb-4 gap-2 justify-between">
-                {/* Filter buttons: scrollable only on small screens */}
-                <div className="relative flex-1 min-w-0">
-                  <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 flex-nowrap overflow-x-auto md:overflow-visible scrollbar-hide">
-                    <button
-                      onClick={() => setActiveSection('newest')}
-                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                        activeSection === 'newest'
-                          ? 'bg-anime-primary text-white'
-                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                      }`}
-                    >
-                      NEWEST
-                    </button>
-                    <button
-                      onClick={() => setActiveSection('popular')}
-                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                        activeSection === 'popular'
-                          ? 'bg-anime-primary text-white'
-                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                      }`}
-                    >
-                      POPULAR
-                    </button>
-                    <button
-                      onClick={() => setActiveSection('top-rated')}
-                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                        activeSection === 'top-rated'
-                          ? 'bg-anime-primary text-white'
-                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                      }`}
-                    >
-                      TOP RATED
-                    </button>
-                  </div>
-                  {/* Side fade for small screens only */}
-                  <div className="pointer-events-none absolute inset-y-0 left-0 w-4 bg-gradient-to-r from-background to-transparent md:hidden" />
-                  <div className="pointer-events-none absolute inset-y-0 right-0 w-6 bg-gradient-to-l from-background to-transparent md:hidden" />
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                  <button
+                    onClick={() => setActiveSection('newest')}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                      activeSection === 'newest'
+                        ? 'bg-anime-primary text-white'
+                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                    }`}
+                  >
+                    NEWEST
+                  </button>
+                  <button
+                    onClick={() => setActiveSection('popular')}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                      activeSection === 'popular'
+                        ? 'bg-anime-primary text-white'
+                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                    }`}
+                  >
+                    POPULAR
+                  </button>
+                  <button
+                    onClick={() => setActiveSection('top-rated')}
+                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                      activeSection === 'top-rated'
+                        ? 'bg-anime-primary text-white'
+                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                    }`}
+                  >
+                    TOP RATED
+                  </button>
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1 shrink-0">
+                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
                   <button 
                     onClick={() => console.log('Previous page')}
                     className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
