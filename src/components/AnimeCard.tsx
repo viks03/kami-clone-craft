@@ -1,5 +1,5 @@
 import { LazyImage } from './LazyImage';
-import { memo, useMemo, useState } from 'react';
+import { memo, useMemo, useState, useEffect } from 'react';
 
 interface AnimeCardProps {
   name: string;
@@ -14,6 +14,12 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
   const episodeCount = useMemo(() => 
     episodes?.sub || episodes?.dub || 'N/A', 
   [episodes]);
+
+  useEffect(() => {
+    const handleScroll = () => setThumbnailHovered(false);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   return (
     <div className={`w-full ${className || ''}`}>
@@ -22,6 +28,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         className="relative w-full aspect-[3/4] rounded overflow-hidden group cursor-pointer"
         onMouseEnter={() => setThumbnailHovered(true)}
         onMouseLeave={() => setThumbnailHovered(false)}
+        onTouchStart={() => setThumbnailHovered(true)}
       >
         <LazyImage
           src={poster}
@@ -31,14 +38,12 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         />
         
         {/* Play button overlay - shows on hover */}
-        <div className={`absolute inset-0 bg-black/40 flex items-center justify-center transition-opacity duration-300 ${
+        <div className={`absolute inset-0 bg-black/20 flex items-center justify-center transition-opacity duration-300 ${
           thumbnailHovered ? 'opacity-100' : 'opacity-0'
         }`}>
-          <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center shadow-lg shadow-black/40">
-            <svg viewBox="0 0 24 24" className="w-8 h-8 text-white" aria-hidden="true" focusable="false">
-              <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
-            </svg>
-          </div>
+          <svg viewBox="0 0 24 24" className="w-10 h-10 text-white" aria-hidden="true" focusable="false">
+            <path d="M8 5v14l11-7L8 5z" fill="currentColor"></path>
+          </svg>
         </div>
       </div>
 
