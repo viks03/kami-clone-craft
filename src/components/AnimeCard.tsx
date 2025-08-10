@@ -184,7 +184,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         <div className="flex items-center gap-2 mb-1">
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p 
-            className={`text-xs truncate flex-1 cursor-pointer transition-colors duration-200 ${
+            className={`text-xs font-bold truncate flex-1 cursor-pointer transition-colors duration-200 ${
               hoverState.title ? 'text-anime-primary' : 'text-white hover:text-anime-primary'
             }`}
             title={name}
@@ -197,7 +197,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         </div>
         
         {/* Badges with consistent spacing and scrolling */}
-        <div className="flex items-center gap-1.5 text-[10px] text-anime-text-muted overflow-x-auto scrollbar-hide">
+        <div className="flex items-center gap-1 text-[10px] text-anime-text-muted overflow-x-auto scrollbar-hide">
           <span 
             className={`bg-anime-card-bg px-2 py-1 rounded-lg flex-shrink-0 inline-flex items-center font-bold cursor-pointer transition-colors ${
               hoverState.badges['tv'] ? 'text-anime-primary' : 'hover:text-anime-primary'
