@@ -9,7 +9,7 @@ interface ColorData {
 
 /**
  * Extract the most representative dominant color from an image URL
- * Uses advanced color quantization to find the most vibrant/prominent color
+ * Handles CDN/CORS issues with proper authentication headers for hianime/megacloud
  * @param imageUrl - The URL of the image to analyze
  * @returns Promise<string> - HEX color string (e.g., #a83279)
  */
@@ -20,16 +20,23 @@ export async function getDominantColor(imageUrl: string): Promise<string> {
   }
 
   try {
-    const color = await extractDominantColorFromImage(imageUrl);
+    const color = await extractColorWithAuthentication(imageUrl);
     colorCache.set(imageUrl, color);
     return color;
   } catch (error) {
     console.warn('Failed to extract color from:', imageUrl, error);
     
-    // Fallback color for errors (CORS, network issues, etc.)
-    const fallbackColor = '#ffffff';
-    colorCache.set(imageUrl, fallbackColor);
-    return fallbackColor;
+    // Try basic fallback method
+    try {
+      const fallbackColor = await extractColorBasic(imageUrl);
+      colorCache.set(imageUrl, fallbackColor);
+      return fallbackColor;
+    } catch (fallbackError) {
+      console.warn('All color extraction methods failed:', fallbackError);
+      const defaultColor = '#ffffff';
+      colorCache.set(imageUrl, defaultColor);
+      return defaultColor;
+    }
   }
 }
 
@@ -43,16 +50,73 @@ export async function getDominantColorWithCORSFallback(imageUrl: string): Promis
 }
 
 /**
- * Advanced color extraction using Canvas and color quantization
+ * Extract color with proper CDN authentication for hianime/megacloud
  * @param imageUrl - The URL of the image to analyze
  * @returns Promise<string> - HEX color string
  */
-async function extractDominantColorFromImage(imageUrl: string): Promise<string> {
+async function extractColorWithAuthentication(imageUrl: string): Promise<string> {
+  try {
+    // Check if this is a CDN that requires special headers
+    if (imageUrl.includes('hianime') || imageUrl.includes('megacloud') || imageUrl.includes('aniwatch')) {
+      return await extractColorFromCDN(imageUrl);
+    } else {
+      // Standard extraction for other images
+      return await extractColorBasic(imageUrl);
+    }
+  } catch (error) {
+    throw new Error(`Authenticated color extraction failed: ${error}`);
+  }
+}
+
+/**
+ * Extract color from CDN images with proper authentication headers
+ * @param imageUrl - The URL of the CDN image
+ * @returns Promise<string> - HEX color string
+ */
+async function extractColorFromCDN(imageUrl: string): Promise<string> {
+  try {
+    // Fetch the image with proper headers for CDN authentication
+    const response = await fetch(imageUrl, {
+      method: 'GET',
+      headers: {
+        'Referer': 'https://megacloud.club/',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'image/webp,image/apng,image/*,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      },
+      mode: 'cors'
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    try {
+      const color = await processImageFromBlob(blobUrl);
+      URL.revokeObjectURL(blobUrl);
+      return color;
+    } catch (processError) {
+      URL.revokeObjectURL(blobUrl);
+      throw processError;
+    }
+  } catch (error) {
+    throw new Error(`CDN image processing failed: ${error}`);
+  }
+}
+
+/**
+ * Process image from blob URL to extract dominant color
+ * @param blobUrl - The blob URL of the image
+ * @returns Promise<string> - HEX color string
+ */
+async function processImageFromBlob(blobUrl: string): Promise<string> {
   return new Promise((resolve, reject) => {
     const img = new Image();
-    
-    // Try different CORS approaches
-    img.crossOrigin = 'anonymous';
     
     img.onload = () => {
       try {
@@ -65,6 +129,52 @@ async function extractDominantColorFromImage(imageUrl: string): Promise<string> 
         }
         
         // Optimize canvas size for performance while maintaining quality
+        const maxSize = 200;
+        const scale = Math.min(maxSize / img.width, maxSize / img.height);
+        canvas.width = Math.floor(img.width * scale);
+        canvas.height = Math.floor(img.height * scale);
+        
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const dominantColor = findDominantColor(imageData.data);
+        resolve(dominantColor);
+      } catch (error) {
+        reject(error);
+      }
+    };
+    
+    img.onerror = () => {
+      reject(new Error('Failed to load blob image'));
+    };
+    
+    img.src = blobUrl;
+  });
+}
+
+/**
+ * Basic color extraction using Canvas (standard approach)
+ * @param imageUrl - The URL of the image to analyze
+ * @returns Promise<string> - HEX color string
+ */
+async function extractColorBasic(imageUrl: string): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    
+    // Try with CORS first
+    img.crossOrigin = 'anonymous';
+    
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        if (!ctx) {
+          reject(new Error('Canvas context not available'));
+          return;
+        }
+        
+        // Optimize canvas size for performance
         const maxSize = 150;
         const scale = Math.min(maxSize / img.width, maxSize / img.height);
         canvas.width = Math.floor(img.width * scale);
@@ -81,7 +191,7 @@ async function extractDominantColorFromImage(imageUrl: string): Promise<string> 
     };
     
     img.onerror = () => {
-      // If CORS fails, try without crossOrigin (for same-origin images)
+      // If CORS fails, try without it
       if (img.crossOrigin) {
         img.crossOrigin = '';
         img.src = imageUrl; // Retry
