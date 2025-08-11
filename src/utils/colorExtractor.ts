@@ -113,7 +113,7 @@ function extractColorFromCanvas(img: HTMLImageElement): string {
  */
 class ColorStorage {
   private static readonly STORAGE_KEY = 'anime-colors';
-  private static readonly MAX_AGE = 7 * 24 * 60 * 60 * 1000; // 7 days
+  private static readonly MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000; // 10 years
   
   static get(url: string): string | null {
     try {
@@ -121,16 +121,19 @@ class ColorStorage {
       if (!stored) return null;
       
       const data: { [key: string]: ColorData } = JSON.parse(stored);
-      const colorData = data[url];
+
+      // Normalize URL (strip query/hash, lowercase)
+      const key = (() => {
+        try {
+          const u = new URL(url, window.location.origin);
+          return `${u.origin}${u.pathname}`.toLowerCase();
+        } catch {
+          return url.split('?')[0].split('#')[0].toLowerCase();
+        }
+      })();
       
+      const colorData = data[key];
       if (!colorData) return null;
-      
-      // Check if color data is still fresh
-      if (Date.now() - colorData.timestamp > this.MAX_AGE) {
-        delete data[url];
-        localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
-        return null;
-      }
       
       return colorData.color;
     } catch {
@@ -143,16 +146,26 @@ class ColorStorage {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       const data: { [key: string]: ColorData } = stored ? JSON.parse(stored) : {};
       
-      data[url] = {
+      // Normalize URL (strip query/hash, lowercase)
+      const key = (() => {
+        try {
+          const u = new URL(url, window.location.origin);
+          return `${u.origin}${u.pathname}`.toLowerCase();
+        } catch {
+          return url.split('?')[0].split('#')[0].toLowerCase();
+        }
+      })();
+      
+      data[key] = {
         color,
         timestamp: Date.now()
       };
       
-      // Keep only recent colors (max 100 entries)
+      // Keep only recent colors (max 200 entries)
       const entries = Object.entries(data);
-      if (entries.length > 100) {
+      if (entries.length > 200) {
         const sortedEntries = entries.sort((a, b) => b[1].timestamp - a[1].timestamp);
-        const trimmed = Object.fromEntries(sortedEntries.slice(0, 100));
+        const trimmed = Object.fromEntries(sortedEntries.slice(0, 200));
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(trimmed));
       } else {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
@@ -195,11 +208,33 @@ async function loadImage(url: string): Promise<HTMLImageElement> {
 export async function extractDominantColor(imageUrl: string): Promise<string> {
   const fallbackColor = 'hsl(var(--anime-primary))';
   
-  // Check cache first
+  // Check cache first (normalized URL)
   const cachedColor = ColorStorage.get(imageUrl);
   if (cachedColor) {
     return `hsl(${cachedColor})`;
   }
+
+  // Deterministic hash-based color as a consistent, instant fallback
+  const normalized = (() => {
+    try {
+      const u = new URL(imageUrl, window.location.origin);
+      return `${u.origin}${u.pathname}`.toLowerCase();
+    } catch {
+      return imageUrl.split('?')[0].split('#')[0].toLowerCase();
+    }
+  })();
+
+  const hashHsl = (() => {
+    let hash = 0;
+    for (let i = 0; i < normalized.length; i++) {
+      hash = (hash << 5) - hash + normalized.charCodeAt(i);
+      hash |= 0;
+    }
+    const hue = Math.abs(hash) % 360;
+    const saturation = 60;
+    const lightness = 55;
+    return `${hue} ${saturation}% ${lightness}%`;
+  })();
   
   try {
     const img = await loadImage(imageUrl);
@@ -212,7 +247,9 @@ export async function extractDominantColor(imageUrl: string): Promise<string> {
     return finalColor;
   } catch (error) {
     console.warn('Color extraction failed for:', imageUrl, error);
-    return fallbackColor;
+    // Cache deterministic hash so future loads are instant and consistent
+    ColorStorage.set(imageUrl, hashHsl);
+    return `hsl(${hashHsl})`;
   }
 }
 
