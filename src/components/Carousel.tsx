@@ -64,10 +64,12 @@ export const Carousel = ({ animes }: CarouselProps) => {
     animes?.[currentIndex], 
   [animes, currentIndex]);
 
-  // Get pre-extracted color instantly with white default
-  const dynamicColor = useMemo(() => 
-    currentAnime ? (colorMap.get(currentAnime.poster) || 'hsl(0 0% 100%)') : 'hsl(0 0% 100%)',
-  [currentAnime, colorMap]);
+  // Get pre-extracted color with smooth white fallback
+  const dynamicColor = useMemo(() => {
+    if (!currentAnime) return 'white';
+    const extractedColor = colorMap.get(currentAnime.poster);
+    return extractedColor || 'white';
+  }, [currentAnime, colorMap]);
 
   // Start carousel and progress on mount
   useEffect(() => {
@@ -189,13 +191,12 @@ export const Carousel = ({ animes }: CarouselProps) => {
                 ))}
               </div>
 
-              {/* Title with dynamic color and black border */}
+              {/* Title with smooth dynamic color and simple black border */}
               <h1 
-                className="text-xl sm:text-2xl lg:text-4xl font-extrabold mb-2 cursor-default truncate sm:line-clamp-2 transition-colors duration-300"
+                className="text-xl sm:text-2xl lg:text-4xl font-extrabold mb-2 cursor-default truncate sm:line-clamp-2 transition-all duration-500 ease-out"
                 style={{ 
-                  color: index === currentIndex ? dynamicColor : 'hsl(0 0% 100%)',
-                  textShadow: '2px 2px 6px rgba(0, 0, 0, 0.9), -1px -1px 3px rgba(0, 0, 0, 0.8), 0 0 10px rgba(0, 0, 0, 0.7)',
-                  filter: 'drop-shadow(1px 1px 2px rgba(0, 0, 0, 0.8))'
+                  color: index === currentIndex ? dynamicColor : 'white',
+                  WebkitTextStroke: '1px black'
                 }}
               >
                 {anime.name}

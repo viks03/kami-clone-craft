@@ -35,14 +35,14 @@ function rgbToHsl(r: number, g: number, b: number): string {
   }
 
   const hue = Math.round(h * 360);
-  const saturation = Math.max(40, Math.min(85, s * 100));
-  const lightness = Math.max(45, Math.min(75, l * 100));
+  const saturation = Math.max(35, Math.min(75, s * 100)); // Reduced saturation for smoother colors
+  const lightness = Math.max(50, Math.min(70, l * 100)); // Adjusted lightness range
   
   return `${hue} ${Math.round(saturation)}% ${Math.round(lightness)}%`;
 }
 
 /**
- * Extract dominant color using canvas API - much more reliable than libraries
+ * Extract dominant color using enhanced canvas sampling for better accuracy
  */
 function extractColorFromCanvas(img: HTMLImageElement): string {
   const canvas = document.createElement('canvas');
@@ -52,27 +52,39 @@ function extractColorFromCanvas(img: HTMLImageElement): string {
     throw new Error('Canvas context not available');
   }
 
-  // Use smaller canvas for performance
-  const size = 50;
+  // Use larger canvas for better accuracy
+  const size = 150;
   canvas.width = size;
   canvas.height = size;
   
-  // Draw and sample from center area for better color representation
+  // Draw image with anti-aliasing
+  ctx.imageSmoothingEnabled = true;
+  ctx.imageSmoothingQuality = 'high';
   ctx.drawImage(img, 0, 0, size, size);
   
   const imageData = ctx.getImageData(0, 0, size, size);
   const data = imageData.data;
   
-  // Sample colors from key areas (center, corners) for better accuracy
-  const samplePoints = [
-    [size * 0.5, size * 0.5], // center
-    [size * 0.3, size * 0.3], // upper left
-    [size * 0.7, size * 0.3], // upper right
-    [size * 0.3, size * 0.7], // lower left
-    [size * 0.7, size * 0.7], // lower right
-  ];
+  // Enhanced sampling strategy - more points for better accuracy
+  const samplePoints: number[][] = [];
   
-  const colorCounts: { [key: string]: number } = {};
+  // Grid sampling for comprehensive coverage
+  for (let y = 0.2; y <= 0.8; y += 0.15) {
+    for (let x = 0.2; x <= 0.8; x += 0.15) {
+      samplePoints.push([x * size, y * size]);
+    }
+  }
+  
+  // Add key focal points
+  samplePoints.push(
+    [size * 0.5, size * 0.5], // center
+    [size * 0.33, size * 0.33], // rule of thirds
+    [size * 0.67, size * 0.33],
+    [size * 0.33, size * 0.67],
+    [size * 0.67, size * 0.67]
+  );
+  
+  const colorCounts: { [key: string]: { count: number; r: number; g: number; b: number } } = {};
   
   samplePoints.forEach(([x, y]) => {
     const index = (Math.floor(y) * size + Math.floor(x)) * 4;
@@ -81,31 +93,42 @@ function extractColorFromCanvas(img: HTMLImageElement): string {
     const b = data[index + 2];
     const a = data[index + 3];
     
-    // Skip transparent pixels
-    if (a < 128) return;
+    // Skip transparent or very dark/light pixels
+    if (a < 200 || (r + g + b) < 30 || (r + g + b) > 720) return;
     
-    // Group similar colors by reducing precision
-    const rBucket = Math.floor(r / 32) * 32;
-    const gBucket = Math.floor(g / 32) * 32;
-    const bBucket = Math.floor(b / 32) * 32;
+    // More precise color grouping for better accuracy
+    const rBucket = Math.floor(r / 20) * 20;
+    const gBucket = Math.floor(g / 20) * 20;
+    const bBucket = Math.floor(b / 20) * 20;
     
     const colorKey = `${rBucket},${gBucket},${bBucket}`;
-    colorCounts[colorKey] = (colorCounts[colorKey] || 0) + 1;
+    
+    if (!colorCounts[colorKey]) {
+      colorCounts[colorKey] = { count: 0, r: rBucket, g: gBucket, b: bBucket };
+    }
+    colorCounts[colorKey].count++;
   });
   
-  // Find most common color
-  let dominantColor = '128,128,128'; // default gray
-  let maxCount = 0;
+  // Find most prominent color with better heuristics
+  let dominantColor = { r: 128, g: 128, b: 128 };
+  let maxScore = 0;
   
-  for (const [color, count] of Object.entries(colorCounts)) {
-    if (count > maxCount) {
-      maxCount = count;
-      dominantColor = color;
+  for (const colorData of Object.values(colorCounts)) {
+    // Weight by frequency and vibrancy
+    const vibrancy = Math.max(
+      Math.abs(colorData.r - colorData.g),
+      Math.abs(colorData.g - colorData.b),
+      Math.abs(colorData.b - colorData.r)
+    );
+    const score = colorData.count * (1 + vibrancy / 255);
+    
+    if (score > maxScore) {
+      maxScore = score;
+      dominantColor = colorData;
     }
   }
   
-  const [r, g, b] = dominantColor.split(',').map(Number);
-  return rgbToHsl(r, g, b);
+  return rgbToHsl(dominantColor.r, dominantColor.g, dominantColor.b);
 }
 
 /**
@@ -122,13 +145,15 @@ class ColorStorage {
       
       const data: { [key: string]: ColorData } = JSON.parse(stored);
 
-      // Normalize URL (strip query/hash, lowercase)
+  // More robust URL normalization for consistent caching
       const key = (() => {
         try {
-          const u = new URL(url, window.location.origin);
-          return `${u.origin}${u.pathname}`.toLowerCase();
+          const cleanUrl = url.split('?')[0].split('#')[0];
+          const u = new URL(cleanUrl, window.location.origin);
+          // Include image dimensions or format in key for better cache consistency
+          return `${u.origin}${u.pathname}`.toLowerCase().replace(/\/+/g, '/');
         } catch {
-          return url.split('?')[0].split('#')[0].toLowerCase();
+          return url.split('?')[0].split('#')[0].toLowerCase().replace(/\/+/g, '/');
         }
       })();
       
