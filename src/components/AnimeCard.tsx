@@ -1,6 +1,5 @@
 import { LazyImage } from './LazyImage';
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
-import { useImageColor } from '../hooks/useImageColor';
 
 interface AnimeCardProps {
   name: string;
@@ -26,7 +25,6 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
     badges: {}
   });
   const [isScrolling, setIsScrolling] = useState(false);
-  const { color: dynamicColor, isLoading: colorLoading } = useImageColor(poster);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
   
@@ -186,22 +184,13 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         <div className="flex items-center gap-1.5 mb-1">
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p 
-            className="text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200"
-            style={{
-              color: hoverState.title ? dynamicColor : 'white',
-            }}
+            className={`text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200 ${
+              hoverState.title ? 'text-anime-primary' : 'text-white hover:text-anime-primary'
+            }`}
             title={name}
             onMouseEnter={() => handleMouseEnter('title')}
             onMouseLeave={() => handleMouseLeave('title')}
             onTouchStart={handleTitleTouch}
-            onMouseOver={(e) => {
-              e.currentTarget.style.color = dynamicColor;
-            }}
-            onMouseOut={(e) => {
-              if (!hoverState.title) {
-                e.currentTarget.style.color = 'white';
-              }
-            }}
           >
             {name}
           </p>

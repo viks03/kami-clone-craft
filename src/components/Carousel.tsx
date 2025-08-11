@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { useCarouselColors } from '../hooks/useCarouselColors';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -13,10 +12,6 @@ export const Carousel = ({ animes }: CarouselProps) => {
   const [progressWidth, setProgressWidth] = useState(0);
   const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
-  
-  // Use new carousel-specific color extraction
-  const imageUrls = useMemo(() => animes.map(anime => anime.poster), [animes]);
-  const { getColor } = useCarouselColors(imageUrls);
 
   const intervalTime = useMemo(() => 6000, []);
 
@@ -62,30 +57,14 @@ export const Carousel = ({ animes }: CarouselProps) => {
     startCarousel();
   }, [showSlide, startCarousel]);
 
-  // Derived values
-  const currentAnime = useMemo(() => 
-    animes?.[currentIndex], 
-  [animes, currentIndex]);
-
-  // Get smooth color with transparency
-  const dynamicColor = useMemo(() => {
-    if (!currentAnime) return 'rgba(255, 255, 255, 0.9)';
-    const baseColor = getColor(currentAnime.poster);
-    // Add transparency to make it smoother
-    return baseColor.replace('hsl(', 'hsla(').replace(')', ', 0.85)');
-  }, [currentAnime, getColor]);
-
-  // Start carousel and progress on mount
   useEffect(() => {
     setCurrentIndex(0);
     setProgressWidth(0);
-
-    // Start progress bar and carousel
     setTimeout(() => {
       setProgressWidth(100);
     }, 50);
     startCarousel();
-
+    
     return () => {
       if (autoSlideRef.current) {
         clearInterval(autoSlideRef.current);
@@ -94,7 +73,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
         clearTimeout(progressRef.current);
       }
     };
-  }, [startCarousel, animes]);
+  }, []);
 
   // Handle progress bar and transitions when currentIndex changes
   useEffect(() => {
@@ -116,7 +95,9 @@ export const Carousel = ({ animes }: CarouselProps) => {
     iconClasses[index] || 'fas fa-info',
   [iconClasses]);
 
-  // moved to top for TDZ safety
+  const currentAnime = useMemo(() => 
+    animes?.[currentIndex], 
+  [animes, currentIndex]);
 
   if (!animes || animes.length === 0) return null;
 
@@ -141,40 +122,20 @@ export const Carousel = ({ animes }: CarouselProps) => {
               index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}>
               {/* Banner Info */}
-              <div 
-                className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/60 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit transition-all duration-500"
-                style={{ 
-                  borderColor: index === currentIndex ? dynamicColor.replace('0.85', '0.6') : 'rgba(255, 255, 255, 0.2)'
-                }}
-              >
+              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/60 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit">
                 {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
                   <span key={infoIndex} className="flex items-center gap-1 text-white">
-                    <i 
-                      className={`${getIconClass(infoIndex)} text-xs sm:text-sm flex-shrink-0 transition-colors duration-500`}
-                      style={{ 
-                        color: index === currentIndex ? dynamicColor : 'rgba(255, 255, 255, 0.7)'
-                      }}
-                    />
+                    <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm flex-shrink-0`} />
                     <span className="text-xs sm:text-base whitespace-nowrap">{info}</span>
                     {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
-                      <span 
-                        className="ml-1 sm:ml-2 text-xs sm:text-sm font-bold transition-colors duration-500"
-                        style={{ 
-                          color: index === currentIndex ? dynamicColor : 'rgba(255, 255, 255, 0.7)'
-                        }}
-                      >•</span>
+                      <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold">•</span>
                     )}
                   </span>
                 ))}
               </div>
 
-              {/* Title with smooth transparent color */}
-              <h1 
-                className="text-xl sm:text-2xl lg:text-4xl font-extrabold mb-2 cursor-default truncate sm:line-clamp-2 transition-all duration-500 ease-out"
-                style={{ 
-                  color: index === currentIndex ? dynamicColor : 'rgba(255, 255, 255, 0.9)',
-                }}
-              >
+              {/* Title */}
+              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2">
                 {anime.name}
               </h1>
 
@@ -229,16 +190,15 @@ export const Carousel = ({ animes }: CarouselProps) => {
         <i className="fas fa-chevron-right text-sm sm:text-base" />
       </button>
 
-      {/* Progress Indicator Bar */}
-      <div className={`absolute left-0 w-full bg-black/30 backdrop-blur-sm transition-opacity duration-300 ease-in-out z-[3] 
+      {/* Progress Bar */}
+      <div className={`absolute left-0 w-full h-[1px] bg-white bg-opacity-50 transition-opacity duration-300 ease-in-out z-[3] 
         bottom-0 lg:bottom-0
         opacity-100 ${progressVisible ? 'lg:opacity-100' : 'lg:opacity-0'}
-      `} style={{ height: '2px' }}>
+      `}>
         <div 
-          className="h-full transition-all ease-linear"
+          className="h-full bg-anime-primary transition-all ease-linear"
           style={{ 
             width: `${progressWidth}%`,
-            background: currentAnime ? dynamicColor : 'rgba(255, 255, 255, 0.7)',
             transitionDuration: progressWidth === 0 ? '0ms' : `${intervalTime}ms`
           }}
         />
