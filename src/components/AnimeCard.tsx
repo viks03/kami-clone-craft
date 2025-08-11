@@ -1,6 +1,6 @@
 import { LazyImage } from './LazyImage';
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
-import { useDominantColor } from '../hooks/useDominantColor';
+import { useAverageColors } from '../hooks/useAverageColors';
 
 interface AnimeCardProps {
   name: string;
@@ -29,11 +29,9 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
   
-  // Extract dominant color from anime poster
-  const { color: dominantColor, isLoading: colorLoading } = useDominantColor(poster, {
-    fallbackColor: '#ffffff',
-    delay: 100 // Small delay to avoid overwhelming the system
-  });
+  // Extract average color from poster via batch hook
+  const colorsMap = useAverageColors(poster ? [poster] : [], '#000000', 5);
+  const dominantColor = colorsMap[poster] || '#000000';
   
   const episodeCount = useMemo(() => 
     episodes?.sub || episodes?.dub || 'N/A', 
