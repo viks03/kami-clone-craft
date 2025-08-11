@@ -142,13 +142,13 @@ export const Carousel = ({ animes }: CarouselProps) => {
               index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}>
               {/* Banner Info */}
-              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/70 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-white/30 text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit">
+              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/70 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit" style={{ borderColor: dynamicColor }}>
                 {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
-                  <span key={infoIndex} className="flex items-center gap-1 text-white">
-                    <i className={`${getIconClass(infoIndex)} text-white text-xs sm:text-sm flex-shrink-0`} />
+                  <span key={infoIndex} className="flex items-center gap-1" style={{ color: dynamicColor }}>
+                    <i className={`${getIconClass(infoIndex)} text-xs sm:text-sm flex-shrink-0`} style={{ color: dynamicColor }} />
                     <span className="text-xs sm:text-base whitespace-nowrap">{info}</span>
                     {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
-                      <span className="text-white/70 ml-1 sm:ml-2 text-xs sm:text-sm font-bold">•</span>
+                      <span className="ml-1 sm:ml-2 text-xs sm:text-sm font-bold opacity-70" style={{ color: dynamicColor }}>•</span>
                     )}
                   </span>
                 ))}
