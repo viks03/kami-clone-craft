@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
+import { extractColors } from 'extract-colors';
 
 interface CarouselColorCache {
   [url: string]: {
@@ -31,132 +32,51 @@ function generateStableColor(url: string): string {
 }
 
 /**
- * Advanced color extraction with canvas for better accuracy
+ * Pixel-perfect color extraction using extract-colors library
  */
-async function extractImageColor(imageUrl: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.crossOrigin = 'anonymous';
-    
-    const timeout = setTimeout(() => {
-      reject(new Error('Timeout'));
-    }, 5000);
-    
-    img.onload = () => {
-      clearTimeout(timeout);
-      
-      try {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+async function extractPreciseDominantColor(imageUrl: string): Promise<string> {
+  try {
+    const colors = await extractColors(imageUrl, {
+      crossOrigin: 'anonymous',  // Needed for CORS images
+      pixels: 0,                  // 0 = process *all* pixels (maximum accuracy)
+      distance: 0,                // 0 = treat each unique RGB as separate (no grouping)
+      saturationDistance: 0,      // 0 = no grouping by saturation
+      lightnessDistance: 0,       // 0 = no grouping by brightness
+      hueDistance: 0,             // 0 = no grouping by hue
+      colorValidator: (red, green, blue, alpha = 255) => {
+        // Only opaque pixels with good color range
+        if (alpha < 250) return false;
         
-        if (!ctx) {
-          throw new Error('Canvas not supported');
-        }
+        // Skip very dark or very bright pixels
+        const total = red + green + blue;
+        if (total < 100 || total > 700) return false;
         
-        // Ultra high resolution for maximum accuracy
-        canvas.width = 200;
-        canvas.height = 200;
-        
-        ctx.drawImage(img, 0, 0, 200, 200);
-        const imageData = ctx.getImageData(0, 0, 200, 200);
-        const data = imageData.data;
-        
-        // Advanced color clustering algorithm
-        const colorBuckets: { [key: string]: { count: number; totalR: number; totalG: number; totalB: number; weight: number } } = {};
-        
-        // Sample strategically - focus on center and avoid edges
-        const centerX = 100;
-        const centerY = 100;
-        const maxDistance = 60; // Focus on center area
-        
-        for (let y = centerY - maxDistance; y <= centerY + maxDistance; y += 2) {
-          for (let x = centerX - maxDistance; x <= centerX + maxDistance; x += 2) {
-            if (x < 0 || x >= 200 || y < 0 || y >= 200) continue;
-            
-            const i = (y * 200 + x) * 4;
-            const r = data[i];
-            const g = data[i + 1];
-            const b = data[i + 2];
-            const a = data[i + 3];
-            
-            // Skip transparent, very dark, or very bright pixels
-            if (a < 200 || (r + g + b) < 100 || (r + g + b) > 700) continue;
-            
-            // Calculate color vibrancy (saturation)
-            const max = Math.max(r, g, b);
-            const min = Math.min(r, g, b);
-            const saturation = max === 0 ? 0 : (max - min) / max;
-            
-            // Skip very desaturated colors (grays)
-            if (saturation < 0.15) continue;
-            
-            // Distance from center for weighting
-            const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
-            const centerWeight = 1 + (1 - distance / maxDistance);
-            
-            // Vibrancy weight - prefer more colorful pixels
-            const vibrancyWeight = 1 + saturation * 2;
-            
-            // Luminance weight - avoid too dark/bright
-            const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-            const luminanceWeight = luminance > 50 && luminance < 200 ? 1.5 : 1;
-            
-            const totalWeight = centerWeight * vibrancyWeight * luminanceWeight;
-            
-            // Group into color buckets with tighter grouping
-            const rBucket = Math.floor(r / 12) * 12;
-            const gBucket = Math.floor(g / 12) * 12;
-            const bBucket = Math.floor(b / 12) * 12;
-            
-            const bucketKey = `${rBucket},${gBucket},${bBucket}`;
-            
-            if (!colorBuckets[bucketKey]) {
-              colorBuckets[bucketKey] = { count: 0, totalR: 0, totalG: 0, totalB: 0, weight: 0 };
-            }
-            
-            colorBuckets[bucketKey].count++;
-            colorBuckets[bucketKey].totalR += r;
-            colorBuckets[bucketKey].totalG += g;
-            colorBuckets[bucketKey].totalB += b;
-            colorBuckets[bucketKey].weight += totalWeight;
-          }
-        }
-        
-        // Find the most significant color bucket
-        let bestBucket: { r: number; g: number; b: number } = { r: 128, g: 128, b: 128 };
-        let maxScore = 0;
-        
-        for (const [bucketKey, bucket] of Object.entries(colorBuckets)) {
-          // Score combines frequency and weight
-          const score = bucket.weight * Math.log(bucket.count + 1);
-          
-          if (score > maxScore) {
-            maxScore = score;
-            // Average the colors in this bucket for smoother result
-            bestBucket = {
-              r: Math.round(bucket.totalR / bucket.count),
-              g: Math.round(bucket.totalG / bucket.count),
-              b: Math.round(bucket.totalB / bucket.count)
-            };
-          }
-        }
-        
-        // Convert to HSL with enhanced smoothing
-        const hsl = rgbToSmoothHsl(bestBucket.r, bestBucket.g, bestBucket.b);
-        resolve(hsl);
-        
-      } catch (error) {
-        reject(error);
+        // Skip very desaturated colors (grays)
+        const max = Math.max(red, green, blue);
+        const min = Math.min(red, green, blue);
+        const saturation = max === 0 ? 0 : (max - min) / max;
+        return saturation > 0.15;
       }
-    };
+    });
+
+    if (!colors || colors.length === 0) {
+      throw new Error('No colors extracted');
+    }
+
+    // Sort by area (count) so the most frequent color is first
+    const dominant = colors.sort((a, b) => b.area - a.area)[0];
     
-    img.onerror = () => {
-      clearTimeout(timeout);
-      reject(new Error('Image load failed'));
-    };
+    // Convert to smooth HSL for better visual appeal
+    const hex = dominant.hex;
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
     
-    img.src = imageUrl;
-  });
+    return rgbToSmoothHsl(r, g, b);
+    
+  } catch (error) {
+    throw new Error(`Color extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+  }
 }
 
 /**
@@ -250,8 +170,8 @@ export function useCarouselColors(imageUrls: string[]) {
     }
     
     try {
-      // Try to extract from image
-      const extractedColor = await extractImageColor(url);
+      // Try to extract using precise method
+      const extractedColor = await extractPreciseDominantColor(url);
       saveToCache(url, extractedColor);
       return extractedColor;
     } catch (error) {
