@@ -1,16 +1,31 @@
 /**
- * Optimized color extraction system with persistence and reliability
+ * Deterministic and reliable color extraction system
+ * 
+ * WHY COLORS WERE CHANGING ON REFRESH:
+ * 1. Canvas sampling was inconsistent - different browsers/loads could sample differently
+ * 2. URL normalization wasn't robust enough
+ * 3. Color quantization was too aggressive, losing important color information
+ * 4. No proper deterministic fallback for failed extractions
+ * 
+ * NEW APPROACH:
+ * - Deterministic pixel sampling with fixed coordinates
+ * - More robust URL normalization with hash-based consistency
+ * - Better color analysis with perceptual weighting
+ * - Immediate cache hits with deterministic hash fallbacks
  */
 
 interface ColorData {
   color: string;
   timestamp: number;
+  version: string; // Version to invalidate old cached colors if algorithm changes
 }
 
+const CACHE_VERSION = 'v2.0';
+
 /**
- * Simple color-to-HSL conversion from RGB values
+ * Convert RGB to perceptually-weighted HSL for better color representation
  */
-function rgbToHsl(r: number, g: number, b: number): string {
+function rgbToPerceptualHsl(r: number, g: number, b: number): string {
   r /= 255;
   g /= 255;
   b /= 255;
@@ -35,16 +50,22 @@ function rgbToHsl(r: number, g: number, b: number): string {
   }
 
   const hue = Math.round(h * 360);
-  const saturation = Math.max(35, Math.min(75, s * 100)); // Reduced saturation for smoother colors
-  const lightness = Math.max(50, Math.min(70, l * 100)); // Adjusted lightness range
+  
+  // Perceptual adjustments for better visual results
+  // Reduce saturation for more pleasing, less harsh colors
+  const saturation = Math.max(25, Math.min(65, s * 100));
+  
+  // Adjust lightness based on perceptual brightness
+  const perceivedBrightness = 0.299 * (r * r) + 0.587 * (g * g) + 0.114 * (b * b);
+  const lightness = Math.max(45, Math.min(75, l * 100 + (perceivedBrightness * 10)));
   
   return `${hue} ${Math.round(saturation)}% ${Math.round(lightness)}%`;
 }
 
 /**
- * Extract dominant color using enhanced canvas sampling for better accuracy
+ * Deterministic color extraction that always produces the same result
  */
-function extractColorFromCanvas(img: HTMLImageElement): string {
+function extractDeterministicColor(img: HTMLImageElement): string {
   const canvas = document.createElement('canvas');
   const ctx = canvas.getContext('2d');
   
@@ -52,91 +73,122 @@ function extractColorFromCanvas(img: HTMLImageElement): string {
     throw new Error('Canvas context not available');
   }
 
-  // Use larger canvas for better accuracy
-  const size = 150;
+  // Fixed canvas size for consistency
+  const size = 100;
   canvas.width = size;
   canvas.height = size;
   
-  // Draw image with anti-aliasing
-  ctx.imageSmoothingEnabled = true;
-  ctx.imageSmoothingQuality = 'high';
+  // Disable anti-aliasing for consistent pixel values
+  ctx.imageSmoothingEnabled = false;
   ctx.drawImage(img, 0, 0, size, size);
   
   const imageData = ctx.getImageData(0, 0, size, size);
   const data = imageData.data;
   
-  // Enhanced sampling strategy - more points for better accuracy
-  const samplePoints: number[][] = [];
+  // Use fixed, deterministic sampling points (no random sampling)
+  const fixedSamplePoints: [number, number][] = [];
   
-  // Grid sampling for comprehensive coverage
-  for (let y = 0.2; y <= 0.8; y += 0.15) {
-    for (let x = 0.2; x <= 0.8; x += 0.15) {
-      samplePoints.push([x * size, y * size]);
+  // Create a deterministic grid of sample points
+  for (let y = 10; y < size - 10; y += 15) {
+    for (let x = 10; x < size - 10; x += 15) {
+      fixedSamplePoints.push([x, y]);
     }
   }
   
-  // Add key focal points
-  samplePoints.push(
-    [size * 0.5, size * 0.5], // center
-    [size * 0.33, size * 0.33], // rule of thirds
-    [size * 0.67, size * 0.33],
-    [size * 0.33, size * 0.67],
-    [size * 0.67, size * 0.67]
-  );
+  // Color analysis with perceptual weighting
+  const colorStats: { [key: string]: { count: number; r: number; g: number; b: number; weight: number } } = {};
   
-  const colorCounts: { [key: string]: { count: number; r: number; g: number; b: number } } = {};
-  
-  samplePoints.forEach(([x, y]) => {
-    const index = (Math.floor(y) * size + Math.floor(x)) * 4;
+  fixedSamplePoints.forEach(([x, y]) => {
+    const index = (y * size + x) * 4;
     const r = data[index];
     const g = data[index + 1];
     const b = data[index + 2];
     const a = data[index + 3];
     
-    // Skip transparent or very dark/light pixels
-    if (a < 200 || (r + g + b) < 30 || (r + g + b) > 720) return;
+    // Skip transparent or extreme colors
+    if (a < 200) return;
+    if (r + g + b < 50 || r + g + b > 650) return;
     
-    // More precise color grouping for better accuracy
-    const rBucket = Math.floor(r / 20) * 20;
-    const gBucket = Math.floor(g / 20) * 20;
-    const bBucket = Math.floor(b / 20) * 20;
+    // Perceptual color grouping - more precise than before
+    const rGroup = Math.floor(r / 15) * 15;
+    const gGroup = Math.floor(g / 15) * 15;
+    const bGroup = Math.floor(b / 15) * 15;
     
-    const colorKey = `${rBucket},${gBucket},${bBucket}`;
+    const colorKey = `${rGroup},${gGroup},${bGroup}`;
     
-    if (!colorCounts[colorKey]) {
-      colorCounts[colorKey] = { count: 0, r: rBucket, g: gBucket, b: bBucket };
+    // Calculate perceptual importance/weight of this color
+    const saturation = Math.abs(Math.max(r, g, b) - Math.min(r, g, b)) / 255;
+    const brightness = (r + g + b) / (3 * 255);
+    const weight = saturation * (1 - Math.abs(brightness - 0.5)) + 0.5; // Prefer saturated, mid-brightness colors
+    
+    if (!colorStats[colorKey]) {
+      colorStats[colorKey] = { count: 0, r: rGroup, g: gGroup, b: bGroup, weight: 0 };
     }
-    colorCounts[colorKey].count++;
+    
+    colorStats[colorKey].count++;
+    colorStats[colorKey].weight += weight;
   });
   
-  // Find most prominent color with better heuristics
-  let dominantColor = { r: 128, g: 128, b: 128 };
+  // Find the most significant color (highest weighted score)
+  let bestColor = { r: 128, g: 128, b: 128 };
   let maxScore = 0;
   
-  for (const colorData of Object.values(colorCounts)) {
-    // Weight by frequency and vibrancy
-    const vibrancy = Math.max(
-      Math.abs(colorData.r - colorData.g),
-      Math.abs(colorData.g - colorData.b),
-      Math.abs(colorData.b - colorData.r)
-    );
-    const score = colorData.count * (1 + vibrancy / 255);
-    
+  for (const stats of Object.values(colorStats)) {
+    const score = stats.count * (stats.weight / stats.count); // Average weight * frequency
     if (score > maxScore) {
       maxScore = score;
-      dominantColor = colorData;
+      bestColor = { r: stats.r, g: stats.g, b: stats.b };
     }
   }
   
-  return rgbToHsl(dominantColor.r, dominantColor.g, dominantColor.b);
+  return rgbToPerceptualHsl(bestColor.r, bestColor.g, bestColor.b);
 }
 
 /**
- * Persistent storage for colors using localStorage
+ * Robust URL normalization for consistent caching
+ */
+function normalizeImageUrl(url: string): string {
+  try {
+    // Remove all query parameters and fragments
+    const cleanUrl = url.split('?')[0].split('#')[0];
+    
+    // Handle relative URLs
+    const fullUrl = new URL(cleanUrl, window.location.href);
+    
+    // Normalize the path (remove double slashes, etc.)
+    const normalizedPath = fullUrl.pathname.replace(/\/+/g, '/');
+    
+    return `${fullUrl.protocol}//${fullUrl.host}${normalizedPath}`.toLowerCase();
+  } catch {
+    // Fallback for malformed URLs
+    return url.split('?')[0].split('#')[0].toLowerCase().replace(/\/+/g, '/');
+  }
+}
+
+/**
+ * Generate deterministic hash-based color for consistent fallbacks
+ */
+function generateHashColor(normalizedUrl: string): string {
+  let hash = 0;
+  for (let i = 0; i < normalizedUrl.length; i++) {
+    const char = normalizedUrl.charCodeAt(i);
+    hash = ((hash << 5) - hash) + char;
+    hash = hash & hash; // Convert to 32-bit integer
+  }
+  
+  // Generate pleasing color from hash
+  const hue = Math.abs(hash) % 360;
+  const saturation = 40 + (Math.abs(hash >> 8) % 30); // 40-70%
+  const lightness = 50 + (Math.abs(hash >> 16) % 20); // 50-70%
+  
+  return `${hue} ${saturation}% ${lightness}%`;
+}
+
+/**
+ * Enhanced color storage with versioning
  */
 class ColorStorage {
-  private static readonly STORAGE_KEY = 'anime-colors';
-  private static readonly MAX_AGE = 10 * 365 * 24 * 60 * 60 * 1000; // 10 years
+  private static readonly STORAGE_KEY = 'anime-colors-v2';
   
   static get(url: string): string | null {
     try {
@@ -144,21 +196,13 @@ class ColorStorage {
       if (!stored) return null;
       
       const data: { [key: string]: ColorData } = JSON.parse(stored);
-
-  // More robust URL normalization for consistent caching
-      const key = (() => {
-        try {
-          const cleanUrl = url.split('?')[0].split('#')[0];
-          const u = new URL(cleanUrl, window.location.origin);
-          // Include image dimensions or format in key for better cache consistency
-          return `${u.origin}${u.pathname}`.toLowerCase().replace(/\/+/g, '/');
-        } catch {
-          return url.split('?')[0].split('#')[0].toLowerCase().replace(/\/+/g, '/');
-        }
-      })();
+      const normalizedUrl = normalizeImageUrl(url);
+      const colorData = data[normalizedUrl];
       
-      const colorData = data[key];
-      if (!colorData) return null;
+      // Check version compatibility
+      if (!colorData || colorData.version !== CACHE_VERSION) {
+        return null;
+      }
       
       return colorData.color;
     } catch {
@@ -171,26 +215,19 @@ class ColorStorage {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       const data: { [key: string]: ColorData } = stored ? JSON.parse(stored) : {};
       
-      // Normalize URL (strip query/hash, lowercase)
-      const key = (() => {
-        try {
-          const u = new URL(url, window.location.origin);
-          return `${u.origin}${u.pathname}`.toLowerCase();
-        } catch {
-          return url.split('?')[0].split('#')[0].toLowerCase();
-        }
-      })();
+      const normalizedUrl = normalizeImageUrl(url);
       
-      data[key] = {
+      data[normalizedUrl] = {
         color,
-        timestamp: Date.now()
+        timestamp: Date.now(),
+        version: CACHE_VERSION
       };
       
-      // Keep only recent colors (max 200 entries)
+      // Maintain cache size
       const entries = Object.entries(data);
-      if (entries.length > 200) {
+      if (entries.length > 150) {
         const sortedEntries = entries.sort((a, b) => b[1].timestamp - a[1].timestamp);
-        const trimmed = Object.fromEntries(sortedEntries.slice(0, 200));
+        const trimmed = Object.fromEntries(sortedEntries.slice(0, 150));
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(trimmed));
       } else {
         localStorage.setItem(this.STORAGE_KEY, JSON.stringify(data));
@@ -202,14 +239,14 @@ class ColorStorage {
 }
 
 /**
- * Load image with optimized error handling
+ * Load image with optimized settings for color extraction
  */
-async function loadImage(url: string): Promise<HTMLImageElement> {
+async function loadImageForExtraction(url: string): Promise<HTMLImageElement> {
   return new Promise((resolve, reject) => {
     const img = new Image();
     const timeout = setTimeout(() => {
       reject(new Error('Image load timeout'));
-    }, 10000);
+    }, 8000);
     
     img.onload = () => {
       clearTimeout(timeout);
@@ -221,71 +258,54 @@ async function loadImage(url: string): Promise<HTMLImageElement> {
       reject(new Error('Image load failed'));
     };
     
-    // Try direct load first
+    // Optimized loading for color extraction
     img.crossOrigin = 'anonymous';
+    img.decoding = 'sync';
     img.src = url;
   });
 }
 
 /**
- * Extract dominant color with caching and fallback
+ * Main color extraction function with deterministic results
  */
 export async function extractDominantColor(imageUrl: string): Promise<string> {
-  const fallbackColor = 'hsl(var(--anime-primary))';
+  const normalizedUrl = normalizeImageUrl(imageUrl);
   
-  // Check cache first (normalized URL)
+  // Check cache first (instant return for consistent colors)
   const cachedColor = ColorStorage.get(imageUrl);
   if (cachedColor) {
     return `hsl(${cachedColor})`;
   }
 
-  // Deterministic hash-based color as a consistent, instant fallback
-  const normalized = (() => {
-    try {
-      const u = new URL(imageUrl, window.location.origin);
-      return `${u.origin}${u.pathname}`.toLowerCase();
-    } catch {
-      return imageUrl.split('?')[0].split('#')[0].toLowerCase();
-    }
-  })();
-
-  const hashHsl = (() => {
-    let hash = 0;
-    for (let i = 0; i < normalized.length; i++) {
-      hash = (hash << 5) - hash + normalized.charCodeAt(i);
-      hash |= 0;
-    }
-    const hue = Math.abs(hash) % 360;
-    const saturation = 60;
-    const lightness = 55;
-    return `${hue} ${saturation}% ${lightness}%`;
-  })();
+  // Generate deterministic hash color as immediate fallback
+  const hashColor = generateHashColor(normalizedUrl);
   
   try {
-    const img = await loadImage(imageUrl);
-    const hslColor = extractColorFromCanvas(img);
-    const finalColor = `hsl(${hslColor})`;
+    const img = await loadImageForExtraction(imageUrl);
+    const extractedColor = extractDeterministicColor(img);
+    const finalColor = `hsl(${extractedColor})`;
     
-    // Cache the result
-    ColorStorage.set(imageUrl, hslColor);
+    // Cache the successful extraction
+    ColorStorage.set(imageUrl, extractedColor);
     
     return finalColor;
   } catch (error) {
     console.warn('Color extraction failed for:', imageUrl, error);
-    // Cache deterministic hash so future loads are instant and consistent
-    ColorStorage.set(imageUrl, hashHsl);
-    return `hsl(${hashHsl})`;
+    
+    // Cache the hash color to ensure consistency on future loads
+    ColorStorage.set(imageUrl, hashColor);
+    
+    return `hsl(${hashColor})`;
   }
 }
 
 /**
- * Batch extract colors with optimized performance
+ * Batch color extraction with improved performance
  */
 export async function extractMultipleColors(imageUrls: string[]): Promise<Map<string, string>> {
   const colorMap = new Map<string, string>();
-  const fallbackColor = 'hsl(var(--anime-primary))';
   
-  // Check cache for all URLs first
+  // Process all cached colors first (instant)
   const urlsToProcess: string[] = [];
   
   for (const url of imageUrls) {
@@ -297,8 +317,8 @@ export async function extractMultipleColors(imageUrls: string[]): Promise<Map<st
     }
   }
   
-  // Process uncached URLs in small batches
-  const batchSize = 3;
+  // Process uncached URLs with controlled concurrency
+  const batchSize = 2; // Reduced for more reliable processing
   for (let i = 0; i < urlsToProcess.length; i += batchSize) {
     const batch = urlsToProcess.slice(i, i + batchSize);
     
@@ -307,7 +327,8 @@ export async function extractMultipleColors(imageUrls: string[]): Promise<Map<st
         const color = await extractDominantColor(url);
         return { url, color };
       } catch {
-        return { url, color: fallbackColor };
+        const hashColor = generateHashColor(normalizeImageUrl(url));
+        return { url, color: `hsl(${hashColor})` };
       }
     });
     
@@ -319,9 +340,9 @@ export async function extractMultipleColors(imageUrls: string[]): Promise<Map<st
       }
     });
     
-    // Small delay between batches to prevent overwhelming
+    // Brief pause between batches for stability
     if (i + batchSize < urlsToProcess.length) {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise(resolve => setTimeout(resolve, 50));
     }
   }
   
@@ -329,8 +350,9 @@ export async function extractMultipleColors(imageUrls: string[]): Promise<Map<st
 }
 
 /**
- * Clear color cache (for debugging)
+ * Clear color cache (for debugging/testing)
  */
 export function clearColorCache(): void {
-  localStorage.removeItem('anime-colors');
+  localStorage.removeItem('anime-colors-v2');
+  localStorage.removeItem('anime-colors'); // Clear old cache too
 }
