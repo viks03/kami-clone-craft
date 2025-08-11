@@ -1,13 +1,11 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { useNavigate } from 'react-router-dom';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
 }
 
 export const Carousel = ({ animes }: CarouselProps) => {
-  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [progressVisible, setProgressVisible] = useState(false);
@@ -161,7 +159,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
               {/* Buttons */}
               <div className="flex gap-2 mt-auto absolute bottom-4 sm:bottom-6 lg:bottom-8 left-4 sm:left-6 lg:left-8">
-                <button onClick={() => navigate(`/anime/${currentAnime?.id ?? 'info'}`)} className="flex items-center gap-1 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3.5 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
+                <button className="flex items-center gap-1 sm:gap-2 px-3 sm:px-5 py-2.5 sm:py-3.5 text-xs sm:text-sm rounded-[30px] bg-black bg-opacity-50 border border-transparent transition-all duration-500 ease-in-out hover:border-white text-white cursor-pointer">
                   <i className="fas fa-info-circle text-xs sm:text-sm" />
                   <span className="hidden sm:inline">Detail</span>
                   <span className="sm:hidden">Info</span>
