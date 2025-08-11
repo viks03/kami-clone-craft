@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { SpotlightAnime } from '../data/animeData';
-import { extractDominantColor } from '../utils/colorExtractor';
+import { useCarouselColors } from '../hooks/useCarouselColors';
 
 interface CarouselProps {
   animes: SpotlightAnime[];
@@ -11,9 +11,12 @@ export const Carousel = ({ animes }: CarouselProps) => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [progressVisible, setProgressVisible] = useState(false);
   const [progressWidth, setProgressWidth] = useState(0);
-  const [colorMap, setColorMap] = useState<Map<string, string>>(new Map());
   const autoSlideRef = useRef<NodeJS.Timeout | null>(null);
   const progressRef = useRef<NodeJS.Timeout | null>(null);
+  
+  // Use new carousel-specific color extraction
+  const imageUrls = useMemo(() => animes.map(anime => anime.poster), [animes]);
+  const { getColor } = useCarouselColors(imageUrls);
 
   const intervalTime = useMemo(() => 6000, []);
 
@@ -64,19 +67,20 @@ export const Carousel = ({ animes }: CarouselProps) => {
     animes?.[currentIndex], 
   [animes, currentIndex]);
 
-  // Get pre-extracted color with smooth white fallback
+  // Get smooth color with transparency
   const dynamicColor = useMemo(() => {
-    if (!currentAnime) return 'white';
-    const extractedColor = colorMap.get(currentAnime.poster);
-    return extractedColor || 'white';
-  }, [currentAnime, colorMap]);
+    if (!currentAnime) return 'rgba(255, 255, 255, 0.9)';
+    const baseColor = getColor(currentAnime.poster);
+    // Add transparency to make it smoother
+    return baseColor.replace('hsl(', 'hsla(').replace(')', ', 0.85)');
+  }, [currentAnime, getColor]);
 
   // Start carousel and progress on mount
   useEffect(() => {
     setCurrentIndex(0);
     setProgressWidth(0);
 
-    // Start progress bar and carousel without blocking for color extraction
+    // Start progress bar and carousel
     setTimeout(() => {
       setProgressWidth(100);
     }, 50);
@@ -91,48 +95,6 @@ export const Carousel = ({ animes }: CarouselProps) => {
       }
     };
   }, [startCarousel, animes]);
-
-  // Lazily resolve colors for the current, next, and previous slides
-  useEffect(() => {
-    const anime = currentAnime;
-    if (!anime) return;
-    let cancelled = false;
-
-    // Resolve current slide color (cache returns instantly if available)
-    extractDominantColor(anime.poster)
-      .then((color) => {
-        if (cancelled) return;
-        setColorMap((prev) => {
-          const next = new Map(prev);
-          next.set(anime.poster, color);
-          return next;
-        });
-      })
-      .catch(() => {});
-
-    // Preload neighbor slide colors in the background
-    const neighbors = [
-      animes[(currentIndex + 1) % animes.length],
-      animes[(currentIndex - 1 + animes.length) % animes.length],
-    ].filter(Boolean);
-
-    neighbors.forEach((a: SpotlightAnime) => {
-      extractDominantColor(a.poster)
-        .then((c) => {
-          if (cancelled) return;
-          setColorMap((prev) => {
-            const next = new Map(prev);
-            next.set(a.poster, c);
-            return next;
-          });
-        })
-        .catch(() => {});
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, [currentAnime, animes, currentIndex]);
 
   // Handle progress bar and transitions when currentIndex changes
   useEffect(() => {
@@ -179,25 +141,38 @@ export const Carousel = ({ animes }: CarouselProps) => {
               index === currentIndex ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-4'
             }`}>
               {/* Banner Info */}
-              <div className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/60 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border border-anime-secondary text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit">
+              <div 
+                className="inline-flex items-center gap-1 sm:gap-2 mb-3 sm:mb-4 bg-black/60 backdrop-blur-sm px-2 sm:px-4 py-1 sm:py-2 rounded-[30px] border text-xs sm:text-base w-fit max-w-[280px] sm:max-w-fit transition-all duration-500"
+                style={{ 
+                  borderColor: index === currentIndex ? dynamicColor.replace('0.85', '0.6') : 'rgba(255, 255, 255, 0.2)'
+                }}
+              >
                 {anime.otherInfo.slice(0, 3).map((info, infoIndex) => (
                   <span key={infoIndex} className="flex items-center gap-1 text-white">
-                    <i className={`${getIconClass(infoIndex)} text-anime-secondary text-xs sm:text-sm flex-shrink-0`} />
+                    <i 
+                      className={`${getIconClass(infoIndex)} text-xs sm:text-sm flex-shrink-0 transition-colors duration-500`}
+                      style={{ 
+                        color: index === currentIndex ? dynamicColor : 'rgba(255, 255, 255, 0.7)'
+                      }}
+                    />
                     <span className="text-xs sm:text-base whitespace-nowrap">{info}</span>
                     {infoIndex < Math.min(anime.otherInfo.length - 1, 2) && (
-                      <span className="text-anime-secondary ml-1 sm:ml-2 text-xs sm:text-sm font-bold">•</span>
+                      <span 
+                        className="ml-1 sm:ml-2 text-xs sm:text-sm font-bold transition-colors duration-500"
+                        style={{ 
+                          color: index === currentIndex ? dynamicColor : 'rgba(255, 255, 255, 0.7)'
+                        }}
+                      >•</span>
                     )}
                   </span>
                 ))}
               </div>
 
-              {/* Title with smooth dynamic color and elegant readability */}
+              {/* Title with smooth transparent color */}
               <h1 
                 className="text-xl sm:text-2xl lg:text-4xl font-extrabold mb-2 cursor-default truncate sm:line-clamp-2 transition-all duration-500 ease-out"
                 style={{ 
-                  color: index === currentIndex ? dynamicColor : 'white',
-                  textShadow: '0 0 20px rgba(0, 0, 0, 0.8), 0 0 40px rgba(0, 0, 0, 0.6), 2px 2px 4px rgba(0, 0, 0, 0.9)',
-                  filter: 'drop-shadow(0 0 8px rgba(0, 0, 0, 0.7))'
+                  color: index === currentIndex ? dynamicColor : 'rgba(255, 255, 255, 0.9)',
                 }}
               >
                 {anime.name}
@@ -254,15 +229,16 @@ export const Carousel = ({ animes }: CarouselProps) => {
         <i className="fas fa-chevron-right text-sm sm:text-base" />
       </button>
 
-      {/* Progress Bar */}
-      <div className={`absolute left-0 w-full h-[1px] bg-white bg-opacity-50 transition-opacity duration-300 ease-in-out z-[3] 
+      {/* Progress Indicator Bar */}
+      <div className={`absolute left-0 w-full h-1 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ease-in-out z-[3] 
         bottom-0 lg:bottom-0
         opacity-100 ${progressVisible ? 'lg:opacity-100' : 'lg:opacity-0'}
       `}>
         <div 
-          className="h-full bg-anime-primary transition-all ease-linear"
+          className="h-full transition-all ease-linear"
           style={{ 
             width: `${progressWidth}%`,
+            background: currentAnime ? getColor(currentAnime.poster) : 'rgba(255, 255, 255, 0.7)',
             transitionDuration: progressWidth === 0 ? '0ms' : `${intervalTime}ms`
           }}
         />
