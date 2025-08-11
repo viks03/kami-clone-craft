@@ -111,7 +111,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
         {animes.map((anime, index) => (
           <div
             key={anime.id}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in-out cursor-grab active:cursor-grabbing ${
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ease-in-out cursor-grab active:cursor-grabbing carousel-slide ${
               index === currentIndex ? 'opacity-100 z-[2]' : 'opacity-0 z-[1]'
             }`}
             style={{ backgroundImage: `url('${anime.poster}')` }}

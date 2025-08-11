@@ -140,6 +140,17 @@ All colors MUST be HSL.
   
   img {
     content-visibility: auto;
+    loading: lazy;
+  }
+  
+  /* Critical rendering optimizations */
+  .carousel-slide {
+    contain: layout style paint;
+  }
+  
+  .anime-card {
+    contain: layout style paint;
+    will-change: transform;
   }
   
   /* Optimize animations */

@@ -3,7 +3,7 @@ import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
-import { AnimeListItem } from '../components/AnimeListItem';
+
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
