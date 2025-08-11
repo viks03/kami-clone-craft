@@ -1,5 +1,6 @@
 import { LazyImage } from './LazyImage';
 import { memo, useMemo, useState, useEffect, useRef } from 'react';
+import { useDominantColor } from '../hooks/useDominantColor';
 
 interface AnimeCardProps {
   name: string;
@@ -27,6 +28,12 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
   const [isScrolling, setIsScrolling] = useState(false);
   const scrollTimeoutRef = useRef<NodeJS.Timeout>();
   const cardId = useRef(Math.random().toString(36).substr(2, 9)).current;
+  
+  // Extract dominant color from anime poster
+  const { color: dominantColor, isLoading: colorLoading } = useDominantColor(poster, {
+    fallbackColor: '#ffffff',
+    delay: 100 // Small delay to avoid overwhelming the system
+  });
   
   const episodeCount = useMemo(() => 
     episodes?.sub || episodes?.dub || 'N/A', 
@@ -185,8 +192,11 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p 
             className={`text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200 ${
-              hoverState.title ? 'text-anime-primary' : 'text-white hover:text-anime-primary'
+              hoverState.title ? 'text-anime-primary' : 'hover:text-anime-primary'
             }`}
+            style={{ 
+              color: hoverState.title ? undefined : dominantColor
+            }}
             title={name}
             onMouseEnter={() => handleMouseEnter('title')}
             onMouseLeave={() => handleMouseLeave('title')}
