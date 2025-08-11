@@ -238,7 +238,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
           className="h-full transition-all ease-linear"
           style={{ 
             width: `${progressWidth}%`,
-            background: currentAnime ? getColor(currentAnime.poster) : 'rgba(255, 255, 255, 0.7)',
+            background: currentAnime ? dynamicColor : 'rgba(255, 255, 255, 0.7)',
             transitionDuration: progressWidth === 0 ? '0ms' : `${intervalTime}ms`
           }}
         />

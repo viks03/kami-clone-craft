@@ -53,43 +53,60 @@ async function extractImageColor(imageUrl: string): Promise<string> {
           throw new Error('Canvas not supported');
         }
         
-        // Fixed size for consistent results
-        canvas.width = 64;
-        canvas.height = 64;
+        // Higher resolution for better color detection
+        canvas.width = 150;
+        canvas.height = 150;
         
-        ctx.drawImage(img, 0, 0, 64, 64);
-        const imageData = ctx.getImageData(0, 0, 64, 64);
+        ctx.drawImage(img, 0, 0, 150, 150);
+        const imageData = ctx.getImageData(0, 0, 150, 150);
         const data = imageData.data;
         
-        // Analyze colors with better algorithm
+        // Analyze colors with precise algorithm
         const colorFreq: { [key: string]: number } = {};
+        const pixelWeights: { [key: string]: number } = {};
         
-        // Sample every 4th pixel for efficiency
-        for (let i = 0; i < data.length; i += 16) {
+        // Sample every pixel for maximum precision
+        for (let i = 0; i < data.length; i += 4) {
           const r = data[i];
           const g = data[i + 1];
           const b = data[i + 2];
           const a = data[i + 3];
           
-          // Skip transparent or extreme colors
-          if (a < 128 || (r + g + b) < 100 || (r + g + b) > 600) continue;
+          // Skip transparent or very dark/bright colors
+          if (a < 200 || (r + g + b) < 150 || (r + g + b) > 650) continue;
           
-          // Group similar colors
-          const rGroup = Math.floor(r / 20) * 20;
-          const gGroup = Math.floor(g / 20) * 20;
-          const bGroup = Math.floor(b / 20) * 20;
+          // Calculate luminance for weighting
+          const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+          
+          // Group similar colors with smaller grouping for precision
+          const rGroup = Math.floor(r / 15) * 15;
+          const gGroup = Math.floor(g / 15) * 15;
+          const bGroup = Math.floor(b / 15) * 15;
           
           const colorKey = `${rGroup},${gGroup},${bGroup}`;
-          colorFreq[colorKey] = (colorFreq[colorKey] || 0) + 1;
+          
+          // Weight colors based on position and luminance
+          const pixelIndex = i / 4;
+          const totalPixels = data.length / 4;
+          const row = Math.floor(pixelIndex / 150);
+          const col = pixelIndex % 150;
+          
+          // Give more weight to center pixels and vibrant colors
+          const centerWeight = 1 + Math.max(0, 1 - Math.sqrt(Math.pow(col - 75, 2) + Math.pow(row - 75, 2)) / 75);
+          const vibrancyWeight = 1 + (Math.abs(r - g) + Math.abs(g - b) + Math.abs(b - r)) / 255;
+          const finalWeight = centerWeight * vibrancyWeight;
+          
+          colorFreq[colorKey] = (colorFreq[colorKey] || 0) + finalWeight;
+          pixelWeights[colorKey] = finalWeight;
         }
         
-        // Find most frequent color
+        // Find most weighted color
         let dominantColor = '128,128,128';
-        let maxCount = 0;
+        let maxWeight = 0;
         
-        for (const [color, count] of Object.entries(colorFreq)) {
-          if (count > maxCount) {
-            maxCount = count;
+        for (const [color, weight] of Object.entries(colorFreq)) {
+          if (weight > maxWeight) {
+            maxWeight = weight;
             dominantColor = color;
           }
         }
@@ -142,9 +159,9 @@ function rgbToSmoothHsl(r: number, g: number, b: number): string {
   }
   
   const hue = Math.round(h * 360);
-  // Make colors smoother and more pleasing
-  const saturation = Math.max(30, Math.min(55, s * 80)); // Reduce harsh saturation
-  const lightness = Math.max(60, Math.min(75, l * 100 + 20)); // Lighter, more pleasant
+  // Make colors smoother and more pleasing with better ranges
+  const saturation = Math.max(25, Math.min(45, s * 70)); // Even smoother saturation
+  const lightness = Math.max(55, Math.min(70, l * 90 + 25)); // Better lightness range
   
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }
