@@ -156,7 +156,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
     <div className={`w-full ${className || ''}`}>
       {/* Thumbnail with play button overlay */}
       <div 
-        className="relative w-full aspect-[3/4] rounded overflow-hidden group cursor-pointer anime-card"
+        className="relative w-full aspect-[2/3] rounded overflow-hidden group cursor-pointer anime-card"
         onMouseEnter={() => handleMouseEnter('thumbnail')}
         onMouseLeave={() => handleMouseLeave('thumbnail')}
         onTouchStart={handleThumbnailTouch}
