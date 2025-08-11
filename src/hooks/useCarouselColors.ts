@@ -53,68 +53,96 @@ async function extractImageColor(imageUrl: string): Promise<string> {
           throw new Error('Canvas not supported');
         }
         
-        // Higher resolution for better color detection
-        canvas.width = 150;
-        canvas.height = 150;
+        // Ultra high resolution for maximum accuracy
+        canvas.width = 200;
+        canvas.height = 200;
         
-        ctx.drawImage(img, 0, 0, 150, 150);
-        const imageData = ctx.getImageData(0, 0, 150, 150);
+        ctx.drawImage(img, 0, 0, 200, 200);
+        const imageData = ctx.getImageData(0, 0, 200, 200);
         const data = imageData.data;
         
-        // Analyze colors with precise algorithm
-        const colorFreq: { [key: string]: number } = {};
-        const pixelWeights: { [key: string]: number } = {};
+        // Advanced color clustering algorithm
+        const colorBuckets: { [key: string]: { count: number; totalR: number; totalG: number; totalB: number; weight: number } } = {};
         
-        // Sample every pixel for maximum precision
-        for (let i = 0; i < data.length; i += 4) {
-          const r = data[i];
-          const g = data[i + 1];
-          const b = data[i + 2];
-          const a = data[i + 3];
-          
-          // Skip transparent or very dark/bright colors
-          if (a < 200 || (r + g + b) < 150 || (r + g + b) > 650) continue;
-          
-          // Calculate luminance for weighting
-          const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
-          
-          // Group similar colors with smaller grouping for precision
-          const rGroup = Math.floor(r / 15) * 15;
-          const gGroup = Math.floor(g / 15) * 15;
-          const bGroup = Math.floor(b / 15) * 15;
-          
-          const colorKey = `${rGroup},${gGroup},${bGroup}`;
-          
-          // Weight colors based on position and luminance
-          const pixelIndex = i / 4;
-          const totalPixels = data.length / 4;
-          const row = Math.floor(pixelIndex / 150);
-          const col = pixelIndex % 150;
-          
-          // Give more weight to center pixels and vibrant colors
-          const centerWeight = 1 + Math.max(0, 1 - Math.sqrt(Math.pow(col - 75, 2) + Math.pow(row - 75, 2)) / 75);
-          const vibrancyWeight = 1 + (Math.abs(r - g) + Math.abs(g - b) + Math.abs(b - r)) / 255;
-          const finalWeight = centerWeight * vibrancyWeight;
-          
-          colorFreq[colorKey] = (colorFreq[colorKey] || 0) + finalWeight;
-          pixelWeights[colorKey] = finalWeight;
-        }
+        // Sample strategically - focus on center and avoid edges
+        const centerX = 100;
+        const centerY = 100;
+        const maxDistance = 60; // Focus on center area
         
-        // Find most weighted color
-        let dominantColor = '128,128,128';
-        let maxWeight = 0;
-        
-        for (const [color, weight] of Object.entries(colorFreq)) {
-          if (weight > maxWeight) {
-            maxWeight = weight;
-            dominantColor = color;
+        for (let y = centerY - maxDistance; y <= centerY + maxDistance; y += 2) {
+          for (let x = centerX - maxDistance; x <= centerX + maxDistance; x += 2) {
+            if (x < 0 || x >= 200 || y < 0 || y >= 200) continue;
+            
+            const i = (y * 200 + x) * 4;
+            const r = data[i];
+            const g = data[i + 1];
+            const b = data[i + 2];
+            const a = data[i + 3];
+            
+            // Skip transparent, very dark, or very bright pixels
+            if (a < 200 || (r + g + b) < 100 || (r + g + b) > 700) continue;
+            
+            // Calculate color vibrancy (saturation)
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            const saturation = max === 0 ? 0 : (max - min) / max;
+            
+            // Skip very desaturated colors (grays)
+            if (saturation < 0.15) continue;
+            
+            // Distance from center for weighting
+            const distance = Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2));
+            const centerWeight = 1 + (1 - distance / maxDistance);
+            
+            // Vibrancy weight - prefer more colorful pixels
+            const vibrancyWeight = 1 + saturation * 2;
+            
+            // Luminance weight - avoid too dark/bright
+            const luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+            const luminanceWeight = luminance > 50 && luminance < 200 ? 1.5 : 1;
+            
+            const totalWeight = centerWeight * vibrancyWeight * luminanceWeight;
+            
+            // Group into color buckets with tighter grouping
+            const rBucket = Math.floor(r / 12) * 12;
+            const gBucket = Math.floor(g / 12) * 12;
+            const bBucket = Math.floor(b / 12) * 12;
+            
+            const bucketKey = `${rBucket},${gBucket},${bBucket}`;
+            
+            if (!colorBuckets[bucketKey]) {
+              colorBuckets[bucketKey] = { count: 0, totalR: 0, totalG: 0, totalB: 0, weight: 0 };
+            }
+            
+            colorBuckets[bucketKey].count++;
+            colorBuckets[bucketKey].totalR += r;
+            colorBuckets[bucketKey].totalG += g;
+            colorBuckets[bucketKey].totalB += b;
+            colorBuckets[bucketKey].weight += totalWeight;
           }
         }
         
-        const [r, g, b] = dominantColor.split(',').map(Number);
+        // Find the most significant color bucket
+        let bestBucket: { r: number; g: number; b: number } = { r: 128, g: 128, b: 128 };
+        let maxScore = 0;
         
-        // Convert to HSL with smoother saturation
-        const hsl = rgbToSmoothHsl(r, g, b);
+        for (const [bucketKey, bucket] of Object.entries(colorBuckets)) {
+          // Score combines frequency and weight
+          const score = bucket.weight * Math.log(bucket.count + 1);
+          
+          if (score > maxScore) {
+            maxScore = score;
+            // Average the colors in this bucket for smoother result
+            bestBucket = {
+              r: Math.round(bucket.totalR / bucket.count),
+              g: Math.round(bucket.totalG / bucket.count),
+              b: Math.round(bucket.totalB / bucket.count)
+            };
+          }
+        }
+        
+        // Convert to HSL with enhanced smoothing
+        const hsl = rgbToSmoothHsl(bestBucket.r, bestBucket.g, bestBucket.b);
         resolve(hsl);
         
       } catch (error) {
@@ -159,9 +187,9 @@ function rgbToSmoothHsl(r: number, g: number, b: number): string {
   }
   
   const hue = Math.round(h * 360);
-  // Make colors smoother and more pleasing with better ranges
-  const saturation = Math.max(25, Math.min(45, s * 70)); // Even smoother saturation
-  const lightness = Math.max(55, Math.min(70, l * 90 + 25)); // Better lightness range
+  // Create beautiful, smooth colors that match the image better
+  const saturation = Math.max(20, Math.min(40, s * 60 + 15)); // Smoother, more natural
+  const lightness = Math.max(50, Math.min(65, l * 85 + 20)); // Perfect readability range
   
   return `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 }

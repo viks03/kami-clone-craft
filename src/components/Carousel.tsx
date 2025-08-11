@@ -230,10 +230,10 @@ export const Carousel = ({ animes }: CarouselProps) => {
       </button>
 
       {/* Progress Indicator Bar */}
-      <div className={`absolute left-0 w-full h-1 bg-black/30 backdrop-blur-sm transition-opacity duration-300 ease-in-out z-[3] 
+      <div className={`absolute left-0 w-full bg-black/30 backdrop-blur-sm transition-opacity duration-300 ease-in-out z-[3] 
         bottom-0 lg:bottom-0
         opacity-100 ${progressVisible ? 'lg:opacity-100' : 'lg:opacity-0'}
-      `}>
+      `} style={{ height: '2px' }}>
         <div 
           className="h-full transition-all ease-linear"
           style={{ 
