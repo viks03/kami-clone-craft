@@ -298,11 +298,11 @@ const Index = () => {
                 </div>
               </div>
             </section>
-
-            {/* Footer under Upcoming */}
-            <Footer />
           </div>
         </div>
+        
+        {/* Footer spans full width on desktop, positioned after main content */}
+        <Footer />
         
       </main>
       
