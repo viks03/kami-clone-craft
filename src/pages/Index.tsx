@@ -3,11 +3,12 @@ import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
-
+import { AnimePagination } from '../components/AnimePagination';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
 import { animeData } from '../data/animeData';
+import { usePaginatedAnimes } from '../hooks/usePaginatedAnimes';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
@@ -20,9 +21,17 @@ const Index = () => {
 
   // Memoize static data slices to prevent unnecessary recalculations
   const carouselData = useMemo(() => animeData.spotlightAnimes, []);
-  const latestAnimes = useMemo(() => animeData.latestEpisodeAnimes.slice(0, 9), []);
+  const allLatestAnimes = useMemo(() => animeData.latestEpisodeAnimes, []);
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
+
+  // Use pagination hook for anime cards
+  const {
+    currentPage,
+    totalPages,
+    currentAnimes,
+    setCurrentPage,
+  } = usePaginatedAnimes({ animes: allLatestAnimes, itemsPerPage: 15 });
 
   // Dynamically calculate bottom navigation height and update content padding
   useEffect(() => {
@@ -136,32 +145,28 @@ const Index = () => {
                 </div>
                 
                 {/* Pagination Controls */}
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
-                  <button 
-                    onClick={() => console.log('Previous page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-chevron-left text-xs" />
-                  </button>
-                  <div className="px-3 py-1.5 text-sm font-medium text-white bg-anime-primary rounded-md min-w-[32px] flex items-center justify-center">
-                    1
-                  </div>
-                  <button 
-                    onClick={() => console.log('Next page')}
-                    className="px-3 py-1.5 text-sm font-medium text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80 transition-all rounded-md cursor-pointer"
-                  >
-                    <i className="fas fa-chevron-right text-xs" />
-                  </button>
-                </div>
+                <AnimePagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                />
               </div>
-              <div className="grid grid-cols-3 gap-4">
-                {latestAnimes.map((anime) => (
-                  <AnimeCard
-                    key={anime.id}
-                    name={anime.name}
-                    poster={anime.poster}
-                    episodes={anime.episodes}
-                  />
+              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
+                {currentAnimes.map((anime, index) => (
+                  <div
+                    key={`${anime.id}-${currentPage}`}
+                    className="animate-fade-in"
+                    style={{ 
+                      animationDelay: `${index * 50}ms`,
+                      animationFillMode: 'both'
+                    }}
+                  >
+                    <AnimeCard
+                      name={anime.name}
+                      poster={anime.poster}
+                      episodes={anime.episodes}
+                    />
+                  </div>
                 ))}
               </div>
             </section>
@@ -251,7 +256,7 @@ const Index = () => {
               
               <div className="bg-gradient-to-br from-anime-card-bg to-anime-card-bg/50 border border-anime-border/50 rounded-xl p-4 backdrop-blur-sm">
                 <div className="grid grid-cols-1 gap-4">
-                  {[...popularAnimes, ...latestAnimes.slice(0, 3)].slice(0, 5).map((anime, index) => {
+                  {[...popularAnimes, ...allLatestAnimes.slice(0, 3)].slice(0, 5).map((anime, index) => {
                     const animeTypes = ['TV', 'ONA', 'OVA', 'Movie', 'Special'];
                     const years = ['2025', '2026', '2024', '2027', '2025'];
                     const randomType = animeTypes[index % animeTypes.length];
