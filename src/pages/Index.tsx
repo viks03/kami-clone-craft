@@ -62,8 +62,8 @@ const Index = () => {
     <div className="flex min-h-screen font-karla">
       <Sidebar />
       
-      <main className="flex-1 lg:ml-0 flex flex-col" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
-        <div className="flex flex-col lg:flex-row lg:pl-4 flex-1">
+      <main className="flex-1 flex flex-col w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
+        <div className="flex flex-col lg:flex-row flex-1 max-w-full">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
             <div className="text-xl font-bold text-anime-primary">
@@ -88,7 +88,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20 lg:pb-0">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -301,8 +301,10 @@ const Index = () => {
           </div>
         </div>
         
-        {/* Footer spans full width on desktop, positioned after main content */}
-        <Footer />
+        {/* Footer spans full width */}
+        <div className="w-full px-4 lg:px-4">
+          <Footer />
+        </div>
         
       </main>
       
