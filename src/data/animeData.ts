@@ -859,56 +859,24 @@ export const animeData: AnimeData = {
       }
     },
     {
-      "id": "captivated-by-you-19738",
-      "name": "Captivated, by You",
-      "jname": "Muchuu sa, Kimi ni.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/58cf898b1e58faf8e9eac4fffb9d0962.jpg",
-      "duration": "Aug 21, 2025",
-      "type": "TV (? eps)",
+      "id": "turkey-19749",
+      "name": "Turkey!",
+      "jname": "Turkey!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
+      "duration": "24m",
+      "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": null,
-        "dub": null
-      }
+      "episodes": { "sub": 6, "dub": null }
     },
     {
-      "id": "the-knight-19822",
-      "name": "The Knight",
-      "jname": "Ye de Mingming Shu",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3cd5d8065bd2513b5fd48e24a8a37c22.jpg",
-      "duration": "Aug 14, 2025",
-      "type": "ONA (12 eps)",
+      "id": "the-god-of-war-dominates-4037",
+      "name": "The God of War Dominates",
+      "jname": "Wushen Zhuzai",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/fd7927e81e521af7fb95ed010d6f3fcf.jpg",
+      "duration": "8m",
+      "type": "ONA",
       "rating": null,
-      "episodes": {
-        "sub": null,
-        "dub": null
-      }
-    },
-    {
-      "id": "twin-martial-spirits-19830",
-      "name": "Twin Martial Spirits",
-      "jname": "Shuangsheng Wu Hun",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c74d427ff0df122ded2ca9924e8305dc.jpg",
-      "duration": "Jul 23, 2025",
-      "type": "ONA (60 eps)",
-      "rating": null,
-      "episodes": {
-        "sub": null,
-        "dub": null
-      }
-    },
-    {
-      "id": "tales-of-demons-and-gods-season-9-19824",
-      "name": "Tales of Demons and Gods Season 9",
-      "jname": "Yao Shen Ji 9th Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/270e92fd2fc7ca05669dc433a3f641b8.jpg",
-      "duration": "Jul 17, 2025",
-      "type": "ONA (52 eps)",
-      "rating": null,
-      "episodes": {
-        "sub": null,
-        "dub": null
-      }
+      "episodes": { "sub": 567, "dub": null }
     }
   ]
 };
