@@ -230,7 +230,7 @@ export const animeData: AnimeData = {
       "rank": 9,
       "id": "fire-force-season-3-19540",
       "name": "Fire Force Season 3",
-      "description": "Third season of .",
+      "description": "The third season finds Tokyo alight, as a mysterious affliction of spontaneously combusting rips through the city's population. Enter the Fire Force, with Shinra now part of Company 8 and prepared to save the city from oblivion — if he can keep his own secrets at bay.",
       "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/e5dee087051734a86d59c748b6bf201a.jpg",
       "jname": "Enen no Shouboutai: San no Shou",
       "episodes": {
