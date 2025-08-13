@@ -110,46 +110,49 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
-                  <button
-                    onClick={() => setActiveSection('newest')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      activeSection === 'newest'
-                        ? 'bg-anime-primary text-white'
-                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                    }`}
-                  >
-                    NEWEST
-                  </button>
-                  <button
-                    onClick={() => setActiveSection('popular')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      activeSection === 'popular'
-                        ? 'bg-anime-primary text-white'
-                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                    }`}
-                  >
-                    POPULAR
-                  </button>
-                  <button
-                    onClick={() => setActiveSection('top-rated')}
-                    className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
-                      activeSection === 'top-rated'
-                        ? 'bg-anime-primary text-white'
-                        : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                    }`}
-                  >
-                    TOP RATED
-                  </button>
+              <div className="flex flex-col gap-4 mb-4">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                    <button
+                      onClick={() => setActiveSection('newest')}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                        activeSection === 'newest'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                      }`}
+                    >
+                      NEWEST
+                    </button>
+                    <button
+                      onClick={() => setActiveSection('popular')}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                        activeSection === 'popular'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                      }`}
+                    >
+                      POPULAR
+                    </button>
+                    <button
+                      onClick={() => setActiveSection('top-rated')}
+                      className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all ${
+                        activeSection === 'top-rated'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                      }`}
+                    >
+                      TOP RATED
+                    </button>
+                  </div>
+                  
+                  {/* Pagination Controls */}
+                  <AnimePagination
+                    currentPage={currentPage}
+                    totalPages={totalPages}
+                    onPageChange={setCurrentPage}
+                    className="self-end sm:self-auto"
+                  />
                 </div>
-                
-                {/* Pagination Controls */}
-                <AnimePagination
-                  currentPage={currentPage}
-                  totalPages={totalPages}
-                  onPageChange={setCurrentPage}
-                />
               </div>
               <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
                 {currentAnimes.map((anime, index) => (
@@ -165,6 +168,7 @@ const Index = () => {
                       name={anime.name}
                       poster={anime.poster}
                       episodes={anime.episodes}
+                      type={anime.type}
                     />
                   </div>
                 ))}

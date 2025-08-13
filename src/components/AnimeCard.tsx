@@ -6,6 +6,7 @@ interface AnimeCardProps {
   poster: string;
   episodes?: { sub: number | null; dub: number | null };
   className?: string;
+  type?: string;
 }
 
 type HoverState = {
@@ -18,7 +19,7 @@ type HoverState = {
 let globalActiveCard: { cardId: string; element: string } | null = null;
 const cardHoverCallbacks = new Map<string, (shouldClear: boolean) => void>();
 
-export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardProps) => {
+export const AnimeCard = memo(({ name, poster, episodes, className, type }: AnimeCardProps) => {
   const [hoverState, setHoverState] = useState<HoverState>({
     thumbnail: false,
     title: false,
@@ -198,16 +199,18 @@ export const AnimeCard = memo(({ name, poster, episodes, className }: AnimeCardP
         
         {/* Badges with consistent spacing and scrolling */}
         <div className="flex items-center gap-1 text-[10px] text-anime-text-muted overflow-x-auto scrollbar-hide">
-          <span 
-            className={`bg-anime-card-bg px-1.5 py-0.5 rounded text-[11px] flex-shrink-0 inline-flex items-center font-extrabold cursor-pointer transition-colors ${
-              hoverState.badges['tv'] ? 'text-anime-primary' : 'hover:text-anime-primary'
-            }`}
-            onMouseEnter={() => handleMouseEnter('tv')}
-            onMouseLeave={() => handleMouseLeave('tv')}
-            onTouchStart={(e) => handleBadgeTouch(e, 'tv')}
-          >
-            TV
-          </span>
+          {type && (
+            <span 
+              className={`bg-anime-card-bg px-1.5 py-0.5 rounded text-[11px] flex-shrink-0 inline-flex items-center font-extrabold cursor-pointer transition-colors ${
+                hoverState.badges['type'] ? 'text-anime-primary' : 'hover:text-anime-primary'
+              }`}
+              onMouseEnter={() => handleMouseEnter('type')}
+              onMouseLeave={() => handleMouseLeave('type')}
+              onTouchStart={(e) => handleBadgeTouch(e, 'type')}
+            >
+              {type}
+            </span>
+          )}
           <span 
             className={`bg-anime-card-bg px-1.5 py-0.5 rounded text-[11px] flex-shrink-0 inline-flex items-center font-extrabold cursor-pointer transition-colors ${
               hoverState.badges['year'] ? 'text-anime-primary' : 'hover:text-anime-primary'
