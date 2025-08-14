@@ -284,8 +284,6 @@ export const animeData: AnimeData = {
       ]
     }
   ],
-{
- {
   "latestEpisodeAnimes": [
     {
       "id": "new-saga-19774",
@@ -358,77 +356,7 @@ export const animeData: AnimeData = {
       "episodes": { "sub": 6, "dub": 5 }
     },
     {
-      "id": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability-season-2-19781",
-      "name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magical Ability Season 2",
-      "jname": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cc90c348158e7ee0df92885576ad7603.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": 3 }
-    },
-    {
-      "id": "reborn-as-a-vending-machine-i-now-wander-the-dungeon-season-2-19776",
-      "name": "Reborn as a Vending Machine, I Now Wander the Dungeon Season 2",
-      "jname": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/86ab58b1b09723017a3883d9ba2cfa22.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 7, "dub": 4 }
-    },
-    {
-      "id": "clevatess-19760",
-      "name": "Clevatess",
-      "jname": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d53c0d4ebad9dd8f22ccb1ba37568213.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "18+",
-      "episodes": { "sub": 7, "dub": 6 }
-    },
-    {
-      "id": "the-rising-of-the-shield-hero-season-4-19790",
-      "name": "The Rising of the Shield Hero Season 4",
-      "jname": "Tate no Yuusha no Nariagari Season 4",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f388247d0d1c9dfd45c9e704ebe031aa.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": 5 }
-    },
-    {
-      "id": "bulletbullet-19726",
-      "name": "Bullet/Bullet",
-      "jname": "Bullet/Bullet",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3d632a9faba80a43fa1c4bf5d98ec97a.jpg",
-      "duration": "24m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 12, "dub": 12 }
-    },
-    {
-      "id": "turkey-19749",
-      "name": "Turkey!",
-      "jname": "Turkey!",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": null }
-    },
-    {
-      "id": "romance-in-the-beast-world-season-2-19744",
-      "name": "Romance in the Beast World Season 2",
-      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
-      "duration": "8m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 52, "dub": null }
-    },
-    {
-      "id": "jiang-ye-3-19745",
+      "id": "jiang-ye-3-18958",
       "name": "Jiang Ye 3",
       "jname": "Jiang Ye 3",
       "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8f3f.jpg",
@@ -437,9 +365,7 @@ export const animeData: AnimeData = {
       "rating": null,
       "episodes": { "sub": 52, "dub": null }
     }
-  ]
-}
-],
+  ],
   "mostPopularAnimes": [
     {
       "rank": 1,
@@ -453,63 +379,49 @@ export const animeData: AnimeData = {
       "id": "solo-leveling-season-2-arise-from-the-shadow-19413",
       "name": "Solo Leveling Season 2: Arise from the Shadow",
       "jname": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/65f92e6e315a931ef872da4b312442b8.jpg"
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/02b9e0ea11a5c0e35fe3c8b3b59b3f39.jpg"
     },
     {
       "rank": 3,
-      "id": "devil-may-cry-19641",
-      "name": "Devil may cry",
-      "jname": "Devil may cry",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/dc44725007dca68fb39b73b5e7c9b620.jpg"
+      "id": "dragon-ball-daima-19408",
+      "name": "Dragon Ball DAIMA",
+      "jname": "Dragon Ball DAIMA",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b14ed3a37d6c4b28ea1b6b8c42134e61.jpg"
     },
     {
       "rank": 4,
-      "id": "sword-of-the-demon-hunter-kijin-gentosho-19554",
-      "name": "Sword of the Demon Hunter: Kijin Gentosho",
-      "jname": "Kijin Gentoushou",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/95f215e80c807d44e2d494551ea4d820.jpg"
+      "id": "sakamoto-days-part-2-19787",
+      "name": "Sakamoto Days Part 2",
+      "jname": "Sakamoto Days Part 2",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/2e36b3e7e0b1c70acfc0e0092fc2c037.jpg"
     },
     {
       "rank": 5,
-      "id": "my-hero-academia-vigilantes-19544",
-      "name": "My Hero Academia: Vigilantes",
-      "jname": "Vigilante: Boku no Hero Academia Illegals",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/1b06ba20c769cf017ebf654ca8e9fbda.jpg"
+      "id": "gachiakuta-19785",
+      "name": "Gachiakuta",
+      "jname": "Gachiakuta",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c83b8b8d70c76a6c82c5124c5ffca7e7.jpg"
     },
     {
       "rank": 6,
-      "id": "the-apothecary-diaries-season-2-19429",
-      "name": "The Apothecary Diaries Season 2",
-      "jname": "Kusuriya no Hitorigoto 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c7346b9cd930d501d2b6b40770b2b1d0.jpg"
+      "id": "dan-da-dan-season-2-19793",
+      "name": "Dan Da Dan Season 2",
+      "jname": "Dandadan 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/8ad41be37027a43ff6b8b4c3c6b7e71c.jpg"
     },
     {
       "rank": 7,
-      "id": "wind-breaker-season-2-19542",
-      "name": "Wind Breaker Season 2",
-      "jname": "Wind Breaker Season 2",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/87e766fbe5e592efbbc84c9302861612.jpg"
+      "id": "the-water-magician-19770",
+      "name": "The Water Magician",
+      "jname": "Mizu Zokusei no Mahoutsukai",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/48e93efd21f7d4226da1a03c6b81be09.jpg"
     },
     {
       "rank": 8,
-      "id": "witch-watch-19552",
-      "name": "Witch Watch",
-      "jname": "Witch Watch",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/80082b698ed84bf8d784d299faf50124.jpg"
-    },
-    {
-      "rank": 9,
-      "id": "ive-been-killing-slimes-for-300-years-and-maxed-out-my-level-season-2-19541",
-      "name": "I've Been Killing Slimes for 300 Years and Maxed Out My Level Season 2",
-      "jname": "Slime Taoshite 300-nen, Shiranai Uchi ni Level Max ni Nattemashita: Sono Ni",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/19b68d11d697082fbd291f0184f09f6d.jpg"
-    },
-    {
-      "rank": 10,
-      "id": "dandadan-19319",
-      "name": "Dandadan",
-      "jname": "Dandadan",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a8b56a7589ff9edb6c86977c31e27a06.jpg"
+      "id": "wind-breaker-season-2-19542",
+      "name": "Wind Breaker Season 2",
+      "jname": "Wind Breaker Season 2",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/39aaf5cb8c0b27b635dc0c7ab00e24c1.jpg"
     }
   ],
   "latestCompletedAnimes": [
@@ -522,49 +434,71 @@ export const animeData: AnimeData = {
         "sub": 11,
         "dub": null
       },
+      "type": "OVA"
+    },
+    {
+      "id": "ranma-1-2-19347",
+      "name": "Ranma 1/2",
+      "jname": "Ranma 1/2 (2024)",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/25e1e8fe6a7b11b60d64b07ad7e57e8f.jpg",
+      "episodes": {
+        "sub": 12,
+        "dub": 12
+      },
       "type": "TV"
     },
     {
-      "id": "moonrise-15817",
-      "name": "Moonrise",
-      "jname": "Moonrise",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/773fd8d751aabd509240fa36ac7b3a85.jpg",
+      "id": "demon-slayer-hashira-training-arc-19137",
+      "name": "Demon Slayer: Hashira Training Arc",
+      "jname": "Kimetsu no Yaiba: Hashira Geiko-hen",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f3b7f69d8eff12e6af72dbb0bb3bfd42.jpg",
       "episodes": {
-        "sub": 18,
-        "dub": 18
+        "sub": 8,
+        "dub": 8
       },
-      "type": "ONA"
+      "type": "TV"
     },
     {
-      "id": "giant-robo-the-animation-the-day-the-earth-stood-still-723",
-      "name": "Giant Robo the Animation: The Day the Earth Stood Still",
-      "jname": "Giant Robo the Animation: Chikyuu ga Seishi Suru Hi",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/6789b014264c8f3db056646bf3b45c52.jpg",
+      "id": "dandadan-19327",
+      "name": "Dandadan",
+      "jname": "Dandadan",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b84e43633f0b8ace8a7b2a3ceab86df6.jpg",
       "episodes": {
-        "sub": 7,
-        "dub": 7
+        "sub": 12,
+        "dub": 12
       },
-      "type": "OVA"
+      "type": "TV"
     },
     {
-      "id": "genesis-survivor-gaiarth-7046",
-      "name": "Genesis Survivor Gaiarth",
-      "jname": "Sousei Kishi Gaiarth",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/9d4a6718eb70ec23e88f4ee36d974b8d.jpg",
+      "id": "wind-breaker-19267",
+      "name": "Wind Breaker",
+      "jname": "Wind Breaker",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/09d7c10e0fa7fc6dcb33b90b91d53f8c.jpg",
       "episodes": {
-        "sub": 3,
-        "dub": 3
+        "sub": 13,
+        "dub": 13
       },
-      "type": "OVA"
+      "type": "TV"
     },
     {
-      "id": "gestalt-7691",
-      "name": "Gestalt",
-      "jname": "Choujuu Densetsu Gestalt",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d8d5dd85b3c77f8c6ff6ec346fe2f23d.jpg",
+      "id": "frieren-beyond-journeys-end-18980",
+      "name": "Frieren: Beyond Journey's End",
+      "jname": "Sousou no Frieren",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/09d7c10e0fa7fc6dcb33b90b91d53f8c.jpg",
       "episodes": {
-        "sub": 2,
-        "dub": 2
+        "sub": 28,
+        "dub": 28
+      },
+      "type": "TV"
+    },
+    {
+      "id": "uzumaki-19268",
+      "name": "Uzumaki",
+      "jname": "Uzumaki: Spiral into Horror",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5bb2f0fcff59966c8f81dac4a5a1b1ea.jpg",
+      "episodes": {
+        "sub": 4,
+        "dub": 4
       },
       "type": "OVA"
     }
@@ -582,45 +516,23 @@ export const animeData: AnimeData = {
       "type": "TV"
     },
     {
-      "id": "sakamoto-days-19431",
-      "name": "Sakamoto Days",
-      "jname": "Sakamoto Days",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/2bbe7ece956bbefc6f385a7a447c182c.jpg",
+      "id": "boruto-naruto-next-generations-2983",
+      "name": "Boruto: Naruto Next Generations",
+      "jname": "Boruto: Naruto Next Generations",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c71bad3f5cc5b1dd71f0aec2b7a85bc0.jpg",
       "episodes": {
-        "sub": 11,
-        "dub": 11
+        "sub": 293,
+        "dub": 155
       },
       "type": "TV"
     },
     {
-      "id": "solo-leveling-season-2-arise-from-the-shadow-19413",
-      "name": "Solo Leveling Season 2: Arise from the Shadow",
-      "jname": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/65f92e6e315a931ef872da4b312442b8.jpg",
+      "id": "bleach-thousand-year-blood-war-the-conflict-19069",
+      "name": "Bleach: Thousand-Year Blood War - The Conflict",
+      "jname": "Bleach: Sennen Kessen-hen - Soukoku-tan",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d7ee11a4b57a37c7eb3efc325344d99f.jpg",
       "episodes": {
-        "sub": 13,
-        "dub": 13
-      },
-      "type": "TV"
-    },
-    {
-      "id": "jujutsu-kaisen-tv-534",
-      "name": "Jujutsu Kaisen (TV)",
-      "jname": "Jujutsu Kaisen (TV)",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/82402f796b7d84d7071ab1e03ff7747a.jpg",
-      "episodes": {
-        "sub": 24,
-        "dub": 24
-      },
-      "type": "TV"
-    },
-    {
-      "id": "chainsaw-man-17406",
-      "name": "Chainsaw Man",
-      "jname": "Chainsaw Man",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b3da1326e07269ddd8d73475c5dabf2c.jpg",
-      "episodes": {
-        "sub": 12,
+        "sub": 14,
         "dub": 12
       },
       "type": "TV"
@@ -633,7 +545,7 @@ export const animeData: AnimeData = {
       "jname": "Chainsaw Man Movie: Reze-hen",
       "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/17ac41352fd931f77238f6f596b6bcea.jpg",
       "duration": "Sep 19, 2025",
-      "type": "Movie (1 eps)",
+      "type": "Movie",
       "rating": "18+",
       "episodes": {
         "sub": null,
@@ -641,22 +553,22 @@ export const animeData: AnimeData = {
       }
     },
     {
-      "id": "turkey-19749",
-      "name": "Turkey!",
-      "jname": "Turkey!",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
-      "duration": "24m",
+      "id": "my-hero-academia-season-8-19794",
+      "name": "My Hero Academia Season 8",
+      "jname": "Boku no Hero Academia Season 8",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/ee77b08f64fe7a7b45ebe9d3a61ec772.jpg",
+      "duration": "2025",
       "type": "TV",
       "rating": null,
-      "episodes": { "sub": 6, "dub": null }
+      "episodes": { "sub": null, "dub": null }
     },
     {
-      "id": "the-god-of-war-dominates-4037",
-      "name": "The God of War Dominates",
-      "jname": "Wushen Zhuzai",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/fd7927e81e521af7fb95ed010d6f3fcf.jpg",
-      "duration": "8m",
-      "type": "ONA",
+      "id": "detective-conan-19598",
+      "name": "Detective Conan",
+      "jname": "Meitantei Conan",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/88c8a82e7ae9b1c7b1ae6b0b9f9e2b4c.jpg",
+      "duration": "24m",
+      "type": "TV",
       "rating": null,
       "episodes": { "sub": 567, "dub": null }
     }
