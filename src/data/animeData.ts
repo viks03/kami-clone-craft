@@ -284,6 +284,7 @@ export const animeData: AnimeData = {
       ]
     }
   ],
+{
   "latestEpisodeAnimes": [
     {
       "id": "turkey-19749",
@@ -294,46 +295,6 @@ export const animeData: AnimeData = {
       "type": "TV",
       "rating": null,
       "episodes": { "sub": 6, "dub": null }
-    },
-    {
-      "id": "romance-in-the-beast-world-season-2-19744",
-      "name": "Romance in the Beast World Season 2",
-      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
-      "duration": "8m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 52, "dub": null }
-    },
-    {
-      "id": "jiang-ye-3-19745",
-      "name": "Jiang Ye 3",
-      "jname": "Jiang Ye 3",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8bfa.jpg",
-      "duration": "19m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 19, "dub": null }
-    },
-    {
-      "id": "stellar-transformation-5th-season-19746",
-      "name": "Stellar Transformation 5th Season",
-      "jname": "Xingchen Bian 5th Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d4e39ff6a86b8d32b94b37b4b4797b2a.jpg",
-      "duration": "24m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 91, "dub": null }
-    },
-    {
-      "id": "spirit-sword-sovereign-season-8-19747",
-      "name": "Spirit Sword Sovereign Season 8",
-      "jname": "Ling Jian Zun 8th Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a3e4afa7e91e5c9ee5e27647e4b1d91f.jpg",
-      "duration": "17m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 569, "dub": null }
     },
     {
       "id": "the-god-of-war-dominates-4037",
@@ -353,10 +314,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 6,
-        "dub": null
-      }
+      "episodes": { "sub": 6, "dub": null }
     },
     {
       "id": "grand-blue-dreaming-season-2-19786",
@@ -366,10 +324,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 6,
-        "dub": null
-      }
+      "episodes": { "sub": 6, "dub": null }
     },
     {
       "id": "sakamoto-days-part-2-19787",
@@ -379,10 +334,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": "18+",
-      "episodes": {
-        "sub": 6,
-        "dub": 6
-      }
+      "episodes": { "sub": 6, "dub": 6 }
     },
     {
       "id": "sumpock-19559",
@@ -392,10 +344,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 19,
-        "dub": null
-      }
+      "episodes": { "sub": 19, "dub": null }
     },
     {
       "id": "sword-of-the-demon-hunter-kijin-gentosho-19554",
@@ -405,10 +354,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 18,
-        "dub": 10
-      }
+      "episodes": { "sub": 18, "dub": 10 }
     },
     {
       "id": "see-you-tomorrow-at-the-food-court-19748",
@@ -418,10 +364,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 6,
-        "dub": null
-      }
+      "episodes": { "sub": 6, "dub": null }
     },
     {
       "id": "supreme-god-emperor-season-2-18402",
@@ -431,10 +374,7 @@ export const animeData: AnimeData = {
       "duration": "7m",
       "type": "ONA",
       "rating": null,
-      "episodes": {
-        "sub": 511,
-        "dub": null
-      }
+      "episodes": { "sub": 511, "dub": null }
     },
     {
       "id": "lord-of-mysteries-old-neils-mysticism-class-19839",
@@ -444,10 +384,7 @@ export const animeData: AnimeData = {
       "duration": "5m",
       "type": "Special",
       "rating": "18+",
-      "episodes": {
-        "sub": 5,
-        "dub": null
-      }
+      "episodes": { "sub": 5, "dub": null }
     },
     {
       "id": "koupen-chan-19647",
@@ -457,10 +394,7 @@ export const animeData: AnimeData = {
       "duration": "1m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 19,
-        "dub": null
-      }
+      "episodes": { "sub": 19, "dub": null }
     },
     {
       "id": "theatre-of-darkness-yamishibai-15-19731",
@@ -470,10 +404,7 @@ export const animeData: AnimeData = {
       "duration": "4m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 5,
-        "dub": null
-      }
+      "episodes": { "sub": 5, "dub": null }
     },
     {
       "id": "battle-through-the-heavens-5th-season-18119",
@@ -483,10 +414,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "ONA",
       "rating": null,
-      "episodes": {
-        "sub": 159,
-        "dub": 52
-      }
+      "episodes": { "sub": 159, "dub": 52 }
     },
     {
       "id": "tales-of-herding-gods-19409",
@@ -496,10 +424,7 @@ export const animeData: AnimeData = {
       "duration": "15m",
       "type": "ONA",
       "rating": null,
-      "episodes": {
-        "sub": 43,
-        "dub": null
-      }
+      "episodes": { "sub": 43, "dub": null }
     },
     {
       "id": "moonrise-15817",
@@ -509,10 +434,7 @@ export const animeData: AnimeData = {
       "duration": "28m",
       "type": "ONA",
       "rating": null,
-      "episodes": {
-        "sub": 18,
-        "dub": 18
-      }
+      "episodes": { "sub": 18, "dub": 18 }
     },
     {
       "id": "my-happy-marriage-season-2-19432",
@@ -522,10 +444,7 @@ export const animeData: AnimeData = {
       "duration": "24m",
       "type": "TV",
       "rating": null,
-      "episodes": {
-        "sub": 13,
-        "dub": 11
-      }
+      "episodes": { "sub": 13, "dub": 11 }
     },
     {
       "id": "keyboard-immortal-19526",
@@ -535,129 +454,31 @@ export const animeData: AnimeData = {
       "duration": "8m",
       "type": "ONA",
       "rating": null,
-      "episodes": {
-        "sub": 107,
-        "dub": null
-      }
+      "episodes": { "sub": 107, "dub": null }
     },
     {
-      "id": "ninja-kamui-19410",
-      "name": "Ninja Kamui",
-      "jname": "Ninja Kamui",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/ae2c0d3c30d5b3055e007b30e5bc52e6.jpg",
+      "id": "new-saga-19774",
+      "name": "New Saga",
+      "jname": "Tsuyokute New Saga",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/36cb7408e1016c2a85bd8541851408e6.jpg",
       "duration": "24m",
       "type": "TV",
-      "rating": "18+",
-      "episodes": {
-        "sub": 13,
-        "dub": 13
-      }
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
     },
     {
-      "id": "demon-slayer-hashira-training-arc-18718",
-      "name": "Demon Slayer: Hashira Training Arc",
-      "jname": "Kimetsu no Yaiba: Hashira Geiko-hen",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/76b95ce0095892c5fe893ca8d4e7ad63.jpg",
+      "id": "onmyo-kaiten-rebirth-verse-19744",
+      "name": "Onmyo Kaiten Re:Birth Verse",
+      "jname": "Onmyou Kaiten Re:Birth",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/13b4878f4875d721ab896b97ebaf5d48.jpg",
       "duration": "24m",
       "type": "TV",
-      "rating": "17+",
-      "episodes": {
-        "sub": 8,
-        "dub": 8
-      }
-    },
-    {
-      "id": "blue-lock-vs-u-20-japan-19380",
-      "name": "Blue Lock vs. U-20 Japan",
-      "jname": "Blue Lock vs. U-20 Japan",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/4e2afde91ec4c8b9bd26e9e0b5bbf1b6.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "13+",
-      "episodes": {
-        "sub": 14,
-        "dub": 14
-      }
-    },
-    {
-      "id": "attack-on-titan-the-final-season-final-chapters-special-2-18329",
-      "name": "Attack on Titan: The Final Season - Final Chapters Special 2",
-      "jname": "Shingeki no Kyojin: The Final Season - Kanketsu-hen Part 2",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/2ce18da24f80f3c0c68daa4bb5b97ad7.jpg",
-      "duration": "1hr 25m",
-      "type": "Special",
-      "rating": "17+",
-      "episodes": {
-        "sub": 1,
-        "dub": 1
-      }
-    },
-    {
-      "id": "frieren-beyond-journeys-end-18542",
-      "name": "Frieren: Beyond Journey's End",
-      "jname": "Sousou no Frieren",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/54a5c7b7cb6e1d57c15cea25e90a1707.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "13+",
-      "episodes": {
-        "sub": 28,
-        "dub": 28
-      }
-    },
-    {
-      "id": "jujutsu-kaisen-shibuya-incident-18413",
-      "name": "Jujutsu Kaisen: Shibuya Incident",
-      "jname": "Jujutsu Kaisen 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/deb76a6d4cd92e5cf3d4c6c8e6ce66a9.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "17+",
-      "episodes": {
-        "sub": 23,
-        "dub": 23
-      }
-    },
-    {
-      "id": "spy-x-family-season-2-18131",
-      "name": "SPY x FAMILY Season 2",
-      "jname": "SPY x FAMILY Season 2",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/8ba38ae1d6b7e6e3af6152a11b84ae44.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "13+",
-      "episodes": {
-        "sub": 12,
-        "dub": 12
-      }
-    },
-    {
-      "id": "tokyo-revengers-christmas-showdown-18137",
-      "name": "Tokyo Revengers: Christmas Showdown",
-      "jname": "Tokyo Revengers: Seiya Kessen-hen",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/bb9b993e86dba93ce30e93f2fd1f31d4.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "17+",
-      "episodes": {
-        "sub": 13,
-        "dub": 13
-      }
-    },
-    {
-      "id": "mashle-magic-and-muscles-season-2-18139",
-      "name": "Mashle: Magic and Muscles Season 2",
-      "jname": "Mashle: Magic and Muscles 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a85d38b3d74e1a33b0c19eaba7c6f5cd.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "13+",
-      "episodes": {
-        "sub": 12,
-        "dub": 12
-      }
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
     }
-  ],
+  ]
+}
+],
   "mostPopularAnimes": [
     {
       "rank": 1,
