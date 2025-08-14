@@ -584,6 +584,156 @@ export const animeData: AnimeData = {
       "type": "ONA",
       "rating": null,
       "episodes": { "sub": 52, "dub": null }
+    },
+{
+      "id": "new-saga-19774",
+      "name": "New Saga",
+      "jname": "Tsuyokute New Saga",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/36cb7408e1016c2a85bd8541851408e6.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "onmyo-kaiten-rebirth-verse-19744",
+      "name": "Onmyo Kaiten Re:Birth Verse",
+      "jname": "Onmyou Kaiten Re:Birth",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/13b4878f4875d721ab896b97ebaf5d48.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "with-vengeance-19740",
+      "name": "With Vengeance",
+      "jname": "Kizu darake Seijo yori Houfuku wo Komete",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e7abcc65667e4eeaf7fc9f4123c447c9.jpg",
+      "duration": "14m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "dealing-with-mikadono-sisters-is-a-breeze-19765",
+      "name": "Dealing with Mikadono Sisters Is a Breeze",
+      "jname": "Mikadono Sanshimai wa Angai, Choroi.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/388f4b910e67046f642d35228791e015.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 3 }
+    },
+    {
+      "id": "hell-teacher-jigoku-sensei-nube-19758",
+      "name": "Hell Teacher: Jigoku Sensei Nube",
+      "jname": "Jigoku Sensei Nube (2025)",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b820eb87b6c05c6f9d98007e7eee2b24.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": null }
+    },
+    {
+      "id": "uchuujin-muumuu-19598",
+      "name": "Uchuujin MuuMuu",
+      "jname": "Uchuujin MuuMuu",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5558fe41e94b3ee11a89842f1eef075c.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 19, "dub": null }
+    },
+    {
+      "id": "panty-stocking-with-garterbelt-2nd-season-19780",
+      "name": "Panty & Stocking with Garterbelt 2nd Season",
+      "jname": "New Panty & Stocking with Garterbelt",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a71d234899029be1b8bc25552cca8408.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability-season-2-19781",
+      "name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magical Ability Season 2",
+      "jname": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cc90c348158e7ee0df92885576ad7603.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 3 }
+    },
+    {
+      "id": "reborn-as-a-vending-machine-i-now-wander-the-dungeon-season-2-19776",
+      "name": "Reborn as a Vending Machine, I Now Wander the Dungeon Season 2",
+      "jname": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/86ab58b1b09723017a3883d9ba2cfa22.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "clevatess-19760",
+      "name": "Clevatess",
+      "jname": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d53c0d4ebad9dd8f22ccb1ba37568213.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 7, "dub": 6 }
+    },
+    {
+      "id": "the-rising-of-the-shield-hero-season-4-19790",
+      "name": "The Rising of the Shield Hero Season 4",
+      "jname": "Tate no Yuusha no Nariagari Season 4",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f388247d0d1c9dfd45c9e704ebe031aa.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "bulletbullet-19726",
+      "name": "Bullet/Bullet",
+      "jname": "Bullet/Bullet",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3d632a9faba80a43fa1c4bf5d98ec97a.jpg",
+      "duration": "24m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 12, "dub": 12 }
+    },
+    {
+      "id": "turkey-19749",
+      "name": "Turkey!",
+      "jname": "Turkey!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "romance-in-the-beast-world-season-2-19744",
+      "name": "Romance in the Beast World Season 2",
+      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+    {
+      "id": "jiang-ye-3-19745",
+      "name": "Jiang Ye 3",
+      "jname": "Jiang Ye 3",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8f3f.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
     }
   ],
   "mostPopularAnimes": [
