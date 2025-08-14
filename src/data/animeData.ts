@@ -285,177 +285,8 @@ export const animeData: AnimeData = {
     }
   ],
 {
+ {
   "latestEpisodeAnimes": [
-    {
-      "id": "turkey-19749",
-      "name": "Turkey!",
-      "jname": "Turkey!",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": null }
-    },
-    {
-      "id": "the-god-of-war-dominates-4037",
-      "name": "The God of War Dominates",
-      "jname": "Wushen Zhuzai",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/fd7927e81e521af7fb95ed010d6f3fcf.jpg",
-      "duration": "8m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 567, "dub": null }
-    },
-    {
-      "id": "theres-no-freaking-way-ill-be-your-lover-unless-19773",
-      "name": "There's No Freaking Way I'll be Your Lover! Unless...",
-      "jname": "Watashi ga Koibito ni Nareru Wake Nai jan, Muri Muri! (※Muri ja Nakatta!?)",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/8d340e5542d2e90dbd45940f897e1fe0.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": null }
-    },
-    {
-      "id": "grand-blue-dreaming-season-2-19786",
-      "name": "Grand Blue Dreaming Season 2",
-      "jname": "Grand Blue Season 2",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d2269ac1520195c3bd6bcca1246bc0b2.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": null }
-    },
-    {
-      "id": "sakamoto-days-part-2-19787",
-      "name": "Sakamoto Days Part 2",
-      "jname": "Sakamoto Days Part 2",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/16938f0dfd1d36cab6a0c604ab4669d5.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": "18+",
-      "episodes": { "sub": 6, "dub": 6 }
-    },
-    {
-      "id": "sumpock-19559",
-      "name": "SumPock",
-      "jname": "Summer Pockets",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/7010bbe5fb9c9cba54c19a9d660b98fc.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 19, "dub": null }
-    },
-    {
-      "id": "sword-of-the-demon-hunter-kijin-gentosho-19554",
-      "name": "Sword of the Demon Hunter: Kijin Gentosho",
-      "jname": "Kijin Gentoushou",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/1363cdc748d342ce2ab2e0ec7c21bc78.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 18, "dub": 10 }
-    },
-    {
-      "id": "see-you-tomorrow-at-the-food-court-19748",
-      "name": "See You Tomorrow at the Food Court",
-      "jname": "Food Court de, Mata Ashita.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/4c6ff7d9c8ee5ea036904162f04d9511.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 6, "dub": null }
-    },
-    {
-      "id": "supreme-god-emperor-season-2-18402",
-      "name": "Supreme God Emperor Season 2",
-      "jname": "Wu Shang Shen Di 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a1abaa7f5d440c98591010827e2fe60b.jpg",
-      "duration": "7m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 511, "dub": null }
-    },
-    {
-      "id": "lord-of-mysteries-old-neils-mysticism-class-19839",
-      "name": "Lord of Mysteries - Old Neil's Mysticism Class",
-      "jname": "Lord of Mysteries - Chibi Theatre",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e6f282dc48539d8dc89d6de820791bcb.jpg",
-      "duration": "5m",
-      "type": "Special",
-      "rating": "18+",
-      "episodes": { "sub": 5, "dub": null }
-    },
-    {
-      "id": "koupen-chan-19647",
-      "name": "Koupen-chan",
-      "jname": "Koupen-chan",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/6f5822a9ded6c32d3418003e301d98d7.jpg",
-      "duration": "1m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 19, "dub": null }
-    },
-    {
-      "id": "theatre-of-darkness-yamishibai-15-19731",
-      "name": "Theatre of Darkness: Yamishibai 15",
-      "jname": "Yami Shibai 15",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/6af050edb9ef74297aa0e3adc546e0a2.jpg",
-      "duration": "4m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 5, "dub": null }
-    },
-    {
-      "id": "battle-through-the-heavens-5th-season-18119",
-      "name": "Battle Through The Heavens 5th Season",
-      "jname": "Doupo Cangqiong: Nian Fan",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/069e39f99972004849bab4a2946d968c.jpg",
-      "duration": "24m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 159, "dub": 52 }
-    },
-    {
-      "id": "tales-of-herding-gods-19409",
-      "name": "Tales of Herding Gods",
-      "jname": "Mushen Ji",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a35a56dca52d7280df274193ba6b5a35.jpg",
-      "duration": "15m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 43, "dub": null }
-    },
-    {
-      "id": "moonrise-15817",
-      "name": "Moonrise",
-      "jname": "Moonrise",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/773fd8d751aabd509240fa36ac7b3a85.jpg",
-      "duration": "28m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 18, "dub": 18 }
-    },
-    {
-      "id": "my-happy-marriage-season-2-19432",
-      "name": "My Happy Marriage Season 2",
-      "jname": "Watashi no Shiawase na Kekkon 2nd Season",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/c2a246a281ee33d66635458797ce76cf.jpg",
-      "duration": "24m",
-      "type": "TV",
-      "rating": null,
-      "episodes": { "sub": 13, "dub": 11 }
-    },
-    {
-      "id": "keyboard-immortal-19526",
-      "name": "Keyboard Immortal",
-      "jname": "Ludi Jian Xian",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/61ad8df68ec8f92be9c6610225168745.jpg",
-      "duration": "8m",
-      "type": "ONA",
-      "rating": null,
-      "episodes": { "sub": 107, "dub": null }
-    },
     {
       "id": "new-saga-19774",
       "name": "New Saga",
@@ -475,6 +306,136 @@ export const animeData: AnimeData = {
       "type": "TV",
       "rating": null,
       "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "with-vengeance-19740",
+      "name": "With Vengeance",
+      "jname": "Kizu darake Seijo yori Houfuku wo Komete",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e7abcc65667e4eeaf7fc9f4123c447c9.jpg",
+      "duration": "14m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "dealing-with-mikadono-sisters-is-a-breeze-19765",
+      "name": "Dealing with Mikadono Sisters Is a Breeze",
+      "jname": "Mikadono Sanshimai wa Angai, Choroi.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/388f4b910e67046f642d35228791e015.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 3 }
+    },
+    {
+      "id": "hell-teacher-jigoku-sensei-nube-19758",
+      "name": "Hell Teacher: Jigoku Sensei Nube",
+      "jname": "Jigoku Sensei Nube (2025)",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b820eb87b6c05c6f9d98007e7eee2b24.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": null }
+    },
+    {
+      "id": "uchuujin-muumuu-19598",
+      "name": "Uchuujin MuuMuu",
+      "jname": "Uchuujin MuuMuu",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5558fe41e94b3ee11a89842f1eef075c.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 19, "dub": null }
+    },
+    {
+      "id": "panty-stocking-with-garterbelt-2nd-season-19780",
+      "name": "Panty & Stocking with Garterbelt 2nd Season",
+      "jname": "New Panty & Stocking with Garterbelt",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a71d234899029be1b8bc25552cca8408.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability-season-2-19781",
+      "name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magical Ability Season 2",
+      "jname": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cc90c348158e7ee0df92885576ad7603.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 3 }
+    },
+    {
+      "id": "reborn-as-a-vending-machine-i-now-wander-the-dungeon-season-2-19776",
+      "name": "Reborn as a Vending Machine, I Now Wander the Dungeon Season 2",
+      "jname": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/86ab58b1b09723017a3883d9ba2cfa22.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "clevatess-19760",
+      "name": "Clevatess",
+      "jname": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d53c0d4ebad9dd8f22ccb1ba37568213.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 7, "dub": 6 }
+    },
+    {
+      "id": "the-rising-of-the-shield-hero-season-4-19790",
+      "name": "The Rising of the Shield Hero Season 4",
+      "jname": "Tate no Yuusha no Nariagari Season 4",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f388247d0d1c9dfd45c9e704ebe031aa.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "bulletbullet-19726",
+      "name": "Bullet/Bullet",
+      "jname": "Bullet/Bullet",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3d632a9faba80a43fa1c4bf5d98ec97a.jpg",
+      "duration": "24m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 12, "dub": 12 }
+    },
+    {
+      "id": "turkey-19749",
+      "name": "Turkey!",
+      "jname": "Turkey!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "romance-in-the-beast-world-season-2-19744",
+      "name": "Romance in the Beast World Season 2",
+      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+    {
+      "id": "jiang-ye-3-19745",
+      "name": "Jiang Ye 3",
+      "jname": "Jiang Ye 3",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8f3f.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
     }
   ]
 }
