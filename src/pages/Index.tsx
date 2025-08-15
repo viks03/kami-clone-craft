@@ -112,7 +112,7 @@ const Index = () => {
             <section className="recently-updated mb-8">
               {/* Combined Filter Buttons and Pagination */}
               <div className="relative mb-4">
-                <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
+                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
                   {/* Filter Buttons - Scrollable Section */}
                   <div className="flex-1 overflow-x-auto scrollbar-hide relative">
                     <div className="flex bg-transparent rounded-lg p-0 gap-0">
@@ -147,10 +147,10 @@ const Index = () => {
                         TOP RATED
                       </button>
                     </div>
+                    
+                    {/* Fade Shadow specifically for filter buttons */}
+                    <div className="absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-anime-card-bg via-anime-card-bg/50 to-transparent pointer-events-none sm:hidden" />
                   </div>
-                  
-                  {/* Fixed Fade Shadow - positioned relative to main container */}
-                  <div className="absolute top-1 right-1 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/50 to-transparent pointer-events-none rounded-r-lg sm:hidden" />
                   
                   {/* Pagination Controls - Fixed */}
                   <div className="flex items-center flex-shrink-0 ml-4">
