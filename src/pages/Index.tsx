@@ -147,8 +147,11 @@ const Index = () => {
                         TOP RATED
                       </button>
                     </div>
-                    {/* Fade Shadow for Filter Buttons Scroll */}
-                    <div className="absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-anime-card-bg via-anime-card-bg/50 to-transparent pointer-events-none rounded-r-lg sm:hidden" />
+                    {/* Fade Shadow for Filter Buttons Scroll - Fixed to container */}
+                  </div>
+                  
+                  {/* Fixed Fade Shadow */}
+                  <div className="absolute top-1 right-1 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/50 to-transparent pointer-events-none rounded-r-lg sm:hidden" />
                   </div>
                   
                   {/* Pagination Controls - Fixed */}
