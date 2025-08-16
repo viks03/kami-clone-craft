@@ -17,8 +17,8 @@ export const AnimePagination: React.FC<AnimePaginationProps> = ({
 }) => {
   return (
     <div className={cn(
-      "flex items-center bg-anime-card-bg/80 backdrop-blur-sm rounded-lg border border-anime-border/40",
-      "h-10 flex-shrink-0",
+      "flex items-center bg-black/40 backdrop-blur-sm rounded-lg border border-white/10",
+      "h-8 flex-shrink-0",
       className
     )}>
       {/* Previous Button */}
@@ -26,18 +26,18 @@ export const AnimePagination: React.FC<AnimePaginationProps> = ({
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage <= 1}
         className={cn(
-          "flex items-center justify-center w-10 h-10 transition-all duration-200 rounded-l-lg",
-          "hover:bg-anime-primary/10",
+          "flex items-center justify-center w-8 h-8 transition-all duration-200 rounded-l-lg",
+          "hover:bg-white/10",
           currentPage <= 1 
-            ? "text-anime-text-muted cursor-not-allowed" 
-            : "text-anime-primary hover:text-anime-primary font-bold"
+            ? "text-white/40 cursor-not-allowed" 
+            : "text-white/70 hover:text-white"
         )}
       >
-        <ChevronLeft className="w-4 h-4 stroke-[2.5]" />
+        <ChevronLeft className="w-3 h-3" />
       </button>
 
       {/* Current Page */}
-      <div className="flex items-center justify-center px-4 h-10 text-anime-primary font-bold text-sm min-w-[40px] bg-anime-primary/10 border-x border-anime-border/20">
+      <div className="flex items-center justify-center px-3 h-8 text-white/90 font-medium text-sm min-w-[32px] bg-white/5">
         {currentPage}
       </div>
 
@@ -46,14 +46,14 @@ export const AnimePagination: React.FC<AnimePaginationProps> = ({
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
         className={cn(
-          "flex items-center justify-center w-10 h-10 transition-all duration-200 rounded-r-lg",
-          "hover:bg-anime-primary/10",
+          "flex items-center justify-center w-8 h-8 transition-all duration-200 rounded-r-lg",
+          "hover:bg-white/10",
           currentPage >= totalPages 
-            ? "text-anime-text-muted cursor-not-allowed" 
-            : "text-anime-primary hover:text-anime-primary font-bold"
+            ? "text-white/40 cursor-not-allowed" 
+            : "text-white/70 hover:text-white"
         )}
       >
-        <ChevronRight className="w-4 h-4 stroke-[2.5]" />
+        <ChevronRight className="w-3 h-3" />
       </button>
     </div>
   );
