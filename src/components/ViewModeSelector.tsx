@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid3x3, List, Star } from 'lucide-react';
+import { Grid3x3, List, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type ViewMode = 'classic' | 'card-list' | 'anichart';
@@ -29,7 +29,7 @@ export const ViewModeSelector: React.FC<ViewModeSelectorProps> = ({
     {
       id: 'anichart' as ViewMode,
       label: 'AniChart',
-      icon: Star,
+      icon: BarChart3,
     },
   ];
 
