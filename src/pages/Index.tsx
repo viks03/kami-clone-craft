@@ -73,6 +73,7 @@ const Index = () => {
       const container = document.getElementById('filter-buttons-container');
       const buttons = document.getElementById('filter-buttons');
       const shadow = document.getElementById('filter-fade-shadow');
+      const scrollIndicator = document.getElementById('scroll-indicator');
       
       if (container && buttons && shadow && window.innerWidth < 640) {
         const containerWidth = container.offsetWidth;
@@ -81,8 +82,14 @@ const Index = () => {
         
         // Show shadow only if content is scrollable
         shadow.style.opacity = isScrollable ? '1' : '0';
+        if (scrollIndicator) {
+          scrollIndicator.style.opacity = isScrollable ? '1' : '0';
+        }
       } else if (shadow) {
         shadow.style.opacity = '0';
+        if (scrollIndicator) {
+          scrollIndicator.style.opacity = '0';
+        }
       }
     };
 
@@ -182,6 +189,9 @@ const Index = () => {
                     id="filter-fade-shadow"
                     className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
                   />
+                  
+                  {/* Subtle scroll indicator when scrollable */}
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
                   
                   {/* Pagination Controls - Fixed */}
                   <div className="flex items-center flex-shrink-0 ml-4">
