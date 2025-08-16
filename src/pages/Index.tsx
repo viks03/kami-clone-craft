@@ -147,17 +147,10 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              {/* View Mode Selector */}
-              <div className="mb-4">
-                <ViewModeSelector
-                  currentMode={viewMode}
-                  onModeChange={setViewMode}
-                />
-              </div>
-              
-              {/* Combined Filter Buttons and Pagination */}
-              <div className="relative mb-4">
-                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
+              {/* Combined Filter Buttons, Pagination, and View Mode Selector */}
+              <div className="bg-anime-card-bg border border-anime-border rounded-lg p-1 mb-4">
+                {/* Filter Buttons and Pagination Row */}
+                <div className="flex items-center relative mb-2">
                   {/* Filter Buttons - Scrollable Section */}
                   <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
                     <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
@@ -200,9 +193,6 @@ const Index = () => {
                     className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
                   />
                   
-                  {/* Subtle scroll indicator when scrollable */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
-                  
                   {/* Pagination Controls - Fixed */}
                   <div className="flex items-center flex-shrink-0 ml-4">
                     <AnimePagination
@@ -211,6 +201,17 @@ const Index = () => {
                       onPageChange={setCurrentPage}
                     />
                   </div>
+                </div>
+                
+                {/* Subtle scroll indicator when scrollable */}
+                <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
+                
+                {/* View Mode Selector Row */}
+                <div className="pt-1">
+                  <ViewModeSelector
+                    currentMode={viewMode}
+                    onModeChange={setViewMode}
+                  />
                 </div>
               </div>
               <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
