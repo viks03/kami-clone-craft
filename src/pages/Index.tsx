@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimePagination } from '../components/AnimePagination';
+import { ViewModeSelector } from '../components/ViewModeSelector';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
@@ -13,6 +14,7 @@ import { usePaginatedAnimes } from '../hooks/usePaginatedAnimes';
 const Index = () => {
   const [activeSection, setActiveSection] = useState('newest');
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<'classic' | 'card-list' | 'anichart'>('classic');
   // bottom nav height handled via CSS var --bottom-nav-h
 
   const handleSearch = useCallback((query: string) => {
@@ -145,6 +147,14 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
+              {/* View Mode Selector */}
+              <div className="mb-4">
+                <ViewModeSelector
+                  currentMode={viewMode}
+                  onModeChange={setViewMode}
+                />
+              </div>
+              
               {/* Combined Filter Buttons and Pagination */}
               <div className="relative mb-4">
                  <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
