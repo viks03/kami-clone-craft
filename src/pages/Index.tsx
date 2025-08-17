@@ -147,70 +147,77 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              {/* View Mode Selector */}
-              <div className="mb-4">
-                <ViewModeSelector
-                  currentMode={viewMode}
-                  onModeChange={setViewMode}
-                />
-              </div>
-              
-              {/* Combined Filter Buttons and Pagination */}
-              <div className="relative mb-4">
-                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
-                  {/* Filter Buttons - Scrollable Section */}
-                  <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
-                    <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
-                      <button
-                        onClick={() => setActiveSection('newest')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
-                          activeSection === 'newest'
-                            ? 'bg-anime-primary text-white'
-                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                        }`}
-                      >
-                        NEWEST
-                      </button>
-                      <button
-                        onClick={() => setActiveSection('popular')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
-                          activeSection === 'popular'
-                            ? 'bg-anime-primary text-white'
-                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                        }`}
-                      >
-                        POPULAR
-                      </button>
-                      <button
-                        onClick={() => setActiveSection('top-rated')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
-                          activeSection === 'top-rated'
-                            ? 'bg-anime-primary text-white'
-                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                        }`}
-                      >
-                        TOP RATED
-                      </button>
+              {/* Combined Control Panel: Filter Buttons, Pagination, and View Mode */}
+              <div className="bg-anime-card-bg border border-anime-border rounded-lg mb-4">
+                {/* Filter Buttons and Pagination */}
+                <div className="p-1">
+                  <div className="flex items-center relative">
+                    {/* Filter Buttons - Scrollable Section */}
+                    <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
+                      <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
+                        <button
+                          onClick={() => setActiveSection('newest')}
+                          className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                            activeSection === 'newest'
+                              ? 'bg-anime-primary text-white'
+                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                          }`}
+                        >
+                          Newest
+                        </button>
+                        <button
+                          onClick={() => setActiveSection('popular')}
+                          className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                            activeSection === 'popular'
+                              ? 'bg-anime-primary text-white'
+                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                          }`}
+                        >
+                          Popular
+                        </button>
+                        <button
+                          onClick={() => setActiveSection('top-rated')}
+                          className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                            activeSection === 'top-rated'
+                              ? 'bg-anime-primary text-white'
+                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                          }`}
+                        >
+                          Top Airing
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
+                    <div 
+                      id="filter-fade-shadow"
+                      className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
+                    />
+                    
+                    {/* Subtle scroll indicator when scrollable */}
+                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
+                    
+                    {/* Pagination Controls - Fixed */}
+                    <div className="flex items-center flex-shrink-0 ml-4">
+                      <AnimePagination
+                        currentPage={currentPage}
+                        totalPages={totalPages}
+                        onPageChange={setCurrentPage}
+                      />
                     </div>
                   </div>
-                  
-                  {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
-                  <div 
-                    id="filter-fade-shadow"
-                    className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
+                </div>
+                
+                {/* Smooth Separator */}
+                <div className="w-full h-px bg-gradient-to-r from-transparent via-anime-border/30 to-transparent"></div>
+                
+                {/* View Mode Selector */}
+                <div className="p-1">
+                  <ViewModeSelector
+                    currentMode={viewMode}
+                    onModeChange={setViewMode}
+                    className="bg-transparent border-0"
                   />
-                  
-                  {/* Subtle scroll indicator when scrollable */}
-                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
-                  
-                  {/* Pagination Controls - Fixed */}
-                  <div className="flex items-center flex-shrink-0 ml-4">
-                    <AnimePagination
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      onPageChange={setCurrentPage}
-                    />
-                  </div>
                 </div>
               </div>
               <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
