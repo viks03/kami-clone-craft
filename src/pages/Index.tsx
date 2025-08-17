@@ -147,9 +147,8 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              {/* Combined Control Panel: Filter Buttons, Pagination, and View Mode */}
+              {/* Filter Buttons and Pagination */}
               <div className="bg-anime-card-bg border border-anime-border rounded-lg mb-4">
-                {/* Filter Buttons and Pagination */}
                 <div className="p-3">
                   <div className="flex items-center relative">
                     {/* Filter Buttons - Scrollable Section */}
@@ -210,11 +209,10 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-                
-                {/* Enhanced Separator */}
-                <div className="mx-3 h-px bg-gradient-to-r from-transparent via-anime-border/50 to-transparent"></div>
-                
-                {/* View Mode Selector */}
+              </div>
+
+              {/* View Mode Selector - Connected to anime cards */}
+              <div className="bg-anime-card-bg border border-anime-border rounded-t-lg border-b-0 mb-1">
                 <div className="p-3">
                   <ViewModeSelector
                     currentMode={viewMode}
@@ -223,7 +221,8 @@ const Index = () => {
                   />
                 </div>
               </div>
-              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
+
+              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300 bg-anime-card-bg border border-anime-border rounded-b-lg rounded-t-none border-t-0 p-4">
                 {currentAnimes.map((anime, index) => (
                   <div
                     key={`${anime.id}-${currentPage}`}
