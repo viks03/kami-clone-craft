@@ -134,7 +134,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20">
+          <div className="w-full lg:w-3/4 lg:pr-4 px-2 sm:px-4 lg:px-0 lg:pt-0 pt-20">
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -237,7 +237,7 @@ const Index = () => {
           </div>
 
           {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:pr-4 lg:border-l border-anime-border">
+          <div className="w-full lg:w-1/4 px-2 sm:px-4 lg:px-0 lg:pl-4 lg:pr-4 lg:border-l border-anime-border">
 
             {/* Top Airing Section */}
             <section className="top-airing mb-8">
