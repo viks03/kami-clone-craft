@@ -76,212 +76,91 @@ export const animeData: AnimeData = {
   "spotlightAnimes": [
     {
       "rank": 1,
-      "id": "sakamoto-days-part-2-19787",
-      "name": "Sakamoto Days Part 2",
-      "description": "When Sakamoto meets Aoi, the convenience store clerk, it's love at first sight — and just like that, he retires.\n\nSakamoto gets married, has a daughter, opens a mom-and-pop store in a quiet town, and completely transforms … into a plus-size man. To ensure a peaceful life with his beloved family, the legendary ex–hit man bands together with comrades to face off against the looming threat of assassins.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/200f6d513c6a0ea46258ef0b2d3d411a.jpg",
-      "jname": "Sakamoto Days Part 2",
-      "episodes": {
-        "sub": 6,
-        "dub": 6
-      },
+      "id": "one-piece-100",
+      "name": "One Piece",
+      "description": "Gold Roger was known as the \"Pirate King,\" the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Pieceâ€”which promises an unlimited amount of riches and fameâ€”and quite possibly the pinnacle of glory and the title of the Pirate King.\n\nEnter Monkey Luffy, a 17-year-old boy who defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate ransacking villages for fun, Luffy's reason for being a pirate is one of pure wonder: the thought of an exciting adventure that leads him to intriguing people and ultimately, the promised treasure. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach the most coveted of all fortunesâ€”One Piece.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/db8603d2f4fa78e1c42f6cf829030a18.jpg",
+      "jname": "One Piece",
+      "episodes": { "sub": 1140, "dub": 1133 },
       "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 15, 2025",
-        "HD"
-      ]
+      "otherInfo": ["TV", "24m", "Oct 20, 1999", "HD"]
     },
     {
       "rank": 2,
-      "id": "kaiju-no-8-season-2-19792",
-      "name": "Kaiju No. 8 Season 2",
-      "description": "After the destruction of their hometown, childhood friends Kafka Hibino and Mina Ashiro make a pact to become officers in the Defense Force—a militarized organization tasked with protecting Japan from colossal monsters known as \"kaijuu.\" Decades later, the 32-year-old Kafka has all but given up on his dreams of heroism. Instead, he cleans up the remains of the slaughtered kaijuu after they are defeated by valiant soldiers—including Mina, who has successfully achieved their shared goal.\n\nUpon meeting his new coworker, Reno Ichikawa, Kafka faces a mirror of his past self: an ambitious young man whose one desire is to fight as a member of the Defense Force. Unfortunately, the two are soon involved in a freak encounter with a rogue kaijuu. Though Kafka demonstrates his innate heroic nature and rescues Reno from certain doom, he is left gravely injured.\n\nWhile both men recover in a hospital, Kafka is seemingly attacked by another one of the beasts. As a result, he gains the ability to transform into a humanoid kaijuu with the strength and powers of the massive monsters menacing Japan. Dubbed \"Kaijuu No. 8\" by the military, Kafka resolves to use his newfound gifts for the greater good. Tied together by mutual respect, Kafka and Reno set out to join warriors like Mina at the forefront of the Defense Force.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/6461c9a2f865136afa30424ea61586be.jpg",
-      "jname": "Kaijuu 8-gou 2nd Season",
-      "episodes": {
-        "sub": 4,
-        "dub": 4
-      },
+      "id": "gachiakuta-19785",
+      "name": "Gachiakuta",
+      "description": "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or valuable to save from the \"Abyss\"â€”a massive hole where anything considered trash is dumped, including people. Rudo's biological father was one such person, having been thrown into the Abyss after he was accused of murder.  One day, after running into a mysterious figure on the way home, Rudo returns to find Regto's dying body on the floor. He is immediately found at the scene by the authorities and is charged with murder. No one believes his claims of innocence, and he is thrown into the Abyss. Instead of dying, however, he finds himself in a strange, foul-smelling place surrounded by monsters made out of trash.  When Rudo is attacked by said monsters, he is saved by a man named Enjin, who reveals himself to be a \"Cleaner\"â€”someone who uses special weapons called Vital Instruments to combat these creatures. In order to get his revenge on the one who killed Regto, Rudo reluctantly becomes a Cleaner to fight his way back up and out of the Abyss.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/7090ec9557d74a18d25341a241ece786.jpg",
+      "jname": "Gachiakuta",
+      "episodes": { "sub": 6, "dub": 6 },
       "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 19, 2025",
-        "HD"
-      ]
+      "otherInfo": ["TV", "24m", "Jul 6, 2025", "HD"]
     },
     {
       "rank": 3,
+      "id": "my-dress-up-darling-season-2-19794",
+      "name": "My Dress-Up Darling Season 2",
+      "description": "The second season of Sono Bisque Doll wa Koi wo Suru.\n\nWhen Marin Kitagawa and Wakana Gojo met, they grew close over their love for cosplay. Through interacting with classmates and making new cosplay friends, Marin and Wakanaâ€™s world keeps growing. New developments arise as Marinâ€™s love for Wakana continues to be filled with endless excitement. In their ever-expanding world, Marin and Wakanaâ€™s story of cosplay and thrills continues!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/efe80a55370f96edc544fb3d16c4b16f.jpg",
+      "jname": "Sono Bisque Doll wa Koi wo Suru Season 2",
+      "episodes": { "sub": 7, "dub": 5 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 6, 2025", "HD"]
+    },
+    {
+      "rank": 4,
+      "id": "kaiju-no-8-season-2-19792",
+      "name": "Kaiju No. 8 Season 2",
+      "description": "After the destruction of their hometown, childhood friends Kafka Hibino and Mina Ashiro make a pact to become officers in the Defense Forceâ€”a militarized organization tasked with protecting Japan from colossal monsters known as \"kaijuu.\" Decades later, the 32-year-old Kafka has all but given up on his dreams of heroism. Instead, he cleans up the remains of the slaughtered kaijuu after they are defeated by valiant soldiersâ€”including Mina, who has successfully achieved their shared goal.\n\nUpon meeting his new coworker, Reno Ichikawa, Kafka faces a mirror of his past self: an ambitious young man whose one desire is to fight as a member of the Defense Force. Unfortunately, the two are soon involved in a freak encounter with a rogue kaijuu. Though Kafka demonstrates his innate heroic nature and rescues Reno from certain doom, he is left gravely injured.\n\nWhile both men recover in a hospital, Kafka is seemingly attacked by another one of the beasts. As a result, he gains the ability to transform into a humanoid kaijuu with the strength and powers of the massive monsters menacing Japan. Dubbed \"Kaijuu No. 8\" by the military, Kafka resolves to use his newfound gifts for the greater good. Tied together by mutual respect, Kafka and Reno set out to join warriors like Mina at the forefront of the Defense Force.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/6461c9a2f865136afa30424ea61586be.jpg",
+      "jname": "Kaijuu 8-gou 2nd Season",
+      "episodes": { "sub": 5, "dub": 5 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 19, 2025", "HD"]
+    },
+    {
+      "rank": 5,
       "id": "the-fragrant-flower-blooms-with-dignity-19789",
       "name": "The Fragrant Flower Blooms with Dignity",
       "description": "Despite being adjacent to one another, Chidori Public High School and the all-girls Kikyo Private Academy seem to exist in two different worlds. While the latter boasts an immaculate reputation and favors students from wealthy backgrounds, the former is a nest for dim-witted delinquents. Everyone at Kikyo harbors a deep hatred for their Chidori neighbors.  Sixteen-year-old Rintarou Tsumugi is a student at Chidori whose intimidating face leads people to avoid him. Rintarou pays no mind to this, as he is content with his group of friends. However, there is something he has not told them yet: sometimes, he helps out at his family's cake shop.  One day at work, Rintarou sees a customer at a table, but she runs off before he can talk to her. The next day, he receives an apology from the girl, Kaoruko Waguri, who explains that she did not run away because of his appearance and that she believes Rintarou is a kind-hearted person. Although he is not used to Kaoruko's bright personality, Rintarou looks forward to forming a friendship with her. There is just one obstacle that stands in his way: Kaoruko is a Kikyo student!",
       "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/ff668a581562353a8e1e4054264fba79.jpg",
       "jname": "Kaoru Hana wa Rin to Saku",
-      "episodes": {
-        "sub": 6,
-        "dub": null
-      },
+      "episodes": { "sub": 7, "dub": null },
       "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 6, 2025",
-        "HD"
-      ]
-    },
-    {
-      "rank": 4,
-      "id": "gachiakuta-19785",
-      "name": "Gachiakuta",
-      "description": "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or valuable to save from the \"Abyss\"—a massive hole where anything considered trash is dumped, including people. Rudo's biological father was one such person, having been thrown into the Abyss after he was accused of murder.  One day, after running into a mysterious figure on the way home, Rudo returns to find Regto's dying body on the floor. He is immediately found at the scene by the authorities and is charged with murder. No one believes his claims of innocence, and he is thrown into the Abyss. Instead of dying, however, he finds himself in a strange, foul-smelling place surrounded by monsters made out of trash.  When Rudo is attacked by said monsters, he is saved by a man named Enjin, who reveals himself to be a \"Cleaner\"—someone who uses special weapons called Vital Instruments to combat these creatures. In order to get his revenge on the one who killed Regto, Rudo reluctantly becomes a Cleaner to fight his way back up and out of the Abyss.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/7090ec9557d74a18d25341a241ece786.jpg",
-      "jname": "Gachiakuta",
-      "episodes": {
-        "sub": 5,
-        "dub": 5
-      },
-      "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 6, 2025",
-        "HD"
-      ]
-    },
-    {
-      "rank": 5,
-      "id": "one-piece-100",
-      "name": "One Piece",
-      "description": "Gold Roger was known as the \"Pirate King,\" the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece—which promises an unlimited amount of riches and fame—and quite possibly the pinnacle of glory and the title of the Pirate King.\n\nEnter Monkey Luffy, a 17-year-old boy who defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate ransacking villages for fun, Luffy's reason for being a pirate is one of pure wonder: the thought of an exciting adventure that leads him to intriguing people and ultimately, the promised treasure. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach the most coveted of all fortunes—One Piece.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/db8603d2f4fa78e1c42f6cf829030a18.jpg",
-      "jname": "One Piece",
-      "episodes": {
-        "sub": 1139,
-        "dub": 1122
-      },
-      "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Oct 20, 1999",
-        "HD"
-      ]
+      "otherInfo": ["TV", "24m", "Jul 6, 2025", "HD"]
     },
     {
       "rank": 6,
+      "id": "dr-stone-science-future-part-2-19784",
+      "name": "Dr. Stone: Science Future Part 2",
+      "description": "Senkuu has made it his goal to bring back two million years of human achievement and revive the entirety of those turned to statues. However, one man stands in his way: Tsukasa Shishiou, who believes that only the fittest of those petrified should be revived.\n\nAs the snow melts and spring approaches, Senkuu and his allies in Ishigami Village finish the preparations for their attack on the Tsukasa Empire. With a reinvented cell phone model now at their disposal, the Kingdom of Science is ready to launch its newest scheme to recruit the sizable numbers of Tsukasa's army to their side. However, it is a race against time; for every day the Kingdom of Science spends perfecting their inventions, the empire rapidly grows in number.\n\nReuniting with old friends and gaining new allies, Senkuu and the Kingdom of Science must stop Tsukasa's forces in order to fulfill their goal of restoring humanity and all its creations. With the two sides each in pursuit of their ideal world, the Stone Wars have now begun!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/03d6a1cd6d2d48fc348f9cfb4dabc2ec.jpg",
+      "jname": "Dr. Stone: Science Future Part 2",
+      "episodes": { "sub": 6, "dub": 6 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 10, 2025", "HD"]
+    },
+    {
+      "rank": 7,
       "id": "dan-da-dan-season-2-19793",
       "name": "Dan Da Dan Season 2",
       "description": "Reeling from her recent breakup, Momo Ayase, a popular high schooler, shows kindness to her socially awkward schoolmate, Ken Takakura, by standing up to his bullies. Ken misunderstands her intentions, believing he has made a new friend who shares his obsession with aliens and UFOs. However, Momo's own eccentric occult beliefs lie in the supernatural realm; she thinks aliens do not exist. A rivalry quickly brews as each becomes determined to prove the other wrong.\n\nDespite their initial clash over their opposing beliefs, Momo and Ken form an unexpected but intimate friendship, a bond forged in a series of supernatural battles and bizarre encounters with urban legends and paranormal entities. As both develop unique superhuman abilities, they learn to supplement each other's weaknesses, leading them to wonder if their newfound partnership may be about more than just survival.",
       "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/33043b5bb1314a46d20f814dbe70f123.jpg",
       "jname": "Dandadan 2nd Season",
-      "episodes": {
-        "sub": 6,
-        "dub": 6
-      },
+      "episodes": { "sub": 7, "dub": 7 },
       "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 4, 2025",
-        "HD"
-      ]
-    },
-    {
-      "rank": 7,
-      "id": "the-water-magician-19770",
-      "name": "The Water Magician",
-      "description": "Ryou is delighted to be reincarnated into the fantastical world of Phi, where he thinks he'll get to live a quiet life learning to use his newfound water magic. Going with the flow here, however, means something very different. Ryou is immediately pitted against the wild lands he winds up in and the slew of deadly monsters that call the remote subcontinent home. You'd think he'd forget about taking it easy when he's stuck fighting for his life, but lucky for Ryou, he's naturally optimistic, clever, and blessed with the hidden \"Eternal Youth\" trait. Twenty years pass in the blink of an eye, and each encounter along the way pushes him one step closer to the pinnacle of human magic. Little does he realize that's only the opening chapter of his tale. A fateful meeting soon thrusts Ryou to the forefront of history, forever changing the course of his life... Thus begins the adventures of the strongest water magician the world has ever seen—who also likes to do things at his own pace!",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/780c9331714aa3fee1d55bcc8544b782.jpg",
-      "jname": "Mizu Zokusei no Mahoutsukai",
-      "episodes": {
-        "sub": 5,
-        "dub": 4
-      },
-      "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 4, 2025",
-        "HD"
-      ]
+      "otherInfo": ["TV", "24m", "Jul 4, 2025", "HD"]
     },
     {
       "rank": 8,
-      "id": "clevatess-19760",
-      "name": "Clevatess",
-      "description": "Alicia, who had dreamed of becoming a hero since childhood, is chosen by the king as one of the thirteen heroes. Armed with a legendary sword, the heroes set out to defeat the Demon King Clevatess. However, their recklessness triggers a terrible crisis that could wipe out all of humanity on the continent of Edsea. Now, the world's only hope lies with a baby entrusted to the Demon King.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/428e225f262aba51cf7f364f3ec0893a.jpg",
-      "jname": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
-      "episodes": {
-        "sub": 6,
-        "dub": 6
-      },
+      "id": "sakamoto-days-part-2-19787",
+      "name": "Sakamoto Days Part 2",
+      "description": "When Sakamoto meets Aoi, the convenience store clerk, itâ€™s love at first sight â€” and just like that, he retires.\n\nSakamoto gets married, has a daughter, opens a mom-and-pop store in a quiet town, and completely transforms â€¦ into a plus-size man. To ensure a peaceful life with his beloved family, the legendary exâ€“hit man bands together with comrades to face off against the looming threat of assassins.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/200f6d513c6a0ea46258ef0b2d3d411a.jpg",
+      "jname": "Sakamoto Days Part 2",
+      "episodes": { "sub": 6, "dub": 6 },
       "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jul 2, 2025",
-        "HD"
-      ]
-    },
-    {
-      "rank": 9,
-      "id": "fire-force-season-3-19540",
-      "name": "Fire Force Season 3",
-      "description": "The third season finds Tokyo alight, as a mysterious affliction of spontaneously combusting rips through the city's population. Enter the Fire Force, with Shinra now part of Company 8 and prepared to save the city from oblivion — if he can keep his own secrets at bay.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/e5dee087051734a86d59c748b6bf201a.jpg",
-      "jname": "Enen no Shouboutai: San no Shou",
-      "episodes": {
-        "sub": 3,
-        "dub": 1
-      },
-      "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Apr 5, 2025",
-        "HD"
-      ]
-    },
-    {
-      "rank": 10,
-      "id": "wind-breaker-season-2-19542",
-      "name": "Wind Breaker Season 2",
-      "description": "The second season of WIND BREAKER.\n\nWelcome back to Furin High School, an institution infamous for its population of brawny brutes who solve every conflict with a show of strength. Some of the students even formed a group, Bofurin, which protects the town. Haruka Sakura, a first-year student who moved in from out of town, is only interested in one thing: fighting his way to the top!",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/593d93c12628d998366d5cf716e5ad52.jpg",
-      "jname": "Wind Breaker Season 2",
-      "episodes": {
-        "sub": 3,
-        "dub": 1
-      },
-      "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Apr 4, 2025",
-        "HD"
-      ]
-    },
-    {
-      "rank": 11,
-      "id": "solo-leveling-season-2-arise-from-the-shadow-19413",
-      "name": "Solo Leveling Season 2: Arise from the Shadow",
-      "description": "Sung Jin-Woo, dubbed the weakest hunter of all mankind, grows stronger by the day with the supernatural powers he has gained. However, keeping his skills hidden becomes more difficult as dungeon-related incidents pile up around him.\n\nWhen Jin-Woo and a few other low-ranked hunters are the only survivors of a dungeon that turns out to be a bigger challenge than initially expected, he draws attention once again, and hunter guilds take an increased interest in him. Meanwhile, a strange hunter who has been lost for ten years returns with a dire warning about an upcoming catastrophic event. As the calamity looms closer, Jin-Woo must continue leveling up to make sure nothing stops him from reaching his ultimate goal—saving the life of his mother.",
-      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/599af186ad72e94caab6223b23fc22c6.jpg",
-      "jname": "Ore dake Level Up na Ken Season 2: Arise from the Shadow",
-      "episodes": {
-        "sub": 13,
-        "dub": 13
-      },
-      "type": "TV",
-      "otherInfo": [
-        "TV",
-        "24m",
-        "Jan 5, 2025",
-        "HD"
-      ]
+      "otherInfo": ["TV", "24m", "Jul 15, 2025", "HD"]
     }
   ],
   "latestEpisodeAnimes": [
