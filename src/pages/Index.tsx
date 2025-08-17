@@ -150,40 +150,43 @@ const Index = () => {
               {/* Combined Control Panel: Filter Buttons, Pagination, and View Mode */}
               <div className="bg-anime-card-bg border border-anime-border rounded-lg mb-4">
                 {/* Filter Buttons and Pagination */}
-                <div className="p-1">
+                <div className="p-3">
                   <div className="flex items-center relative">
                     {/* Filter Buttons - Scrollable Section */}
                     <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
-                      <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
+                      <div className="flex bg-transparent rounded-lg p-0 gap-1" id="filter-buttons">
                         <button
                           onClick={() => setActiveSection('newest')}
-                          className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                          className={`flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                             activeSection === 'newest'
                               ? 'bg-anime-primary text-white'
                               : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                           }`}
                         >
-                          Newest
+                          <i className="fas fa-clock w-4 h-4 text-center" />
+                          <span className="font-bold">Newest</span>
                         </button>
                         <button
                           onClick={() => setActiveSection('popular')}
-                          className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                          className={`flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                             activeSection === 'popular'
                               ? 'bg-anime-primary text-white'
                               : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                           }`}
                         >
-                          Popular
+                          <i className="fas fa-fire w-4 h-4 text-center" />
+                          <span className="font-bold">Popular</span>
                         </button>
                         <button
                           onClick={() => setActiveSection('top-rated')}
-                          className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                          className={`flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                             activeSection === 'top-rated'
                               ? 'bg-anime-primary text-white'
                               : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                           }`}
                         >
-                          Top Airing
+                          <i className="fas fa-crown w-4 h-4 text-center" />
+                          <span className="font-bold">Top Airing</span>
                         </button>
                       </div>
                     </div>
@@ -191,7 +194,7 @@ const Index = () => {
                     {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
                     <div 
                       id="filter-fade-shadow"
-                      className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
+                      className="absolute top-3 right-20 w-8 h-[calc(100%-24px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
                     />
                     
                     {/* Subtle scroll indicator when scrollable */}
@@ -208,11 +211,11 @@ const Index = () => {
                   </div>
                 </div>
                 
-                {/* Smooth Separator */}
-                <div className="w-full h-px bg-gradient-to-r from-transparent via-anime-border/30 to-transparent"></div>
+                {/* Enhanced Separator */}
+                <div className="mx-3 h-px bg-gradient-to-r from-transparent via-anime-border/50 to-transparent"></div>
                 
                 {/* View Mode Selector */}
-                <div className="p-1">
+                <div className="p-3">
                   <ViewModeSelector
                     currentMode={viewMode}
                     onModeChange={setViewMode}
