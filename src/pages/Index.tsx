@@ -147,82 +147,73 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              {/* Filter Buttons and Pagination */}
-              <div className="bg-anime-card-bg border border-anime-border rounded-lg mb-4">
-                <div className="p-3">
-                  <div className="flex items-center relative">
-                    {/* Filter Buttons - Scrollable Section */}
-                    <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
-                      <div className="flex bg-transparent rounded-lg p-0 gap-1" id="filter-buttons">
-                        <button
-                          onClick={() => setActiveSection('newest')}
-                          className={`flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
-                            activeSection === 'newest'
-                              ? 'bg-anime-primary text-white'
-                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                          }`}
-                        >
-                          <i className="fas fa-clock w-4 h-4 text-center" />
-                          <span className="font-bold">Newest</span>
-                        </button>
-                        <button
-                          onClick={() => setActiveSection('popular')}
-                          className={`flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
-                            activeSection === 'popular'
-                              ? 'bg-anime-primary text-white'
-                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                          }`}
-                        >
-                          <i className="fas fa-fire w-4 h-4 text-center" />
-                          <span className="font-bold">Popular</span>
-                        </button>
-                        <button
-                          onClick={() => setActiveSection('top-rated')}
-                          className={`flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
-                            activeSection === 'top-rated'
-                              ? 'bg-anime-primary text-white'
-                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                          }`}
-                        >
-                          <i className="fas fa-crown w-4 h-4 text-center" />
-                          <span className="font-bold">Top Airing</span>
-                        </button>
-                      </div>
+              {/* View Mode Selector */}
+              <div className="mb-4">
+                <ViewModeSelector
+                  currentMode={viewMode}
+                  onModeChange={setViewMode}
+                />
+              </div>
+              
+              {/* Combined Filter Buttons and Pagination */}
+              <div className="relative mb-4">
+                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
+                  {/* Filter Buttons - Scrollable Section */}
+                  <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
+                    <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
+                      <button
+                        onClick={() => setActiveSection('newest')}
+                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+                          activeSection === 'newest'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                        }`}
+                      >
+                        NEWEST
+                      </button>
+                      <button
+                        onClick={() => setActiveSection('popular')}
+                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+                          activeSection === 'popular'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                        }`}
+                      >
+                        POPULAR
+                      </button>
+                      <button
+                        onClick={() => setActiveSection('top-rated')}
+                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+                          activeSection === 'top-rated'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                        }`}
+                      >
+                        TOP RATED
+                      </button>
                     </div>
-                    
-                    {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
-                    <div 
-                      id="filter-fade-shadow"
-                      className="absolute top-3 right-20 w-8 h-[calc(100%-24px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
+                  </div>
+                  
+                  {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
+                  <div 
+                    id="filter-fade-shadow"
+                    className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
+                  />
+                  
+                  {/* Subtle scroll indicator when scrollable */}
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
+                  
+                  {/* Pagination Controls - Fixed */}
+                  <div className="flex items-center flex-shrink-0 ml-4">
+                    <AnimePagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={setCurrentPage}
                     />
-                    
-                    {/* Subtle scroll indicator when scrollable */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
-                    
-                    {/* Pagination Controls - Fixed */}
-                    <div className="flex items-center flex-shrink-0 ml-4">
-                      <AnimePagination
-                        currentPage={currentPage}
-                        totalPages={totalPages}
-                        onPageChange={setCurrentPage}
-                      />
-                    </div>
                   </div>
                 </div>
               </div>
-
-              {/* View Mode Selector - Connected to anime cards */}
-              <div className="bg-anime-card-bg border border-anime-border rounded-t-lg border-b-0 mb-1">
-                <div className="p-3">
-                  <ViewModeSelector
-                    currentMode={viewMode}
-                    onModeChange={setViewMode}
-                    className="bg-transparent border-0"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300 bg-anime-card-bg border border-anime-border rounded-b-lg rounded-t-none border-t-0 p-4">
+              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
                 {currentAnimes.map((anime, index) => (
                   <div
                     key={`${anime.id}-${currentPage}`}
