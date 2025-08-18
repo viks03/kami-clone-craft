@@ -111,7 +111,7 @@ const Index = () => {
       <main className="flex-1 flex flex-col w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex flex-col lg:flex-row flex-1 max-w-full">
           {/* Mobile Header */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-4 bg-anime-dark-bg border-b border-anime-border">
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-2 sm:px-4 py-4 bg-anime-dark-bg border-b border-anime-border">
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
