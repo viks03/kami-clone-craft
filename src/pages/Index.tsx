@@ -147,14 +147,6 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              {/* View Mode Selector */}
-              <div className="mb-4">
-                <ViewModeSelector
-                  currentMode={viewMode}
-                  onModeChange={setViewMode}
-                />
-              </div>
-              
               {/* Combined Filter Buttons and Pagination */}
               <div className="relative mb-4">
                  <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
@@ -163,33 +155,33 @@ const Index = () => {
                     <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
                       <button
                         onClick={() => setActiveSection('newest')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+                        className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                           activeSection === 'newest'
                             ? 'bg-anime-primary text-white'
                             : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                         }`}
                       >
-                        NEWEST
+                        Newest
                       </button>
                       <button
                         onClick={() => setActiveSection('popular')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+                        className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                           activeSection === 'popular'
                             ? 'bg-anime-primary text-white'
                             : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                         }`}
                       >
-                        POPULAR
+                        Trending
                       </button>
                       <button
                         onClick={() => setActiveSection('top-rated')}
-                        className={`px-3 py-1.5 text-sm font-medium rounded-md transition-all whitespace-nowrap ${
+                        className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                           activeSection === 'top-rated'
                             ? 'bg-anime-primary text-white'
                             : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                         }`}
                       >
-                        TOP RATED
+                        Top Rated
                       </button>
                     </div>
                   </div>
@@ -211,9 +203,18 @@ const Index = () => {
                       onPageChange={setCurrentPage}
                     />
                   </div>
-                </div>
+                 </div>
+               </div>
+               
+              {/* View Mode Selector */}
+              <div className="mb-4">
+                <ViewModeSelector
+                  currentMode={viewMode}
+                  onModeChange={setViewMode}
+                />
               </div>
-              <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
+               
+               <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
                 {currentAnimes.map((anime, index) => (
                   <div
                     key={`${anime.id}-${currentPage}`}
