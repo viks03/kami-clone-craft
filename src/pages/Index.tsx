@@ -1,4 +1,5 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
+import Cookies from 'js-cookie';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
@@ -12,10 +13,26 @@ import { animeData } from '../data/animeData';
 import { usePaginatedAnimes } from '../hooks/usePaginatedAnimes';
 
 const Index = () => {
-  const [activeSection, setActiveSection] = useState('newest');
+  // Initialize state from cookies with fallbacks
+  const [activeSection, setActiveSection] = useState(() => {
+    return Cookies.get('animeflow-filter') || 'newest';
+  });
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<'classic' | 'card-list' | 'anichart'>('classic');
+  const [viewMode, setViewMode] = useState<'classic' | 'card-list' | 'anichart'>(() => {
+    return (Cookies.get('animeflow-viewmode') as 'classic' | 'card-list' | 'anichart') || 'classic';
+  });
   // bottom nav height handled via CSS var --bottom-nav-h
+
+  // Cookie persistence functions
+  const handleSectionChange = useCallback((section: string) => {
+    setActiveSection(section);
+    Cookies.set('animeflow-filter', section, { expires: 365 }); // Remember for 1 year
+  }, []);
+
+  const handleViewModeChange = useCallback((mode: 'classic' | 'card-list' | 'anichart') => {
+    setViewMode(mode);
+    Cookies.set('animeflow-viewmode', mode, { expires: 365 }); // Remember for 1 year
+  }, []);
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -154,7 +171,7 @@ const Index = () => {
                   <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
                     <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
                       <button
-                        onClick={() => setActiveSection('newest')}
+                        onClick={() => handleSectionChange('newest')}
                         className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                           activeSection === 'newest'
                             ? 'bg-anime-primary text-white'
@@ -164,7 +181,7 @@ const Index = () => {
                         Newest
                       </button>
                       <button
-                        onClick={() => setActiveSection('popular')}
+                        onClick={() => handleSectionChange('popular')}
                         className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                           activeSection === 'popular'
                             ? 'bg-anime-primary text-white'
@@ -174,7 +191,7 @@ const Index = () => {
                         Trending
                       </button>
                       <button
-                        onClick={() => setActiveSection('top-rated')}
+                        onClick={() => handleSectionChange('top-rated')}
                         className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
                           activeSection === 'top-rated'
                             ? 'bg-anime-primary text-white'
@@ -210,7 +227,7 @@ const Index = () => {
               <div className="mb-4">
                 <ViewModeSelector
                   currentMode={viewMode}
-                  onModeChange={setViewMode}
+                  onModeChange={handleViewModeChange}
                 />
               </div>
                
