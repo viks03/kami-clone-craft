@@ -1,14 +1,52 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sun, Moon, Cat, Sparkles, UserRound } from 'lucide-react';
+import Cookies from 'js-cookie';
 
 export const Footer: React.FC<{ className?: string }>= ({ className }) => {
+  const [selectedTheme, setSelectedTheme] = useState<string>('user');
+
   const icons = [
-    { Comp: Sun, label: 'Light theme' },
-    { Comp: Moon, label: 'Dark theme' },
-    { Comp: Cat, label: 'Anime cat' },
-    { Comp: Sparkles, label: 'Shimmer' },
-    { Comp: UserRound, label: 'Character' },
+    { Comp: UserRound, label: 'AnimeFlow Theme', theme: 'user' },
+    { Comp: Sun, label: 'Sun Theme', theme: 'sun' },
+    { Comp: Moon, label: 'Moon Theme', theme: 'moon' },
+    { Comp: Cat, label: 'Anime cat', theme: 'cat' },
+    { Comp: Sparkles, label: 'Shimmer', theme: 'sparkles' },
   ];
+
+  // Load theme from cookie on mount
+  useEffect(() => {
+    const savedTheme = Cookies.get('animeflow-theme') || 'user';
+    setSelectedTheme(savedTheme);
+    applyTheme(savedTheme);
+  }, []);
+
+  const applyTheme = (theme: string) => {
+    const body = document.body;
+    // Remove all theme classes
+    body.classList.remove('sun-theme', 'moon-theme', 'dark');
+    
+    // Apply the selected theme
+    switch (theme) {
+      case 'sun':
+        body.classList.add('sun-theme');
+        break;
+      case 'moon':
+        body.classList.add('moon-theme');
+        break;
+      case 'user':
+      default:
+        // Default AnimeFlow theme (no additional class needed)
+        break;
+    }
+  };
+
+  const handleThemeChange = (theme: string) => {
+    if (['user', 'sun', 'moon'].includes(theme)) {
+      setSelectedTheme(theme);
+      Cookies.set('animeflow-theme', theme, { expires: 365 });
+      applyTheme(theme);
+    }
+  };
 
   return (
     <footer className={`mt-6 px-2 sm:px-4 lg:px-0 ${className || ''}`} role="contentinfo">
@@ -43,12 +81,18 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
           </p>
 
           <div className="inline-flex rounded-xl bg-anime-dark-bg/60 border border-anime-border p-1">
-            {icons.map(({ Comp, label }, idx) => (
+            {icons.map(({ Comp, label, theme }, idx) => (
               <button
                 key={label}
                 type="button"
-                className={`px-3 py-2 rounded-lg transition-colors text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10 ${idx !== icons.length - 1 ? 'mr-0.5' : ''}`}
+                onClick={() => handleThemeChange(theme)}
+                className={`px-3 py-2 rounded-lg transition-all duration-300 ${
+                  selectedTheme === theme
+                    ? 'text-foreground bg-anime-primary/20 shadow-glow'
+                    : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
+                } ${idx !== icons.length - 1 ? 'mr-0.5' : ''}`}
                 aria-label={label}
+                aria-pressed={selectedTheme === theme}
               >
                 <Comp size={16} aria-hidden="true" />
                 <span className="sr-only">{label}</span>

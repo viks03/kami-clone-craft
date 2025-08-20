@@ -72,6 +72,112 @@ All colors MUST be HSL.
     --sidebar-ring: 258 73% 62%;
   }
 
+  /* Sun Theme - Bright & Energetic */
+  .sun-theme {
+    --background: 45 100% 96%; /* #FFFAE5 */
+    --foreground: 30 10% 15%; /* #262419 */
+
+    --card: 48 100% 98%; /* #FFFCF5 */
+    --card-foreground: 30 10% 15%;
+
+    --popover: 45 100% 94%; /* #FFF7D1 */
+    --popover-foreground: 30 10% 15%;
+
+    --primary: 35 100% 50%; /* #FF8C00 */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 45 90% 85%; /* #F5E6A3 */
+    --secondary-foreground: 30 10% 15%;
+
+    --muted: 45 100% 94%; /* #FFF7D1 */
+    --muted-foreground: 30 15% 45%; /* #685D47 */
+
+    --accent: 40 100% 60%; /* #FFCC33 */
+    --accent-foreground: 30 10% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 45 50% 85%; /* #E8DCC0 */
+    --input: 45 50% 85%;
+    --ring: 35 100% 50%; /* #FF8C00 */
+
+    /* Anime site specific colors for sun theme */
+    --anime-primary: 35 100% 50%; /* #FF8C00 */
+    --anime-secondary: 40 100% 60%; /* #FFCC33 */
+    --anime-dark-bg: 48 100% 98%; /* #FFFCF5 */
+    --anime-card-bg: 45 100% 94%; /* #FFF7D1 */
+    --anime-border: 45 50% 85%; /* #E8DCC0 */
+    --anime-text-muted: 30 15% 45%; /* #685D47 */
+    
+    --gradient-primary: linear-gradient(135deg, hsl(35 100% 50%), hsl(40 100% 60%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(255, 140, 0, 0.1), rgba(255, 204, 51, 0.2));
+    --shadow-glow: 0 0 40px hsl(35 100% 50% / 0.3);
+    --shadow-card: 0 4px 20px rgba(255, 140, 0, 0.1);
+
+    --sidebar-background: 48 100% 98%;
+    --sidebar-foreground: 30 10% 15%;
+    --sidebar-primary: 35 100% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 90% 85%;
+    --sidebar-accent-foreground: 30 10% 15%;
+    --sidebar-border: 45 50% 85%;
+    --sidebar-ring: 35 100% 50%;
+  }
+
+  /* Moon Theme - Cool & Mystical */
+  .moon-theme {
+    --background: 220 30% 8%; /* #0F1419 */
+    --foreground: 210 40% 90%; /* #E1E7F0 */
+
+    --card: 220 30% 10%; /* #141B23 */
+    --card-foreground: 210 40% 90%;
+
+    --popover: 220 30% 12%; /* #1A212B */
+    --popover-foreground: 210 40% 90%;
+
+    --primary: 200 100% 65%; /* #33CCFF */
+    --primary-foreground: 220 30% 8%;
+
+    --secondary: 210 50% 20%; /* #1A2332 */
+    --secondary-foreground: 210 40% 90%;
+
+    --muted: 220 30% 12%; /* #1A212B */
+    --muted-foreground: 210 20% 60%; /* #8A94A3 */
+
+    --accent: 180 100% 70%; /* #33FFFF */
+    --accent-foreground: 220 30% 8%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 30% 18%; /* #252E3A */
+    --input: 220 30% 18%;
+    --ring: 200 100% 65%; /* #33CCFF */
+
+    /* Anime site specific colors for moon theme */
+    --anime-primary: 200 100% 65%; /* #33CCFF */
+    --anime-secondary: 180 100% 70%; /* #33FFFF */
+    --anime-dark-bg: 220 30% 8%; /* #0F1419 */
+    --anime-card-bg: 220 30% 10%; /* #141B23 */
+    --anime-border: 220 30% 18%; /* #252E3A */
+    --anime-text-muted: 210 20% 60%; /* #8A94A3 */
+    
+    --gradient-primary: linear-gradient(135deg, hsl(200 100% 65%), hsl(180 100% 70%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(51, 204, 255, 0.1), rgba(51, 255, 255, 0.2));
+    --shadow-glow: 0 0 40px hsl(200 100% 65% / 0.3);
+    --shadow-card: 0 4px 20px rgba(51, 204, 255, 0.1);
+
+    --sidebar-background: 220 30% 8%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 200 100% 65%;
+    --sidebar-primary-foreground: 220 30% 8%;
+    --sidebar-accent: 210 50% 20%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 200 100% 65%;
+  }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
