@@ -255,169 +255,94 @@ const Index = () => {
                )}
 
                {viewMode === 'card-list' && (
-                 <div className="space-y-3 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => {
-                     const animeTypes = ['TV', 'ONA', 'OVA', 'Movie', 'Special'];
-                     const years = ['2024', '2023', '2025', '2022', '2021'];
-                     const randomType = animeTypes[index % animeTypes.length];
-                     const randomYear = years[index % years.length];
-                     const randomScore = (Math.random() * 2 + 7).toFixed(1);
-                     
-                     return (
-                       <div
-                         key={`${anime.id}-${currentPage}`}
-                         className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-lg p-4 hover:border-anime-primary/30 transition-all duration-300 group"
-                         style={{ 
-                           animationDelay: `${index * 50}ms`,
-                           animationFillMode: 'both'
-                         }}
-                       >
-                         <div className="flex items-center gap-4">
-                           <div className="relative flex-shrink-0">
-                             <img 
-                               src={anime.poster} 
-                               alt={anime.name}
-                               className="w-16 h-20 rounded-md object-cover"
-                             />
-                           </div>
+                 <div className="space-y-2.5 min-h-[600px] transition-all duration-300">
+                   {currentAnimes.map((anime, index) => (
+                     <div
+                       key={`${anime.id}-${currentPage}`}
+                       className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-lg p-3 hover:border-anime-primary/30 transition-all duration-300 group"
+                       style={{ 
+                         animationDelay: `${index * 50}ms`,
+                         animationFillMode: 'both'
+                       }}
+                     >
+                       <div className="flex items-center gap-3">
+                         <div className="relative flex-shrink-0">
+                           <img 
+                             src={anime.poster} 
+                             alt={anime.name}
+                             className="w-20 h-24 rounded-md object-cover"
+                           />
+                         </div>
+                         
+                         <div className="flex-1 min-w-0">
+                           <h3 className="text-white font-bold text-base sm:text-lg truncate group-hover:text-anime-primary transition-colors">
+                             {anime.name}
+                           </h3>
                            
-                           <div className="flex-1 min-w-0">
-                             <h3 className="text-white font-bold text-lg truncate group-hover:text-anime-primary transition-colors">
-                               {anime.name}
-                             </h3>
-                             
-                             <div className="flex items-center gap-2 mt-1">
-                               <div className="flex items-center gap-1">
-                                 <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-                                 <span className="text-sm text-anime-text-muted">{randomYear}</span>
-                               </div>
-                               
-                               <div className="flex items-center gap-1">
-                                 <i className="fas fa-microphone text-xs text-anime-text-muted"></i>
-                                 <span className="text-sm text-anime-text-muted">CC</span>
-                                 <span className="text-sm text-anime-text-muted">{String(anime.episodes || Math.floor(Math.random() * 50) + 1)}</span>
-                               </div>
-                               
-                               <div className="flex items-center gap-1">
-                                 <i className="fas fa-star text-xs text-yellow-400"></i>
-                                 <span className="text-sm text-anime-text-muted">{randomScore}</span>
-                               </div>
-                             </div>
-                             
-                             <div className="flex items-center gap-2 mt-2 flex-wrap">
-                               <span className="inline-flex items-center px-2 py-1 text-xs bg-anime-primary/20 text-anime-primary rounded-md">
-                                 {anime.type || randomType}
+                           <div className="flex items-center gap-2 mt-1 text-sm">
+                             {anime.type && (
+                               <span className="inline-flex items-center px-2 py-0.5 text-xs bg-anime-primary/15 text-anime-primary rounded-md">
+                                 {anime.type}
                                </span>
-                               <span className="inline-flex items-center px-2 py-1 text-xs bg-blue-500/20 text-blue-400 rounded-md">
-                                 Action
+                             )}
+                             {anime.episodes && (
+                               <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-anime-card-bg/80 rounded-md">
+                                 <i className="fas fa-closed-captioning text-[9px]"></i>
+                                 <span className="text-anime-text-muted">
+                                   {String(anime.episodes.sub || anime.episodes.dub || 0)}
+                                 </span>
                                </span>
-                               <span className="inline-flex items-center px-2 py-1 text-xs bg-green-500/20 text-green-400 rounded-md">
-                                 Drama
-                               </span>
-                               <span className="inline-flex items-center px-2 py-1 text-xs bg-purple-500/20 text-purple-400 rounded-md">
-                                 Fantasy
-                               </span>
-                             </div>
+                             )}
                            </div>
                          </div>
                        </div>
-                     );
-                   })}
+                     </div>
+                   ))}
                  </div>
                )}
 
                {viewMode === 'anichart' && (
-                 <div className="space-y-6 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => {
-                     const animeTypes = ['TV', 'ONA', 'OVA', 'Movie', 'Special'];
-                     const years = ['2024', '2023', '2025', '2022', '2021'];
-                     const randomType = animeTypes[index % animeTypes.length];
-                     const randomYear = years[index % years.length];
-                     const randomScore = (Math.random() * 2 + 7).toFixed(1);
-                     const randomEpisodes = anime.episodes || Math.floor(Math.random() * 50) + 1;
-                     
-                     return (
-                       <div
-                         key={`${anime.id}-${currentPage}`}
-                         className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group"
-                         style={{ 
-                           animationDelay: `${index * 50}ms`,
-                           animationFillMode: 'both'
-                         }}
-                       >
-                         <div className="flex gap-6 p-6">
-                           <div className="relative flex-shrink-0">
-                             <img 
-                               src={anime.poster} 
-                               alt={anime.name}
-                               className="w-32 h-44 rounded-lg object-cover shadow-lg"
-                             />
+                 <div className="space-y-4 min-h-[600px] transition-all duration-300">
+                   {currentAnimes.map((anime, index) => (
+                     <div
+                       key={`${anime.id}-${currentPage}`}
+                       className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group"
+                       style={{ 
+                         animationDelay: `${index * 50}ms`,
+                         animationFillMode: 'both'
+                       }}
+                     >
+                       <div className="flex gap-4 p-4">
+                         <div className="relative flex-shrink-0">
+                           <img 
+                             src={anime.poster} 
+                             alt={anime.name}
+                             className="w-36 h-52 rounded-lg object-cover shadow-lg"
+                           />
+                           {anime.type && (
                              <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
-                               {randomType}
+                               {anime.type}
                              </div>
-                           </div>
+                           )}
+                         </div>
+                         
+                         <div className="flex-1 min-w-0">
+                           <h3 className="text-white font-bold text-xl sm:text-2xl mb-2 group-hover:text-anime-primary transition-colors">
+                             {anime.name}
+                           </h3>
                            
-                           <div className="flex-1 min-w-0">
-                             <div className="flex items-start justify-between">
-                               <div className="flex-1">
-                                 <h3 className="text-white font-bold text-2xl mb-2 group-hover:text-anime-primary transition-colors">
-                                   {anime.name}
-                                 </h3>
-                                 <p className="text-anime-text-muted text-sm mb-4 italic">
-                                   Shingeki no Kyojin
-                                 </p>
-                               </div>
-                               
-                               <div className="flex items-center gap-2 ml-4">
-                                 <div className="flex items-center gap-1 bg-anime-dark-bg/50 px-3 py-1 rounded-lg">
-                                   <i className="fas fa-star text-yellow-400 text-sm"></i>
-                                   <span className="text-white font-bold">{randomScore}</span>
-                                 </div>
-                               </div>
-                             </div>
-                             
-                             <p className="text-anime-text-muted text-sm mb-4 leading-relaxed">
-                               Witness something horrific as the city walls are destroyed by a colossal titan that appears out of thin air. As the smaller titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single titan and take revenge for all of mankind.
-                             </p>
-                             
-                             <div className="flex items-center gap-4 mb-4">
-                               <div className="flex items-center gap-2">
-                                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                                 <span className="text-sm font-medium text-white">{randomType}</span>
-                                 <span className="text-sm text-anime-text-muted">{randomYear}</span>
-                               </div>
-                               
-                               <div className="flex items-center gap-2">
-                                 <i className="fas fa-microphone text-anime-text-muted text-sm"></i>
-                                 <span className="text-sm text-anime-text-muted">CC</span>
-                                 <span className="text-sm font-medium text-white">{String(randomEpisodes)}</span>
-                               </div>
-                               
-                               <div className="flex items-center gap-2">
-                                 <i className="fas fa-star text-yellow-400 text-sm"></i>
-                                 <span className="text-sm font-medium text-white">{randomScore}</span>
-                               </div>
-                             </div>
-                             
-                             <div className="flex items-center gap-2 flex-wrap">
-                               <span className="inline-flex items-center px-3 py-1.5 text-sm bg-orange-600 text-white rounded-md font-medium">
-                                 Action
+                           <div className="flex items-center gap-3 flex-wrap text-sm">
+                             {anime.episodes && (
+                               <span className="inline-flex items-center gap-1 text-anime-text-muted bg-anime-card-bg/80 px-3 py-1 rounded-md">
+                                 <i className="fas fa-closed-captioning text-[10px]"></i>
+                                 {String(anime.episodes.sub || anime.episodes.dub || 0)} episodes
                                </span>
-                               <span className="inline-flex items-center px-3 py-1.5 text-sm bg-orange-600 text-white rounded-md font-medium">
-                                 Drama
-                               </span>
-                               <span className="inline-flex items-center px-3 py-1.5 text-sm bg-orange-600 text-white rounded-md font-medium">
-                                 Fantasy
-                               </span>
-                               <span className="inline-flex items-center px-3 py-1.5 text-sm bg-orange-600 text-white rounded-md font-medium">
-                                 Mystery
-                               </span>
-                             </div>
+                             )}
                            </div>
                          </div>
                        </div>
-                     );
-                   })}
+                     </div>
+                   ))}
                  </div>
                )}
             </section>
@@ -558,9 +483,7 @@ const Index = () => {
         </div>
         
         {/* Footer spans full width */}
-        <div className="w-full px-4 lg:px-4">
-          <Footer />
-        </div>
+        <Footer />
         
       </main>
       
