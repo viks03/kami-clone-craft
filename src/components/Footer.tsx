@@ -12,7 +12,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
 
   return (
     <footer className={`mt-6 px-2 sm:px-4 lg:px-0 ${className || ''}`} role="contentinfo">
-      <div className="bg-anime-card-bg/60 border border-anime-border/70 rounded-xl py-4">
+      <div className="bg-anime-card-bg/60 border border-anime-border/70 rounded-xl py-4 px-4 sm:px-6">
         {/* Logo / Brand */}
         <a href="/" className="inline-flex items-center gap-2 text-foreground hover:text-anime-primary transition-colors">
           <span className="text-base font-bold">AnimeFlow</span>
