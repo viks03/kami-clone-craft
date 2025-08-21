@@ -37,7 +37,7 @@ export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => 
           />
           <button 
             onClick={handleSearch}
-            className="text-anime-primary text-base hover:text-purple-400 transition-colors"
+            className="text-foreground hover:text-anime-primary transition-colors text-base"
           >
             <i className="fas fa-search" />
           </button>
@@ -45,9 +45,9 @@ export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => 
         
         <div className="flex items-center gap-4">
           <NotificationDrawer>
-            <i className="fas fa-bell text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
+            <i className="fas fa-bell text-2xl leading-10 cursor-pointer text-foreground hover:text-anime-primary transition-colors" />
           </NotificationDrawer>
-          <i className="fas fa-user-circle text-2xl leading-10 cursor-pointer hover:text-anime-primary transition-colors" />
+          <i className="fas fa-user-circle text-2xl leading-10 cursor-pointer text-foreground hover:text-anime-primary transition-colors" />
         </div>
       </div>
 
@@ -67,7 +67,7 @@ export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => 
           />
           <button 
             onClick={handleSearch}
-            className="text-anime-primary text-base hover:text-purple-400 transition-colors"
+            className="text-foreground hover:text-anime-primary transition-colors text-base"
           >
             <i className="fas fa-search" />
           </button>

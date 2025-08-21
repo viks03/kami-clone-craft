@@ -75,40 +75,40 @@ All colors MUST be HSL.
   /* Sun Theme - Bright & Energetic */
   .sun-theme {
     --background: 45 100% 96%; /* #FFFAE5 */
-    --foreground: 25 15% 8%; /* #1C1813 - Darker for better contrast */
+    --foreground: 25 20% 5%; /* #1A1612 - Much darker for better contrast */
 
     --card: 48 100% 98%; /* #FFFCF5 */
-    --card-foreground: 25 15% 8%;
+    --card-foreground: 25 20% 5%;
 
     --popover: 45 100% 94%; /* #FFF7D1 */
-    --popover-foreground: 25 15% 8%;
+    --popover-foreground: 25 20% 5%;
 
-    --primary: 28 95% 45%; /* #E67E00 - Slightly darker orange */
+    --primary: 28 95% 40%; /* #CC6600 - Darker orange for better contrast */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 85% 75%; /* #E6D785 - Better contrast */
-    --secondary-foreground: 25 15% 8%;
+    --secondary: 42 85% 65%; /* #D6C472 - Better contrast */
+    --secondary-foreground: 25 20% 5%;
 
-    --muted: 45 90% 90%; /* #F0E8C7 - Slightly darker */
-    --muted-foreground: 30 20% 35%; /* #5A4F3A - Better contrast */
+    --muted: 45 90% 85%; /* #E6D9B8 - Darker for better contrast */
+    --muted-foreground: 30 30% 25%; /* #4D3F28 - Much better contrast */
 
-    --accent: 35 95% 50%; /* #F28C00 - More vibrant */
+    --accent: 35 95% 45%; /* #E67300 - Darker accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 40% 75%; /* #C7B89A - Better contrast */
-    --input: 40 40% 75%;
-    --ring: 28 95% 45%; /* #E67E00 */
+    --border: 40 50% 65%; /* #B3A082 - Better contrast */
+    --input: 40 50% 65%;
+    --ring: 28 95% 40%; /* #CC6600 */
 
     /* Anime site specific colors for sun theme */
-    --anime-primary: 28 95% 45%; /* #E67E00 - Better contrast */
-    --anime-secondary: 35 95% 50%; /* #F28C00 */
+    --anime-primary: 28 95% 40%; /* #CC6600 - Darker for better contrast */
+    --anime-secondary: 35 95% 45%; /* #E67300 */
     --anime-dark-bg: 48 100% 98%; /* #FFFCF5 */
-    --anime-card-bg: 45 85% 88%; /* #E8DCC0 - Darker for better contrast */
-    --anime-border: 40 45% 70%; /* #B8A687 - Better visibility */
-    --anime-text-muted: 30 25% 30%; /* #4A3F2E - Much better contrast */
+    --anime-card-bg: 45 85% 82%; /* #DDD1AD - Much darker for better contrast */
+    --anime-border: 40 55% 60%; /* #A8956C - Much better visibility */
+    --anime-text-muted: 30 35% 20%; /* #3D2F1A - Excellent contrast */
     
     --gradient-primary: linear-gradient(135deg, hsl(28 95% 45%), hsl(35 95% 50%));
     --gradient-overlay: linear-gradient(to bottom, rgba(230, 126, 0, 0.1), rgba(242, 140, 0, 0.2));
@@ -181,40 +181,40 @@ All colors MUST be HSL.
   /* Cat Theme - Girlish Pink & Smooth */
   .cat-theme {
     --background: 340 50% 96%; /* #FAF0F6 - Very soft pink background */
-    --foreground: 340 25% 15%; /* #2D1B24 - Dark rose for text */
+    --foreground: 340 30% 10%; /* #241219 - Much darker for better contrast */
 
     --card: 340 40% 94%; /* #F5E6ED - Slightly darker pink for cards */
-    --card-foreground: 340 25% 15%;
+    --card-foreground: 340 30% 10%;
 
     --popover: 340 35% 92%; /* #F0DCE5 - Soft pink for popovers */
-    --popover-foreground: 340 25% 15%;
+    --popover-foreground: 340 30% 10%;
 
-    --primary: 330 65% 55%; /* #D147A3 - Beautiful rose pink */
+    --primary: 330 70% 50%; /* #C93D93 - Darker rose pink for better contrast */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 45% 75%; /* #E6B8CC - Soft rose */
-    --secondary-foreground: 340 25% 15%;
+    --secondary: 340 45% 70%; /* #E0A8C2 - Better contrast */
+    --secondary-foreground: 340 30% 10%;
 
-    --muted: 340 30% 88%; /* #E8D1DB - Very light pink */
-    --muted-foreground: 340 20% 40%; /* #755A64 - Medium contrast */
+    --muted: 340 30% 85%; /* #E5C5D1 - Darker for better contrast */
+    --muted-foreground: 340 25% 30%; /* #634A54 - Much better contrast */
 
-    --accent: 320 60% 60%; /* #E357B8 - Vibrant pink accent */
+    --accent: 320 65% 55%; /* #DF4BB3 - Better contrast */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 340 25% 80%; /* #D4BCC6 - Soft pink border */
-    --input: 340 25% 80%;
-    --ring: 330 65% 55%; /* #D147A3 */
+    --border: 340 30% 75%; /* #D1B3C1 - Better contrast */
+    --input: 340 30% 75%;
+    --ring: 330 70% 50%; /* #C93D93 */
 
     /* Anime site specific colors for cat theme */
-    --anime-primary: 330 65% 55%; /* #D147A3 - Rose pink */
-    --anime-secondary: 320 60% 60%; /* #E357B8 - Vibrant pink */
+    --anime-primary: 330 70% 50%; /* #C93D93 - Darker rose pink */
+    --anime-secondary: 320 65% 55%; /* #DF4BB3 - Better contrast */
     --anime-dark-bg: 340 50% 96%; /* #FAF0F6 */
-    --anime-card-bg: 340 35% 90%; /* #EDD4E0 - Slightly darker for contrast */
-    --anime-border: 340 20% 75%; /* #C7A8B5 - Better visibility */
-    --anime-text-muted: 340 15% 45%; /* #6B5459 - Good contrast */
+    --anime-card-bg: 340 35% 85%; /* #E8C6D6 - Much darker for better contrast */
+    --anime-border: 340 25% 70%; /* #C299AB - Much better visibility */
+    --anime-text-muted: 340 20% 35%; /* #5D3F4B - Excellent contrast */
     
     --gradient-primary: linear-gradient(135deg, hsl(330 65% 55%), hsl(320 60% 60%));
     --gradient-overlay: linear-gradient(to bottom, rgba(209, 71, 163, 0.1), rgba(227, 87, 184, 0.15));

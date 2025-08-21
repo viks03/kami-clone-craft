@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Sun, Moon, Cat, Sparkles } from 'lucide-react';
+import { Sun, Moon, Cat, Sparkles, Monitor } from 'lucide-react';
 import Cookies from 'js-cookie';
 
 export const Footer: React.FC<{ className?: string }>= ({ className }) => {
@@ -10,13 +10,25 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
     { Comp: Sun, label: 'Sun Theme', theme: 'sun' },
     { Comp: Sparkles, label: 'Mystical Theme', theme: 'moon' },
     { Comp: Cat, label: 'Anime Theme', theme: 'cat' },
+    { Comp: Monitor, label: 'System Theme', theme: 'system' },
   ];
 
-  // Load theme from cookie on mount
+  // Load theme from cookie on mount and listen to system changes
   useEffect(() => {
     const savedTheme = Cookies.get('animeflow-theme') || 'user';
     setSelectedTheme(savedTheme);
     applyTheme(savedTheme);
+
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = () => {
+      if (savedTheme === 'system') {
+        applyTheme('system');
+      }
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
 
   const applyTheme = (theme: string) => {
@@ -35,6 +47,15 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
       case 'cat':
         body.classList.add('cat-theme');
         break;
+      case 'system':
+        // Detect system preference
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          // Use default dark theme (no additional class)
+        } else {
+          body.classList.add('sun-theme'); // Use sun theme for light system preference
+        }
+        break;
       case 'user':
       default:
         // Default AnimeFlow theme (no additional class needed)
@@ -43,7 +64,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   };
 
   const handleThemeChange = (theme: string) => {
-    if (['user', 'sun', 'moon', 'cat'].includes(theme)) {
+    if (['user', 'sun', 'moon', 'cat', 'system'].includes(theme)) {
       setSelectedTheme(theme);
       Cookies.set('animeflow-theme', theme, { expires: 365 });
       applyTheme(theme);
