@@ -178,6 +178,59 @@ All colors MUST be HSL.
     --sidebar-ring: 200 85% 60%;
   }
 
+  /* Cat Theme - Girlish Pink & Smooth */
+  .cat-theme {
+    --background: 340 50% 96%; /* #FAF0F6 - Very soft pink background */
+    --foreground: 340 25% 15%; /* #2D1B24 - Dark rose for text */
+
+    --card: 340 40% 94%; /* #F5E6ED - Slightly darker pink for cards */
+    --card-foreground: 340 25% 15%;
+
+    --popover: 340 35% 92%; /* #F0DCE5 - Soft pink for popovers */
+    --popover-foreground: 340 25% 15%;
+
+    --primary: 330 65% 55%; /* #D147A3 - Beautiful rose pink */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 340 45% 75%; /* #E6B8CC - Soft rose */
+    --secondary-foreground: 340 25% 15%;
+
+    --muted: 340 30% 88%; /* #E8D1DB - Very light pink */
+    --muted-foreground: 340 20% 40%; /* #755A64 - Medium contrast */
+
+    --accent: 320 60% 60%; /* #E357B8 - Vibrant pink accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 340 25% 80%; /* #D4BCC6 - Soft pink border */
+    --input: 340 25% 80%;
+    --ring: 330 65% 55%; /* #D147A3 */
+
+    /* Anime site specific colors for cat theme */
+    --anime-primary: 330 65% 55%; /* #D147A3 - Rose pink */
+    --anime-secondary: 320 60% 60%; /* #E357B8 - Vibrant pink */
+    --anime-dark-bg: 340 50% 96%; /* #FAF0F6 */
+    --anime-card-bg: 340 35% 90%; /* #EDD4E0 - Slightly darker for contrast */
+    --anime-border: 340 20% 75%; /* #C7A8B5 - Better visibility */
+    --anime-text-muted: 340 15% 45%; /* #6B5459 - Good contrast */
+    
+    --gradient-primary: linear-gradient(135deg, hsl(330 65% 55%), hsl(320 60% 60%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(209, 71, 163, 0.1), rgba(227, 87, 184, 0.15));
+    --shadow-glow: 0 0 40px hsl(330 65% 55% / 0.25);
+    --shadow-card: 0 4px 20px rgba(209, 71, 163, 0.12);
+
+    --sidebar-background: 340 50% 96%;
+    --sidebar-foreground: 340 25% 15%;
+    --sidebar-primary: 330 65% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 340 45% 75%;
+    --sidebar-accent-foreground: 340 25% 15%;
+    --sidebar-border: 340 25% 80%;
+    --sidebar-ring: 330 65% 55%;
+  }
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;

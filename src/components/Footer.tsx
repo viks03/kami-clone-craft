@@ -22,7 +22,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   const applyTheme = (theme: string) => {
     const body = document.body;
     // Remove all theme classes
-    body.classList.remove('sun-theme', 'moon-theme', 'dark');
+    body.classList.remove('sun-theme', 'moon-theme', 'cat-theme', 'dark');
     
     // Apply the selected theme
     switch (theme) {
@@ -31,6 +31,9 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
         break;
       case 'moon':
         body.classList.add('moon-theme');
+        break;
+      case 'cat':
+        body.classList.add('cat-theme');
         break;
       case 'user':
       default:
