@@ -75,54 +75,54 @@ All colors MUST be HSL.
   /* Sun Theme - Bright & Energetic */
   .sun-theme {
     --background: 45 100% 96%; /* #FFFAE5 */
-    --foreground: 30 10% 15%; /* #262419 */
+    --foreground: 25 15% 8%; /* #1C1813 - Darker for better contrast */
 
     --card: 48 100% 98%; /* #FFFCF5 */
-    --card-foreground: 30 10% 15%;
+    --card-foreground: 25 15% 8%;
 
     --popover: 45 100% 94%; /* #FFF7D1 */
-    --popover-foreground: 30 10% 15%;
+    --popover-foreground: 25 15% 8%;
 
-    --primary: 35 100% 50%; /* #FF8C00 */
+    --primary: 28 95% 45%; /* #E67E00 - Slightly darker orange */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 90% 85%; /* #F5E6A3 */
-    --secondary-foreground: 30 10% 15%;
+    --secondary: 42 85% 75%; /* #E6D785 - Better contrast */
+    --secondary-foreground: 25 15% 8%;
 
-    --muted: 45 100% 94%; /* #FFF7D1 */
-    --muted-foreground: 30 15% 45%; /* #685D47 */
+    --muted: 45 90% 90%; /* #F0E8C7 - Slightly darker */
+    --muted-foreground: 30 20% 35%; /* #5A4F3A - Better contrast */
 
-    --accent: 40 100% 60%; /* #FFCC33 */
-    --accent-foreground: 30 10% 15%;
+    --accent: 35 95% 50%; /* #F28C00 - More vibrant */
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 45 50% 85%; /* #E8DCC0 */
-    --input: 45 50% 85%;
-    --ring: 35 100% 50%; /* #FF8C00 */
+    --border: 40 40% 75%; /* #C7B89A - Better contrast */
+    --input: 40 40% 75%;
+    --ring: 28 95% 45%; /* #E67E00 */
 
     /* Anime site specific colors for sun theme */
-    --anime-primary: 35 100% 50%; /* #FF8C00 */
-    --anime-secondary: 40 100% 60%; /* #FFCC33 */
+    --anime-primary: 28 95% 45%; /* #E67E00 - Better contrast */
+    --anime-secondary: 35 95% 50%; /* #F28C00 */
     --anime-dark-bg: 48 100% 98%; /* #FFFCF5 */
-    --anime-card-bg: 45 100% 94%; /* #FFF7D1 */
-    --anime-border: 45 50% 85%; /* #E8DCC0 */
-    --anime-text-muted: 30 15% 45%; /* #685D47 */
+    --anime-card-bg: 45 85% 88%; /* #E8DCC0 - Darker for better contrast */
+    --anime-border: 40 45% 70%; /* #B8A687 - Better visibility */
+    --anime-text-muted: 30 25% 30%; /* #4A3F2E - Much better contrast */
     
-    --gradient-primary: linear-gradient(135deg, hsl(35 100% 50%), hsl(40 100% 60%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(255, 140, 0, 0.1), rgba(255, 204, 51, 0.2));
-    --shadow-glow: 0 0 40px hsl(35 100% 50% / 0.3);
-    --shadow-card: 0 4px 20px rgba(255, 140, 0, 0.1);
+    --gradient-primary: linear-gradient(135deg, hsl(28 95% 45%), hsl(35 95% 50%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(230, 126, 0, 0.1), rgba(242, 140, 0, 0.2));
+    --shadow-glow: 0 0 40px hsl(28 95% 45% / 0.3);
+    --shadow-card: 0 4px 20px rgba(230, 126, 0, 0.15);
 
     --sidebar-background: 48 100% 98%;
-    --sidebar-foreground: 30 10% 15%;
-    --sidebar-primary: 35 100% 50%;
+    --sidebar-foreground: 25 15% 8%;
+    --sidebar-primary: 28 95% 45%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 45 90% 85%;
-    --sidebar-accent-foreground: 30 10% 15%;
-    --sidebar-border: 45 50% 85%;
-    --sidebar-ring: 35 100% 50%;
+    --sidebar-accent: 42 85% 75%;
+    --sidebar-accent-foreground: 25 15% 8%;
+    --sidebar-border: 40 40% 75%;
+    --sidebar-ring: 28 95% 45%;
   }
 
   /* Moon Theme - Cool & Mystical */
@@ -136,46 +136,46 @@ All colors MUST be HSL.
     --popover: 220 30% 12%; /* #1A212B */
     --popover-foreground: 210 40% 90%;
 
-    --primary: 200 100% 65%; /* #33CCFF */
+    --primary: 200 85% 60%; /* #2BB5E6 - Less saturated */
     --primary-foreground: 220 30% 8%;
 
-    --secondary: 210 50% 20%; /* #1A2332 */
+    --secondary: 215 25% 15%; /* #1C2028 - Less blue, more neutral */
     --secondary-foreground: 210 40% 90%;
 
-    --muted: 220 30% 12%; /* #1A212B */
-    --muted-foreground: 210 20% 60%; /* #8A94A3 */
+    --muted: 220 25% 12%; /* #1B2127 - Less blue */
+    --muted-foreground: 210 15% 65%; /* #9BA0A8 - Better contrast */
 
-    --accent: 180 100% 70%; /* #33FFFF */
+    --accent: 190 80% 65%; /* #33E6E6 - Less saturated cyan */
     --accent-foreground: 220 30% 8%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 30% 18%; /* #252E3A */
-    --input: 220 30% 18%;
-    --ring: 200 100% 65%; /* #33CCFF */
+    --border: 220 20% 20%; /* #2A2F36 - Less blue, more neutral */
+    --input: 220 20% 20%;
+    --ring: 200 85% 60%; /* #2BB5E6 */
 
     /* Anime site specific colors for moon theme */
-    --anime-primary: 200 100% 65%; /* #33CCFF */
-    --anime-secondary: 180 100% 70%; /* #33FFFF */
+    --anime-primary: 200 85% 60%; /* #2BB5E6 - Less saturated */
+    --anime-secondary: 190 80% 65%; /* #33E6E6 */
     --anime-dark-bg: 220 30% 8%; /* #0F1419 */
-    --anime-card-bg: 220 30% 10%; /* #141B23 */
-    --anime-border: 220 30% 18%; /* #252E3A */
-    --anime-text-muted: 210 20% 60%; /* #8A94A3 */
+    --anime-card-bg: 218 20% 12%; /* #1C1F24 - Less blue, more neutral */
+    --anime-border: 220 15% 22%; /* #323539 - Much less blue */
+    --anime-text-muted: 210 12% 70%; /* #A8ADB3 - Better contrast */
     
-    --gradient-primary: linear-gradient(135deg, hsl(200 100% 65%), hsl(180 100% 70%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(51, 204, 255, 0.1), rgba(51, 255, 255, 0.2));
-    --shadow-glow: 0 0 40px hsl(200 100% 65% / 0.3);
-    --shadow-card: 0 4px 20px rgba(51, 204, 255, 0.1);
+    --gradient-primary: linear-gradient(135deg, hsl(200 85% 60%), hsl(190 80% 65%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(43, 181, 230, 0.1), rgba(51, 230, 230, 0.15));
+    --shadow-glow: 0 0 40px hsl(200 85% 60% / 0.25);
+    --shadow-card: 0 4px 20px rgba(43, 181, 230, 0.08);
 
     --sidebar-background: 220 30% 8%;
     --sidebar-foreground: 210 40% 90%;
-    --sidebar-primary: 200 100% 65%;
+    --sidebar-primary: 200 85% 60%;
     --sidebar-primary-foreground: 220 30% 8%;
-    --sidebar-accent: 210 50% 20%;
+    --sidebar-accent: 215 25% 15%;
     --sidebar-accent-foreground: 210 40% 90%;
-    --sidebar-border: 220 30% 18%;
-    --sidebar-ring: 200 100% 65%;
+    --sidebar-border: 220 20% 20%;
+    --sidebar-ring: 200 85% 60%;
   }
 
   .dark {

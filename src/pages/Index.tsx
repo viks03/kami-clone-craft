@@ -11,8 +11,12 @@ import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
 import { animeData } from '../data/animeData';
 import { usePaginatedAnimes } from '../hooks/usePaginatedAnimes';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 
 const Index = () => {
+  // Initialize scroll position preservation
+  useScrollPosition();
+
   // Initialize state from cookies with fallbacks
   const [activeSection, setActiveSection] = useState(() => {
     return Cookies.get('animeflow-filter') || 'newest';
@@ -274,10 +278,10 @@ const Index = () => {
                            />
                          </div>
                          
-                         <div className="flex-1 min-w-0">
-                           <h3 className="text-white font-bold text-base sm:text-lg truncate group-hover:text-anime-primary transition-colors">
-                             {anime.name}
-                           </h3>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-foreground font-bold text-base sm:text-lg truncate group-hover:text-anime-primary transition-colors">
+                              {anime.name}
+                            </h3>
                            
                            <div className="flex items-center gap-2 mt-1 text-sm">
                              {anime.type && (
@@ -326,10 +330,10 @@ const Index = () => {
                            )}
                          </div>
                          
-                         <div className="flex-1 min-w-0">
-                           <h3 className="text-white font-bold text-xl sm:text-2xl mb-2 group-hover:text-anime-primary transition-colors">
-                             {anime.name}
-                           </h3>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-foreground font-bold text-xl sm:text-2xl mb-2 group-hover:text-anime-primary transition-colors">
+                              {anime.name}
+                            </h3>
                            
                            <div className="flex items-center gap-3 flex-wrap text-sm">
                              {anime.episodes && (

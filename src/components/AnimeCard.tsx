@@ -186,7 +186,7 @@ export const AnimeCard = memo(({ name, poster, episodes, className, type }: Anim
           <div className="w-2 h-2 bg-green-500 rounded-full flex-shrink-0"></div>
           <p 
             className={`text-xs font-extrabold truncate flex-1 cursor-pointer transition-colors duration-200 ${
-              hoverState.title ? 'text-anime-primary' : 'text-white hover:text-anime-primary'
+              hoverState.title ? 'text-anime-primary' : 'text-foreground hover:text-anime-primary'
             }`}
             title={name}
             onMouseEnter={() => handleMouseEnter('title')}
