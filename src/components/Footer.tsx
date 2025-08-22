@@ -4,8 +4,6 @@ import Cookies from 'js-cookie';
 
 export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   const [selectedTheme, setSelectedTheme] = useState<string>('user');
-  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
-  const transitionTimeoutRef = useRef<NodeJS.Timeout>();
 
   const icons = [
     { Comp: Moon, label: 'AnimeFlow Theme', theme: 'user' },
@@ -80,27 +78,14 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
       return;
     }
 
-    // Clear any existing transition timeout
-    if (transitionTimeoutRef.current) {
-      clearTimeout(transitionTimeoutRef.current);
-    }
-
-    // Smooth transition with debouncing
-    setIsTransitioning(true);
+    // Instant theme change like system detection
     setSelectedTheme(theme);
     Cookies.set('animeflow-theme', theme, { expires: 365 });
-    
-    // Apply theme immediately but with transition flag
     applyTheme(theme);
-    
-    // Clear transition flag after animation completes
-    transitionTimeoutRef.current = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 150);
   }, [selectedTheme, applyTheme]);
 
   return (
-    <footer className={`mt-6 px-2 lg:px-0 ${className || ''}`} role="contentinfo">
+    <footer className={`mt-6 px-1 lg:px-0 ${className || ''}`} role="contentinfo">
       <div className="bg-anime-card-bg/60 border border-anime-border/70 rounded-xl py-4 px-4 sm:px-6">
         {/* Logo / Brand */}
         <a href="/" className="inline-flex items-center gap-2 text-foreground hover:text-anime-primary transition-colors">
@@ -137,14 +122,11 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
                 key={label}
                 type="button"
                 onClick={() => handleThemeChange(theme)}
-                disabled={isTransitioning}
-                className={`px-3 py-2 rounded-lg transition-all duration-150 transform ${
+                className={`px-3 py-2 rounded-lg transition-all duration-75 transform ${
                   selectedTheme === theme
                     ? 'text-foreground bg-anime-primary/20 shadow-glow scale-105'
                     : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10 hover:scale-105'
-                } ${idx !== icons.length - 1 ? 'mr-0.5' : ''} ${
-                  isTransitioning ? 'pointer-events-none' : ''
-                }`}
+                } ${idx !== icons.length - 1 ? 'mr-0.5' : ''}`}
                 aria-label={label}
                 aria-pressed={selectedTheme === theme}
               >
