@@ -21,8 +21,8 @@ export const Sidebar = ({ className }: SidebarProps) => {
 
   return (
     <>
-      {/* Desktop Sidebar */}
-      <aside className={`hidden lg:block w-[250px] bg-anime-dark-bg p-5 border-r border-anime-border transition-transform duration-300 ease-in-out ${className || ''}`}>
+      {/* Desktop Sidebar - HIDDEN in new design */}
+      <aside className={`hidden w-[250px] bg-anime-dark-bg p-5 border-r border-anime-border transition-transform duration-300 ease-in-out ${className || ''}`}>
         <div className="px-4 text-2xl font-bold text-anime-primary mb-6">
           AnimeFlow
         </div>

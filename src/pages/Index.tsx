@@ -127,10 +127,57 @@ const Index = () => {
 
   return (
     <div className="flex min-h-screen font-karla">
+      {/* DESKTOP REDESIGN - Top Navigation Bar */}
+      <div className="hidden lg:flex fixed top-0 left-0 right-0 z-50 h-16 bg-anime-dark-bg/95 backdrop-blur-xl border-b border-anime-border">
+        <div className="flex items-center justify-between w-full px-6">
+          {/* Left: Logo + Main Nav */}
+          <div className="flex items-center gap-8">
+            <div className="text-2xl font-bold text-anime-primary">
+              AnimeFlow
+            </div>
+            <nav className="flex items-center gap-6">
+              <button className="text-foreground hover:text-anime-primary transition-colors font-medium">Home</button>
+              <button className="text-anime-text-muted hover:text-anime-primary transition-colors font-medium">Trending</button>
+              <button className="text-anime-text-muted hover:text-anime-primary transition-colors font-medium">Latest</button>
+              <button className="text-anime-text-muted hover:text-anime-primary transition-colors font-medium">Movies</button>
+              <button className="text-anime-text-muted hover:text-anime-primary transition-colors font-medium">Random</button>
+            </nav>
+          </div>
+          
+          {/* Center: Search */}
+          <div className="flex items-center w-full max-w-md h-10 px-4 bg-anime-card-bg border border-anime-border rounded-lg">
+            <input
+              type="text"
+              placeholder="Search thousands of anime..."
+              value=""
+              className="flex-1 bg-transparent text-foreground text-sm outline-none placeholder:text-anime-text-muted"
+            />
+            <button className="text-anime-text-muted hover:text-anime-primary transition-colors">
+              <i className="fas fa-search text-sm" />
+            </button>
+          </div>
+          
+          {/* Right: User Actions */}
+          <div className="flex items-center gap-4">
+            <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center text-anime-text-muted hover:text-anime-primary transition-colors">
+              <i className="fas fa-bell text-sm" />
+            </button>
+            <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-lg flex items-center justify-center text-anime-text-muted hover:text-anime-primary transition-colors">
+              <i className="fas fa-bookmark text-sm" />
+            </button>
+            <button className="flex items-center gap-2 px-3 py-2 bg-anime-primary hover:bg-anime-primary/90 text-white rounded-lg transition-colors">
+              <i className="fas fa-user-circle text-sm" />
+              <span className="text-sm font-medium">Profile</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <Sidebar />
       
-      <main className="flex-1 flex flex-col w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
-        <div className="flex flex-col lg:flex-row flex-1 max-w-full">
+      <main className="flex-1 flex flex-col w-full lg:w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
+        {/* DESKTOP REDESIGN - New Layout Structure */}
+        <div className="flex flex-col lg:block flex-1 max-w-full lg:pt-16">
           {/* Mobile Header */}
           <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-1 py-4 bg-anime-dark-bg border-b border-anime-border">
             <div className="text-xl font-bold text-anime-primary">
@@ -154,14 +201,344 @@ const Index = () => {
             </div>
           </div>
 
-          {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-1 px-1 lg:px-0 lg:pt-0 pt-20">
-            <div className="hidden lg:block">
-              <Header onSearch={handleSearch} />
+          {/* DESKTOP HERO SECTION */}
+          <div className="hidden lg:block w-full px-8 py-8">
+            <div className="relative rounded-2xl overflow-hidden bg-gradient-to-r from-anime-primary/20 to-anime-secondary/20 border border-anime-border">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent z-10" />
+              <div className="relative z-20 p-12">
+                <div className="max-w-2xl">
+                  <h1 className="text-5xl font-bold text-white mb-4 leading-tight">
+                    Discover Your Next
+                    <span className="block text-anime-primary">Favorite Anime</span>
+                  </h1>
+                  <p className="text-xl text-gray-200 mb-8 leading-relaxed">
+                    Stream thousands of anime episodes and movies. From the latest releases to classic series, find your perfect match.
+                  </p>
+                  <div className="flex items-center gap-4">
+                    <button className="px-8 py-3 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg transition-colors">
+                      <i className="fas fa-play mr-2" />
+                      Start Watching
+                    </button>
+                    <button className="px-8 py-3 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg backdrop-blur transition-colors">
+                      <i className="fas fa-info-circle mr-2" />
+                      Learn More
+                    </button>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            {/* Mobile Search */}
-            <div className="lg:hidden mb-4">
+          </div>
+
+          {/* DESKTOP MAIN CONTENT GRID */}
+          <div className="hidden lg:grid lg:grid-cols-12 lg:gap-8 lg:px-8 lg:pb-8">
+            {/* Left Column - Main Content */}
+            <div className="lg:col-span-8">
+              {/* Featured Carousel for Desktop */}
+              <div className="mb-8">
+                <Carousel animes={carouselData} />
+              </div>
+              
+              {/* DESKTOP CONTENT SECTIONS */}
+              <div className="space-y-8">
+                {/* Filter Tabs for Desktop */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-2xl font-bold text-foreground">Latest Episodes</h2>
+                    <div className="w-2 h-2 bg-anime-primary rounded-full animate-pulse" />
+                  </div>
+                  <div className="flex items-center gap-4">
+                    <div className="flex bg-anime-card-bg border border-anime-border rounded-lg p-1">
+                      <button
+                        onClick={() => handleSectionChange('newest')}
+                        className={`px-4 py-2 text-sm font-semibold rounded-md transition-all ${
+                          activeSection === 'newest'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-foreground'
+                        }`}
+                      >
+                        Newest
+                      </button>
+                      <button
+                        onClick={() => handleSectionChange('popular')}
+                        className={`px-4 py-2 text-sm font-semibold rounded-md transition-all ${
+                          activeSection === 'popular'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-foreground'
+                        }`}
+                      >
+                        Trending
+                      </button>
+                      <button
+                        onClick={() => handleSectionChange('top-rated')}
+                        className={`px-4 py-2 text-sm font-semibold rounded-md transition-all ${
+                          activeSection === 'top-rated'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-foreground'
+                        }`}
+                      >
+                        Top Rated
+                      </button>
+                    </div>
+                    <ViewModeSelector
+                      currentMode={viewMode}
+                      onModeChange={handleViewModeChange}
+                    />
+                    <AnimePagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={setCurrentPage}
+                    />
+                  </div>
+                </div>
+
+                {/* Desktop Anime Grid */}
+                {viewMode === 'classic' && (
+                  <div className="grid grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
+                    {currentAnimes.map((anime, index) => (
+                      <div
+                        key={`${anime.id}-${currentPage}`}
+                        className="group cursor-pointer"
+                        style={{ 
+                          animationDelay: `${index * 50}ms`,
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        <div className="relative overflow-hidden rounded-xl bg-anime-card-bg border border-anime-border hover:border-anime-primary/50 transition-all duration-300 hover:shadow-glow">
+                          <div className="aspect-[3/4] relative">
+                            <img 
+                              src={anime.poster} 
+                              alt={anime.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            <div className="absolute bottom-4 left-4 right-4 transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                              <button className="w-full py-2 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg text-sm transition-colors">
+                                <i className="fas fa-play mr-2" />
+                                Watch Now
+                              </button>
+                            </div>
+                            {anime.type && (
+                              <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
+                                {anime.type}
+                              </div>
+                            )}
+                          </div>
+                          <div className="p-4">
+                            <h3 className="text-foreground font-bold text-sm group-hover:text-anime-primary transition-colors line-clamp-2 mb-2">
+                              {anime.name}
+                            </h3>
+                            {anime.episodes && (
+                              <div className="flex items-center gap-2 text-xs text-anime-text-muted">
+                                <i className="fas fa-closed-captioning" />
+                                <span>{String(anime.episodes.sub || anime.episodes.dub || 0)} episodes</span>
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {viewMode === 'card-list' && (
+                  <div className="space-y-4 mb-8">
+                    {currentAnimes.map((anime, index) => (
+                      <div
+                        key={`${anime.id}-${currentPage}`}
+                        className="bg-anime-card-bg border border-anime-border rounded-xl p-6 hover:border-anime-primary/30 transition-all duration-300 group cursor-pointer"
+                      >
+                        <div className="flex items-center gap-6">
+                          <div className="relative flex-shrink-0">
+                            <img 
+                              src={anime.poster} 
+                              alt={anime.name}
+                              className="w-24 h-32 rounded-lg object-cover"
+                            />
+                            {anime.type && (
+                              <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
+                                {anime.type}
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-foreground font-bold text-xl mb-2 group-hover:text-anime-primary transition-colors">
+                              {anime.name}
+                            </h3>
+                            <div className="flex items-center gap-4 mb-4">
+                              {anime.episodes && (
+                                <span className="inline-flex items-center gap-1 text-sm bg-anime-primary/15 text-anime-primary px-3 py-1 rounded-lg">
+                                  <i className="fas fa-closed-captioning text-xs" />
+                                  {String(anime.episodes.sub || anime.episodes.dub || 0)} episodes
+                                </span>
+                              )}
+                              <div className="flex items-center gap-1 text-sm text-anime-text-muted">
+                                <i className="fas fa-star text-yellow-400" />
+                                <span>{(Math.random() * 2 + 7).toFixed(1)}</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-3">
+                              <button className="px-6 py-2 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg text-sm transition-colors">
+                                <i className="fas fa-play mr-2" />
+                                Watch Now
+                              </button>
+                              <button className="px-6 py-2 bg-anime-card-bg hover:bg-anime-dark-bg text-foreground font-semibold rounded-lg text-sm border border-anime-border transition-colors">
+                                <i className="fas fa-plus mr-2" />
+                                Add to List
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {viewMode === 'anichart' && (
+                  <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
+                    {currentAnimes.map((anime, index) => (
+                      <div
+                        key={`${anime.id}-${currentPage}`}
+                        className="bg-anime-card-bg border border-anime-border rounded-2xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group cursor-pointer"
+                      >
+                        <div className="flex gap-6 p-6">
+                          <div className="relative flex-shrink-0">
+                            <img 
+                              src={anime.poster} 
+                              alt={anime.name}
+                              className="w-32 h-44 rounded-xl object-cover shadow-lg"
+                            />
+                            {anime.type && (
+                              <div className="absolute top-3 left-3 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-lg">
+                                {anime.type}
+                              </div>
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-foreground font-bold text-lg mb-3 group-hover:text-anime-primary transition-colors line-clamp-2">
+                              {anime.name}
+                            </h3>
+                            <div className="space-y-3">
+                              {anime.episodes && (
+                                <div className="flex items-center gap-2">
+                                  <i className="fas fa-closed-captioning text-anime-primary" />
+                                  <span className="text-sm text-anime-text-muted">
+                                    {String(anime.episodes.sub || anime.episodes.dub || 0)} episodes
+                                  </span>
+                                </div>
+                              )}
+                              <div className="flex items-center gap-2">
+                                <i className="fas fa-star text-yellow-400" />
+                                <span className="text-sm text-anime-text-muted">
+                                  {(Math.random() * 2 + 7).toFixed(1)} rating
+                                </span>
+                              </div>
+                              <div className="flex items-center gap-2 mt-4">
+                                <button className="flex-1 py-2 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg text-sm transition-colors">
+                                  <i className="fas fa-play mr-2" />
+                                  Watch
+                                </button>
+                                <button className="w-10 h-8 bg-anime-dark-bg hover:bg-anime-dark-bg/80 text-foreground rounded-lg border border-anime-border transition-colors flex items-center justify-center">
+                                  <i className="fas fa-plus text-xs" />
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Right Column - Sidebar Content */}
+            <div className="lg:col-span-4 lg:space-y-6">
+              {/* Quick Stats Card */}
+              <div className="bg-gradient-to-br from-anime-primary/10 to-anime-secondary/10 border border-anime-border rounded-xl p-6">
+                <h3 className="text-lg font-bold text-foreground mb-4">Your Stats</h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-anime-primary">127</div>
+                    <div className="text-sm text-anime-text-muted">Watched</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-anime-secondary">43</div>
+                    <div className="text-sm text-anime-text-muted">Favorites</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Top Airing Section */}
+              <div className="bg-anime-card-bg border border-anime-border rounded-xl p-6">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-lg font-bold text-foreground flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-anime-primary to-anime-secondary rounded-full"></div>
+                    Top Airing
+                  </h3>
+                  <button className="text-anime-primary hover:text-anime-secondary transition-colors text-sm font-medium">
+                    View All
+                  </button>
+                </div>
+                
+                <div className="space-y-4">
+                  {completedAnimes.slice(0, 4).map((anime, index) => (
+                    <div key={anime.id} className="flex items-center gap-3 p-3 bg-anime-dark-bg rounded-lg hover:bg-anime-dark-bg/80 transition-colors cursor-pointer">
+                      <div className="relative flex-shrink-0">
+                        <img 
+                          src={anime.poster} 
+                          alt={anime.name}
+                          className="w-16 h-20 rounded-md object-cover"
+                        />
+                        <div className="absolute -top-1 -left-1 w-6 h-6 bg-anime-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
+                          {index + 1}
+                        </div>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-foreground font-semibold text-sm truncate">{anime.name}</h4>
+                        <div className="flex items-center gap-2 mt-1">
+                          <span className="text-xs bg-anime-primary/20 text-anime-primary px-2 py-0.5 rounded">
+                            Episode {Math.floor(Math.random() * 12) + 1}
+                          </span>
+                          <span className="text-xs text-anime-text-muted">
+                            {Math.floor(Math.random() * 5) + 1}h ago
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Upcoming Section */}
+              <div className="bg-anime-card-bg border border-anime-border rounded-xl p-6">
+                <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
+                  <div className="w-1 h-6 bg-gradient-to-b from-anime-secondary to-anime-primary rounded-full"></div>
+                  Coming Soon
+                </h3>
+                <div className="space-y-3">
+                  {popularAnimes.map((anime, index) => (
+                    <div key={anime.id} className="flex items-center gap-3 p-2 rounded-lg hover:bg-anime-dark-bg/50 transition-colors">
+                      <img 
+                        src={anime.poster} 
+                        alt={anime.name}
+                        className="w-12 h-16 rounded object-cover"
+                      />
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-foreground font-medium text-sm truncate">{anime.name}</h4>
+                        <p className="text-xs text-anime-text-muted">
+                          Releases in {Math.floor(Math.random() * 7) + 1} days
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* MOBILE CONTENT - Original Layout */}
+          <div className="w-full lg:hidden px-1 pt-20">
+            <div className="mb-4">
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
@@ -235,9 +612,9 @@ const Index = () => {
                 />
               </div>
                
-               {/* Render different layouts based on view mode */}
+               {/* Render different layouts based on view mode - MOBILE ONLY */}
                {viewMode === 'classic' && (
-                 <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
+                 <div className="grid grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
                    {currentAnimes.map((anime, index) => (
                      <div
                        key={`${anime.id}-${currentPage}`}
@@ -350,13 +727,173 @@ const Index = () => {
                  </div>
                )}
             </section>
-
           </div>
 
-          {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-1 lg:px-0 lg:pl-1 lg:border-l border-anime-border">
+          {/* DESKTOP MAIN CONTENT CONTINUATION */}
+          <div className="hidden lg:block lg:col-span-8 px-8">
+            {/* Desktop Anime Grid */}
+            {viewMode === 'classic' && (
+              <div className="grid grid-cols-4 xl:grid-cols-5 gap-6 mb-8">
+                {currentAnimes.map((anime, index) => (
+                  <div
+                    key={`${anime.id}-${currentPage}`}
+                    className="group cursor-pointer"
+                    style={{ 
+                      animationDelay: `${index * 50}ms`,
+                      animationFillMode: 'both'
+                    }}
+                  >
+                    <div className="relative overflow-hidden rounded-xl bg-anime-card-bg border border-anime-border hover:border-anime-primary/50 transition-all duration-300 hover:shadow-glow">
+                      <div className="aspect-[3/4] relative">
+                        <img 
+                          src={anime.poster} 
+                          alt={anime.name}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute bottom-4 left-4 right-4 transform translate-y-2 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-300">
+                          <button className="w-full py-2 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg text-sm transition-colors">
+                            <i className="fas fa-play mr-2" />
+                            Watch Now
+                          </button>
+                        </div>
+                        {anime.type && (
+                          <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
+                            {anime.type}
+                          </div>
+                        )}
+                      </div>
+                      <div className="p-4">
+                        <h3 className="text-foreground font-bold text-sm group-hover:text-anime-primary transition-colors line-clamp-2 mb-2">
+                          {anime.name}
+                        </h3>
+                        {anime.episodes && (
+                          <div className="flex items-center gap-2 text-xs text-anime-text-muted">
+                            <i className="fas fa-closed-captioning" />
+                            <span>{String(anime.episodes.sub || anime.episodes.dub || 0)} episodes</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
-            {/* Top Airing Section */}
+            {viewMode === 'card-list' && (
+              <div className="space-y-4 mb-8">
+                {currentAnimes.map((anime, index) => (
+                  <div
+                    key={`${anime.id}-${currentPage}`}
+                    className="bg-anime-card-bg border border-anime-border rounded-xl p-6 hover:border-anime-primary/30 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-6">
+                      <div className="relative flex-shrink-0">
+                        <img 
+                          src={anime.poster} 
+                          alt={anime.name}
+                          className="w-24 h-32 rounded-lg object-cover"
+                        />
+                        {anime.type && (
+                          <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
+                            {anime.type}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-foreground font-bold text-xl mb-2 group-hover:text-anime-primary transition-colors">
+                          {anime.name}
+                        </h3>
+                        <div className="flex items-center gap-4 mb-4">
+                          {anime.episodes && (
+                            <span className="inline-flex items-center gap-1 text-sm bg-anime-primary/15 text-anime-primary px-3 py-1 rounded-lg">
+                              <i className="fas fa-closed-captioning text-xs" />
+                              {String(anime.episodes.sub || anime.episodes.dub || 0)} episodes
+                            </span>
+                          )}
+                          <div className="flex items-center gap-1 text-sm text-anime-text-muted">
+                            <i className="fas fa-star text-yellow-400" />
+                            <span>{(Math.random() * 2 + 7).toFixed(1)}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center gap-3">
+                          <button className="px-6 py-2 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg text-sm transition-colors">
+                            <i className="fas fa-play mr-2" />
+                            Watch Now
+                          </button>
+                          <button className="px-6 py-2 bg-anime-card-bg hover:bg-anime-dark-bg text-foreground font-semibold rounded-lg text-sm border border-anime-border transition-colors">
+                            <i className="fas fa-plus mr-2" />
+                            Add to List
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            {viewMode === 'anichart' && (
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 mb-8">
+                {currentAnimes.map((anime, index) => (
+                  <div
+                    key={`${anime.id}-${currentPage}`}
+                    className="bg-anime-card-bg border border-anime-border rounded-2xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group cursor-pointer"
+                  >
+                    <div className="flex gap-6 p-6">
+                      <div className="relative flex-shrink-0">
+                        <img 
+                          src={anime.poster} 
+                          alt={anime.name}
+                          className="w-32 h-44 rounded-xl object-cover shadow-lg"
+                        />
+                        {anime.type && (
+                          <div className="absolute top-3 left-3 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-lg">
+                            {anime.type}
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-foreground font-bold text-lg mb-3 group-hover:text-anime-primary transition-colors line-clamp-2">
+                          {anime.name}
+                        </h3>
+                        <div className="space-y-3">
+                          {anime.episodes && (
+                            <div className="flex items-center gap-2">
+                              <i className="fas fa-closed-captioning text-anime-primary" />
+                              <span className="text-sm text-anime-text-muted">
+                                {String(anime.episodes.sub || anime.episodes.dub || 0)} episodes
+                              </span>
+                            </div>
+                          )}
+                          <div className="flex items-center gap-2">
+                            <i className="fas fa-star text-yellow-400" />
+                            <span className="text-sm text-anime-text-muted">
+                              {(Math.random() * 2 + 7).toFixed(1)} rating
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 mt-4">
+                            <button className="flex-1 py-2 bg-anime-primary hover:bg-anime-primary/90 text-white font-semibold rounded-lg text-sm transition-colors">
+                              <i className="fas fa-play mr-2" />
+                              Watch
+                            </button>
+                            <button className="w-10 h-8 bg-anime-dark-bg hover:bg-anime-dark-bg/80 text-foreground rounded-lg border border-anime-border transition-colors flex items-center justify-center">
+                              <i className="fas fa-plus text-xs" />
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* MOBILE RIGHT SECTION - Original */}
+          <div className="w-full lg:hidden px-1">
+
+            {/* Top Airing Section - MOBILE ONLY */}
             <section className="top-airing mb-8">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
