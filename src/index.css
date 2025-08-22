@@ -72,57 +72,57 @@ All colors MUST be HSL.
     --sidebar-ring: 258 73% 62%;
   }
 
-  /* Sun Theme - Bright & Energetic */
+  /* Sun Theme - Elegant & Warm */
   .sun-theme {
-    --background: 45 100% 96%; /* #FFFAE5 */
-    --foreground: 25 20% 5%; /* #1A1612 - Much darker for better contrast */
+    --background: 35 40% 97%; /* #FCF9F6 - Soft warm cream */
+    --foreground: 30 25% 12%; /* #221E1A - Rich warm brown */
 
-    --card: 48 100% 98%; /* #FFFCF5 */
-    --card-foreground: 25 20% 5%;
+    --card: 38 35% 95%; /* #F8F4F0 - Gentle warm white */
+    --card-foreground: 30 25% 12%;
 
-    --popover: 45 100% 94%; /* #FFF7D1 */
-    --popover-foreground: 25 20% 5%;
+    --popover: 36 30% 93%; /* #F4EFE9 - Soft warm popover */
+    --popover-foreground: 30 25% 12%;
 
-    --primary: 28 95% 40%; /* #CC6600 - Darker orange for better contrast */
+    --primary: 25 60% 45%; /* #B8804A - Sophisticated golden brown */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 85% 65%; /* #D6C472 - Better contrast */
-    --secondary-foreground: 25 20% 5%;
+    --secondary: 40 35% 75%; /* #C4B69A - Refined beige */
+    --secondary-foreground: 30 25% 12%;
 
-    --muted: 45 90% 85%; /* #E6D9B8 - Darker for better contrast */
-    --muted-foreground: 30 30% 25%; /* #4D3F28 - Much better contrast */
+    --muted: 38 25% 88%; /* #E8E0D6 - Subtle warm muted */
+    --muted-foreground: 30 20% 35%; /* #5A4D42 - Warm charcoal */
 
-    --accent: 35 95% 45%; /* #E67300 - Darker accent */
+    --accent: 28 55% 50%; /* #C4915A - Elegant caramel */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 50% 65%; /* #B3A082 - Better contrast */
-    --input: 40 50% 65%;
-    --ring: 28 95% 40%; /* #CC6600 */
+    --border: 35 20% 80%; /* #D4C9BC - Soft warm border */
+    --input: 35 20% 80%;
+    --ring: 25 60% 45%;
 
     /* Anime site specific colors for sun theme */
-    --anime-primary: 28 95% 40%; /* #CC6600 - Darker for better contrast */
-    --anime-secondary: 35 95% 45%; /* #E67300 */
-    --anime-dark-bg: 48 100% 98%; /* #FFFCF5 */
-    --anime-card-bg: 45 85% 82%; /* #DDD1AD - Much darker for better contrast */
-    --anime-border: 40 55% 60%; /* #A8956C - Much better visibility */
-    --anime-text-muted: 30 35% 20%; /* #3D2F1A - Excellent contrast */
+    --anime-primary: 25 60% 45%; /* #B8804A - Sophisticated golden brown */
+    --anime-secondary: 28 55% 50%; /* #C4915A - Elegant caramel */
+    --anime-dark-bg: 35 40% 97%; /* #FCF9F6 */
+    --anime-card-bg: 38 20% 90%; /* #EFEAE3 - Refined card background */
+    --anime-border: 35 15% 75%; /* #C7BDB0 - Gentle border */
+    --anime-text-muted: 30 18% 45%; /* #73634F - Sophisticated muted text */
     
-    --gradient-primary: linear-gradient(135deg, hsl(28 95% 45%), hsl(35 95% 50%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(230, 126, 0, 0.1), rgba(242, 140, 0, 0.2));
-    --shadow-glow: 0 0 40px hsl(28 95% 45% / 0.3);
-    --shadow-card: 0 4px 20px rgba(230, 126, 0, 0.15);
+    --gradient-primary: linear-gradient(135deg, hsl(25 50% 50%), hsl(28 45% 55%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(184, 128, 74, 0.08), rgba(196, 145, 90, 0.12));
+    --shadow-glow: 0 0 40px hsl(25 50% 50% / 0.2);
+    --shadow-card: 0 4px 20px rgba(184, 128, 74, 0.1);
 
-    --sidebar-background: 48 100% 98%;
-    --sidebar-foreground: 25 15% 8%;
-    --sidebar-primary: 28 95% 45%;
+    --sidebar-background: 35 40% 97%;
+    --sidebar-foreground: 30 20% 15%;
+    --sidebar-primary: 25 55% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 42 85% 75%;
-    --sidebar-accent-foreground: 25 15% 8%;
-    --sidebar-border: 40 40% 75%;
-    --sidebar-ring: 28 95% 45%;
+    --sidebar-accent: 38 25% 85%;
+    --sidebar-accent-foreground: 30 20% 15%;
+    --sidebar-border: 35 15% 82%;
+    --sidebar-ring: 25 55% 50%;
   }
 
   /* Moon Theme - Cool & Mystical */
@@ -178,57 +178,57 @@ All colors MUST be HSL.
     --sidebar-ring: 200 85% 60%;
   }
 
-  /* Cat Theme - Girlish Pink & Smooth */
+  /* Cat Theme - Elegant Rose & Sophisticated Pink */
   .cat-theme {
-    --background: 340 50% 96%; /* #FAF0F6 - Very soft pink background */
-    --foreground: 340 30% 10%; /* #241219 - Much darker for better contrast */
+    --background: 345 30% 97%; /* #FAF6F8 - Ultra soft blush */
+    --foreground: 330 25% 15%; /* #2E1E26 - Rich dark plum */
 
-    --card: 340 40% 94%; /* #F5E6ED - Slightly darker pink for cards */
-    --card-foreground: 340 30% 10%;
+    --card: 345 25% 94%; /* #F4EDF1 - Gentle rose card */
+    --card-foreground: 330 25% 15%;
 
-    --popover: 340 35% 92%; /* #F0DCE5 - Soft pink for popovers */
-    --popover-foreground: 340 30% 10%;
+    --popover: 345 20% 92%; /* #EFE4E8 - Whisper soft popover */
+    --popover-foreground: 330 25% 15%;
 
-    --primary: 330 70% 50%; /* #C93D93 - Darker rose pink for better contrast */
+    --primary: 335 45% 55%; /* #C6749C - Refined dusty rose */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 45% 70%; /* #E0A8C2 - Better contrast */
-    --secondary-foreground: 340 30% 10%;
+    --secondary: 340 25% 78%; /* #D4B8C4 - Sophisticated mauve */
+    --secondary-foreground: 330 25% 15%;
 
-    --muted: 340 30% 85%; /* #E5C5D1 - Darker for better contrast */
-    --muted-foreground: 340 25% 30%; /* #634A54 - Much better contrast */
+    --muted: 345 15% 87%; /* #E6D8DD - Subtle rose muted */
+    --muted-foreground: 330 20% 40%; /* #664A56 - Deep rose grey */
 
-    --accent: 320 65% 55%; /* #DF4BB3 - Better contrast */
+    --accent: 330 40% 60%; /* #C285A3 - Graceful berry */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 340 30% 75%; /* #D1B3C1 - Better contrast */
-    --input: 340 30% 75%;
-    --ring: 330 70% 50%; /* #C93D93 */
+    --border: 340 18% 82%; /* #D8C4CF - Delicate rose border */
+    --input: 340 18% 82%;
+    --ring: 335 45% 55%;
 
     /* Anime site specific colors for cat theme */
-    --anime-primary: 330 70% 50%; /* #C93D93 - Darker rose pink */
-    --anime-secondary: 320 65% 55%; /* #DF4BB3 - Better contrast */
-    --anime-dark-bg: 340 50% 96%; /* #FAF0F6 */
-    --anime-card-bg: 340 35% 85%; /* #E8C6D6 - Much darker for better contrast */
-    --anime-border: 340 25% 70%; /* #C299AB - Much better visibility */
-    --anime-text-muted: 340 20% 35%; /* #5D3F4B - Excellent contrast */
+    --anime-primary: 335 45% 55%; /* #C6749C - Refined dusty rose */
+    --anime-secondary: 330 40% 60%; /* #C285A3 - Graceful berry */
+    --anime-dark-bg: 345 30% 97%; /* #FAF6F8 */
+    --anime-card-bg: 345 12% 90%; /* #E8DDE2 - Elegant card background */
+    --anime-border: 340 12% 78%; /* #CDC0C7 - Refined border */
+    --anime-text-muted: 330 15% 50%; /* #7A6670 - Sophisticated muted */
     
-    --gradient-primary: linear-gradient(135deg, hsl(330 65% 55%), hsl(320 60% 60%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(209, 71, 163, 0.1), rgba(227, 87, 184, 0.15));
-    --shadow-glow: 0 0 40px hsl(330 65% 55% / 0.25);
-    --shadow-card: 0 4px 20px rgba(209, 71, 163, 0.12);
+    --gradient-primary: linear-gradient(135deg, hsl(335 35% 60%), hsl(330 30% 65%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(198, 116, 156, 0.06), rgba(194, 133, 163, 0.1));
+    --shadow-glow: 0 0 40px hsl(335 35% 60% / 0.15);
+    --shadow-card: 0 4px 20px rgba(198, 116, 156, 0.08);
 
-    --sidebar-background: 340 50% 96%;
-    --sidebar-foreground: 340 25% 15%;
-    --sidebar-primary: 330 65% 55%;
+    --sidebar-background: 345 30% 97%;
+    --sidebar-foreground: 330 20% 20%;
+    --sidebar-primary: 335 40% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 340 45% 75%;
-    --sidebar-accent-foreground: 340 25% 15%;
-    --sidebar-border: 340 25% 80%;
-    --sidebar-ring: 330 65% 55%;
+    --sidebar-accent: 345 18% 88%;
+    --sidebar-accent-foreground: 330 20% 20%;
+    --sidebar-border: 340 12% 84%;
+    --sidebar-ring: 335 40% 60%;
   }
 
   .dark {
