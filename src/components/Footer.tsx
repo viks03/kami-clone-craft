@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Sun, Moon, Cat, Sparkles, Monitor } from 'lucide-react';
 import Cookies from 'js-cookie';
 
 export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   const [selectedTheme, setSelectedTheme] = useState<string>('user');
+  const [isTransitioning, setIsTransitioning] = useState<boolean>(false);
+  const transitionTimeoutRef = useRef<NodeJS.Timeout>();
 
   const icons = [
     { Comp: Moon, label: 'AnimeFlow Theme', theme: 'user' },
@@ -13,25 +15,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
     { Comp: Monitor, label: 'System Theme', theme: 'system' },
   ];
 
-  // Load theme from cookie on mount and listen to system changes
-  useEffect(() => {
-    const savedTheme = Cookies.get('animeflow-theme') || 'user';
-    setSelectedTheme(savedTheme);
-    applyTheme(savedTheme);
-
-    // Listen for system theme changes
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    const handleChange = () => {
-      if (savedTheme === 'system') {
-        applyTheme('system');
-      }
-    };
-    
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
-  const applyTheme = (theme: string) => {
+  const applyTheme = useCallback((theme: string) => {
     const body = document.body;
     // Remove all theme classes
     body.classList.remove('sun-theme', 'moon-theme', 'cat-theme', 'dark');
@@ -61,18 +45,62 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
         // Default AnimeFlow theme (no additional class needed)
         break;
     }
-  };
+  }, []);
 
-  const handleThemeChange = (theme: string) => {
-    if (['user', 'sun', 'moon', 'cat', 'system'].includes(theme)) {
-      setSelectedTheme(theme);
-      Cookies.set('animeflow-theme', theme, { expires: 365 });
-      applyTheme(theme);
+  // Load theme from cookie on mount and setup real-time system theme detection
+  useEffect(() => {
+    const savedTheme = Cookies.get('animeflow-theme') || 'user';
+    setSelectedTheme(savedTheme);
+    applyTheme(savedTheme);
+
+    // Real-time system theme change handler
+    const handleSystemThemeChange = () => {
+      const currentTheme = Cookies.get('animeflow-theme') || 'user';
+      if (currentTheme === 'system') {
+        // Re-apply system theme to get current system preference
+        applyTheme('system');
+      }
+    };
+    
+    // Listen for system theme changes with improved responsiveness
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', handleSystemThemeChange);
+    
+    // Also listen for visibility changes to catch theme changes when tab becomes visible
+    document.addEventListener('visibilitychange', handleSystemThemeChange);
+    
+    return () => {
+      mediaQuery.removeEventListener('change', handleSystemThemeChange);
+      document.removeEventListener('visibilitychange', handleSystemThemeChange);
+    };
+  }, [applyTheme]);
+
+  const handleThemeChange = useCallback((theme: string) => {
+    if (!['user', 'sun', 'moon', 'cat', 'system'].includes(theme) || theme === selectedTheme) {
+      return;
     }
-  };
+
+    // Clear any existing transition timeout
+    if (transitionTimeoutRef.current) {
+      clearTimeout(transitionTimeoutRef.current);
+    }
+
+    // Smooth transition with debouncing
+    setIsTransitioning(true);
+    setSelectedTheme(theme);
+    Cookies.set('animeflow-theme', theme, { expires: 365 });
+    
+    // Apply theme immediately but with transition flag
+    applyTheme(theme);
+    
+    // Clear transition flag after animation completes
+    transitionTimeoutRef.current = setTimeout(() => {
+      setIsTransitioning(false);
+    }, 150);
+  }, [selectedTheme, applyTheme]);
 
   return (
-    <footer className={`mt-6 px-2 sm:px-4 lg:px-0 ${className || ''}`} role="contentinfo">
+    <footer className={`mt-6 px-2 lg:px-0 ${className || ''}`} role="contentinfo">
       <div className="bg-anime-card-bg/60 border border-anime-border/70 rounded-xl py-4 px-4 sm:px-6">
         {/* Logo / Brand */}
         <a href="/" className="inline-flex items-center gap-2 text-foreground hover:text-anime-primary transition-colors">
@@ -109,11 +137,14 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
                 key={label}
                 type="button"
                 onClick={() => handleThemeChange(theme)}
-                className={`px-3 py-2 rounded-lg transition-all duration-300 ${
+                disabled={isTransitioning}
+                className={`px-3 py-2 rounded-lg transition-all duration-150 transform ${
                   selectedTheme === theme
-                    ? 'text-foreground bg-anime-primary/20 shadow-glow'
-                    : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
-                } ${idx !== icons.length - 1 ? 'mr-0.5' : ''}`}
+                    ? 'text-foreground bg-anime-primary/20 shadow-glow scale-105'
+                    : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10 hover:scale-105'
+                } ${idx !== icons.length - 1 ? 'mr-0.5' : ''} ${
+                  isTransitioning ? 'pointer-events-none' : ''
+                }`}
                 aria-label={label}
                 aria-pressed={selectedTheme === theme}
               >
