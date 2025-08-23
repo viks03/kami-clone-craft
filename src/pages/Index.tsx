@@ -1,17 +1,19 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { Sidebar } from '../components/Sidebar';
+import { OptimizedLazyImage } from '../components/OptimizedLazyImage';
+import { OptimizedSidebar } from '../components/OptimizedSidebar';
 import { Header } from '../components/Header';
-import { Carousel } from '../components/Carousel';
-import { AnimeCard } from '../components/AnimeCard';
+import { OptimizedCarousel } from '../components/OptimizedCarousel';
+import { OptimizedAnimeCard } from '../components/OptimizedAnimeCard';
 import { AnimePagination } from '../components/AnimePagination';
-import { ViewModeSelector } from '../components/ViewModeSelector';
+import { OptimizedViewModeSelector } from '../components/OptimizedViewModeSelector';
 import { NotificationDrawer } from '../components/NotificationDrawer';
-import { BottomNavigation } from '../components/BottomNavigation';
+import { OptimizedBottomNavigation } from '../components/OptimizedBottomNavigation';
 import { Footer } from '../components/Footer';
 import { animeData } from '../data/animeData';
-import { usePaginatedAnimes } from '../hooks/usePaginatedAnimes';
+import { useOptimizedPagination } from '../hooks/useOptimizedPagination';
 import { useScrollPosition } from '../hooks/useScrollPosition';
+import { imageCache } from '../utils/imageCache';
 
 const Index = () => {
   // Initialize scroll position preservation
@@ -48,13 +50,23 @@ const Index = () => {
   const completedAnimes = useMemo(() => animeData.latestCompletedAnimes, []);
   const popularAnimes = useMemo(() => animeData.mostPopularAnimes.slice(0, 2), []);
 
-  // Use pagination hook for anime cards
+  // Use optimized pagination hook for anime cards
   const {
     currentPage,
     totalPages,
     currentAnimes,
     setCurrentPage,
-  } = usePaginatedAnimes({ animes: allLatestAnimes, itemsPerPage: 15 });
+    isTransitioning,
+  } = useOptimizedPagination({ animes: allLatestAnimes, itemsPerPage: 15 });
+
+  // Preload images for better performance
+  useEffect(() => {
+    const imagesToPreload = currentAnimes.slice(0, 5).map(anime => anime.poster);
+    imageCache.preloadImages(imagesToPreload);
+    
+    // Cleanup cache periodically
+    imageCache.cleanupCache(200);
+  }, [currentAnimes]);
 
   // Dynamically calculate bottom navigation height and update content padding
   useEffect(() => {
@@ -127,7 +139,7 @@ const Index = () => {
 
   return (
     <div className="flex min-h-screen font-karla">
-      <Sidebar />
+      <OptimizedSidebar />
       
       <main className="flex-1 flex flex-col w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex flex-col lg:flex-row flex-1 max-w-full">
@@ -165,7 +177,7 @@ const Index = () => {
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <Carousel animes={carouselData} />
+            <OptimizedCarousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
               {/* Combined Filter Buttons and Pagination */}
@@ -229,54 +241,58 @@ const Index = () => {
                
               {/* View Mode Selector */}
               <div className="mb-4">
-                <ViewModeSelector
+                <OptimizedViewModeSelector
                   currentMode={viewMode}
                   onModeChange={handleViewModeChange}
                 />
               </div>
                
-               {/* Render different layouts based on view mode */}
-               {viewMode === 'classic' && (
-                 <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => (
-                     <div
-                       key={`${anime.id}-${currentPage}`}
-                       className="animate-fade-in"
-                       style={{ 
-                         animationDelay: `${index * 50}ms`,
-                         animationFillMode: 'both'
-                       }}
-                     >
-                       <AnimeCard
-                         name={anime.name}
-                         poster={anime.poster}
-                         episodes={anime.episodes}
-                         type={anime.type}
-                       />
-                     </div>
-                   ))}
-                 </div>
-               )}
+                {/* Render different layouts based on view mode */}
+                {viewMode === 'classic' && (
+                  <div className={`grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300 ${
+                    isTransitioning ? 'opacity-75' : 'opacity-100'
+                  }`}>
+                    {currentAnimes.map((anime, index) => (
+                      <div
+                        key={`${anime.id}-${currentPage}-${index}`}
+                        className="animate-fade-in"
+                        style={{ 
+                          animationDelay: `${index * 50}ms`,
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        <OptimizedAnimeCard
+                          name={anime.name}
+                          poster={anime.poster}
+                          episodes={anime.episodes}
+                          type={anime.type}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
 
-               {viewMode === 'card-list' && (
-                 <div className="space-y-2.5 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => (
-                     <div
-                       key={`${anime.id}-${currentPage}`}
-                       className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-lg p-3 hover:border-anime-primary/30 transition-all duration-300 group"
-                       style={{ 
-                         animationDelay: `${index * 50}ms`,
-                         animationFillMode: 'both'
-                       }}
-                     >
-                       <div className="flex items-center gap-3">
-                         <div className="relative flex-shrink-0">
-                           <img 
-                             src={anime.poster} 
-                             alt={anime.name}
-                             className="w-20 h-24 rounded-md object-cover"
-                           />
-                         </div>
+                {viewMode === 'card-list' && (
+                  <div className={`space-y-2.5 min-h-[600px] transition-all duration-300 ${
+                    isTransitioning ? 'opacity-75' : 'opacity-100'
+                  }`}>
+                    {currentAnimes.map((anime, index) => (
+                      <div
+                        key={`${anime.id}-${currentPage}-${index}`}
+                        className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-lg p-3 hover:border-anime-primary/30 transition-all duration-300 group"
+                        style={{ 
+                          animationDelay: `${index * 50}ms`,
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="relative flex-shrink-0">
+                            <OptimizedLazyImage 
+                              src={anime.poster} 
+                              alt={anime.name}
+                              className="w-20 h-24 rounded-md object-cover"
+                            />
+                          </div>
                          
                           <div className="flex-1 min-w-0">
                             <h3 className="text-foreground font-bold text-base sm:text-lg truncate group-hover:text-anime-primary transition-colors">
@@ -305,24 +321,26 @@ const Index = () => {
                  </div>
                )}
 
-               {viewMode === 'anichart' && (
-                 <div className="space-y-4 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => (
-                     <div
-                       key={`${anime.id}-${currentPage}`}
-                       className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group"
-                       style={{ 
-                         animationDelay: `${index * 50}ms`,
-                         animationFillMode: 'both'
-                       }}
-                     >
-                       <div className="flex gap-4 p-4">
-                         <div className="relative flex-shrink-0">
-                           <img 
-                             src={anime.poster} 
-                             alt={anime.name}
-                             className="w-36 h-52 rounded-lg object-cover shadow-lg"
-                           />
+                {viewMode === 'anichart' && (
+                  <div className={`space-y-4 min-h-[600px] transition-all duration-300 ${
+                    isTransitioning ? 'opacity-75' : 'opacity-100'
+                  }`}>
+                    {currentAnimes.map((anime, index) => (
+                      <div
+                        key={`${anime.id}-${currentPage}-${index}`}
+                        className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group"
+                        style={{ 
+                          animationDelay: `${index * 50}ms`,
+                          animationFillMode: 'both'
+                        }}
+                      >
+                        <div className="flex gap-4 p-4">
+                          <div className="relative flex-shrink-0">
+                            <OptimizedLazyImage 
+                              src={anime.poster} 
+                              alt={anime.name}
+                              className="w-36 h-52 rounded-lg object-cover shadow-lg"
+                            />
                            {anime.type && (
                              <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
                                {anime.type}
@@ -492,7 +510,7 @@ const Index = () => {
       </main>
       
       {/* Bottom Navigation for Mobile */}
-      <BottomNavigation id="bottom-navigation" />
+      <OptimizedBottomNavigation id="bottom-navigation" />
     </div>
   );
 };

@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, memo, useCallback } from 'react';
 
-interface BottomNavigationProps {
+interface OptimizedBottomNavigationProps {
   className?: string;
 }
 
@@ -19,31 +19,26 @@ const moreMenuItems = [
   { icon: 'fas fa-star', label: 'Favorites' },
 ] as const;
 
-export const BottomNavigation = ({ className, id, ...props }: BottomNavigationProps & React.HTMLAttributes<HTMLDivElement>) => {
+export const OptimizedBottomNavigation = memo(({ className, id, ...props }: OptimizedBottomNavigationProps & React.HTMLAttributes<HTMLDivElement>) => {
   const [activeItem, setActiveItem] = useState('Home');
   const [isMoreMenuOpen, setIsMoreMenuOpen] = useState(false);
 
-  const handleItemClick = (label: string) => {
+  const handleItemClick = useCallback((label: string) => {
     if (label === 'More') {
       setIsMoreMenuOpen(true);
     } else {
       setActiveItem(label);
       setIsMoreMenuOpen(false);
     }
-  };
+  }, []);
 
-  const handleMoreMenuItemClick = (label: string) => {
+  const handleMoreMenuItemClick = useCallback((label: string) => {
     if (label === 'Back') {
       setIsMoreMenuOpen(false);
     } else {
       setActiveItem(label);
-      // Don't close the more menu when selecting items
     }
-  };
-
-  const handleBackClick = () => {
-    setIsMoreMenuOpen(false);
-  };
+  }, []);
 
   return (
     <div {...props} id={id} className={`lg:hidden fixed bottom-0 left-0 right-0 bg-anime-dark-bg border-t border-anime-border z-50 overflow-hidden ${className || ''}`}>
@@ -120,4 +115,4 @@ export const BottomNavigation = ({ className, id, ...props }: BottomNavigationPr
       </div>
     </div>
   );
-};
+});
