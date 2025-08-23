@@ -292,58 +292,33 @@ All colors MUST be HSL.
     scroll-behavior: smooth;
   }
 
-  /* Optimize animations and transitions for performance */
+  /* Additional optimizations */
+  * {
+    scroll-behavior: smooth;
+  }
+  
+  img {
+    content-visibility: auto;
+    loading: lazy;
+  }
+  
+  /* Critical rendering optimizations */
+  .carousel-slide {
+    contain: layout style paint;
+  }
+  
+  .anime-card {
+    contain: layout style paint;
+    will-change: transform;
+  }
+  
+  /* Optimize animations */
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
     }
-  }
-
-  /* Enable hardware acceleration for smooth animations */
-  .anime-card,
-  .carousel-slide {
-    contain: layout style paint;
-    will-change: transform, opacity;
-    transform: translateZ(0); /* Force hardware acceleration */
-  }
-
-  /* Optimize image rendering */
-  img {
-    content-visibility: auto;
-    loading: lazy;
-    decoding: async;
-  }
-
-  /* Optimize scroll performance */
-  * {
-    scroll-behavior: smooth;
-  }
-
-  /* Critical path optimizations */
-  .fade-in-animation {
-    animation: fadeIn 0.3s ease-out forwards;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Better text clipping for descriptions */
-  .line-clamp-4 {
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 }
 

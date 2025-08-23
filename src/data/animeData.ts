@@ -74,159 +74,95 @@ export interface AnimeData {
 
 export const animeData: AnimeData = {
   "spotlightAnimes": [
-      {
-        "rank": 1,
-        "id": "dan-da-dan-season-2-19793",
-        "name": "Dan Da Dan Season 2",
-        "description": "Reeling from her recent breakup, Momo Ayase, a popular high schooler, shows kindness to her socially awkward schoolmate, Ken Takakura, by standing up to his bullies. Ken misunderstands her intentions, believing he has made a new friend who shares his obsession with aliens and UFOs. However, Momo's own eccentric occult beliefs lie in the supernatural realm; she thinks aliens do not exist. A rivalry quickly brews as each becomes determined to prove the other wrong.\n\nDespite their initial clash over their opposing beliefs, Momo and Ken form an unexpected but intimate friendship, a bond forged in a series of supernatural battles and bizarre encounters with urban legends and paranormal entities. As both develop unique superhuman abilities, they learn to supplement each other's weaknesses, leading them to wonder if their newfound partnership may be about more than just survival.",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/33043b5bb1314a46d20f814dbe70f123.jpg",
-        "jname": "Dandadan 2nd Season",
-        "episodes": {
-          "sub": 8,
-          "dub": 8
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 4, 2025",
-          "HD"
-        ]
-      },
-      {
-        "rank": 2,
-        "id": "dr-stone-science-future-part-2-19784",
-        "name": "Dr. Stone: Science Future Part 2",
-        "description": "Senkuu has made it his goal to bring back two million years of human achievement and revive the entirety of those turned to statues. However, one man stands in his way: Tsukasa Shishiou, who believes that only the fittest of those petrified should be revived.\n\nAs the snow melts and spring approaches, Senkuu and his allies in Ishigami Village finish the preparations for their attack on the Tsukasa Empire. With a reinvented cell phone model now at their disposal, the Kingdom of Science is ready to launch its newest scheme to recruit the sizable numbers of Tsukasa's army to their side. However, it is a race against time; for every day the Kingdom of Science spends perfecting their inventions, the empire rapidly grows in number.\n\nReuniting with old friends and gaining new allies, Senkuu and the Kingdom of Science must stop Tsukasa's forces in order to fulfill their goal of restoring humanity and all its creations. With the two sides each in pursuit of their ideal world, the Stone Wars have now begun!",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/03d6a1cd6d2d48fc348f9cfb4dabc2ec.jpg",
-        "jname": "Dr. Stone: Science Future Part 2",
-        "episodes": {
-          "sub": 7,
-          "dub": 7
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 10, 2025",
-          "HD"
-        ]
-      },
-      {
-        "rank": 3,
-        "id": "sakamoto-days-part-2-19787",
-        "name": "Sakamoto Days Part 2",
-        "description": "When Sakamoto meets Aoi, the convenience store clerk, it’s love at first sight — and just like that, he retires.\n\nSakamoto gets married, has a daughter, opens a mom-and-pop store in a quiet town, and completely transforms … into a plus-size man. To ensure a peaceful life with his beloved family, the legendary ex–hit man bands together with comrades to face off against the looming threat of assassins.",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/200f6d513c6a0ea46258ef0b2d3d411a.jpg",
-        "jname": "Sakamoto Days Part 2",
-        "episodes": {
-          "sub": 7,
-          "dub": 7
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 15, 2025",
-          "HD"
-        ]
-      },
-      {
-        "rank": 4,
-        "id": "kaiju-no-8-season-2-19792",
-        "name": "Kaiju No. 8 Season 2",
-        "description": "After the destruction of their hometown, childhood friends Kafka Hibino and Mina Ashiro make a pact to become officers in the Defense Force—a militarized organization tasked with protecting Japan from colossal monsters known as \"kaijuu.\" Decades later, the 32-year-old Kafka has all but given up on his dreams of heroism. Instead, he cleans up the remains of the slaughtered kaijuu after they are defeated by valiant soldiers—including Mina, who has successfully achieved their shared goal.\n\nUpon meeting his new coworker, Reno Ichikawa, Kafka faces a mirror of his past self: an ambitious young man whose one desire is to fight as a member of the Defense Force. Unfortunately, the two are soon involved in a freak encounter with a rogue kaijuu. Though Kafka demonstrates his innate heroic nature and rescues Reno from certain doom, he is left gravely injured.\n\nWhile both men recover in a hospital, Kafka is seemingly attacked by another one of the beasts. As a result, he gains the ability to transform into a humanoid kaijuu with the strength and powers of the massive monsters menacing Japan. Dubbed \"Kaijuu No. 8\" by the military, Kafka resolves to use his newfound gifts for the greater good. Tied together by mutual respect, Kafka and Reno set out to join warriors like Mina at the forefront of the Defense Force.",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/6461c9a2f865136afa30424ea61586be.jpg",
-        "jname": "Kaijuu 8-gou 2nd Season",
-        "episodes": {
-          "sub": 5,
-          "dub": 5
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 19, 2025",
-          "HD"
-        ]
-      },
-      {
-        "rank": 5,
-        "id": "the-fragrant-flower-blooms-with-dignity-19789",
-        "name": "The Fragrant Flower Blooms with Dignity",
-        "description": "Despite being adjacent to one another, Chidori Public High School and the all-girls Kikyo Private Academy seem to exist in two different worlds. While the latter boasts an immaculate reputation and favors students from wealthy backgrounds, the former is a nest for dim-witted delinquents. Everyone at Kikyo harbors a deep hatred for their Chidori neighbors.  Sixteen-year-old Rintarou Tsumugi is a student at Chidori whose intimidating face leads people to avoid him. Rintarou pays no mind to this, as he is content with his group of friends. However, there is something he has not told them yet: sometimes, he helps out at his family's cake shop.  One day at work, Rintarou sees a customer at a table, but she runs off before he can talk to her. The next day, he receives an apology from the girl, Kaoruko Waguri, who explains that she did not run away because of his appearance and that she believes Rintarou is a kind-hearted person. Although he is not used to Kaoruko's bright personality, Rintarou looks forward to forming a friendship with her. There is just one obstacle that stands in his way: Kaoruko is a Kikyo student!",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/ff668a581562353a8e1e4054264fba79.jpg",
-        "jname": "Kaoru Hana wa Rin to Saku",
-        "episodes": {
-          "sub": 7,
-          "dub": null
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 6, 2025",
-          "HD"
-        ]
-      },
-      {
-        "rank": 6,
-        "id": "my-dress-up-darling-season-2-19794",
-        "name": "My Dress-Up Darling Season 2",
-        "description": "The second season of Sono Bisque Doll wa Koi wo Suru.\n\nWhen Marin Kitagawa and Wakana Gojo met, they grew close over their love for cosplay. Through interacting with classmates and making new cosplay friends, Marin and Wakana’s world keeps growing. New developments arise as Marin’s love for Wakana continues to be filled with endless excitement. In their ever-expanding world, Marin and Wakana’s story of cosplay and thrills continues!",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/efe80a55370f96edc544fb3d16c4b16f.jpg",
-        "jname": "Sono Bisque Doll wa Koi wo Suru Season 2",
-        "episodes": {
-          "sub": 7,
-          "dub": 5
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 6, 2025",
-          "HD"
-        ]
-      },
-      {
-        "rank": 7,
-        "id": "one-piece-100",
-        "name": "One Piece",
-        "description": "Gold Roger was known as the \"Pirate King,\" the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Piece—which promises an unlimited amount of riches and fame—and quite possibly the pinnacle of glory and the title of the Pirate King.\n\nEnter Monkey Luffy, a 17-year-old boy who defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate ransacking villages for fun, Luffy's reason for being a pirate is one of pure wonder: the thought of an exciting adventure that leads him to intriguing people and ultimately, the promised treasure. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach the most coveted of all fortunes—One Piece.",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/db8603d2f4fa78e1c42f6cf829030a18.jpg",
-        "jname": "One Piece",
-        "episodes": {
-          "sub": 1140,
-          "dub": 1133
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Oct 20, 1999",
-          "HD"
-        ]
-      },
-      {
-        "rank": 8,
-        "id": "gachiakuta-19785",
-        "name": "Gachiakuta",
-        "description": "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or valuable to save from the \"Abyss\"—a massive hole where anything considered trash is dumped, including people. Rudo's biological father was one such person, having been thrown into the Abyss after he was accused of murder.  One day, after running into a mysterious figure on the way home, Rudo returns to find Regto's dying body on the floor. He is immediately found at the scene by the authorities and is charged with murder. No one believes his claims of innocence, and he is thrown into the Abyss. Instead of dying, however, he finds himself in a strange, foul-smelling place surrounded by monsters made out of trash.  When Rudo is attacked by said monsters, he is saved by a man named Enjin, who reveals himself to be a \"Cleaner\"—someone who uses special weapons called Vital Instruments to combat these creatures. In order to get his revenge on the one who killed Regto, Rudo reluctantly becomes a Cleaner to fight his way back up and out of the Abyss.",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/7090ec9557d74a18d25341a241ece786.jpg",
-        "jname": "Gachiakuta",
-        "episodes": {
-          "sub": 6,
-          "dub": 6
-        },
-        "type": "TV",
-        "otherInfo": [
-          "TV",
-          "24m",
-          "Jul 6, 2025",
-          "HD"
-        ]
-      }
-    ],
+    {
+      "rank": 1,
+      "id": "one-piece-100",
+      "name": "One Piece",
+      "description": "Gold Roger was known as the \"Pirate King,\" the strongest and most infamous being to have sailed the Grand Line. The capture and execution of Roger by the World Government brought a change throughout the world. His last words before his death revealed the existence of the greatest treasure in the world, One Piece. It was this revelation that brought about the Grand Age of Pirates, men who dreamed of finding One Pieceâ€”which promises an unlimited amount of riches and fameâ€”and quite possibly the pinnacle of glory and the title of the Pirate King.\n\nEnter Monkey Luffy, a 17-year-old boy who defies your standard definition of a pirate. Rather than the popular persona of a wicked, hardened, toothless pirate ransacking villages for fun, Luffy's reason for being a pirate is one of pure wonder: the thought of an exciting adventure that leads him to intriguing people and ultimately, the promised treasure. Following in the footsteps of his childhood hero, Luffy and his crew travel across the Grand Line, experiencing crazy adventures, unveiling dark mysteries and battling strong enemies, all in order to reach the most coveted of all fortunesâ€”One Piece.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/db8603d2f4fa78e1c42f6cf829030a18.jpg",
+      "jname": "One Piece",
+      "episodes": { "sub": 1140, "dub": 1133 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Oct 20, 1999", "HD"]
+    },
+    {
+      "rank": 2,
+      "id": "gachiakuta-19785",
+      "name": "Gachiakuta",
+      "description": "Living in the slums of a wealthy town, Rudo and his foster father Regto try to coexist with the rest of the town's residents, but Rudo despises the wastefulness of the upper class. Ignoring the warnings from those around him, Rudo regularly rummages through the town's garbage in search of anything useful or valuable to save from the \"Abyss\"â€”a massive hole where anything considered trash is dumped, including people. Rudo's biological father was one such person, having been thrown into the Abyss after he was accused of murder.  One day, after running into a mysterious figure on the way home, Rudo returns to find Regto's dying body on the floor. He is immediately found at the scene by the authorities and is charged with murder. No one believes his claims of innocence, and he is thrown into the Abyss. Instead of dying, however, he finds himself in a strange, foul-smelling place surrounded by monsters made out of trash.  When Rudo is attacked by said monsters, he is saved by a man named Enjin, who reveals himself to be a \"Cleaner\"â€”someone who uses special weapons called Vital Instruments to combat these creatures. In order to get his revenge on the one who killed Regto, Rudo reluctantly becomes a Cleaner to fight his way back up and out of the Abyss.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/7090ec9557d74a18d25341a241ece786.jpg",
+      "jname": "Gachiakuta",
+      "episodes": { "sub": 6, "dub": 6 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 6, 2025", "HD"]
+    },
+    {
+      "rank": 3,
+      "id": "my-dress-up-darling-season-2-19794",
+      "name": "My Dress-Up Darling Season 2",
+      "description": "The second season of Sono Bisque Doll wa Koi wo Suru.\n\nWhen Marin Kitagawa and Wakana Gojo met, they grew close over their love for cosplay. Through interacting with classmates and making new cosplay friends, Marin and Wakanaâ€™s world keeps growing. New developments arise as Marinâ€™s love for Wakana continues to be filled with endless excitement. In their ever-expanding world, Marin and Wakanaâ€™s story of cosplay and thrills continues!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/efe80a55370f96edc544fb3d16c4b16f.jpg",
+      "jname": "Sono Bisque Doll wa Koi wo Suru Season 2",
+      "episodes": { "sub": 7, "dub": 5 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 6, 2025", "HD"]
+    },
+    {
+      "rank": 4,
+      "id": "kaiju-no-8-season-2-19792",
+      "name": "Kaiju No. 8 Season 2",
+      "description": "After the destruction of their hometown, childhood friends Kafka Hibino and Mina Ashiro make a pact to become officers in the Defense Forceâ€”a militarized organization tasked with protecting Japan from colossal monsters known as \"kaijuu.\" Decades later, the 32-year-old Kafka has all but given up on his dreams of heroism. Instead, he cleans up the remains of the slaughtered kaijuu after they are defeated by valiant soldiersâ€”including Mina, who has successfully achieved their shared goal.\n\nUpon meeting his new coworker, Reno Ichikawa, Kafka faces a mirror of his past self: an ambitious young man whose one desire is to fight as a member of the Defense Force. Unfortunately, the two are soon involved in a freak encounter with a rogue kaijuu. Though Kafka demonstrates his innate heroic nature and rescues Reno from certain doom, he is left gravely injured.\n\nWhile both men recover in a hospital, Kafka is seemingly attacked by another one of the beasts. As a result, he gains the ability to transform into a humanoid kaijuu with the strength and powers of the massive monsters menacing Japan. Dubbed \"Kaijuu No. 8\" by the military, Kafka resolves to use his newfound gifts for the greater good. Tied together by mutual respect, Kafka and Reno set out to join warriors like Mina at the forefront of the Defense Force.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/6461c9a2f865136afa30424ea61586be.jpg",
+      "jname": "Kaijuu 8-gou 2nd Season",
+      "episodes": { "sub": 5, "dub": 5 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 19, 2025", "HD"]
+    },
+    {
+      "rank": 5,
+      "id": "the-fragrant-flower-blooms-with-dignity-19789",
+      "name": "The Fragrant Flower Blooms with Dignity",
+      "description": "Despite being adjacent to one another, Chidori Public High School and the all-girls Kikyo Private Academy seem to exist in two different worlds. While the latter boasts an immaculate reputation and favors students from wealthy backgrounds, the former is a nest for dim-witted delinquents. Everyone at Kikyo harbors a deep hatred for their Chidori neighbors.  Sixteen-year-old Rintarou Tsumugi is a student at Chidori whose intimidating face leads people to avoid him. Rintarou pays no mind to this, as he is content with his group of friends. However, there is something he has not told them yet: sometimes, he helps out at his family's cake shop.  One day at work, Rintarou sees a customer at a table, but she runs off before he can talk to her. The next day, he receives an apology from the girl, Kaoruko Waguri, who explains that she did not run away because of his appearance and that she believes Rintarou is a kind-hearted person. Although he is not used to Kaoruko's bright personality, Rintarou looks forward to forming a friendship with her. There is just one obstacle that stands in his way: Kaoruko is a Kikyo student!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/ff668a581562353a8e1e4054264fba79.jpg",
+      "jname": "Kaoru Hana wa Rin to Saku",
+      "episodes": { "sub": 7, "dub": null },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 6, 2025", "HD"]
+    },
+    {
+      "rank": 6,
+      "id": "dr-stone-science-future-part-2-19784",
+      "name": "Dr. Stone: Science Future Part 2",
+      "description": "Senkuu has made it his goal to bring back two million years of human achievement and revive the entirety of those turned to statues. However, one man stands in his way: Tsukasa Shishiou, who believes that only the fittest of those petrified should be revived.\n\nAs the snow melts and spring approaches, Senkuu and his allies in Ishigami Village finish the preparations for their attack on the Tsukasa Empire. With a reinvented cell phone model now at their disposal, the Kingdom of Science is ready to launch its newest scheme to recruit the sizable numbers of Tsukasa's army to their side. However, it is a race against time; for every day the Kingdom of Science spends perfecting their inventions, the empire rapidly grows in number.\n\nReuniting with old friends and gaining new allies, Senkuu and the Kingdom of Science must stop Tsukasa's forces in order to fulfill their goal of restoring humanity and all its creations. With the two sides each in pursuit of their ideal world, the Stone Wars have now begun!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/03d6a1cd6d2d48fc348f9cfb4dabc2ec.jpg",
+      "jname": "Dr. Stone: Science Future Part 2",
+      "episodes": { "sub": 6, "dub": 6 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 10, 2025", "HD"]
+    },
+    {
+      "rank": 7,
+      "id": "dan-da-dan-season-2-19793",
+      "name": "Dan Da Dan Season 2",
+      "description": "Reeling from her recent breakup, Momo Ayase, a popular high schooler, shows kindness to her socially awkward schoolmate, Ken Takakura, by standing up to his bullies. Ken misunderstands her intentions, believing he has made a new friend who shares his obsession with aliens and UFOs. However, Momo's own eccentric occult beliefs lie in the supernatural realm; she thinks aliens do not exist. A rivalry quickly brews as each becomes determined to prove the other wrong.\n\nDespite their initial clash over their opposing beliefs, Momo and Ken form an unexpected but intimate friendship, a bond forged in a series of supernatural battles and bizarre encounters with urban legends and paranormal entities. As both develop unique superhuman abilities, they learn to supplement each other's weaknesses, leading them to wonder if their newfound partnership may be about more than just survival.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/33043b5bb1314a46d20f814dbe70f123.jpg",
+      "jname": "Dandadan 2nd Season",
+      "episodes": { "sub": 7, "dub": 7 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 4, 2025", "HD"]
+    },
+    {
+      "rank": 8,
+      "id": "sakamoto-days-part-2-19787",
+      "name": "Sakamoto Days Part 2",
+      "description": "When Sakamoto meets Aoi, the convenience store clerk, itâ€™s love at first sight â€” and just like that, he retires.\n\nSakamoto gets married, has a daughter, opens a mom-and-pop store in a quiet town, and completely transforms â€¦ into a plus-size man. To ensure a peaceful life with his beloved family, the legendary exâ€“hit man bands together with comrades to face off against the looming threat of assassins.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/1366x768/100/200f6d513c6a0ea46258ef0b2d3d411a.jpg",
+      "jname": "Sakamoto Days Part 2",
+      "episodes": { "sub": 6, "dub": 6 },
+      "type": "TV",
+      "otherInfo": ["TV", "24m", "Jul 15, 2025", "HD"]
+    }
+  ],
   "latestEpisodeAnimes": [
     {
       "id": "new-saga-19774",
@@ -359,6 +295,26 @@ export const animeData: AnimeData = {
       "episodes": { "sub": 6, "dub": null }
     },
     {
+      "id": "romance-in-the-beast-world-season-2-19744",
+      "name": "Romance in the Beast World Season 2",
+      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+    {
+      "id": "jiang-ye-3-19745",
+      "name": "Jiang Ye 3",
+      "jname": "Jiang Ye 3",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8f3f.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+{
       "id": "new-saga-19774",
       "name": "New Saga",
       "jname": "Tsuyokute New Saga",
@@ -379,161 +335,285 @@ export const animeData: AnimeData = {
       "episodes": { "sub": 7, "dub": 4 }
     },
     {
-        "id": "nukitashi-the-animation-19806",
-        "name": "Nukitashi the Animation",
-        "jname": "Nukitashi the Animation",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/33d4163485c2892aad7b42ddcf4ef7d8.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": "18+",
-        "episodes": {
-          "sub": 6,
-          "dub": null
-        }
-      },
-      {
-        "id": "betrothed-to-my-sisters-ex-19766",
-        "name": "Betrothed to My Sister's Ex",
-        "jname": "Zutaboro Reijou wa Ane no Moto Konyakusha ni Dekiai sareru",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a7726d03ae15975c080df874ca8e3d8a.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": null
-        }
-      },
-      {
-        "id": "secrets-of-the-silent-witch-19777",
-        "name": "Secrets of the Silent Witch",
-        "jname": "Silent Witch: Chinmoku no Majo no Kakushigoto",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/80041e1c6d7346e561fd39d10507ddf9.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": 7
-        }
-      },
-      {
-        "id": "watari-kuns-is-about-to-collapse-19769",
-        "name": "Watari-kun's ****** Is about to Collapse",
-        "jname": "Watari-kun no xx ga Houkai Sunzen",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/7353719ac2fd26e6af72fe773c37a06a.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": 5
-        }
-      },
-      {
-        "id": "tougen-anki-19779",
-        "name": "Tougen Anki",
-        "jname": "Tougen Anki",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e5e326f8234a54e407d7e3c86f9d68e2.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 7,
-          "dub": 6
-        }
-      },
-      {
-        "id": "everyday-host-19601",
-        "name": "Everyday Host",
-        "jname": "Everyday Host",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/177fae6c9e32aca4db5bdccc6faec97f.jpg",
-        "duration": "3m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 18,
-          "dub": null
-        }
-      },
-      {
-        "id": "arknights-rise-from-ember-19768",
-        "name": "Arknights: Rise from Ember",
-        "jname": "Arknights: Rise from Ember",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/761de12ac14d81fb28a5e991d9db31a9.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": null
-        }
-      },
-      {
-        "id": "call-of-the-night-season-2-19791",
-        "name": "Call of the Night Season 2",
-        "jname": "Yofukashi no Uta Season 2",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0e19ae2576c697406e319f26ac939fce.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": null
-        }
-      },
-      {
-        "id": "a-bouquet-for-an-ugly-girl-19767",
-        "name": "A Bouquet for an Ugly Girl",
-        "jname": "Busu ni Hanataba wo.",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e6e5447f50616963c3225364896c8be4.jpg",
-        "duration": "24m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": null
-        }
-      },
-      {
-        "id": "araiguma-calcal-dan-19650",
-        "name": "Araiguma Calcal-dan",
-        "jname": "Araiguma Calcal-dan",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f73edc5ab4fb09128b2e462c7463d836.jpg",
-        "duration": "2m",
-        "type": "TV",
-        "rating": null,
-        "episodes": {
-          "sub": 21,
-          "dub": null
-        }
-      },
-      {
-        "id": "fairies-albums-5-19817",
-        "name": "Fairies Albums 5",
-        "jname": "Bai Yao Pu 5th Season",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/190bbea727e92563d00b7ca6d7ed44fc.jpg",
-        "duration": "20m",
-        "type": "ONA",
-        "rating": null,
-        "episodes": {
-          "sub": 6,
-          "dub": null
-        }
-      },
-      {
-        "id": "dragon-raja-season-2-19811",
-        "name": "Dragon Raja Season 2",
-        "jname": "Long Zu II: Daowangzhe Zhi Tong",
-        "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cda2c84e268ea0ccad62300808dfaf5e.jpg",
-        "duration": "20m",
-        "type": "ONA",
-        "rating": null,
-        "episodes": {
-          "sub": 8,
-          "dub": null
-        }
-      }
+      "id": "with-vengeance-19740",
+      "name": "With Vengeance",
+      "jname": "Kizu darake Seijo yori Houfuku wo Komete",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e7abcc65667e4eeaf7fc9f4123c447c9.jpg",
+      "duration": "14m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "dealing-with-mikadono-sisters-is-a-breeze-19765",
+      "name": "Dealing with Mikadono Sisters Is a Breeze",
+      "jname": "Mikadono Sanshimai wa Angai, Choroi.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/388f4b910e67046f642d35228791e015.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 3 }
+    },
+    {
+      "id": "hell-teacher-jigoku-sensei-nube-19758",
+      "name": "Hell Teacher: Jigoku Sensei Nube",
+      "jname": "Jigoku Sensei Nube (2025)",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b820eb87b6c05c6f9d98007e7eee2b24.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": null }
+    },
+    {
+      "id": "uchuujin-muumuu-19598",
+      "name": "Uchuujin MuuMuu",
+      "jname": "Uchuujin MuuMuu",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5558fe41e94b3ee11a89842f1eef075c.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 19, "dub": null }
+    },
+    {
+      "id": "panty-stocking-with-garterbelt-2nd-season-19780",
+      "name": "Panty & Stocking with Garterbelt 2nd Season",
+      "jname": "New Panty & Stocking with Garterbelt",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a71d234899029be1b8bc25552cca8408.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability-season-2-19781",
+      "name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magical Ability Season 2",
+      "jname": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cc90c348158e7ee0df92885576ad7603.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 3 }
+    },
+    {
+      "id": "reborn-as-a-vending-machine-i-now-wander-the-dungeon-season-2-19776",
+      "name": "Reborn as a Vending Machine, I Now Wander the Dungeon Season 2",
+      "jname": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/86ab58b1b09723017a3883d9ba2cfa22.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "clevatess-19760",
+      "name": "Clevatess",
+      "jname": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d53c0d4ebad9dd8f22ccb1ba37568213.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 7, "dub": 6 }
+    },
+    {
+      "id": "the-rising-of-the-shield-hero-season-4-19790",
+      "name": "The Rising of the Shield Hero Season 4",
+      "jname": "Tate no Yuusha no Nariagari Season 4",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f388247d0d1c9dfd45c9e704ebe031aa.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "bulletbullet-19726",
+      "name": "Bullet/Bullet",
+      "jname": "Bullet/Bullet",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3d632a9faba80a43fa1c4bf5d98ec97a.jpg",
+      "duration": "24m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 12, "dub": 12 }
+    },
+    {
+      "id": "turkey-19749",
+      "name": "Turkey!",
+      "jname": "Turkey!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "romance-in-the-beast-world-season-2-19744",
+      "name": "Romance in the Beast World Season 2",
+      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+    {
+      "id": "jiang-ye-3-19745",
+      "name": "Jiang Ye 3",
+      "jname": "Jiang Ye 3",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8f3f.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+{
+      "id": "new-saga-19774",
+      "name": "New Saga",
+      "jname": "Tsuyokute New Saga",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/36cb7408e1016c2a85bd8541851408e6.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "onmyo-kaiten-rebirth-verse-19744",
+      "name": "Onmyo Kaiten Re:Birth Verse",
+      "jname": "Onmyou Kaiten Re:Birth",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/13b4878f4875d721ab896b97ebaf5d48.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "with-vengeance-19740",
+      "name": "With Vengeance",
+      "jname": "Kizu darake Seijo yori Houfuku wo Komete",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/e7abcc65667e4eeaf7fc9f4123c447c9.jpg",
+      "duration": "14m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "dealing-with-mikadono-sisters-is-a-breeze-19765",
+      "name": "Dealing with Mikadono Sisters Is a Breeze",
+      "jname": "Mikadono Sanshimai wa Angai, Choroi.",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/388f4b910e67046f642d35228791e015.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 3 }
+    },
+    {
+      "id": "hell-teacher-jigoku-sensei-nube-19758",
+      "name": "Hell Teacher: Jigoku Sensei Nube",
+      "jname": "Jigoku Sensei Nube (2025)",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/b820eb87b6c05c6f9d98007e7eee2b24.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": null }
+    },
+    {
+      "id": "uchuujin-muumuu-19598",
+      "name": "Uchuujin MuuMuu",
+      "jname": "Uchuujin MuuMuu",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5558fe41e94b3ee11a89842f1eef075c.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 19, "dub": null }
+    },
+    {
+      "id": "panty-stocking-with-garterbelt-2nd-season-19780",
+      "name": "Panty & Stocking with Garterbelt 2nd Season",
+      "jname": "New Panty & Stocking with Garterbelt",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/a71d234899029be1b8bc25552cca8408.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "i-was-reincarnated-as-the-7th-prince-so-i-can-take-my-time-perfecting-my-magical-ability-season-2-19781",
+      "name": "I Was Reincarnated as the 7th Prince so I Can Take My Time Perfecting My Magical Ability Season 2",
+      "jname": "Tensei shitara Dainana Ouji Datta node, Kimama ni Majutsu wo Kiwamemasu 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/cc90c348158e7ee0df92885576ad7603.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 3 }
+    },
+    {
+      "id": "reborn-as-a-vending-machine-i-now-wander-the-dungeon-season-2-19776",
+      "name": "Reborn as a Vending Machine, I Now Wander the Dungeon Season 2",
+      "jname": "Jidou Hanbaiki ni Umarekawatta Ore wa Meikyuu wo Samayou 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/86ab58b1b09723017a3883d9ba2cfa22.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 7, "dub": 4 }
+    },
+    {
+      "id": "clevatess-19760",
+      "name": "Clevatess",
+      "jname": "Clevatess: Majuu no Ou to Akago to Shikabane no Yuusha",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/d53c0d4ebad9dd8f22ccb1ba37568213.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": "18+",
+      "episodes": { "sub": 7, "dub": 6 }
+    },
+    {
+      "id": "the-rising-of-the-shield-hero-season-4-19790",
+      "name": "The Rising of the Shield Hero Season 4",
+      "jname": "Tate no Yuusha no Nariagari Season 4",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f388247d0d1c9dfd45c9e704ebe031aa.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": 5 }
+    },
+    {
+      "id": "bulletbullet-19726",
+      "name": "Bullet/Bullet",
+      "jname": "Bullet/Bullet",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/3d632a9faba80a43fa1c4bf5d98ec97a.jpg",
+      "duration": "24m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 12, "dub": 12 }
+    },
+    {
+      "id": "turkey-19749",
+      "name": "Turkey!",
+      "jname": "Turkey!",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/0b84bc6fe72602837cfbaa26ff8ba7f6.jpg",
+      "duration": "24m",
+      "type": "TV",
+      "rating": null,
+      "episodes": { "sub": 6, "dub": null }
+    },
+    {
+      "id": "romance-in-the-beast-world-season-2-19744",
+      "name": "Romance in the Beast World Season 2",
+      "jname": "Shou Ren Shi Jie de Lian'ai Fa Ze 2nd Season",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/5a4b6febd01ed0a1de13c24de45cbe99.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    },
+    {
+      "id": "jiang-ye-3-19745",
+      "name": "Jiang Ye 3",
+      "jname": "Jiang Ye 3",
+      "poster": "https://cdn.noitatnemucod.net/thumbnail/300x400/100/f55d5e59e89b8e8d25bbda7b90fe8f3f.jpg",
+      "duration": "8m",
+      "type": "ONA",
+      "rating": null,
+      "episodes": { "sub": 52, "dub": null }
+    }
   ],
   "mostPopularAnimes": [
     {

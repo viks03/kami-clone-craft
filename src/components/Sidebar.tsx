@@ -1,6 +1,6 @@
-import { useState, useMemo, memo, useCallback } from 'react';
+import { useState, useMemo } from 'react';
 
-interface OptimizedSidebarProps {
+interface SidebarProps {
   className?: string;
   isOpen?: boolean;
   onToggle?: () => void;
@@ -16,12 +16,8 @@ const navItems = [
   { icon: 'fas fa-random', label: 'Random Anime' },
 ] as const;
 
-export const OptimizedSidebar = memo(({ className }: OptimizedSidebarProps) => {
+export const Sidebar = ({ className }: SidebarProps) => {
   const [activeItem, setActiveItem] = useState('Home');
-
-  const handleItemClick = useCallback((label: string) => {
-    setActiveItem(label);
-  }, []);
 
   return (
     <>
@@ -41,7 +37,7 @@ export const OptimizedSidebar = memo(({ className }: OptimizedSidebarProps) => {
                     ? 'bg-anime-secondary' 
                     : 'hover:bg-anime-secondary'
                 }`}
-                onClick={() => handleItemClick(item.label)}
+                onClick={() => setActiveItem(item.label)}
               >
                 <i className={`${item.icon} text-lg`} />
                 <span>{item.label}</span>
@@ -52,4 +48,4 @@ export const OptimizedSidebar = memo(({ className }: OptimizedSidebarProps) => {
       </aside>
     </>
   );
-});
+};

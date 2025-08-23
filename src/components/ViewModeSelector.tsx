@@ -1,21 +1,21 @@
-import React, { memo, useMemo, useCallback } from 'react';
+import React from 'react';
 import { Grid3x3, List, BarChart3 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 type ViewMode = 'classic' | 'card-list' | 'anichart';
 
-interface OptimizedViewModeSelectorProps {
+interface ViewModeSelectorProps {
   currentMode: ViewMode;
   onModeChange: (mode: ViewMode) => void;
   className?: string;
 }
 
-export const OptimizedViewModeSelector = memo(({
+export const ViewModeSelector: React.FC<ViewModeSelectorProps> = ({
   currentMode,
   onModeChange,
   className
-}: OptimizedViewModeSelectorProps) => {
-  const modes = useMemo(() => [
+}) => {
+  const modes = [
     {
       id: 'classic' as ViewMode,
       label: 'Classic',
@@ -31,11 +31,7 @@ export const OptimizedViewModeSelector = memo(({
       label: 'AniChart',
       icon: BarChart3,
     },
-  ], []);
-
-  const handleModeChange = useCallback((mode: ViewMode) => {
-    onModeChange(mode);
-  }, [onModeChange]);
+  ];
 
   return (
     <div className={cn(
@@ -49,7 +45,7 @@ export const OptimizedViewModeSelector = memo(({
         return (
           <button
             key={mode.id}
-            onClick={() => handleModeChange(mode.id)}
+            onClick={() => onModeChange(mode.id)}
             className={cn(
               "flex items-center gap-2 px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap",
               isActive
@@ -64,4 +60,4 @@ export const OptimizedViewModeSelector = memo(({
       })}
     </div>
   );
-});
+};
