@@ -9,6 +9,7 @@ import { ViewModeSelector } from '../components/ViewModeSelector';
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
+import { ScrollToTop } from '../components/ScrollToTop';
 import { animeData } from '../data/animeData';
 import { usePaginatedAnimes } from '../hooks/usePaginatedAnimes';
 import { useScrollPosition } from '../hooks/useScrollPosition';
@@ -493,6 +494,9 @@ const Index = () => {
       
       {/* Bottom Navigation for Mobile */}
       <BottomNavigation id="bottom-navigation" />
+      
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
     </div>
   );
 };
