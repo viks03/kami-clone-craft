@@ -7,12 +7,13 @@ export const ScrollToTop: React.FC = () => {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      // Show button when user has scrolled down 80% of the page
+      // Show button when user reaches the footer area
       const scrolled = document.documentElement.scrollTop;
       const maxHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercentage = (scrolled / maxHeight) * 100;
       
-      if (scrollPercentage > 80) {
+      // Show when scrolled to 95% (near footer)
+      if (scrollPercentage > 95) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -44,7 +45,7 @@ export const ScrollToTop: React.FC = () => {
     <button
       onClick={scrollToTop}
       className={cn(
-        "fixed bottom-6 right-6 z-50 p-3 rounded-full shadow-glow transition-all duration-300 transform",
+        "fixed bottom-20 right-6 z-50 p-3 rounded-lg shadow-glow transition-all duration-300 transform",
         "bg-anime-primary hover:bg-anime-secondary text-white",
         "hover:scale-110 hover:shadow-glow",
         "border border-anime-border/30",

@@ -135,7 +135,7 @@ export const Carousel = ({ animes }: CarouselProps) => {
               </div>
 
               {/* Title */}
-              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2">
+              <h1 className="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 cursor-default truncate sm:line-clamp-2 text-anime-primary">
                 {anime.name}
               </h1>
 
