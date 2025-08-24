@@ -72,57 +72,57 @@ All colors MUST be HSL.
     --sidebar-ring: 258 73% 62%;
   }
 
-  /* Sun Theme - Bright & Energetic */
+  /* Sun Theme - Warm & Refined */
   .sun-theme {
-    --background: 45 100% 96%; /* #FFFAE5 */
-    --foreground: 25 20% 5%; /* #1A1612 - Much darker for better contrast */
+    --background: 50 35% 95%; /* #F7F5F0 - Softer cream background */
+    --foreground: 25 40% 8%; /* #1F1713 - Rich dark brown for excellent readability */
 
-    --card: 48 100% 98%; /* #FFFCF5 */
-    --card-foreground: 25 20% 5%;
+    --card: 48 30% 97%; /* #F9F7F4 - Subtle warm white */
+    --card-foreground: 25 40% 8%;
 
-    --popover: 45 100% 94%; /* #FFF7D1 */
-    --popover-foreground: 25 20% 5%;
+    --popover: 45 25% 92%; /* #EFEBE6 - Gentle warm tone */
+    --popover-foreground: 25 40% 8%;
 
-    --primary: 28 95% 40%; /* #CC6600 - Darker orange for better contrast */
+    --primary: 25 85% 35%; /* #B85C00 - Warm burnt orange, professional */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 42 85% 65%; /* #D6C472 - Better contrast */
-    --secondary-foreground: 25 20% 5%;
+    --secondary: 40 45% 55%; /* #A6956B - Sophisticated taupe */
+    --secondary-foreground: 25 40% 8%;
 
-    --muted: 45 90% 85%; /* #E6D9B8 - Darker for better contrast */
-    --muted-foreground: 30 30% 25%; /* #4D3F28 - Much better contrast */
+    --muted: 45 20% 88%; /* #E5E0D9 - Subtle warm grey */
+    --muted-foreground: 30 25% 30%; /* #534A3F - Better contrast */
 
-    --accent: 35 95% 45%; /* #E67300 - Darker accent */
+    --accent: 30 70% 40%; /* #CC7A00 - Rich amber */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 50% 65%; /* #B3A082 - Better contrast */
-    --input: 40 50% 65%;
-    --ring: 28 95% 40%; /* #CC6600 */
+    --border: 40 20% 75%; /* #C4BEB5 - Soft neutral border */
+    --input: 40 20% 75%;
+    --ring: 25 85% 35%; /* #B85C00 */
 
     /* Anime site specific colors for sun theme */
-    --anime-primary: 28 95% 40%; /* #CC6600 - Darker for better contrast */
-    --anime-secondary: 35 95% 45%; /* #E67300 */
-    --anime-dark-bg: 48 100% 98%; /* #FFFCF5 */
-    --anime-card-bg: 45 85% 82%; /* #DDD1AD - Much darker for better contrast */
-    --anime-border: 40 55% 60%; /* #A8956C - Much better visibility */
-    --anime-text-muted: 30 35% 20%; /* #3D2F1A - Excellent contrast */
+    --anime-primary: 25 85% 35%; /* #B85C00 - Refined burnt orange */
+    --anime-secondary: 30 70% 40%; /* #CC7A00 - Rich amber */
+    --anime-dark-bg: 50 35% 95%; /* #F7F5F0 */
+    --anime-card-bg: 45 15% 85%; /* #DAD4CE - Much better contrast */
+    --anime-border: 40 25% 65%; /* #B8AC9E - Subtle but visible */
+    --anime-text-muted: 30 30% 25%; /* #4A3F35 - Excellent readability */
     
-    --gradient-primary: linear-gradient(135deg, hsl(28 95% 45%), hsl(35 95% 50%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(230, 126, 0, 0.1), rgba(242, 140, 0, 0.2));
-    --shadow-glow: 0 0 40px hsl(28 95% 45% / 0.3);
-    --shadow-card: 0 4px 20px rgba(230, 126, 0, 0.15);
+    --gradient-primary: linear-gradient(135deg, hsl(25 85% 40%), hsl(30 70% 45%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(184, 92, 0, 0.08), rgba(204, 122, 0, 0.12));
+    --shadow-glow: 0 0 40px hsl(25 85% 40% / 0.25);
+    --shadow-card: 0 4px 20px rgba(184, 92, 0, 0.12);
 
-    --sidebar-background: 48 100% 98%;
-    --sidebar-foreground: 25 15% 8%;
-    --sidebar-primary: 28 95% 45%;
+    --sidebar-background: 50 35% 95%;
+    --sidebar-foreground: 25 40% 8%;
+    --sidebar-primary: 25 85% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 42 85% 75%;
-    --sidebar-accent-foreground: 25 15% 8%;
-    --sidebar-border: 40 40% 75%;
-    --sidebar-ring: 28 95% 45%;
+    --sidebar-accent: 40 45% 60%;
+    --sidebar-accent-foreground: 25 40% 8%;
+    --sidebar-border: 40 20% 80%;
+    --sidebar-ring: 25 85% 40%;
   }
 
   /* Moon Theme - Cool & Mystical */
@@ -178,57 +178,110 @@ All colors MUST be HSL.
     --sidebar-ring: 200 85% 60%;
   }
 
-  /* Cat Theme - Girlish Pink & Smooth */
+  /* Cat Theme - Elegant Rose & Refined */
   .cat-theme {
-    --background: 340 50% 96%; /* #FAF0F6 - Very soft pink background */
-    --foreground: 340 30% 10%; /* #241219 - Much darker for better contrast */
+    --background: 340 25% 96%; /* #F8F4F6 - Softer, more neutral pink */
+    --foreground: 340 40% 8%; /* #221418 - Rich dark for excellent readability */
 
-    --card: 340 40% 94%; /* #F5E6ED - Slightly darker pink for cards */
-    --card-foreground: 340 30% 10%;
+    --card: 340 20% 94%; /* #F3EDEF - Subtle rose tint */
+    --card-foreground: 340 40% 8%;
 
-    --popover: 340 35% 92%; /* #F0DCE5 - Soft pink for popovers */
-    --popover-foreground: 340 30% 10%;
+    --popover: 340 15% 92%; /* #EDE6E8 - Very gentle rose */
+    --popover-foreground: 340 40% 8%;
 
-    --primary: 330 70% 50%; /* #C93D93 - Darker rose pink for better contrast */
+    --primary: 330 55% 45%; /* #B84A8A - Sophisticated mauve */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 340 45% 70%; /* #E0A8C2 - Better contrast */
-    --secondary-foreground: 340 30% 10%;
+    --secondary: 340 25% 65%; /* #C4A8B2 - Refined dusty rose */
+    --secondary-foreground: 340 40% 8%;
 
-    --muted: 340 30% 85%; /* #E5C5D1 - Darker for better contrast */
-    --muted-foreground: 340 25% 30%; /* #634A54 - Much better contrast */
+    --muted: 340 15% 88%; /* #E2D9DC - Subtle warm grey-pink */
+    --muted-foreground: 340 30% 25%; /* #5A3E48 - Excellent contrast */
 
-    --accent: 320 65% 55%; /* #DF4BB3 - Better contrast */
+    --accent: 320 50% 50%; /* #CC5299 - Balanced rose accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 340 30% 75%; /* #D1B3C1 - Better contrast */
-    --input: 340 30% 75%;
-    --ring: 330 70% 50%; /* #C93D93 */
+    --border: 340 20% 75%; /* #C7B8BE - Soft, visible border */
+    --input: 340 20% 75%;
+    --ring: 330 55% 45%; /* #B84A8A */
 
     /* Anime site specific colors for cat theme */
-    --anime-primary: 330 70% 50%; /* #C93D93 - Darker rose pink */
-    --anime-secondary: 320 65% 55%; /* #DF4BB3 - Better contrast */
-    --anime-dark-bg: 340 50% 96%; /* #FAF0F6 */
-    --anime-card-bg: 340 35% 85%; /* #E8C6D6 - Much darker for better contrast */
-    --anime-border: 340 25% 70%; /* #C299AB - Much better visibility */
-    --anime-text-muted: 340 20% 35%; /* #5D3F4B - Excellent contrast */
+    --anime-primary: 330 55% 45%; /* #B84A8A - Sophisticated mauve */
+    --anime-secondary: 320 50% 50%; /* #CC5299 - Balanced rose */
+    --anime-dark-bg: 340 25% 96%; /* #F8F4F6 */
+    --anime-card-bg: 340 12% 87%; /* #DDD4D7 - Much better contrast */
+    --anime-border: 340 18% 72%; /* #BFB0B5 - Subtle but clear */
+    --anime-text-muted: 340 25% 30%; /* #533B44 - Excellent readability */
     
-    --gradient-primary: linear-gradient(135deg, hsl(330 65% 55%), hsl(320 60% 60%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(209, 71, 163, 0.1), rgba(227, 87, 184, 0.15));
-    --shadow-glow: 0 0 40px hsl(330 65% 55% / 0.25);
-    --shadow-card: 0 4px 20px rgba(209, 71, 163, 0.12);
+    --gradient-primary: linear-gradient(135deg, hsl(330 55% 50%), hsl(320 50% 55%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(184, 74, 138, 0.08), rgba(204, 82, 153, 0.12));
+    --shadow-glow: 0 0 40px hsl(330 55% 50% / 0.2);
+    --shadow-card: 0 4px 20px rgba(184, 74, 138, 0.1);
 
-    --sidebar-background: 340 50% 96%;
-    --sidebar-foreground: 340 25% 15%;
-    --sidebar-primary: 330 65% 55%;
+    --sidebar-background: 340 25% 96%;
+    --sidebar-foreground: 340 40% 8%;
+    --sidebar-primary: 330 55% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 340 45% 75%;
-    --sidebar-accent-foreground: 340 25% 15%;
-    --sidebar-border: 340 25% 80%;
-    --sidebar-ring: 330 65% 55%;
+    --sidebar-accent: 340 25% 70%;
+    --sidebar-accent-foreground: 340 40% 8%;
+    --sidebar-border: 340 18% 80%;
+    --sidebar-ring: 330 55% 50%;
+  }
+
+  /* Cyber Theme - Sleek Electric Blue */
+  .cyber-theme {
+    --background: 200 25% 6%; /* #0A0F14 - Deep cyber dark */
+    --foreground: 190 40% 92%; /* #E8F4F8 - Cool white with blue tint */
+
+    --card: 200 25% 8%; /* #0E141A - Darker card background */
+    --card-foreground: 190 40% 92%;
+
+    --popover: 200 25% 10%; /* #12191F - Subtle depth */
+    --popover-foreground: 190 40% 92%;
+
+    --primary: 190 85% 55%; /* #1AC9E6 - Electric cyan */
+    --primary-foreground: 200 25% 6%;
+
+    --secondary: 200 15% 15%; /* #1F2329 - Subtle grey-blue */
+    --secondary-foreground: 190 40% 92%;
+
+    --muted: 200 20% 12%; /* #181E25 - Dark muted */
+    --muted-foreground: 190 25% 70%; /* #A3B8C2 - Cool grey */
+
+    --accent: 180 80% 60%; /* #33E6E6 - Bright cyan accent */
+    --accent-foreground: 200 25% 6%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 200 15% 20%; /* #2A3138 - Subtle tech border */
+    --input: 200 15% 20%;
+    --ring: 190 85% 55%; /* #1AC9E6 */
+
+    /* Anime site specific colors for cyber theme */
+    --anime-primary: 190 85% 55%; /* #1AC9E6 - Electric cyan */
+    --anime-secondary: 180 80% 60%; /* #33E6E6 - Bright cyan */
+    --anime-dark-bg: 200 25% 6%; /* #0A0F14 */
+    --anime-card-bg: 200 20% 10%; /* #141C23 - Tech card bg */
+    --anime-border: 200 15% 22%; /* #313A42 - Visible tech border */
+    --anime-text-muted: 190 20% 75%; /* #B3C5CF - Clean readability */
+    
+    --gradient-primary: linear-gradient(135deg, hsl(190 85% 55%), hsl(180 80% 60%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(26, 201, 230, 0.1), rgba(51, 230, 230, 0.15));
+    --shadow-glow: 0 0 40px hsl(190 85% 55% / 0.3);
+    --shadow-card: 0 4px 20px rgba(26, 201, 230, 0.15);
+
+    --sidebar-background: 200 25% 6%;
+    --sidebar-foreground: 190 40% 92%;
+    --sidebar-primary: 190 85% 55%;
+    --sidebar-primary-foreground: 200 25% 6%;
+    --sidebar-accent: 200 15% 15%;
+    --sidebar-accent-foreground: 190 40% 92%;
+    --sidebar-border: 200 15% 20%;
+    --sidebar-ring: 190 85% 55%;
   }
 
   .dark {

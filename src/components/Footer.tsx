@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Sun, Moon, Cat, Sparkles, Monitor } from 'lucide-react';
+import { Sun, Moon, Cat, Sparkles, Monitor, Zap } from 'lucide-react';
 import Cookies from 'js-cookie';
 
 export const Footer: React.FC<{ className?: string }>= ({ className }) => {
@@ -10,13 +10,14 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
     { Comp: Sun, label: 'Sun Theme', theme: 'sun' },
     { Comp: Sparkles, label: 'Mystical Theme', theme: 'moon' },
     { Comp: Cat, label: 'Anime Theme', theme: 'cat' },
+    { Comp: Zap, label: 'Cyber Theme', theme: 'cyber' },
     { Comp: Monitor, label: 'System Theme', theme: 'system' },
   ];
 
   const applyTheme = useCallback((theme: string) => {
     const body = document.body;
     // Remove all theme classes
-    body.classList.remove('sun-theme', 'moon-theme', 'cat-theme', 'dark');
+    body.classList.remove('sun-theme', 'moon-theme', 'cat-theme', 'cyber-theme', 'dark');
     
     // Apply the selected theme
     switch (theme) {
@@ -28,6 +29,9 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
         break;
       case 'cat':
         body.classList.add('cat-theme');
+        break;
+      case 'cyber':
+        body.classList.add('cyber-theme');
         break;
       case 'system':
         // Detect system preference
@@ -74,7 +78,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   }, [applyTheme]);
 
   const handleThemeChange = useCallback((theme: string) => {
-    if (!['user', 'sun', 'moon', 'cat', 'system'].includes(theme) || theme === selectedTheme) {
+    if (!['user', 'sun', 'moon', 'cat', 'cyber', 'system'].includes(theme) || theme === selectedTheme) {
       return;
     }
 
