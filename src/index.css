@@ -231,58 +231,7 @@ All colors MUST be HSL.
     --sidebar-ring: 330 70% 60%;
   }
 
-  /* Violet Theme - Deep Purple Mystique */
-  .violet-theme {
-    --background: 250 20% 8%; /* #0F0D14 - Deep violet dark */
-    --foreground: 250 25% 92%; /* #EBEAF0 - Light violet white */
-
-    --card: 250 20% 10%; /* #14121A - Darker violet card */
-    --card-foreground: 250 25% 92%;
-
-    --popover: 250 20% 12%; /* #19161F - Subtle violet depth */
-    --popover-foreground: 250 25% 92%;
-
-    --primary: 270 80% 65%; /* #8A66E6 - Rich violet */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 260 15% 15%; /* #1E1C23 - Subtle violet-grey */
-    --secondary-foreground: 250 25% 92%;
-
-    --muted: 250 15% 12%; /* #1A1821 - Dark violet muted */
-    --muted-foreground: 250 20% 70%; /* #A3A0B3 - Cool violet grey */
-
-    --accent: 280 75% 70%; /* #B366E6 - Bright violet accent */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 250 15% 20%; /* #2B2830 - Subtle violet border */
-    --input: 250 15% 20%;
-    --ring: 270 80% 65%; /* #8A66E6 */
-
-    /* Anime site specific colors for violet theme */
-    --anime-primary: 270 80% 65%; /* #8A66E6 - Rich violet */
-    --anime-secondary: 280 75% 70%; /* #B366E6 - Bright violet */
-    --anime-dark-bg: 250 20% 8%; /* #0F0D14 */
-    --anime-card-bg: 250 15% 10%; /* #161421 - Violet card bg */
-    --anime-border: 250 15% 22%; /* #302E38 - Visible violet border */
-    --anime-text-muted: 250 15% 75%; /* #B3B0C2 - Clean readability */
-    
-    --gradient-primary: linear-gradient(135deg, hsl(270 80% 65%), hsl(280 75% 70%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(138, 102, 230, 0.1), rgba(179, 102, 230, 0.15));
-    --shadow-glow: 0 0 40px hsl(270 80% 65% / 0.3);
-    --shadow-card: 0 4px 20px rgba(138, 102, 230, 0.15);
-
-    --sidebar-background: 250 20% 8%;
-    --sidebar-foreground: 250 25% 92%;
-    --sidebar-primary: 270 80% 65%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 260 15% 15%;
-    --sidebar-accent-foreground: 250 25% 92%;
-    --sidebar-border: 250 15% 20%;
-    --sidebar-ring: 270 80% 65%;
-  }
+  /* Violet Theme - Removed by user request */
 
   /* Emerald Theme - Nature & Sophisticated */
   .emerald-theme {
