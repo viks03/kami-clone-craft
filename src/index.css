@@ -178,57 +178,110 @@ All colors MUST be HSL.
     --sidebar-ring: 200 85% 60%;
   }
 
-  /* Sunset Theme - Warm Gradient Vibes */
-  .sunset-theme {
-    --background: 25 35% 94%; /* #F4F0EB - Warm cream base */
-    --foreground: 20 50% 8%; /* #1F1108 - Rich dark brown */
+  /* Blossom Theme - Soft Pink & Elegant */
+  .blossom-theme {
+    --background: 340 40% 96%; /* #F8F2F5 - Soft blush background */
+    --foreground: 345 45% 8%; /* #1F0A10 - Deep rose brown */
 
-    --card: 30 25% 96%; /* #F7F4F1 - Soft warm white */
-    --card-foreground: 20 50% 8%;
+    --card: 338 30% 94%; /* #F4EEF1 - Light rose card */
+    --card-foreground: 345 45% 8%;
 
-    --popover: 25 20% 92%; /* #EFEBE6 - Gentle warm tone */
-    --popover-foreground: 20 50% 8%;
+    --popover: 340 25% 92%; /* #F0E8EC - Gentle rose tone */
+    --popover-foreground: 345 45% 8%;
 
-    --primary: 15 85% 50%; /* #E65C00 - Vibrant sunset orange */
+    --primary: 330 70% 55%; /* #E63E7A - Soft rose pink */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 5 70% 60%; /* #E67A5C - Coral secondary */
-    --secondary-foreground: 20 50% 8%;
+    --secondary: 320 45% 65%; /* #C77AA0 - Dusty rose secondary */
+    --secondary-foreground: 345 45% 8%;
 
-    --muted: 30 15% 88%; /* #E3DDD8 - Subtle warm grey */
-    --muted-foreground: 25 30% 25%; /* #524134 - Excellent readability */
+    --muted: 340 15% 88%; /* #E8DDE2 - Subtle pink-grey */
+    --muted-foreground: 340 25% 25%; /* #4A3339 - Excellent readability */
 
-    --accent: 350 75% 55%; /* #E6335C - Sunset pink accent */
+    --accent: 310 60% 60%; /* #CC5299 - Mauve accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 75%; /* #C7BDAE - Soft visible border */
-    --input: 30 20% 75%;
-    --ring: 15 85% 50%; /* #E65C00 */
+    --border: 340 20% 75%; /* #C7B5BD - Soft visible border */
+    --input: 340 20% 75%;
+    --ring: 330 70% 55%; /* #E63E7A */
 
-    /* Anime site specific colors for sunset theme */
-    --anime-primary: 15 85% 50%; /* #E65C00 - Vibrant sunset orange */
-    --anime-secondary: 350 75% 55%; /* #E6335C - Sunset pink */
-    --anime-dark-bg: 25 35% 94%; /* #F4F0EB */
-    --anime-card-bg: 30 12% 86%; /* #DCD5CE - Good contrast */
-    --anime-border: 30 18% 70%; /* #BAA89A - Clear visibility */
-    --anime-text-muted: 25 25% 30%; /* #513F35 - Excellent contrast */
+    /* Anime site specific colors for blossom theme */
+    --anime-primary: 330 70% 55%; /* #E63E7A - Soft rose pink */
+    --anime-secondary: 310 60% 60%; /* #CC5299 - Mauve accent */
+    --anime-dark-bg: 340 40% 96%; /* #F8F2F5 */
+    --anime-card-bg: 340 12% 86%; /* #DDD0D6 - Good contrast */
+    --anime-border: 340 18% 70%; /* #B8A3AB - Clear visibility */
+    --anime-text-muted: 340 25% 30%; /* #4A333A - Excellent contrast */
     
-    --gradient-primary: linear-gradient(135deg, hsl(15 85% 55%), hsl(350 75% 60%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(230, 92, 0, 0.1), rgba(230, 51, 92, 0.15));
-    --shadow-glow: 0 0 40px hsl(15 85% 55% / 0.25);
-    --shadow-card: 0 4px 20px rgba(230, 92, 0, 0.12);
+    --gradient-primary: linear-gradient(135deg, hsl(330 70% 60%), hsl(310 60% 65%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(230, 62, 122, 0.1), rgba(204, 82, 153, 0.12));
+    --shadow-glow: 0 0 40px hsl(330 70% 60% / 0.25);
+    --shadow-card: 0 4px 20px rgba(230, 62, 122, 0.1);
 
-    --sidebar-background: 25 35% 94%;
-    --sidebar-foreground: 20 50% 8%;
-    --sidebar-primary: 15 85% 55%;
+    --sidebar-background: 340 40% 96%;
+    --sidebar-foreground: 345 45% 8%;
+    --sidebar-primary: 330 70% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 30 20% 80%;
-    --sidebar-accent-foreground: 20 50% 8%;
-    --sidebar-border: 30 18% 75%;
-    --sidebar-ring: 15 85% 55%;
+    --sidebar-accent: 340 15% 80%;
+    --sidebar-accent-foreground: 345 45% 8%;
+    --sidebar-border: 340 18% 75%;
+    --sidebar-ring: 330 70% 60%;
+  }
+
+  /* Violet Theme - Deep Purple Mystique */
+  .violet-theme {
+    --background: 250 20% 8%; /* #0F0D14 - Deep violet dark */
+    --foreground: 250 25% 92%; /* #EBEAF0 - Light violet white */
+
+    --card: 250 20% 10%; /* #14121A - Darker violet card */
+    --card-foreground: 250 25% 92%;
+
+    --popover: 250 20% 12%; /* #19161F - Subtle violet depth */
+    --popover-foreground: 250 25% 92%;
+
+    --primary: 270 80% 65%; /* #8A66E6 - Rich violet */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 260 15% 15%; /* #1E1C23 - Subtle violet-grey */
+    --secondary-foreground: 250 25% 92%;
+
+    --muted: 250 15% 12%; /* #1A1821 - Dark violet muted */
+    --muted-foreground: 250 20% 70%; /* #A3A0B3 - Cool violet grey */
+
+    --accent: 280 75% 70%; /* #B366E6 - Bright violet accent */
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 250 15% 20%; /* #2B2830 - Subtle violet border */
+    --input: 250 15% 20%;
+    --ring: 270 80% 65%; /* #8A66E6 */
+
+    /* Anime site specific colors for violet theme */
+    --anime-primary: 270 80% 65%; /* #8A66E6 - Rich violet */
+    --anime-secondary: 280 75% 70%; /* #B366E6 - Bright violet */
+    --anime-dark-bg: 250 20% 8%; /* #0F0D14 */
+    --anime-card-bg: 250 15% 10%; /* #161421 - Violet card bg */
+    --anime-border: 250 15% 22%; /* #302E38 - Visible violet border */
+    --anime-text-muted: 250 15% 75%; /* #B3B0C2 - Clean readability */
+    
+    --gradient-primary: linear-gradient(135deg, hsl(270 80% 65%), hsl(280 75% 70%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(138, 102, 230, 0.1), rgba(179, 102, 230, 0.15));
+    --shadow-glow: 0 0 40px hsl(270 80% 65% / 0.3);
+    --shadow-card: 0 4px 20px rgba(138, 102, 230, 0.15);
+
+    --sidebar-background: 250 20% 8%;
+    --sidebar-foreground: 250 25% 92%;
+    --sidebar-primary: 270 80% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 260 15% 15%;
+    --sidebar-accent-foreground: 250 25% 92%;
+    --sidebar-border: 250 15% 20%;
+    --sidebar-ring: 270 80% 65%;
   }
 
   /* Emerald Theme - Nature & Sophisticated */

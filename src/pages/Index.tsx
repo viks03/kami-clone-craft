@@ -360,11 +360,11 @@ const Index = () => {
             {/* Top Airing Section */}
             <section className="top-airing mb-8">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-                  <div className="w-1 h-6 bg-gradient-to-b from-anime-primary to-purple-500 rounded-full"></div>
+                <h2 className="text-2xl font-black text-foreground flex items-center gap-3">
+                  <div className="w-1.5 h-8 bg-anime-primary rounded-full"></div>
                   Top Airing
                 </h2>
-                <button className="text-anime-primary hover:text-purple-400 transition-colors text-sm font-medium">
+                <button className="text-anime-primary hover:text-anime-secondary transition-colors text-sm font-medium">
                   View All
                 </button>
               </div>
@@ -395,19 +395,19 @@ const Index = () => {
                           <div className="flex-1 min-w-0">
                             <p className="text-sm font-medium text-foreground truncate group-hover:text-anime-primary transition-colors">{anime.name}</p>
                             <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
-                              <span className="inline-flex items-center gap-1 text-xs text-green-400 bg-green-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <div className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></div>
+                              <span className="inline-flex items-center gap-1 text-xs text-anime-primary bg-anime-primary/15 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-anime-primary/20">
+                                <div className="w-1.5 h-1.5 bg-anime-primary rounded-full animate-pulse"></div>
                                 Airing
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
+                              <span className="inline-flex items-center gap-1 text-xs text-anime-secondary bg-anime-secondary/15 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-anime-secondary/20">
                                 <i className="fas fa-tv text-[8px]"></i>
                                 {randomType}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
+                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted/80 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-muted/40">
                                 <i className="fas fa-calendar text-[8px]"></i>
                                 {randomYear}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-cyan-400 bg-cyan-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
+                              <span className="inline-flex items-center gap-1 text-xs text-accent bg-accent/15 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-accent/20">
                                 <i className="fas fa-closed-captioning text-[8px]"></i>
                                 {currentEp}/{totalEp}
                               </span>
@@ -426,11 +426,11 @@ const Index = () => {
 
             <section className="upcoming mb-6 lg:mb-0">
               <div className="flex items-center justify-between mb-6">
-                <h2 className="text-xl font-bold text-foreground flex items-center gap-2">
-                  <div className="w-1 h-6 bg-gradient-to-b from-orange-500 to-amber-500 rounded-full"></div>
+                <h2 className="text-2xl font-black text-foreground flex items-center gap-3">
+                  <div className="w-1.5 h-8 bg-anime-secondary rounded-full"></div>
                   Upcoming
                 </h2>
-                <button className="text-orange-500 hover:text-amber-400 transition-colors text-sm font-medium">
+                <button className="text-anime-secondary hover:text-anime-primary transition-colors text-sm font-medium">
                   View All
                 </button>
               </div>
@@ -446,35 +446,35 @@ const Index = () => {
                     
                     return (
                       <div key={anime.id} className="group">
-                        <div className="flex items-center gap-3 p-3 rounded-lg bg-anime-dark-bg/30 border border-anime-border/30 hover:border-orange-500/30 transition-all duration-300 hover:bg-orange-500/5">
+                        <div className="flex items-center gap-3 p-3 rounded-lg bg-anime-dark-bg/30 border border-anime-border/30 hover:border-anime-secondary/30 transition-all duration-300 hover:bg-anime-secondary/5">
                           <div className="relative">
                             <img 
                               src={anime.poster} 
                               alt={anime.name}
                               className="w-12 h-16 rounded-md object-cover flex-shrink-0"
                             />
-                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-orange-500 text-white text-xs font-bold rounded-full flex items-center justify-center">
+                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-secondary text-white text-xs font-bold rounded-full flex items-center justify-center">
                               {index + 1}
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-foreground truncate group-hover:text-orange-500 transition-colors">{anime.name}</p>
+                            <p className="text-sm font-medium text-foreground truncate group-hover:text-anime-secondary transition-colors">{anime.name}</p>
                             <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
-                              <span className="inline-flex items-center gap-1 text-xs text-orange-400 bg-orange-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
-                                <div className="w-1.5 h-1.5 bg-orange-400 rounded-full animate-pulse"></div>
+                              <span className="inline-flex items-center gap-1 text-xs text-anime-secondary bg-anime-secondary/15 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-anime-secondary/20">
+                                <div className="w-1.5 h-1.5 bg-anime-secondary rounded-full animate-pulse"></div>
                                 Upcoming
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-blue-400 bg-blue-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
+                              <span className="inline-flex items-center gap-1 text-xs text-anime-primary bg-anime-primary/15 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-anime-primary/20">
                                 <i className="fas fa-tv text-[8px]"></i>
                                 {randomType}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-purple-400 bg-purple-400/10 px-2 py-0.5 rounded-full flex-shrink-0">
+                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-muted/80 px-2.5 py-1 rounded-full flex-shrink-0 font-medium border border-muted/40">
                                 <i className="fas fa-calendar text-[8px]"></i>
                                 {randomYear}
                               </span>
                             </div>
                           </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-orange-500 hover:text-amber-400">
+                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-anime-secondary hover:text-anime-primary">
                             <i className="fas fa-play text-sm"></i>
                           </button>
                         </div>
