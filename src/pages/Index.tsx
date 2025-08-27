@@ -5,7 +5,7 @@ import { Header } from '../components/Header';
 import { Carousel } from '../components/Carousel';
 import { AnimeCard } from '../components/AnimeCard';
 import { AnimePagination } from '../components/AnimePagination';
-import { ViewModeSelector } from '../components/ViewModeSelector';
+
 import { NotificationDrawer } from '../components/NotificationDrawer';
 import { BottomNavigation } from '../components/BottomNavigation';
 import { Footer } from '../components/Footer';
@@ -23,9 +23,6 @@ const Index = () => {
     return Cookies.get('animeflow-filter') || 'newest';
   });
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<'classic' | 'card-list' | 'anichart'>(() => {
-    return (Cookies.get('animeflow-viewmode') as 'classic' | 'card-list' | 'anichart') || 'classic';
-  });
   // bottom nav height handled via CSS var --bottom-nav-h
 
   // Cookie persistence functions
@@ -34,10 +31,6 @@ const Index = () => {
     Cookies.set('animeflow-filter', section, { expires: 365 }); // Remember for 1 year
   }, []);
 
-  const handleViewModeChange = useCallback((mode: 'classic' | 'card-list' | 'anichart') => {
-    setViewMode(mode);
-    Cookies.set('animeflow-viewmode', mode, { expires: 365 }); // Remember for 1 year
-  }, []);
 
   const handleSearch = useCallback((query: string) => {
     console.log(`Searching for: ${query}`);
@@ -133,7 +126,7 @@ const Index = () => {
       <main className="flex-1 flex flex-col w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex flex-col lg:flex-row flex-1 max-w-full">
           {/* Mobile Header */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between py-4 bg-anime-dark-bg border-b border-anime-border" style={{ paddingLeft: 'max(env(safe-area-inset-left), 1rem)', paddingRight: 'max(env(safe-area-inset-right), 1rem)' }}>
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between py-4 bg-anime-dark-bg border-b border-anime-border px-3" style={{ paddingLeft: 'max(env(safe-area-inset-left), 0.75rem)', paddingRight: 'max(env(safe-area-inset-right), 0.75rem)' }}>
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
@@ -156,7 +149,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-1 lg:px-0 lg:pt-0 pt-20" style={{ paddingLeft: 'max(env(safe-area-inset-left), 0.25rem)', paddingRight: 'max(env(safe-area-inset-right), 0.25rem)' }}>
+          <div className="w-full lg:w-3/4 lg:pr-1 lg:px-0 lg:pt-0 pt-20 px-3" style={{ paddingLeft: 'max(env(safe-area-inset-left), 0.75rem)', paddingRight: 'max(env(safe-area-inset-right), 0.75rem)' }}>
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -228,134 +221,33 @@ const Index = () => {
                  </div>
                </div>
                
-              {/* View Mode Selector */}
-              <div className="mb-4">
-                <ViewModeSelector
-                  currentMode={viewMode}
-                  onModeChange={handleViewModeChange}
-                />
-              </div>
-               
-               {/* Render different layouts based on view mode */}
-               {viewMode === 'classic' && (
-                 <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => (
-                     <div
-                       key={`${anime.id}-${currentPage}`}
-                       className="animate-fade-in"
-                       style={{ 
-                         animationDelay: `${index * 50}ms`,
-                         animationFillMode: 'both'
-                       }}
-                     >
-                       <AnimeCard
-                         name={anime.name}
-                         poster={anime.poster}
-                         episodes={anime.episodes}
-                         type={anime.type}
-                       />
-                     </div>
-                   ))}
-                 </div>
-               )}
-
-               {viewMode === 'card-list' && (
-                 <div className="space-y-2.5 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => (
-                     <div
-                       key={`${anime.id}-${currentPage}`}
-                       className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-lg p-3 hover:border-anime-primary/30 transition-all duration-300 group"
-                       style={{ 
-                         animationDelay: `${index * 50}ms`,
-                         animationFillMode: 'both'
-                       }}
-                     >
-                       <div className="flex items-center gap-3">
-                         <div className="relative flex-shrink-0">
-                           <img 
-                             src={anime.poster} 
-                             alt={anime.name}
-                             className="w-20 h-24 rounded-md object-cover"
-                           />
-                         </div>
-                         
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-foreground font-bold text-base sm:text-lg truncate group-hover:text-anime-primary transition-colors">
-                              {anime.name}
-                            </h3>
-                           
-                           <div className="flex items-center gap-2 mt-1 text-sm">
-                             {anime.type && (
-                               <span className="inline-flex items-center px-2 py-0.5 text-xs bg-anime-primary/15 text-anime-primary rounded-md">
-                                 {anime.type}
-                               </span>
-                             )}
-                             {anime.episodes && (
-                               <span className="inline-flex items-center gap-1 px-2 py-0.5 text-xs bg-anime-card-bg/80 rounded-md">
-                                 <i className="fas fa-closed-captioning text-[9px]"></i>
-                                 <span className="text-anime-text-muted">
-                                   {String(anime.episodes.sub || anime.episodes.dub || 0)}
-                                 </span>
-                               </span>
-                             )}
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
-               )}
-
-               {viewMode === 'anichart' && (
-                 <div className="space-y-4 min-h-[600px] transition-all duration-300">
-                   {currentAnimes.map((anime, index) => (
-                     <div
-                       key={`${anime.id}-${currentPage}`}
-                       className="animate-fade-in bg-anime-card-bg border border-anime-border rounded-xl overflow-hidden hover:border-anime-primary/30 transition-all duration-300 group"
-                       style={{ 
-                         animationDelay: `${index * 50}ms`,
-                         animationFillMode: 'both'
-                       }}
-                     >
-                       <div className="flex gap-4 p-4">
-                         <div className="relative flex-shrink-0">
-                           <img 
-                             src={anime.poster} 
-                             alt={anime.name}
-                             className="w-36 h-52 rounded-lg object-cover shadow-lg"
-                           />
-                           {anime.type && (
-                             <div className="absolute top-2 left-2 bg-anime-primary text-white text-xs font-bold px-2 py-1 rounded-md">
-                               {anime.type}
-                             </div>
-                           )}
-                         </div>
-                         
-                          <div className="flex-1 min-w-0">
-                            <h3 className="text-foreground font-bold text-xl sm:text-2xl mb-2 group-hover:text-anime-primary transition-colors">
-                              {anime.name}
-                            </h3>
-                           
-                           <div className="flex items-center gap-3 flex-wrap text-sm">
-                             {anime.episodes && (
-                               <span className="inline-flex items-center gap-1 text-anime-text-muted bg-anime-card-bg/80 px-3 py-1 rounded-md">
-                                 <i className="fas fa-closed-captioning text-[10px]"></i>
-                                 {String(anime.episodes.sub || anime.episodes.dub || 0)} episodes
-                               </span>
-                             )}
-                           </div>
-                         </div>
-                       </div>
-                     </div>
-                   ))}
-                 </div>
-               )}
+                
+                {/* Anime Grid */}
+                <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
+                  {currentAnimes.map((anime, index) => (
+                    <div
+                      key={`${anime.id}-${currentPage}`}
+                      className="animate-fade-in"
+                      style={{ 
+                        animationDelay: `${index * 50}ms`,
+                        animationFillMode: 'both'
+                      }}
+                    >
+                      <AnimeCard
+                        name={anime.name}
+                        poster={anime.poster}
+                        episodes={anime.episodes}
+                        type={anime.type}
+                      />
+                    </div>
+                  ))}
+                </div>
             </section>
 
           </div>
 
           {/* Right Section */}
-          <div className="w-full lg:w-1/4 lg:px-0 lg:pl-1 lg:border-l border-anime-border" style={{ paddingLeft: 'max(env(safe-area-inset-left), 0.25rem)', paddingRight: 'max(env(safe-area-inset-right), 0.25rem)' }}>
+          <div className="w-full lg:w-1/4 lg:px-0 lg:pl-1 lg:border-l border-anime-border px-3" style={{ paddingLeft: 'max(env(safe-area-inset-left), 0.75rem)', paddingRight: 'max(env(safe-area-inset-right), 0.75rem)' }}>
 
             {/* Top Airing Section */}
             <section className="top-airing mb-8">

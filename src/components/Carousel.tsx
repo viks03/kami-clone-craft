@@ -103,7 +103,8 @@ export const Carousel = ({ animes }: CarouselProps) => {
 
   return (
     <section 
-      className="relative h-[250px] sm:h-[350px] lg:h-[450px] mb-4 lg:mb-6 rounded-[10px] overflow-hidden"
+      className="relative h-[250px] sm:h-[350px] lg:h-[450px] mb-4 lg:mb-6 rounded-[10px] overflow-hidden px-3"
+      style={{ paddingLeft: 'max(env(safe-area-inset-left), 0.75rem)', paddingRight: 'max(env(safe-area-inset-right), 0.75rem)' }}
       onMouseEnter={() => setProgressVisible(true)}
       onMouseLeave={() => setProgressVisible(false)}
     >
