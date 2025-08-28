@@ -178,113 +178,60 @@ All colors MUST be HSL.
     --sidebar-ring: 200 85% 60%;
   }
 
-  /* Blossom Theme - Soft Pink & Elegant */
+  /* Blossom Theme - Smooth Dim Pink & Elegant */
   .blossom-theme {
-    --background: 340 40% 96%; /* #F8F2F5 - Soft blush background */
-    --foreground: 345 45% 8%; /* #1F0A10 - Deep rose brown */
+    --background: 345 25% 97%; /* #F9F6F7 - Very soft blush background */
+    --foreground: 345 30% 15%; /* #2A1F22 - Warm dark brown */
 
-    --card: 338 30% 94%; /* #F4EEF1 - Light rose card */
-    --card-foreground: 345 45% 8%;
+    --card: 342 20% 95%; /* #F6F2F4 - Ultra light rose card */
+    --card-foreground: 345 30% 15%;
 
-    --popover: 340 25% 92%; /* #F0E8EC - Gentle rose tone */
-    --popover-foreground: 345 45% 8%;
+    --popover: 344 18% 93%; /* #F2EEEF - Barely there rose tone */
+    --popover-foreground: 345 30% 15%;
 
-    --primary: 330 70% 55%; /* #E63E7A - Soft rose pink */
+    --primary: 335 50% 65%; /* #D687A4 - Muted dusty rose */
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 320 45% 65%; /* #C77AA0 - Dusty rose secondary */
-    --secondary-foreground: 345 45% 8%;
+    --secondary: 330 35% 75%; /* #C9A3B5 - Very soft dusty pink */
+    --secondary-foreground: 345 30% 15%;
 
-    --muted: 340 15% 88%; /* #E8DDE2 - Subtle pink-grey */
-    --muted-foreground: 340 25% 25%; /* #4A3339 - Excellent readability */
+    --muted: 342 12% 90%; /* #E9E2E5 - Whisper pink-grey */
+    --muted-foreground: 340 20% 35%; /* #524249 - Warm readable grey */
 
-    --accent: 310 60% 60%; /* #CC5299 - Mauve accent */
+    --accent: 320 40% 70%; /* #C48BA6 - Gentle mauve accent */
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 340 20% 75%; /* #C7B5BD - Soft visible border */
-    --input: 340 20% 75%;
-    --ring: 330 70% 55%; /* #E63E7A */
+    --border: 340 15% 80%; /* #D4C5CB - Ultra soft border */
+    --input: 340 15% 80%;
+    --ring: 335 50% 65%; /* #D687A4 */
 
     /* Anime site specific colors for blossom theme */
-    --anime-primary: 330 70% 55%; /* #E63E7A - Soft rose pink */
-    --anime-secondary: 310 60% 60%; /* #CC5299 - Mauve accent */
-    --anime-dark-bg: 340 40% 96%; /* #F8F2F5 */
-    --anime-card-bg: 340 12% 86%; /* #DDD0D6 - Good contrast */
-    --anime-border: 340 18% 70%; /* #B8A3AB - Clear visibility */
-    --anime-text-muted: 340 25% 30%; /* #4A333A - Excellent contrast */
+    --anime-primary: 335 50% 65%; /* #D687A4 - Muted dusty rose */
+    --anime-secondary: 320 40% 70%; /* #C48BA6 - Gentle mauve */
+    --anime-dark-bg: 345 25% 97%; /* #F9F6F7 */
+    --anime-card-bg: 342 10% 88%; /* #DFD7DC - Subtle contrast */
+    --anime-border: 340 12% 75%; /* #C4B8BE - Gentle visibility */
+    --anime-text-muted: 340 18% 40%; /* #5A484F - Better contrast */
     
-    --gradient-primary: linear-gradient(135deg, hsl(330 70% 60%), hsl(310 60% 65%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(230, 62, 122, 0.1), rgba(204, 82, 153, 0.12));
-    --shadow-glow: 0 0 40px hsl(330 70% 60% / 0.25);
-    --shadow-card: 0 4px 20px rgba(230, 62, 122, 0.1);
+    --gradient-primary: linear-gradient(135deg, hsl(335 50% 70%), hsl(320 40% 75%));
+    --gradient-overlay: linear-gradient(to bottom, rgba(214, 135, 164, 0.08), rgba(196, 139, 166, 0.1));
+    --shadow-glow: 0 0 40px hsl(335 50% 70% / 0.2);
+    --shadow-card: 0 4px 20px rgba(214, 135, 164, 0.08);
 
-    --sidebar-background: 340 40% 96%;
-    --sidebar-foreground: 345 45% 8%;
-    --sidebar-primary: 330 70% 60%;
+    --sidebar-background: 345 25% 97%;
+    --sidebar-foreground: 345 30% 15%;
+    --sidebar-primary: 335 50% 70%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 340 15% 80%;
-    --sidebar-accent-foreground: 345 45% 8%;
-    --sidebar-border: 340 18% 75%;
-    --sidebar-ring: 330 70% 60%;
+    --sidebar-accent: 342 12% 85%;
+    --sidebar-accent-foreground: 345 30% 15%;
+    --sidebar-border: 340 12% 80%;
+    --sidebar-ring: 335 50% 70%;
   }
 
   /* Violet Theme - Removed by user request */
-
-  /* Emerald Theme - Nature & Sophisticated */
-  .emerald-theme {
-    --background: 155 25% 94%; /* #EDF5F2 - Soft mint background */
-    --foreground: 160 40% 8%; /* #0F1F14 - Deep forest green */
-
-    --card: 150 20% 96%; /* #F1F6F3 - Very light mint */
-    --card-foreground: 160 40% 8%;
-
-    --popover: 155 15% 92%; /* #E8F1EB - Gentle mint tone */
-    --popover-foreground: 160 40% 8%;
-
-    --primary: 155 70% 40%; /* #2BB366 - Rich emerald green */
-    --primary-foreground: 0 0% 100%;
-
-    --secondary: 170 45% 55%; /* #5CB38A - Sage green secondary */
-    --secondary-foreground: 160 40% 8%;
-
-    --muted: 155 12% 88%; /* #DFEAE3 - Subtle green-grey */
-    --muted-foreground: 160 25% 25%; /* #334A3A - Excellent readability */
-
-    --accent: 140 75% 45%; /* #1FCC5C - Bright lime accent */
-    --accent-foreground: 0 0% 100%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 100%;
-
-    --border: 155 18% 75%; /* #B8CCBF - Soft visible border */
-    --input: 155 18% 75%;
-    --ring: 155 70% 40%; /* #2BB366 */
-
-    /* Anime site specific colors for emerald theme */
-    --anime-primary: 155 70% 40%; /* #2BB366 - Rich emerald */
-    --anime-secondary: 140 75% 45%; /* #1FCC5C - Bright lime */
-    --anime-dark-bg: 155 25% 94%; /* #EDF5F2 */
-    --anime-card-bg: 155 10% 86%; /* #CFE0D4 - Good contrast */
-    --anime-border: 155 15% 70%; /* #A3BAAB - Clear visibility */
-    --anime-text-muted: 160 20% 30%; /* #3D524A - Excellent contrast */
-    
-    --gradient-primary: linear-gradient(135deg, hsl(155 70% 45%), hsl(140 75% 50%));
-    --gradient-overlay: linear-gradient(to bottom, rgba(43, 179, 102, 0.1), rgba(31, 204, 92, 0.12));
-    --shadow-glow: 0 0 40px hsl(155 70% 45% / 0.25);
-    --shadow-card: 0 4px 20px rgba(43, 179, 102, 0.1);
-
-    --sidebar-background: 155 25% 94%;
-    --sidebar-foreground: 160 40% 8%;
-    --sidebar-primary: 155 70% 45%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 155 15% 80%;
-    --sidebar-accent-foreground: 160 40% 8%;
-    --sidebar-border: 155 15% 75%;
-    --sidebar-ring: 155 70% 45%;
-  }
 
   /* Cyber Theme - Sleek Electric Blue */
   .cyber-theme {
