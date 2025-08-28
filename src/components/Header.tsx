@@ -24,7 +24,7 @@ export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => 
   return (
     <header className="relative">
       {/* Desktop Search Bar */}
-      <div className="hidden lg:flex justify-between items-center my-4 px-3">
+      <div className="hidden lg:flex justify-between items-center my-4">
         <div className="flex items-center w-full max-w-[350px] h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mr-4">
           <input
             type="text"
