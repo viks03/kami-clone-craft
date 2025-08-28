@@ -164,7 +164,7 @@ const Index = () => {
             <section className="recently-updated mb-8">
               {/* Combined Filter Buttons and Pagination */}
               <div className="relative mb-4">
-                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
+                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1.5 relative">
                   {/* Filter Buttons - Scrollable Section */}
                   <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
                     <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
@@ -261,8 +261,8 @@ const Index = () => {
                 </button>
               </div>
               
-              <div className="bg-gradient-to-br from-anime-card-bg to-anime-card-bg/70 border border-anime-border/40 rounded-xl p-4 backdrop-blur-sm shadow-lg">
-                <div className="grid grid-cols-1 gap-4">
+              <div className="bg-gradient-to-br from-anime-card-bg/80 to-anime-card-bg/40 rounded-2xl p-5 backdrop-blur-sm">
+                <div className="grid grid-cols-1 gap-3">
                   {completedAnimes.slice(0, 5).map((anime, index) => {
                     const animeTypes = ['TV', 'ONA', 'OVA', 'Movie', 'Special'];
                     const years = ['2024', '2023', '2025', '2022', '2021'];
@@ -273,39 +273,39 @@ const Index = () => {
                     
                     return (
                       <div key={anime.id} className="group">
-                        <div className="flex items-center gap-3 p-3 rounded-lg bg-background/60 border border-slate-200 dark:border-slate-700 hover:border-anime-primary/40 transition-all duration-300 hover:bg-anime-primary/5 hover:shadow-md">
+                        <div className="flex items-center gap-3 p-3 rounded-xl bg-background/30 hover:bg-anime-primary/5 transition-all duration-300 hover:shadow-sm">
                           <div className="relative">
                             <img 
                               src={anime.poster} 
                               alt={anime.name}
-                              className="w-12 h-16 rounded-md object-cover flex-shrink-0"
+                              className="w-12 h-16 rounded-lg object-cover flex-shrink-0"
                             />
-                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-primary text-white text-xs font-bold rounded-full flex items-center justify-center">
+                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-primary text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg">
                               {index + 1}
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-foreground truncate group-hover:text-anime-primary transition-colors">{anime.name}</p>
-                            <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
-                              <span className="inline-flex items-center gap-1 text-xs text-green-600 bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <div className="w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse"></div>
+                            <p className="text-sm font-semibold text-foreground truncate group-hover:text-anime-primary transition-colors">{anime.name}</p>
+                            <div className="flex items-center gap-1.5 mt-2 flex-nowrap overflow-x-auto scrollbar-hide">
+                              <span className="inline-flex items-center gap-1.5 text-xs text-green-600 bg-green-50 dark:bg-green-950/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium shadow-sm">
+                                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                                 Airing
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <i className="fas fa-tv text-[8px]"></i>
+                              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium">
+                                <i className="fas fa-tv text-[10px]"></i>
                                 {randomType}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <i className="fas fa-calendar text-[8px]"></i>
+                              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium">
+                                <i className="fas fa-calendar text-[10px]"></i>
                                 {randomYear}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <i className="fas fa-closed-captioning text-[8px]"></i>
+                              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium">
+                                <i className="fas fa-closed-captioning text-[10px]"></i>
                                 {currentEp}/{totalEp}
                               </span>
                             </div>
                           </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-anime-primary hover:text-anime-secondary">
+                          <button className="opacity-0 group-hover:opacity-100 transition-all duration-300 text-anime-primary hover:text-anime-secondary hover:scale-110">
                             <i className="fas fa-play text-sm"></i>
                           </button>
                         </div>
@@ -327,8 +327,8 @@ const Index = () => {
                 </button>
               </div>
               
-              <div className="bg-gradient-to-br from-anime-card-bg to-anime-card-bg/70 border border-anime-border/40 rounded-xl p-4 backdrop-blur-sm shadow-lg">
-                <div className="grid grid-cols-1 gap-4">
+              <div className="bg-gradient-to-br from-anime-card-bg/80 to-anime-card-bg/40 rounded-2xl p-5 backdrop-blur-sm">
+                <div className="grid grid-cols-1 gap-3">
                   {[...popularAnimes, ...allLatestAnimes.slice(0, 3)].slice(0, 5).map((anime, index) => {
                     const animeTypes = ['TV', 'ONA', 'OVA', 'Movie', 'Special'];
                     const years = ['2025', '2026', '2024', '2027', '2025'];
@@ -338,35 +338,35 @@ const Index = () => {
                     
                     return (
                       <div key={anime.id} className="group">
-                        <div className="flex items-center gap-3 p-3 rounded-lg bg-background/60 border border-slate-200 dark:border-slate-700 hover:border-anime-secondary/40 transition-all duration-300 hover:bg-anime-secondary/5 hover:shadow-md">
+                        <div className="flex items-center gap-3 p-3 rounded-xl bg-background/30 hover:bg-anime-secondary/5 transition-all duration-300 hover:shadow-sm">
                           <div className="relative">
                             <img 
                               src={anime.poster} 
                               alt={anime.name}
-                              className="w-12 h-16 rounded-md object-cover flex-shrink-0"
+                              className="w-12 h-16 rounded-lg object-cover flex-shrink-0"
                             />
-                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-secondary text-white text-xs font-bold rounded-full flex items-center justify-center">
+                            <div className="absolute -top-1 -left-1 w-5 h-5 bg-anime-secondary text-white text-xs font-bold rounded-full flex items-center justify-center shadow-lg">
                               {index + 1}
                             </div>
                           </div>
                           <div className="flex-1 min-w-0">
-                            <p className="text-sm font-medium text-foreground truncate group-hover:text-anime-secondary transition-colors">{anime.name}</p>
-                            <div className="flex items-center gap-1.5 mt-1 flex-nowrap overflow-x-auto scrollbar-hide">
-                              <span className="inline-flex items-center gap-1 text-xs text-orange-600 bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <div className="w-1.5 h-1.5 bg-orange-600 rounded-full"></div>
+                            <p className="text-sm font-semibold text-foreground truncate group-hover:text-anime-secondary transition-colors">{anime.name}</p>
+                            <div className="flex items-center gap-1.5 mt-2 flex-nowrap overflow-x-auto scrollbar-hide">
+                              <span className="inline-flex items-center gap-1.5 text-xs text-orange-600 bg-orange-50 dark:bg-orange-950/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium shadow-sm">
+                                <div className="w-2 h-2 bg-orange-500 rounded-full"></div>
                                 Upcoming
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <i className="fas fa-tv text-[8px]"></i>
+                              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium">
+                                <i className="fas fa-tv text-[10px]"></i>
                                 {randomType}
                               </span>
-                              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground bg-background/80 px-2.5 py-1 rounded-sm flex-shrink-0 font-medium border border-slate-300 dark:border-slate-600">
-                                <i className="fas fa-calendar text-[8px]"></i>
+                              <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full flex-shrink-0 font-medium">
+                                <i className="fas fa-calendar text-[10px]"></i>
                                 {randomYear}
                               </span>
                             </div>
                           </div>
-                          <button className="opacity-0 group-hover:opacity-100 transition-opacity text-anime-secondary hover:text-anime-primary">
+                          <button className="opacity-0 group-hover:opacity-100 transition-all duration-300 text-anime-secondary hover:text-anime-primary hover:scale-110">
                             <i className="fas fa-clock text-sm"></i>
                           </button>
                         </div>
