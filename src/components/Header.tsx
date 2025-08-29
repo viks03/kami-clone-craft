@@ -1,4 +1,3 @@
-
 import { useState, useCallback, memo } from 'react';
 import { NotificationDrawer } from './NotificationDrawer';
 
@@ -23,7 +22,7 @@ export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => 
   }, [handleSearch]);
 
   return (
-    <header className="relative px-4" style={{ paddingLeft: 'max(1rem, env(safe-area-inset-left))', paddingRight: 'max(1rem, env(safe-area-inset-right))' }}>
+    <header className="relative">
       {/* Desktop Search Bar */}
       <div className="hidden lg:flex justify-between items-center my-4">
         <div className="flex items-center w-full max-w-[350px] h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mr-4">
@@ -56,7 +55,7 @@ export const Header = memo(({ onSearch, isSearchOpen = false }: HeaderProps) => 
       <div className={`lg:hidden fixed top-[73px] left-0 right-0 z-40 overflow-hidden transition-all duration-300 ease-in-out ${
         isSearchOpen ? 'max-h-[80px] opacity-100 bg-anime-dark-bg' : 'max-h-0 opacity-0'
       }`}>
-        <div className="flex items-center h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mx-4 mt-4 mb-4" style={{ marginLeft: 'max(1rem, env(safe-area-inset-left))', marginRight: 'max(1rem, env(safe-area-inset-right))' }}>
+        <div className="flex items-center h-[45px] px-4 bg-anime-card-bg border border-anime-border rounded-[10px] mx-2 mt-4 mb-4">
           <input
             type="text"
             placeholder="Search Anime"
