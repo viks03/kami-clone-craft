@@ -18,8 +18,7 @@ export const AnimePagination: React.FC<AnimePaginationProps> = ({
 }) => {
   return (
     <div className={cn(
-      "flex items-center bg-anime-primary/10 backdrop-blur-sm rounded-lg border border-anime-primary/20",
-      "h-10 flex-shrink-0 overflow-hidden",
+      "flex items-center h-10 flex-shrink-0 overflow-hidden",
       className
     )}>
       {/* Previous Button */}
@@ -38,7 +37,7 @@ export const AnimePagination: React.FC<AnimePaginationProps> = ({
       </button>
 
       {/* Current Page */}
-      <div className="flex items-center justify-center px-3 h-10 text-anime-primary font-bold text-sm min-w-[40px] bg-anime-primary/10 border-x border-anime-primary/20">
+      <div className="flex items-center justify-center px-3 h-10 text-anime-primary font-bold text-sm min-w-[40px] bg-anime-primary/10 border-x border-anime-border/50">
         {currentPage}
       </div>
 

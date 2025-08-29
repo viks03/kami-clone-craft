@@ -147,7 +147,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20" style={{ paddingLeft: 'max(0.25rem, env(safe-area-inset-left))', paddingRight: 'max(0.25rem, env(safe-area-inset-right))' }}>
+          <div className="w-full lg:w-3/4 lg:pr-4 px-3 lg:px-0 lg:pt-0 pt-20" style={{ paddingLeft: 'max(0.75rem, env(safe-area-inset-left))', paddingRight: 'max(0.75rem, env(safe-area-inset-right))' }}>
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -160,57 +160,50 @@ const Index = () => {
             <Carousel animes={carouselData} />
             
             <section className="recently-updated mb-8">
-              {/* Redesigned Filter and Pagination Section */}
+              {/* Unified Filter and Pagination Section */}
               <div className="mb-6">
-                <div className="flex items-center bg-anime-card-bg/80 border border-anime-border rounded-xl p-2 backdrop-blur-sm shadow-sm">
-                  {/* Filter Buttons - Scrollable Section */}
-                  <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
-                    <div className="flex bg-transparent rounded-lg p-0 gap-1" id="filter-buttons">
-                      <button
-                        onClick={() => handleSectionChange('newest')}
-                        className={`px-4 py-2 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
-                          activeSection === 'newest'
-                            ? 'bg-anime-primary text-white shadow-md'
-                            : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
-                        }`}
-                      >
-                        Newest
-                      </button>
-                      <button
-                        onClick={() => handleSectionChange('popular')}
-                        className={`px-4 py-2 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
-                          activeSection === 'popular'
-                            ? 'bg-anime-primary text-white shadow-md'
-                            : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
-                        }`}
-                      >
-                        Trending
-                      </button>
-                      <button
-                        onClick={() => handleSectionChange('top-rated')}
-                        className={`px-4 py-2 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
-                          activeSection === 'top-rated'
-                            ? 'bg-anime-primary text-white shadow-md'
-                            : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
-                        }`}
-                      >
-                        Top Rated
-                      </button>
-                    </div>
+                <div className="flex items-center bg-anime-card-bg/80 border border-anime-border rounded-lg overflow-hidden backdrop-blur-sm shadow-sm">
+                  {/* Filter Buttons */}
+                  <div className="flex">
+                    <button
+                      onClick={() => handleSectionChange('newest')}
+                      className={`px-4 py-2 text-sm font-medium transition-all whitespace-nowrap ${
+                        activeSection === 'newest'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
+                      }`}
+                    >
+                      Newest
+                    </button>
+                    <button
+                      onClick={() => handleSectionChange('popular')}
+                      className={`px-4 py-2 text-sm font-medium transition-all whitespace-nowrap ${
+                        activeSection === 'popular'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
+                      }`}
+                    >
+                      Trending
+                    </button>
+                    <button
+                      onClick={() => handleSectionChange('top-rated')}
+                      className={`px-4 py-2 text-sm font-medium transition-all whitespace-nowrap ${
+                        activeSection === 'top-rated'
+                          ? 'bg-anime-primary text-white'
+                          : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
+                      }`}
+                    >
+                      Top Rated
+                    </button>
                   </div>
                   
-                  {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
-                  <div 
-                    id="filter-fade-shadow"
-                    className="absolute top-2 right-20 w-8 h-[calc(100%-16px)] bg-gradient-to-l from-anime-card-bg/80 via-anime-card-bg/60 to-transparent pointer-events-none rounded-r-xl opacity-0 transition-opacity duration-300 sm:hidden" 
-                  />
-                  
-                  {/* Redesigned Pagination - Unified Element */}
-                  <div className="flex items-center flex-shrink-0 ml-4">
+                  {/* Pagination - Right Side */}
+                  <div className="ml-auto border-l border-anime-border">
                     <AnimePagination
                       currentPage={currentPage}
                       totalPages={totalPages}
                       onPageChange={setCurrentPage}
+                      className="bg-transparent border-0 rounded-none h-10"
                     />
                   </div>
                 </div>
@@ -240,7 +233,7 @@ const Index = () => {
           </div>
 
           {/* Right Section */}
-          <div className="w-full lg:w-1/4 px-4 lg:px-0 lg:pl-4 lg:border-l border-anime-border" style={{ paddingLeft: 'max(1rem, env(safe-area-inset-left))', paddingRight: 'max(1rem, env(safe-area-inset-right))' }}>
+          <div className="w-full lg:w-1/4 px-3 lg:px-0 lg:pl-4 lg:border-l border-anime-border" style={{ paddingLeft: 'max(0.75rem, env(safe-area-inset-left))', paddingRight: 'max(0.75rem, env(safe-area-inset-right))' }}>
 
             {/* Top Airing Section */}
             <section className="top-airing mb-8">
