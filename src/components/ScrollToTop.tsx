@@ -12,8 +12,8 @@ export const ScrollToTop: React.FC = () => {
       const maxHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollPercentage = (scrolled / maxHeight) * 100;
       
-      // Show when scrolled to 95% (near footer)
-      if (scrollPercentage > 95) {
+      // Show when scrolled down a bit
+      if (scrollPercentage > 25) {
         setIsVisible(true);
       } else {
         setIsVisible(false);

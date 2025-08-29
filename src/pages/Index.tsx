@@ -147,7 +147,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20" style={{ paddingLeft: 'max(1rem, env(safe-area-inset-left))', paddingRight: 'max(1rem, env(safe-area-inset-right))' }}>
+          <div className="w-full lg:w-3/4 lg:pr-4 px-4 lg:px-0 lg:pt-0 pt-20" style={{ paddingLeft: 'max(0.25rem, env(safe-area-inset-left))', paddingRight: 'max(0.25rem, env(safe-area-inset-right))' }}>
             <div className="hidden lg:block">
               <Header onSearch={handleSearch} />
             </div>
@@ -168,7 +168,7 @@ const Index = () => {
                     <div className="flex bg-transparent rounded-lg p-0 gap-1" id="filter-buttons">
                       <button
                         onClick={() => handleSectionChange('newest')}
-                        className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
+                        className={`px-4 py-2 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
                           activeSection === 'newest'
                             ? 'bg-anime-primary text-white shadow-md'
                             : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
@@ -178,7 +178,7 @@ const Index = () => {
                       </button>
                       <button
                         onClick={() => handleSectionChange('popular')}
-                        className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
+                        className={`px-4 py-2 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
                           activeSection === 'popular'
                             ? 'bg-anime-primary text-white shadow-md'
                             : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
@@ -188,7 +188,7 @@ const Index = () => {
                       </button>
                       <button
                         onClick={() => handleSectionChange('top-rated')}
-                        className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
+                        className={`px-4 py-2 text-sm font-bold rounded-lg transition-all whitespace-nowrap ${
                           activeSection === 'top-rated'
                             ? 'bg-anime-primary text-white shadow-md'
                             : 'text-anime-text-muted hover:text-foreground hover:bg-anime-primary/10'
