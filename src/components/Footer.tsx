@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Sun, Moon, Sparkles, Monitor, Zap, Palette, Gem } from 'lucide-react';
+import { Sun, Moon, Sparkles, Monitor, Heart, Gem } from 'lucide-react';
 import Cookies from 'js-cookie';
 
 export const Footer: React.FC<{ className?: string }>= ({ className }) => {
@@ -9,17 +9,15 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
     { Comp: Moon, label: 'AnimeFlow Theme', theme: 'user' },
     { Comp: Sun, label: 'Sun Theme', theme: 'sun' },
     { Comp: Sparkles, label: 'Mystical Theme', theme: 'moon' },
-    { Comp: Zap, label: 'Cyber Theme', theme: 'cyber' },
-    { Comp: Palette, label: 'Blossom Theme', theme: 'blossom' },
+    { Comp: Heart, label: 'Blossom Theme', theme: 'blossom' },
     { Comp: Gem, label: 'Emerald Theme', theme: 'emerald' },
-    { Comp: Sparkles, label: 'Violet Theme', theme: 'violet' },
     { Comp: Monitor, label: 'System Theme', theme: 'system' },
   ];
 
   const applyTheme = useCallback((theme: string) => {
     const body = document.body;
     // Remove all theme classes
-    body.classList.remove('sun-theme', 'moon-theme', 'cyber-theme', 'blossom-theme', 'emerald-theme', 'violet-theme', 'dark');
+    body.classList.remove('sun-theme', 'moon-theme', 'blossom-theme', 'emerald-theme', 'dark');
     
     // Apply the selected theme
     switch (theme) {
@@ -29,17 +27,11 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
       case 'moon':
         body.classList.add('moon-theme');
         break;
-      case 'cyber':
-        body.classList.add('cyber-theme');
-        break;
       case 'blossom':
         body.classList.add('blossom-theme');
         break;
       case 'emerald':
         body.classList.add('emerald-theme');
-        break;
-      case 'violet':
-        body.classList.add('violet-theme');
         break;
       case 'system':
         // Detect system preference
@@ -86,7 +78,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   }, [applyTheme]);
 
   const handleThemeChange = useCallback((theme: string) => {
-    if (!['user', 'sun', 'moon', 'cyber', 'blossom', 'emerald', 'violet', 'system'].includes(theme) || theme === selectedTheme) {
+    if (!['user', 'sun', 'moon', 'blossom', 'emerald', 'system'].includes(theme) || theme === selectedTheme) {
       return;
     }
 
