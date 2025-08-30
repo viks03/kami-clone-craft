@@ -124,7 +124,7 @@ const Index = () => {
       const header = document.getElementById('mobile-header');
       if (header) {
         if (window.scrollY > 10) {
-          header.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.15)';
+          header.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.2)';
         } else {
           header.style.boxShadow = 'none';
         }
@@ -142,31 +142,31 @@ const Index = () => {
       <main className="flex-1 flex flex-col w-full" style={{ paddingBottom: 'calc(var(--bottom-nav-h, 0px) + env(safe-area-inset-bottom, 0px))' }}>
         <div className="flex flex-col lg:flex-row flex-1 max-w-full">
           {/* Mobile Header */}
-          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-1 py-4 bg-anime-dark-bg transition-shadow duration-200" id="mobile-header">
+          <div className="lg:hidden fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-3 py-3 bg-anime-dark-bg transition-shadow duration-200" id="mobile-header">
             <div className="text-xl font-bold text-anime-primary">
               AnimeFlow
             </div>
             <div className="flex items-center gap-1.5">
               <button 
                 onClick={() => setIsSearchOpen(!isSearchOpen)}
-                className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors"
+                className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-anime-text hover:text-anime-primary transition-colors"
               >
                 <i className="fas fa-search text-sm" />
               </button>
               <div className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center">
                 <NotificationDrawer>
-                  <i className="fas fa-bell text-sm cursor-pointer hover:text-anime-primary transition-colors text-white" />
+                  <i className="fas fa-bell text-sm cursor-pointer hover:text-anime-primary transition-colors text-anime-text" />
                 </NotificationDrawer>
               </div>
-              <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-white hover:text-anime-primary transition-colors">
+              <button className="w-10 h-10 bg-anime-card-bg border border-anime-border rounded-md flex items-center justify-center text-anime-text hover:text-anime-primary transition-colors">
                 <i className="fas fa-user-circle text-sm" />
               </button>
             </div>
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-1 px-1 lg:px-0 lg:pt-0 pt-16">
-            <div className="hidden lg:block">
+          <div className="w-full lg:w-3/4 lg:pr-1 px-3 lg:px-0 lg:pt-0 pt-14">
+            <div className="hidden lg:block px-3">
               <Header onSearch={handleSearch} />
             </div>
             
@@ -175,12 +175,15 @@ const Index = () => {
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <Carousel animes={carouselData} />
+            <div className="px-0 lg:px-3">
+              <Carousel animes={carouselData} />
+            </div>
             
-            <section className="recently-updated mb-8">
-              {/* Combined Filter Buttons and Pagination */}
-              <div className="relative mb-4">
-                 <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
+            <div className="px-0 lg:px-3">
+              <section className="recently-updated mb-8">
+                {/* Combined Filter Buttons and Pagination */}
+                <div className="relative mb-4">
+                   <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
                   {/* Filter Buttons - Scrollable Section */}
                   <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
                     <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
@@ -233,38 +236,41 @@ const Index = () => {
                       totalPages={totalPages}
                       onPageChange={setCurrentPage}
                     />
+                   </div>
                   </div>
                  </div>
-               </div>
-               
-               {/* Classic Grid Layout */}
-               <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
-                 {currentAnimes.map((anime, index) => (
-                   <div
-                     key={`${anime.id}-${currentPage}`}
-                     className="animate-fade-in"
-                     style={{ 
-                       animationDelay: `${index * 50}ms`,
-                       animationFillMode: 'both'
-                     }}
-                   >
-                     <AnimeCard
-                       name={anime.name}
-                       poster={anime.poster}
-                       episodes={anime.episodes}
-                       type={anime.type}
-                     />
-                   </div>
-                 ))}
-               </div>
-            </section>
+                 
+                 {/* Classic Grid Layout */}
+                 <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
+                   {currentAnimes.map((anime, index) => (
+                     <div
+                       key={`${anime.id}-${currentPage}`}
+                       className="animate-fade-in"
+                       style={{ 
+                         animationDelay: `${index * 50}ms`,
+                         animationFillMode: 'both'
+                       }}
+                     >
+                       <AnimeCard
+                         name={anime.name}
+                         poster={anime.poster}
+                         episodes={anime.episodes}
+                         type={anime.type}
+                       />
+                     </div>
+                   ))}
+                 </div>
+               </section>
+             </div>
 
-          </div>
+           </div>
 
         </div>
         
         {/* Footer spans full width */}
-        <Footer />
+        <div className="px-3 lg:px-0">
+          <Footer />
+        </div>
         
       </main>
       
