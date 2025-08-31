@@ -171,11 +171,11 @@ const Index = () => {
             </div>
             
             {/* Mobile Search */}
-            <div className="lg:hidden mb-1">
+            <div className="lg:hidden mb-0">
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <div className="px-0 lg:px-2.5">
+            <div className="px-0 lg:px-2.5 lg:mt-0 mt-1">
               <Carousel animes={carouselData} />
             </div>
             
