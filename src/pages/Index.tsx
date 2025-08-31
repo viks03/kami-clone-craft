@@ -165,21 +165,21 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-1 px-3 lg:px-0 lg:pt-0 pt-14">
-            <div className="hidden lg:block px-3">
+          <div className="w-full lg:w-3/4 lg:pr-1 px-2.5 lg:px-0 lg:pt-0 pt-14">
+            <div className="hidden lg:block px-2.5">
               <Header onSearch={handleSearch} />
             </div>
             
             {/* Mobile Search */}
-            <div className="lg:hidden mb-4">
+            <div className="lg:hidden mb-1">
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <div className="px-0 lg:px-3">
+            <div className="px-0 lg:px-2.5">
               <Carousel animes={carouselData} />
             </div>
             
-            <div className="px-0 lg:px-3">
+            <div className="px-0 lg:px-2.5">
               <section className="recently-updated mb-8">
                 {/* Combined Filter Buttons and Pagination */}
                 <div className="relative mb-4">
@@ -268,7 +268,7 @@ const Index = () => {
         </div>
         
         {/* Footer spans full width */}
-        <div className="px-3 lg:px-0">
+        <div className="px-2.5 lg:px-0">
           <Footer />
         </div>
         
