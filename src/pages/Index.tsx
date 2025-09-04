@@ -182,12 +182,12 @@ const Index = () => {
             
             <div className="px-0 lg:px-2.5">
               <section className="recently-updated mb-8">
-                {/* Filter Buttons - Redesigned */}
-                <div className="mb-4 space-y-3">
-                  {/* Filter Buttons */}
-                  <div className="relative">
-                    <div className="overflow-x-auto scrollbar-hide" id="filter-buttons-container">
-                      <div className="flex bg-anime-card-bg/60 border border-anime-border/60 rounded-xl p-1.5 gap-1 min-w-max" id="filter-buttons">
+                {/* Filter Buttons and Pagination - One Line */}
+                <div className="relative mb-4">
+                  <div className="flex items-center bg-anime-card-bg/60 border border-anime-border/60 rounded-xl p-2 relative">
+                    {/* Filter Buttons - Scrollable Section */}
+                    <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
+                      <div className="flex bg-transparent rounded-lg p-0 gap-1.5" id="filter-buttons">
                         <button
                           onClick={() => handleSectionChange('newest')}
                           className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all duration-200 whitespace-nowrap ${
@@ -224,67 +224,37 @@ const Index = () => {
                     {/* Smart Fade Shadow */}
                     <div 
                       id="filter-fade-shadow"
-                      className="absolute top-0 right-0 w-8 h-full bg-gradient-to-l from-anime-dark-bg via-anime-dark-bg/80 to-transparent pointer-events-none rounded-r-xl opacity-0 transition-opacity duration-300 sm:hidden" 
+                      className="absolute top-2 right-20 w-8 h-[calc(100%-16px)] bg-gradient-to-l from-anime-card-bg/60 via-anime-card-bg/40 to-transparent pointer-events-none rounded-r-xl opacity-0 transition-opacity duration-300 sm:hidden" 
                     />
                     
                     {/* Scroll indicator */}
                     <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/20 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
-                  </div>
-                  
-                  {/* Pagination - Separate Element */}
-                  <div className="flex items-center justify-between">
-                    <div className="text-sm text-anime-text-muted">
-                      Page {currentPage} of {totalPages}
-                    </div>
-                    <div className="flex items-center gap-2">
+                    
+                    {/* Pagination Controls - Smooth Design */}
+                    <div className="flex items-center flex-shrink-0 ml-4 gap-1">
                       <button
                         onClick={() => setCurrentPage(currentPage - 1)}
                         disabled={currentPage <= 1}
-                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${
+                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 ${
                           currentPage <= 1 
                             ? 'bg-anime-card-bg/30 text-anime-text-muted cursor-not-allowed' 
-                            : 'bg-anime-card-bg/60 text-anime-text hover:bg-anime-primary hover:text-white border border-anime-border/60'
+                            : 'bg-anime-card-bg text-anime-text hover:bg-anime-primary hover:text-white border border-anime-border/40 hover:border-anime-primary/60'
                         }`}
                       >
                         <ChevronLeft className="w-4 h-4" />
                       </button>
                       
-                      <div className="flex items-center gap-1">
-                        {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
-                          let pageNum;
-                          if (totalPages <= 5) {
-                            pageNum = i + 1;
-                          } else if (currentPage <= 3) {
-                            pageNum = i + 1;
-                          } else if (currentPage >= totalPages - 2) {
-                            pageNum = totalPages - 4 + i;
-                          } else {
-                            pageNum = currentPage - 2 + i;
-                          }
-                          
-                          return (
-                            <button
-                              key={pageNum}
-                              onClick={() => setCurrentPage(pageNum)}
-                              className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm font-medium transition-all duration-200 ${
-                                pageNum === currentPage
-                                  ? 'bg-anime-primary text-white shadow-md'
-                                  : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/60'
-                              }`}
-                            >
-                              {pageNum}
-                            </button>
-                          );
-                        })}
+                      <div className="flex items-center justify-center px-3 py-2 bg-anime-primary/10 text-anime-text font-medium text-sm rounded-lg border border-anime-primary/20 min-w-[3rem]">
+                        {currentPage}
                       </div>
                       
                       <button
                         onClick={() => setCurrentPage(currentPage + 1)}
                         disabled={currentPage >= totalPages}
-                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${
+                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 ${
                           currentPage >= totalPages 
                             ? 'bg-anime-card-bg/30 text-anime-text-muted cursor-not-allowed' 
-                            : 'bg-anime-card-bg/60 text-anime-text hover:bg-anime-primary hover:text-white border border-anime-border/60'
+                            : 'bg-anime-card-bg text-anime-text hover:bg-anime-primary hover:text-white border border-anime-border/40 hover:border-anime-primary/60'
                         }`}
                       >
                         <ChevronRight className="w-4 h-4" />
