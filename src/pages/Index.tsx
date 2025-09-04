@@ -1,5 +1,4 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Cookies from 'js-cookie';
 import { Sidebar } from '../components/Sidebar';
 import { Header } from '../components/Header';
@@ -176,92 +175,70 @@ const Index = () => {
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <div className="px-0 lg:px-2.5 lg:mt-0 mt-2">
+            <div className="px-0 lg:px-2.5 lg:mt-0 mt-1">
               <Carousel animes={carouselData} />
             </div>
             
             <div className="px-0 lg:px-2.5">
               <section className="recently-updated mb-8">
-                {/* Filter Buttons and Pagination - One Line */}
+                {/* Combined Filter Buttons and Pagination */}
                 <div className="relative mb-4">
-                  <div className="flex items-center bg-anime-card-bg/60 border border-anime-border/60 rounded-xl p-2 relative">
-                    {/* Filter Buttons - Scrollable Section */}
-                    <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
-                      <div className="flex bg-transparent rounded-lg p-0 gap-1.5" id="filter-buttons">
-                        <button
-                          onClick={() => handleSectionChange('newest')}
-                          className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all duration-200 whitespace-nowrap ${
-                            activeSection === 'newest'
-                              ? 'bg-anime-primary text-white shadow-lg shadow-anime-primary/25'
-                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                          }`}
-                        >
-                          Newest
-                        </button>
-                        <button
-                          onClick={() => handleSectionChange('popular')}
-                          className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all duration-200 whitespace-nowrap ${
-                            activeSection === 'popular'
-                              ? 'bg-anime-primary text-white shadow-lg shadow-anime-primary/25'
-                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                          }`}
-                        >
-                          Trending
-                        </button>
-                        <button
-                          onClick={() => handleSectionChange('top-rated')}
-                          className={`px-4 py-2.5 text-sm font-bold rounded-lg transition-all duration-200 whitespace-nowrap ${
-                            activeSection === 'top-rated'
-                              ? 'bg-anime-primary text-white shadow-lg shadow-anime-primary/25'
-                              : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
-                          }`}
-                        >
-                          Top Rated
-                        </button>
-                      </div>
-                    </div>
-                    
-                    {/* Smart Fade Shadow */}
-                    <div 
-                      id="filter-fade-shadow"
-                      className="absolute top-2 right-20 w-8 h-[calc(100%-16px)] bg-gradient-to-l from-anime-card-bg/60 via-anime-card-bg/40 to-transparent pointer-events-none rounded-r-xl opacity-0 transition-opacity duration-300 sm:hidden" 
-                    />
-                    
-                    {/* Scroll indicator */}
-                    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/20 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
-                    
-                    {/* Pagination Controls - Smooth Design */}
-                    <div className="flex items-center flex-shrink-0 ml-4 gap-1">
+                   <div className="flex items-center bg-anime-card-bg border border-anime-border rounded-lg p-1 relative">
+                  {/* Filter Buttons - Scrollable Section */}
+                  <div className="flex-1 overflow-x-auto scrollbar-hide relative" id="filter-buttons-container">
+                    <div className="flex bg-transparent rounded-lg p-0 gap-0" id="filter-buttons">
                       <button
-                        onClick={() => setCurrentPage(currentPage - 1)}
-                        disabled={currentPage <= 1}
-                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 ${
-                          currentPage <= 1 
-                            ? 'bg-anime-card-bg/30 text-anime-text-muted cursor-not-allowed' 
-                            : 'bg-anime-card-bg text-anime-text hover:bg-anime-primary hover:text-white border border-anime-border/40 hover:border-anime-primary/60'
+                        onClick={() => handleSectionChange('newest')}
+                        className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                          activeSection === 'newest'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                         }`}
                       >
-                        <ChevronLeft className="w-4 h-4" />
+                        Newest
                       </button>
-                      
-                      <div className="flex items-center justify-center px-3 py-2 bg-anime-primary/10 text-anime-text font-medium text-sm rounded-lg border border-anime-primary/20 min-w-[3rem]">
-                        {currentPage}
-                      </div>
-                      
                       <button
-                        onClick={() => setCurrentPage(currentPage + 1)}
-                        disabled={currentPage >= totalPages}
-                        className={`w-9 h-9 rounded-lg flex items-center justify-center transition-all duration-200 ${
-                          currentPage >= totalPages 
-                            ? 'bg-anime-card-bg/30 text-anime-text-muted cursor-not-allowed' 
-                            : 'bg-anime-card-bg text-anime-text hover:bg-anime-primary hover:text-white border border-anime-border/40 hover:border-anime-primary/60'
+                        onClick={() => handleSectionChange('popular')}
+                        className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                          activeSection === 'popular'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
                         }`}
                       >
-                        <ChevronRight className="w-4 h-4" />
+                        Trending
+                      </button>
+                      <button
+                        onClick={() => handleSectionChange('top-rated')}
+                        className={`px-3 py-1.5 text-sm font-bold rounded-md transition-all whitespace-nowrap ${
+                          activeSection === 'top-rated'
+                            ? 'bg-anime-primary text-white'
+                            : 'text-anime-text-muted hover:text-anime-text hover:bg-anime-card-bg/80'
+                        }`}
+                      >
+                        Top Rated
                       </button>
                     </div>
                   </div>
-                </div>
+                  
+                  {/* Smart Fade Shadow - only shows when scrollable and positioned fixed */}
+                  <div 
+                    id="filter-fade-shadow"
+                    className="absolute top-1 right-16 w-8 h-[calc(100%-8px)] bg-gradient-to-l from-anime-card-bg via-anime-card-bg/70 to-transparent pointer-events-none rounded-r-lg opacity-0 transition-opacity duration-300 sm:hidden" 
+                  />
+                  
+                  {/* Subtle scroll indicator when scrollable */}
+                  <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-transparent via-anime-primary/10 to-transparent rounded-full opacity-0 transition-opacity duration-300" id="scroll-indicator" />
+                  
+                  {/* Pagination Controls - Fixed */}
+                  <div className="flex items-center flex-shrink-0 ml-4">
+                    <AnimePagination
+                      currentPage={currentPage}
+                      totalPages={totalPages}
+                      onPageChange={setCurrentPage}
+                    />
+                   </div>
+                  </div>
+                 </div>
                  
                  {/* Classic Grid Layout */}
                  <div className="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px] transition-all duration-300">
