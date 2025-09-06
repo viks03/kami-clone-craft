@@ -49,37 +49,61 @@ const Index = () => {
     setCurrentPage,
   } = usePaginatedAnimes({ animes: allLatestAnimes, itemsPerPage: 15 });
 
-  // Dynamically calculate bottom navigation height and update content padding
+  // Dynamically calculate bottom navigation height and mobile header height
   useEffect(() => {
     const root = document.documentElement;
-    const setVar = (px: number) => {
+    const setBottomNavVar = (px: number) => {
       root.style.setProperty('--bottom-nav-h', `${px}px`);
     };
+    const setMobileHeaderVar = (px: number) => {
+      root.style.setProperty('--mobile-header-h', `${px}px`);
+    };
 
-    const update = () => {
+    const updateBottomNav = () => {
       const bottomNav = document.querySelector('#bottom-navigation') as HTMLElement | null;
       if (bottomNav && window.innerWidth < 1024) {
         const height = bottomNav.getBoundingClientRect().height || 0;
-        setVar(height + 16); // buffer for visual spacing
+        setBottomNavVar(height + 16); // buffer for visual spacing
       } else {
-        setVar(0);
+        setBottomNavVar(0);
       }
     };
 
-    // Initial measurement
-    update();
+    const updateMobileHeader = () => {
+      const mobileHeader = document.querySelector('#mobile-header') as HTMLElement | null;
+      if (mobileHeader) {
+        const height = mobileHeader.getBoundingClientRect().height || 56;
+        setMobileHeaderVar(height);
+      } else {
+        setMobileHeaderVar(56); // fallback
+      }
+    };
 
-    // Observe nav size only (more performant than body-wide MutationObserver)
+    const updateAll = () => {
+      updateBottomNav();
+      updateMobileHeader();
+    };
+
+    // Initial measurements
+    updateAll();
+
+    // Observe both elements for size changes
     const bottomNavEl = document.querySelector('#bottom-navigation') as HTMLElement | null;
-    const ro = bottomNavEl ? new ResizeObserver(() => update()) : null;
-    if (bottomNavEl && ro) ro.observe(bottomNavEl);
+    const mobileHeaderEl = document.querySelector('#mobile-header') as HTMLElement | null;
+    
+    const roBottomNav = bottomNavEl ? new ResizeObserver(() => updateBottomNav()) : null;
+    const roMobileHeader = mobileHeaderEl ? new ResizeObserver(() => updateMobileHeader()) : null;
+    
+    if (bottomNavEl && roBottomNav) roBottomNav.observe(bottomNavEl);
+    if (mobileHeaderEl && roMobileHeader) roMobileHeader.observe(mobileHeaderEl);
 
     // Update on viewport resize
-    window.addEventListener('resize', update);
+    window.addEventListener('resize', updateAll);
 
     return () => {
-      window.removeEventListener('resize', update);
-      if (bottomNavEl && ro) ro.disconnect();
+      window.removeEventListener('resize', updateAll);
+      if (bottomNavEl && roBottomNav) roBottomNav.disconnect();
+      if (mobileHeaderEl && roMobileHeader) roMobileHeader.disconnect();
     };
   }, []);
 
@@ -165,7 +189,7 @@ const Index = () => {
           </div>
 
           {/* Left Section */}
-          <div className="w-full lg:w-3/4 lg:pr-1 px-2.5 lg:px-0 lg:pt-0 pt-14">
+          <div className="w-full lg:w-3/4 lg:pr-1 px-2.5 lg:px-0 lg:pt-0" style={{ paddingTop: 'var(--mobile-header-h, 56px)' }}>
             <div className="hidden lg:block px-2.5">
               <Header onSearch={handleSearch} />
             </div>
@@ -175,7 +199,7 @@ const Index = () => {
               <Header onSearch={handleSearch} isSearchOpen={isSearchOpen} />
             </div>
             
-            <div className="px-0 lg:px-2.5 lg:mt-0 mt-1">
+            <div className="px-0 lg:px-2.5 lg:mt-0 mt-[1px]">
               <Carousel animes={carouselData} />
             </div>
             
@@ -268,7 +292,7 @@ const Index = () => {
         </div>
         
         {/* Footer spans full width */}
-        <div className="px-2.5 lg:px-0">
+        <div className="px-2.5">
           <Footer />
         </div>
         
