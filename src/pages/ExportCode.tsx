@@ -13,6 +13,43 @@ const ExportCode = () => {
     const spotlightAnimes = animeData.spotlightAnimes.slice(0, 5);
     const latestAnimes = animeData.latestEpisodeAnimes.slice(0, 15);
 
+    // Generate other info badges
+    const otherInfoHTML = spotlightAnimes[0]?.otherInfo.map(info => 
+      `<span class="flex items-center gap-1 text-xs sm:text-sm bg-black bg-opacity-50 px-2 sm:px-3 py-1 rounded-full"><i class="fas fa-play"></i>${info}</span>`
+    ).join('') || '';
+
+    // Generate carousel dots
+    const carouselDotsHTML = spotlightAnimes.map((_, i) => 
+      `<button class="w-2 h-2 rounded-full ${i === 0 ? 'bg-anime-primary' : 'bg-gray-400'} transition-all duration-300"></button>`
+    ).join('');
+
+    // Generate anime cards
+    const animeCardsHTML = latestAnimes.map((anime, index) => `
+            <div class="animate-fade-in" style="animation-delay: ${index * 50}ms; animation-fill-mode: both;">
+              <div class="relative group cursor-pointer rounded-[10px] overflow-hidden bg-anime-card-bg border border-anime-border">
+                <div class="relative aspect-[2/3] overflow-hidden">
+                  <img src="${anime.poster}" alt="${anime.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy">
+                  <div class="absolute top-2 left-2 flex flex-col gap-1">
+                    <span class="bg-anime-primary text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded">SUB</span>
+                    <span class="bg-green-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded">DUB</span>
+                  </div>
+                  <div class="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-[10px] sm:text-xs px-2 py-1 rounded flex items-center gap-1">
+                    <i class="fas fa-closed-captioning text-[10px]"></i>
+                    <span>${anime.episodes?.sub || 'N/A'}</span>
+                  </div>
+                </div>
+                <div class="p-2 sm:p-3">
+                  <h3 class="text-white text-xs sm:text-sm font-semibold line-clamp-2 mb-1 group-hover:text-anime-primary transition-colors">${anime.name}</h3>
+                  <div class="flex items-center gap-2 text-[10px] sm:text-xs text-anime-text-muted">
+                    <span class="flex items-center gap-1">
+                      <i class="fas fa-tv"></i>
+                      ${anime.type}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>`).join('');
+
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -184,7 +221,7 @@ const ExportCode = () => {
                   <h2 class="text-xl sm:text-2xl lg:text-4xl font-bold mb-2 sm:mb-3 line-clamp-2">${spotlightAnimes[0]?.name}</h2>
                   <p class="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 lg:line-clamp-4">${spotlightAnimes[0]?.description}</p>
                   <div class="flex flex-wrap gap-2 mb-3 sm:mb-4">
-                    ${spotlightAnimes[0]?.otherInfo.map(info => '<span class="flex items-center gap-1 text-xs sm:text-sm bg-black bg-opacity-50 px-2 sm:px-3 py-1 rounded-full"><i class="fas fa-play"></i>' + info + '</span>').join('')}
+                    ${otherInfoHTML}
                   </div>
                   <button class="bg-anime-primary hover:bg-opacity-90 text-white font-bold py-2 sm:py-3 px-4 sm:px-6 rounded-full text-sm sm:text-base transition-all inline-flex items-center gap-2">
                     <i class="fas fa-play"></i>
@@ -197,7 +234,7 @@ const ExportCode = () => {
           
           <!-- Carousel Dots -->
           <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2 z-10">
-            ${spotlightAnimes.map((_, i) => '<button class="w-2 h-2 rounded-full ' + (i === 0 ? 'bg-anime-primary' : 'bg-gray-400') + ' transition-all duration-300"></button>').join('')}
+            ${carouselDotsHTML}
           </div>
         </section>
 
@@ -228,32 +265,7 @@ const ExportCode = () => {
 
           <!-- Anime Grid -->
           <div class="grid grid-cols-3 lg:grid-cols-3 gap-4 min-h-[600px]">
-            ${latestAnimes.map((anime, index) => `
-            <div class="animate-fade-in" style="animation-delay: ${index * 50}ms; animation-fill-mode: both;">
-              <div class="relative group cursor-pointer rounded-[10px] overflow-hidden bg-anime-card-bg border border-anime-border">
-                <div class="relative aspect-[2/3] overflow-hidden">
-                  <img src="${anime.poster}" alt="${anime.name}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110" loading="lazy">
-                  <div class="absolute top-2 left-2 flex flex-col gap-1">
-                    <span class="bg-anime-primary text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded">SUB</span>
-                    <span class="bg-green-600 text-white text-[10px] sm:text-xs font-bold px-2 py-0.5 rounded">DUB</span>
-                  </div>
-                  <div class="absolute top-2 right-2 bg-black bg-opacity-70 text-white text-[10px] sm:text-xs px-2 py-1 rounded flex items-center gap-1">
-                    <i class="fas fa-closed-captioning text-[10px]"></i>
-                    <span>${anime.episodes?.sub || 'N/A'}</span>
-                  </div>
-                </div>
-                <div class="p-2 sm:p-3">
-                  <h3 class="text-white text-xs sm:text-sm font-semibold line-clamp-2 mb-1 group-hover:text-anime-primary transition-colors">${anime.name}</h3>
-                  <div class="flex items-center gap-2 text-[10px] sm:text-xs text-anime-text-muted">
-                    <span class="flex items-center gap-1">
-                      <i class="fas fa-tv"></i>
-                      ${anime.type}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            `).join('')}
+            ${animeCardsHTML}
           </div>
         </section>
 
