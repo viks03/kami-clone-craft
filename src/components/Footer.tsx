@@ -89,7 +89,7 @@ export const Footer: React.FC<{ className?: string }>= ({ className }) => {
   }, [selectedTheme, applyTheme]);
 
   return (
-    <footer className={`mt-6 ${className || ''}`} role="contentinfo">
+    <footer className={`mt-6 px-2.5 lg:px-0 ${className || ''}`} role="contentinfo">
       <div className="bg-anime-card-bg/60 border border-anime-border/70 rounded-xl py-4 px-4 sm:px-6">
         {/* Logo / Brand */}
         <a href="/" className="inline-flex items-center gap-2 text-foreground hover:text-anime-primary transition-colors">
